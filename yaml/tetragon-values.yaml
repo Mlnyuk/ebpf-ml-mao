@@ -1,0 +1,47 @@
+## Tetragon Helm values
+## 배포: helm install tetragon cilium/tetragon -n kube-system -f tetragon-values.yaml
+
+# control-plane 포함 전체 노드에 배포
+tolerations:
+  - operator: Exists
+
+tetragon:
+  enabled: true
+  image:
+    tag: v1.6.1
+
+  # Prometheus 메트릭 활성화 (포트 2112)
+  prometheus:
+    enabled: true
+    port: 2112
+    serviceMonitor:
+      enabled: true
+      labels:
+        release: my-monitoring   # kube-prometheus-stack release 라벨
+
+  # JSON 이벤트 파일 출력 (선택적 파이프라인용)
+  exportFilename: "/var/run/cilium/tetragon/tetragon.log"
+
+  # gRPC 이벤트 서버 활성화 (tetra CLI 연결용)
+  grpc:
+    address: "localhost:54321"
+
+  # 이벤트 필터: 불필요한 내부 이벤트 제거
+  export:
+    securityEventFilters:
+      - match:
+          - binary_regex: "^/usr/local/bin/tetragon"
+            action: Exclude
+
+tetragonOperator:
+  enabled: true
+  image:
+    tag: v1.6.1
+  prometheus:
+    enabled: true
+    serviceMonitor:
+      enabled: true
+      labels:
+        release: my-monitoring
+
+# /sys/fs/bpf 는 Tetragon 차트 내부에서 이미 마운트됨 - 중복 제거

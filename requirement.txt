@@ -1,0 +1,31 @@
+You are a Kubernetes + Linux expert. 
+We will build an eBPF-based observability system step by step.
+Important rules:
+- Do NOT write more than ~50 lines per answer.
+- Focus only on the current step, no future steps.
+
+Step 1 goal:
+- Create Kubernetes YAML manifests for a DaemonSet that can run eBPF
+  programs on all worker nodes, but WITHOUT any actual eBPF code yet.
+
+Cluster context:
+- Bare-metal Kubernetes (kubeadm).
+- CNI: OVN (but not important for this step).
+- Prometheus + Grafana already exist in namespace `monitoring`.
+- I have root access on nodes and cluster-admin in Kubernetes.
+
+Requirements for this step:
+1) Namespace `ebpf-obs`.
+2) ServiceAccount + RBAC (minimal, for reading Pod metadata if needed later).
+3) DaemonSet `ebpf-agent` in `ebpf-obs` with:
+   - privileged: true
+   - hostPID: true
+   - hostNetwork: true
+   - volumes for /sys, /proc, /sys/fs/bpf, /lib/modules, /usr/src
+   - image: temporary placeholder like `ubuntu:22.04` doing `sleep infinity`.
+4) Only YAML in this answer, in one code block, under ~50 lines if possible.
+5) No eBPF code, no Prometheus exporter yet.
+
+Return:
+- A single YAML file (multi-document) I can apply with:
+  `kubectl apply -f ebpf-step1.yaml`.
