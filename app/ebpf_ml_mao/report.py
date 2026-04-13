@@ -16,7 +16,7 @@ def write_json_report(report: AnalysisReport, output_path: str | Path) -> None:
 def write_markdown_report(report: AnalysisReport, output_path: str | Path) -> None:
     data = report.to_dict()
     lines = [
-        "# Phase 1 Analysis Report",
+        "# MVP Analysis Report",
         "",
         f"- Verdict: `{data['verdict']}`",
         f"- Score: `{data['score']}`",
@@ -34,4 +34,3 @@ def write_markdown_report(report: AnalysisReport, output_path: str | Path) -> No
         lines.append(f"- {agent['name']}: {agent['summary']}")
 
     Path(output_path).write_text("\n".join(lines) + "\n", encoding="utf-8")
-

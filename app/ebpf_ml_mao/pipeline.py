@@ -2,28 +2,25 @@ from __future__ import annotations
 
 from pathlib import Path
 
+from .adapters import adapt_prometheus_snapshot, adapt_tetragon_events
 from .agents import analyze, correlate, review, summarize
 from .features import extract_features, window_events
-from .loader import load_jsonl
-from .models import AnalysisReport
+from .loader import load_json, load_jsonl
+from .models import AnalysisReport, NormalizedEvent
 from .normalizer import normalize_event
 from .report import write_json_report, write_markdown_report
 from .scoring import BaselineScorer, verdict_for_score
 
 
-def run_phase1(
-    baseline_path: str | Path,
-    input_path: str | Path,
+def build_report(
+    baseline_events: list[NormalizedEvent],
+    input_events: list[NormalizedEvent],
     output_dir: str | Path,
 ) -> AnalysisReport:
-    baseline_raw = load_jsonl(baseline_path)
-    input_raw = load_jsonl(input_path)
-
-    baseline_events = [normalize_event(item) for item in baseline_raw]
-    input_events = [normalize_event(item) for item in input_raw]
-
     baseline_windows = [extract_features(window) for window in window_events(baseline_events)]
     input_windows = [extract_features(window) for window in window_events(input_events)]
+    if not baseline_windows:
+        raise ValueError("baseline dataset did not produce any feature windows")
     if not input_windows:
         raise ValueError("input dataset did not produce any feature windows")
 
@@ -52,3 +49,40 @@ def run_phase1(
     write_markdown_report(report, output_dir / "report.md")
     return report
 
+
+def run_phase1(
+    baseline_path: str | Path,
+    input_path: str | Path,
+    output_dir: str | Path,
+) -> AnalysisReport:
+    baseline_raw = load_jsonl(baseline_path)
+    input_raw = load_jsonl(input_path)
+
+    baseline_events = [normalize_event(item) for item in baseline_raw]
+    input_events = [normalize_event(item) for item in input_raw]
+    return build_report(baseline_events, input_events, output_dir)
+
+
+def run_phase2(
+    baseline_tetragon_path: str | Path,
+    baseline_prometheus_path: str | Path,
+    input_tetragon_path: str | Path,
+    input_prometheus_path: str | Path,
+    output_dir: str | Path,
+) -> AnalysisReport:
+    baseline_tetragon = load_jsonl(baseline_tetragon_path)
+    input_tetragon = load_jsonl(input_tetragon_path)
+    baseline_prometheus = load_json(baseline_prometheus_path)
+    input_prometheus = load_json(input_prometheus_path)
+
+    baseline_events = adapt_tetragon_events(baseline_tetragon) + adapt_prometheus_snapshot(
+        baseline_prometheus
+    )
+    input_events = adapt_tetragon_events(input_tetragon) + adapt_prometheus_snapshot(
+        input_prometheus
+    )
+    return build_report(
+        sorted(baseline_events, key=lambda event: event.ts),
+        sorted(input_events, key=lambda event: event.ts),
+        output_dir,
+    )

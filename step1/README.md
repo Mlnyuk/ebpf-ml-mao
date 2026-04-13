@@ -42,7 +42,7 @@ JSONL sample input
 저장소 루트에서 실행:
 
 ```bash
-PYTHONPATH=app python3 -m ebpf_ml_mao \
+PYTHONPATH=app python3 -m ebpf_ml_mao phase1 \
   --baseline samples/benign.jsonl \
   --input samples/anomalous.jsonl \
   --output-dir step1/output

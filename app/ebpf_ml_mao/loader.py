@@ -15,3 +15,8 @@ def load_jsonl(path: str | Path) -> list[dict]:
         records.append(json.loads(line))
     return records
 
+
+def load_json(path: str | Path) -> dict | list:
+    """Load a JSON document from disk."""
+    path = Path(path)
+    return json.loads(path.read_text(encoding="utf-8"))

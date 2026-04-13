@@ -1,0 +1,38 @@
+{
+  "timestamp": "2026-04-13T00:00:24Z",
+  "series": [
+    {
+      "metric": "container_cpu_usage_percent",
+      "labels": {
+        "namespace": "shop",
+        "pod": "checkout-6c8b5",
+        "workload": "checkout",
+        "container": "app",
+        "node": "worker-1"
+      },
+      "value": 86.0
+    },
+    {
+      "metric": "container_memory_working_set_bytes",
+      "labels": {
+        "namespace": "shop",
+        "pod": "checkout-6c8b5",
+        "workload": "checkout",
+        "container": "app",
+        "node": "worker-1"
+      },
+      "value": 372.0
+    },
+    {
+      "metric": "container_network_connections",
+      "labels": {
+        "namespace": "shop",
+        "pod": "checkout-6c8b5",
+        "workload": "checkout",
+        "container": "app",
+        "node": "worker-1"
+      },
+      "value": 26
+    }
+  ]
+}

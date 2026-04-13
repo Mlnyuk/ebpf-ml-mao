@@ -1,0 +1,3 @@
+{"time":"2026-04-13T00:00:00Z","type":"PROCESS_EXEC","process":{"pid":101,"binary":"/usr/bin/python3","node_name":"worker-1","pod":{"namespace":"shop","name":"checkout-6c8b5","workload":"checkout","container":{"name":"app"}}}}
+{"time":"2026-04-13T00:00:09Z","type":"PROCESS_EXEC","process":{"pid":102,"binary":"/usr/bin/python3","node_name":"worker-1","pod":{"namespace":"shop","name":"checkout-6c8b5","workload":"checkout","container":{"name":"app"}}}}
+{"time":"2026-04-13T00:00:19Z","type":"PROCESS_KPROBE","process":{"pid":102,"binary":"/usr/bin/curl","node_name":"worker-1","pod":{"namespace":"shop","name":"checkout-6c8b5","workload":"checkout","container":{"name":"app"}}}}

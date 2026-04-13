@@ -40,7 +40,7 @@ class Phase1PipelineTest(unittest.TestCase):
             )
             report_md = Path(temp_dir, "report.md").read_text(encoding="utf-8")
             self.assertEqual(report_json["verdict"], "anomalous")
-            self.assertIn("# Phase 1 Analysis Report", report_md)
+            self.assertIn("# MVP Analysis Report", report_md)
 
 
 if __name__ == "__main__":
