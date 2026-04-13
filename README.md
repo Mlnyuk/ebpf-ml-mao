@@ -11,6 +11,42 @@
 - 여러 에이전트가 역할을 나눠 협업하는 오케스트레이션 구조
 - Kubernetes 배포 및 정책 실험용 YAML
 
+## Pipeline Overview
+
+```mermaid
+flowchart TD
+    A[Raw Inputs] --> A1[Tetragon JSONL]
+    A --> A2[Prometheus Snapshot JSON]
+
+    A1 --> B[Tetragon Adapter]
+    A2 --> C[Prometheus Adapter]
+
+    B --> D[NormalizedEvent]
+    C --> D
+
+    D --> E[30s Windowing]
+    E --> F[Feature Extraction]
+    F --> G[Baseline Anomaly Scoring]
+
+    G --> H1[Summarizer]
+    G --> H2[Analyst]
+    G --> H3[Correlator]
+    G --> H4[Reviewer]
+
+    H1 --> I[Final Report]
+    H2 --> I
+    H3 --> I
+    H4 --> I
+
+    I --> J1[report.json]
+    I --> J2[report.md]
+
+    K[Phase 1] --> K1[Flat JSONL Input]
+    K1 --> D
+
+    L[Phase 2] --> A
+```
+
 ## Repository Layout
 
 ```text
