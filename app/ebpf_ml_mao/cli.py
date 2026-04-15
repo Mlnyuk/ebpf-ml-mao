@@ -18,11 +18,12 @@ def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="Run the eBPF ML MAO MVP pipeline.")
     subparsers = parser.add_subparsers(dest="command", required=True)
 
-    train_model = subparsers.add_parser("train-model", help="Train and save a baseline model")
+    train_model = subparsers.add_parser("train-model", help="Train and save a model")
     train_model.add_argument("--baseline-tetragon", required=True, help="Path to benign Tetragon JSONL")
     train_model.add_argument("--baseline-prometheus", required=True, help="Path to benign Prometheus snapshot JSON")
     train_model.add_argument("--model-path", required=True, help="Path to write the trained model JSON")
     train_model.add_argument("--threshold", type=float, default=0.45, help="Anomaly threshold stored in the model")
+    train_model.add_argument("--model-type", choices=["baseline", "zscore"], default="baseline", help="Model type to train")
 
     phase1 = subparsers.add_parser("phase1", help="Run the flat JSONL Phase 1 pipeline")
     phase1.add_argument("--baseline", required=True, help="Path to benign baseline JSONL")
@@ -70,6 +71,7 @@ def main() -> int:
             args.baseline_prometheus,
             args.model_path,
             threshold=args.threshold,
+            model_type=args.model_type,
         )
         print(json.dumps(model.to_dict(), indent=2))
         return 0

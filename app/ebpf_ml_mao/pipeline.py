@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import json
 from pathlib import Path
 
 from .adapters import adapt_prometheus_snapshot, adapt_tetragon_events
@@ -92,12 +91,13 @@ def train_baseline_model(
     model_path: str | Path,
     *,
     threshold: float = 0.45,
+    model_type: str = "baseline",
 ) -> BaselineModel:
     baseline_windows = _feature_windows(baseline_events)
     if not baseline_windows:
         raise ValueError("baseline dataset did not produce any feature windows")
-    scorer = BaselineScorer()
-    model = scorer.fit(baseline_windows, threshold=threshold)
+    scorer = BaselineScorer(model_type=model_type)
+    model = scorer.fit(baseline_windows, threshold=threshold, model_type=model_type)
     scorer.save_model(model_path)
     return model
 
@@ -109,6 +109,7 @@ def train_baseline_model_from_raw(
     model_path: str | Path,
     *,
     threshold: float = 0.45,
+    model_type: str = "baseline",
 ) -> BaselineModel:
     baseline_tetragon = load_jsonl(baseline_tetragon_path)
     baseline_prometheus = load_json(baseline_prometheus_path)
@@ -119,6 +120,7 @@ def train_baseline_model_from_raw(
         sorted(baseline_events, key=lambda event: event.ts),
         model_path,
         threshold=threshold,
+        model_type=model_type,
     )
 
 
@@ -131,7 +133,7 @@ def build_report(
     baseline_windows = _feature_windows(baseline_events)
     if not baseline_windows:
         raise ValueError("baseline dataset did not produce any feature windows")
-    scorer = BaselineScorer()
+    scorer = BaselineScorer(model_type="baseline")
     scorer.fit(baseline_windows)
     return _build_single_report_from_model(input_events, output_dir, scorer)
 
@@ -145,7 +147,7 @@ def build_batch_report(
     baseline_windows = _feature_windows(baseline_events)
     if not baseline_windows:
         raise ValueError("baseline dataset did not produce any feature windows")
-    scorer = BaselineScorer()
+    scorer = BaselineScorer(model_type="baseline")
     scorer.fit(baseline_windows)
     return _build_batch_report_from_model(input_events, output_dir, scorer)
 
