@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ebpf-ml-mao-analyzer
+  namespace: ebpf-obs
+spec:
+  template:
+    spec:
+      containers:
+        - name: analyzer
+          image: ghcr.io/mlnyuk/ebpf-ml-mao:step10
+          command: ["python3", "-m", "ebpf_ml_mao", "api"]
+          args:
+            - --host
+            - 0.0.0.0
+            - --port
+            - "8080"
+            - --registry-path
+            - $(REGISTRY_PATH)
+            - --ingest-dir
+            - $(ANALYZER_INGEST_DIR)
+            - --shared-token
+            - $(ANALYZER_SHARED_TOKEN)
+          envFrom:
+            - configMapRef:
+                name: ebpf-ml-mao-runtime
+            - secretRef:
+                name: ebpf-ml-mao-secret
+          readinessProbe:
+            $patch: replace
+            httpGet:
+              path: /readyz
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            $patch: replace
+            httpGet:
+              path: /healthz
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 15
