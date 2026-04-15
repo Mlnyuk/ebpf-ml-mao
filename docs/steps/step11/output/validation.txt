@@ -1,0 +1,4 @@
+python3 -m unittest discover -s tests -v
+29 tests passed
+kubectl kustomize deploy/yaml/step11
+rendered successfully

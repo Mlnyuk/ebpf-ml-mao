@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ebpf-ml-mao-runtime
+  namespace: ebpf-obs
+data:
+  COLLECTOR_SPOOL_DIR: /var/lib/ebpf-ml-mao-collector/spool

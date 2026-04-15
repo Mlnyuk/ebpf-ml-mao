@@ -19,8 +19,8 @@ from ebpf_ml_mao.api import serve_api
 from ebpf_ml_mao.transport import post_report
 
 
-class Step10APITest(unittest.TestCase):
-    def test_api_stores_report_and_exposes_status(self) -> None:
+class Step11APITest(unittest.TestCase):
+    def test_api_deduplicates_report_and_tracks_ingest_index(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
             tmp = Path(temp_dir)
             registry_path = tmp / "registry.json"
@@ -48,11 +48,13 @@ class Step10APITest(unittest.TestCase):
 
             report_path = tmp / "report.json"
             report_path.write_text(json.dumps({"score": 0.5, "verdict": "normal"}), encoding="utf-8")
-            result = post_report(f"http://127.0.0.1:{port}", node_name="node-a", report_path=report_path, shared_token="secret-token")
-            self.assertEqual(result["status"], "stored")
-            self.assertTrue(Path(result["path"]).exists())
+            first = post_report(f"http://127.0.0.1:{port}", node_name="node-a", report_path=report_path, shared_token="secret-token")
+            second = post_report(f"http://127.0.0.1:{port}", node_name="node-a", report_path=report_path, shared_token="secret-token")
+            self.assertEqual(first["status"], "stored")
+            self.assertEqual(second["status"], "duplicate")
 
-            with request.urlopen(f"http://127.0.0.1:{port}/v1/status", timeout=2.0) as response:
+            with request.urlopen(f"http://127.0.0.1:{port}/v1/ingest", timeout=2.0) as response:
                 payload = json.loads(response.read().decode("utf-8"))
-            self.assertEqual(payload["status"], "ok")
-            self.assertIn("registry", payload)
+            self.assertEqual(payload["received_count"], 2)
+            self.assertEqual(payload["unique_count"], 1)
+            self.assertEqual(payload["duplicates_count"], 1)
