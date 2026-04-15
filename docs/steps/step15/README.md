@@ -15,6 +15,8 @@ Step 15 범위는 `시각화`입니다.
   - `/assets/dashboard.js`
 - `deploy/yaml/step15/kustomization.yaml`
 - `deploy/yaml/step15/ui-service.yaml`
+- `deploy/yaml/step15/patch-serviceaccounts.yaml`
+- `deploy/yaml/step15/ghcr-pull-secret.example.yaml`
 - `tests/test_step15_ui.py`
 - `tests/test_step15_artifacts.py`
 
@@ -32,6 +34,22 @@ Step 15 범위는 `시각화`입니다.
 - alert feed
 - registry / workflow / queue / spool health 카드
 - 15초 주기 자동 새로고침
+
+
+## GHCR Pull Secret
+
+현재 이미지가 `ghcr.io/mlnyuk/ebpf-ml-mao:step14` 이고 클러스터에서 anonymous pull이 막혀 있으면 `ghcr-pull-secret` 이 필요합니다.
+
+```bash
+kubectl create secret docker-registry ghcr-pull-secret \
+  --docker-server=ghcr.io \
+  --docker-username=<github-user> \
+  --docker-password=<pat-with-read:packages> \
+  --docker-email=unused@example.com \
+  -n ebpf-obs
+```
+
+생성 후 `kubectl apply -k deploy/yaml/step15` 를 다시 적용하면 analyzer/collector ServiceAccount가 이 secret을 사용합니다.
 
 ## Validation
 

@@ -3,3 +3,5 @@ kind: Kustomization
 resources:
   - ../step14
   - ui-service.yaml
+patches:
+  - path: patch-serviceaccounts.yaml
