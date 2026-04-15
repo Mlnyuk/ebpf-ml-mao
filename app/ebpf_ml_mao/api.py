@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import time
 from http import HTTPStatus
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
@@ -24,7 +25,52 @@ def _workflow_path(ingest_dir: Path) -> Path:
     return ingest_dir / "workflow-summary.json"
 
 
-def load_ingest_index(ingest_dir: str | Path) -> dict[str, Any]:
+def _corrupt_index_path(ingest_dir: Path) -> Path:
+    return ingest_dir / f"index-corrupt-{int(time.time())}.json"
+
+
+def _atomic_write_json(path: Path, payload: dict[str, Any]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    tmp = path.with_suffix(path.suffix + ".tmp")
+    tmp.write_text(json.dumps(payload, indent=2), encoding="utf-8")
+    tmp.replace(path)
+
+
+def rebuild_ingest_index(ingest_dir: str | Path) -> dict[str, Any]:
+    base = Path(ingest_dir)
+    base.mkdir(parents=True, exist_ok=True)
+    items: dict[str, dict[str, Any]] = {}
+    for path in sorted(base.rglob("*.json")):
+        if path.name in {"index.json", "workflow-summary.json"} or path.name.startswith("index-corrupt-"):
+            continue
+        try:
+            payload = json.loads(path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            continue
+        if not isinstance(payload, dict) or not isinstance(payload.get("report"), dict):
+            continue
+        digest = _payload_digest(payload)
+        report = payload.get("report", {})
+        items[digest] = {
+            "node_name": str(payload.get("node_name", path.parent.name)),
+            "report_name": str(payload.get("report_name", path.name)),
+            "path": str(path),
+            "phase": str(payload.get("phase", "unknown")),
+            "verdict": report.get("verdict", "unknown") if isinstance(report, dict) else "unknown",
+        }
+    index = {
+        "received_count": len(items),
+        "unique_count": len(items),
+        "duplicates_count": 0,
+        "items": items,
+        "repaired_at": int(time.time()),
+    }
+    _save_ingest_index(base, index)
+    _save_workflow_summary(base, index)
+    return index
+
+
+def load_ingest_index(ingest_dir: str | Path, *, repair: bool = False) -> dict[str, Any]:
     base = Path(ingest_dir)
     path = _index_path(base)
     if not path.exists():
@@ -37,11 +83,14 @@ def load_ingest_index(ingest_dir: str | Path) -> dict[str, Any]:
     try:
         return json.loads(path.read_text(encoding="utf-8"))
     except json.JSONDecodeError as exc:
-        raise ValueError(f"ingest index is not valid JSON: {path}") from exc
+        if not repair:
+            raise ValueError(f"ingest index is not valid JSON: {path}") from exc
+        path.replace(_corrupt_index_path(base))
+        return rebuild_ingest_index(base)
 
 
 def _save_ingest_index(ingest_dir: Path, index: dict[str, Any]) -> None:
-    _index_path(ingest_dir).write_text(json.dumps(index, indent=2), encoding="utf-8")
+    _atomic_write_json(_index_path(ingest_dir), index)
 
 
 def _save_workflow_summary(ingest_dir: Path, index: dict[str, Any]) -> dict[str, Any]:
@@ -57,14 +106,14 @@ def _save_workflow_summary(ingest_dir: Path, index: dict[str, Any]) -> dict[str,
         "nodes": sorted({item["node_name"] for item in items}),
         "verdicts": verdicts,
     }
-    _workflow_path(ingest_dir).write_text(json.dumps(workflow, indent=2), encoding="utf-8")
+    _atomic_write_json(_workflow_path(ingest_dir), workflow)
     return workflow
 
 
 def store_ingest_payload(ingest_dir: str | Path, payload: dict[str, Any]) -> dict[str, Any]:
     base = Path(ingest_dir)
     base.mkdir(parents=True, exist_ok=True)
-    index = load_ingest_index(base)
+    index = load_ingest_index(base, repair=True)
     digest = _payload_digest(payload)
     index["received_count"] = int(index.get("received_count", 0)) + 1
     node_name = str(payload.get("node_name", "unknown-node"))
@@ -87,7 +136,7 @@ def store_ingest_payload(ingest_dir: str | Path, payload: dict[str, Any]) -> dic
     target_dir = base / node_name
     target_dir.mkdir(parents=True, exist_ok=True)
     target_path = target_dir / f"{digest[:12]}-{report_name}"
-    target_path.write_text(json.dumps(payload, indent=2), encoding="utf-8")
+    _atomic_write_json(target_path, payload)
     index["items"][digest] = {
         "node_name": node_name,
         "report_name": report_name,
@@ -107,7 +156,7 @@ def store_ingest_payload(ingest_dir: str | Path, payload: dict[str, Any]) -> dic
 
 
 class AnalyzerAPIHandler(BaseHTTPRequestHandler):
-    server_version = "ebpf-ml-mao/step11"
+    server_version = "ebpf-ml-mao/step12"
 
     def _json_response(self, status: int, payload: dict[str, Any]) -> None:
         body = json.dumps(payload, indent=2).encode("utf-8")
@@ -129,8 +178,7 @@ class AnalyzerAPIHandler(BaseHTTPRequestHandler):
         shared_token = getattr(self.server, "shared_token", "")  # type: ignore[attr-defined]
         if not shared_token:
             return True
-        header = self.headers.get("Authorization", "")
-        return header == f"Bearer {shared_token}"
+        return self.headers.get("Authorization", "") == f"Bearer {shared_token}"
 
     @property
     def registry_path(self) -> Path:
@@ -147,7 +195,7 @@ class AnalyzerAPIHandler(BaseHTTPRequestHandler):
         if self.path == "/readyz":
             try:
                 status = registry_status(self.registry_path)
-                ingest = load_ingest_index(self.ingest_dir)
+                ingest = load_ingest_index(self.ingest_dir, repair=True)
             except ValueError as exc:
                 self._json_response(HTTPStatus.SERVICE_UNAVAILABLE, {"status": "error", "error": str(exc)})
                 return
@@ -156,27 +204,25 @@ class AnalyzerAPIHandler(BaseHTTPRequestHandler):
         if self.path == "/v1/status":
             try:
                 registry = registry_status(self.registry_path)
-                ingest = load_ingest_index(self.ingest_dir)
+                ingest = load_ingest_index(self.ingest_dir, repair=True)
             except ValueError as exc:
                 self._json_response(HTTPStatus.BAD_REQUEST, {"error": str(exc)})
                 return
-            self._json_response(
-                HTTPStatus.OK,
-                {
-                    "status": "ok",
-                    "registry": registry,
-                    "ingest_dir": str(self.ingest_dir),
-                    "ingest": {
-                        "received_count": ingest.get("received_count", 0),
-                        "unique_count": ingest.get("unique_count", 0),
-                        "duplicates_count": ingest.get("duplicates_count", 0),
-                    },
+            self._json_response(HTTPStatus.OK, {
+                "status": "ok",
+                "registry": registry,
+                "ingest_dir": str(self.ingest_dir),
+                "ingest": {
+                    "received_count": ingest.get("received_count", 0),
+                    "unique_count": ingest.get("unique_count", 0),
+                    "duplicates_count": ingest.get("duplicates_count", 0),
+                    "repaired_at": ingest.get("repaired_at"),
                 },
-            )
+            })
             return
         if self.path == "/v1/ingest":
             try:
-                payload = load_ingest_index(self.ingest_dir)
+                payload = load_ingest_index(self.ingest_dir, repair=True)
             except ValueError as exc:
                 self._json_response(HTTPStatus.BAD_REQUEST, {"error": str(exc)})
                 return
@@ -204,18 +250,14 @@ class AnalyzerAPIHandler(BaseHTTPRequestHandler):
         except ValueError as exc:
             self._json_response(HTTPStatus.BAD_REQUEST, {"error": str(exc)})
             return
-
-        report_body = payload.get("report")
-        if not isinstance(report_body, dict):
+        if not isinstance(payload.get("report"), dict):
             self._json_response(HTTPStatus.BAD_REQUEST, {"error": "report must be a JSON object"})
             return
         if "node_name" not in payload:
             self._json_response(HTTPStatus.BAD_REQUEST, {"error": "node_name is required"})
             return
-
         result = store_ingest_payload(self.ingest_dir, payload)
-        status_code = HTTPStatus.OK if result["status"] == "duplicate" else HTTPStatus.ACCEPTED
-        self._json_response(status_code, result)
+        self._json_response(HTTPStatus.OK if result["status"] == "duplicate" else HTTPStatus.ACCEPTED, result)
 
 
 def serve_api(host: str, port: int, *, registry_path: str | Path, ingest_dir: str | Path, shared_token: str = "") -> None:

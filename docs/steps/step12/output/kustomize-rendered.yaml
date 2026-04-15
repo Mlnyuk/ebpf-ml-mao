@@ -1,0 +1,392 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: ebpf-obs
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: ebpf-ml-mao-analyzer
+  namespace: ebpf-obs
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: ebpf-ml-mao-collector
+  namespace: ebpf-obs
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: ebpf-ml-mao-analyzer
+  namespace: ebpf-obs
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - configmaps
+  verbs:
+  - get
+  - list
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: ebpf-ml-mao-collector
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - pods
+  - nodes
+  - namespaces
+  verbs:
+  - get
+  - list
+  - watch
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: ebpf-ml-mao-analyzer
+  namespace: ebpf-obs
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: ebpf-ml-mao-analyzer
+subjects:
+- kind: ServiceAccount
+  name: ebpf-ml-mao-analyzer
+  namespace: ebpf-obs
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: ebpf-ml-mao-collector
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: ebpf-ml-mao-collector
+subjects:
+- kind: ServiceAccount
+  name: ebpf-ml-mao-collector
+  namespace: ebpf-obs
+---
+apiVersion: v1
+data:
+  ANALYSIS_INTERVAL_SECONDS: "30"
+  ANALYZER_API_URL: http://ebpf-ml-mao-analyzer.ebpf-obs.svc.cluster.local:8080
+  ANALYZER_INGEST_DIR: /var/lib/ebpf-ml-mao/ingest
+  BASELINE_PROMETHEUS_PATH: /app/samples/step2/baseline_prometheus.json
+  BASELINE_TETRAGON_PATH: /app/samples/step2/baseline_tetragon.jsonl
+  COLLECTOR_OUTPUT_DIR: /var/lib/ebpf-ml-mao-collector/reports
+  COLLECTOR_SPOOL_DIR: /var/lib/ebpf-ml-mao-collector/spool
+  COLLECTOR_SPOOL_QUARANTINE_DIR: /var/lib/ebpf-ml-mao-collector/spool-quarantine
+  COLLECTOR_SPOOL_TTL_SECONDS: "3600"
+  MODEL_DIR: /var/lib/ebpf-ml-mao/models
+  PROMETHEUS_URL: http://prometheus-kube-prometheus-prometheus.monitoring.svc.cluster.local:9090/metrics
+  REGISTRY_PATH: /var/lib/ebpf-ml-mao/registry/registry.json
+  REPORT_DIR: /var/lib/ebpf-ml-mao/reports
+  SCRAPE_TIMEOUT: "5.0"
+  TETRAGON_LOG_PATH: /var/run/cilium/tetragon/tetragon.log
+  TETRAGON_TAIL_LINES: "200"
+kind: ConfigMap
+metadata:
+  name: ebpf-ml-mao-runtime
+  namespace: ebpf-obs
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: ebpf-ml-mao-secret
+  namespace: ebpf-obs
+stringData:
+  ANALYZER_SHARED_TOKEN: change-me-step10
+  PROMETHEUS_AUTH_HEADER: ""
+type: Opaque
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ebpf-ml-mao-analyzer
+  namespace: ebpf-obs
+spec:
+  ports:
+  - name: http
+    port: 8080
+    targetPort: 8080
+  selector:
+    app: ebpf-ml-mao-analyzer
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: ebpf-ml-mao-state
+  namespace: ebpf-obs
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 2Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ebpf-ml-mao-analyzer
+  namespace: ebpf-obs
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ebpf-ml-mao-analyzer
+  template:
+    metadata:
+      labels:
+        app: ebpf-ml-mao-analyzer
+    spec:
+      containers:
+      - args:
+        - --host
+        - 0.0.0.0
+        - --port
+        - "8080"
+        - --registry-path
+        - $(REGISTRY_PATH)
+        - --ingest-dir
+        - $(ANALYZER_INGEST_DIR)
+        - --shared-token
+        - $(ANALYZER_SHARED_TOKEN)
+        command:
+        - python3
+        - -m
+        - ebpf_ml_mao
+        - api
+        envFrom:
+        - configMapRef:
+            name: ebpf-ml-mao-runtime
+        - secretRef:
+            name: ebpf-ml-mao-secret
+        image: ghcr.io/mlnyuk/ebpf-ml-mao:step10
+        imagePullPolicy: IfNotPresent
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 8080
+          initialDelaySeconds: 10
+          periodSeconds: 15
+        name: analyzer
+        ports:
+        - containerPort: 8080
+          name: http
+        readinessProbe:
+          httpGet:
+            path: /readyz
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          runAsNonRoot: true
+          runAsUser: 10001
+        volumeMounts:
+        - mountPath: /var/lib/ebpf-ml-mao
+          name: state
+        - mountPath: /tmp
+          name: tmp
+      serviceAccountName: ebpf-ml-mao-analyzer
+      volumes:
+      - name: state
+        persistentVolumeClaim:
+          claimName: ebpf-ml-mao-state
+      - emptyDir: {}
+        name: tmp
+---
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: ebpf-ml-mao-analyzer
+  namespace: ebpf-obs
+spec:
+  minAvailable: 1
+  selector:
+    matchLabels:
+      app: ebpf-ml-mao-analyzer
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: ebpf-ml-mao-collector
+  namespace: ebpf-obs
+spec:
+  selector:
+    matchLabels:
+      app: ebpf-ml-mao-collector
+  template:
+    metadata:
+      labels:
+        app: ebpf-ml-mao-collector
+    spec:
+      containers:
+      - args:
+        - |-
+          mkdir -p ${COLLECTOR_OUTPUT_DIR}/${NODE_NAME} ${COLLECTOR_SPOOL_DIR} ${COLLECTOR_SPOOL_QUARANTINE_DIR} /tmp && while true; do
+
+            PYTHONPATH=/app/app python3 -m ebpf_ml_mao spool-prune
+            --spool-dir ${COLLECTOR_SPOOL_DIR}
+            --ttl-seconds ${COLLECTOR_SPOOL_TTL_SECONDS}
+            --quarantine-dir ${COLLECTOR_SPOOL_QUARANTINE_DIR} || true;
+            PYTHONPATH=/app/app python3 -m ebpf_ml_mao drain-spool
+            --api-url ${ANALYZER_API_URL}
+            --spool-dir ${COLLECTOR_SPOOL_DIR}
+            --shared-token ${ANALYZER_SHARED_TOKEN}
+            --ttl-seconds ${COLLECTOR_SPOOL_TTL_SECONDS}
+            --quarantine-dir ${COLLECTOR_SPOOL_QUARANTINE_DIR} || true;
+            PYTHONPATH=/app/app python3 -m ebpf_ml_mao phase3
+            --baseline-tetragon ${BASELINE_TETRAGON_PATH}
+            --baseline-prometheus ${BASELINE_PROMETHEUS_PATH}
+            --tetragon-log ${TETRAGON_LOG_PATH}
+            --prometheus-url ${PROMETHEUS_URL}
+            --output-dir ${COLLECTOR_OUTPUT_DIR}/${NODE_NAME} &&
+            PYTHONPATH=/app/app python3 -m ebpf_ml_mao ship-report
+            --api-url ${ANALYZER_API_URL}
+            --node-name ${NODE_NAME}
+            --report-path ${COLLECTOR_OUTPUT_DIR}/${NODE_NAME}/report.json
+            --spool-dir ${COLLECTOR_SPOOL_DIR}
+            --shared-token ${ANALYZER_SHARED_TOKEN}
+            --spool-ttl-seconds ${COLLECTOR_SPOOL_TTL_SECONDS};
+            sleep ${ANALYSIS_INTERVAL_SECONDS};
+          done
+        command:
+        - /bin/sh
+        - -c
+        env:
+        - name: NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        envFrom:
+        - configMapRef:
+            name: ebpf-ml-mao-runtime
+        - secretRef:
+            name: ebpf-ml-mao-secret
+        image: ghcr.io/mlnyuk/ebpf-ml-mao:step10
+        imagePullPolicy: IfNotPresent
+        name: collector
+        readinessProbe:
+          exec:
+            command:
+            - /bin/sh
+            - -c
+            - test -f ${TETRAGON_LOG_PATH}
+          initialDelaySeconds: 5
+          periodSeconds: 15
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          runAsNonRoot: true
+          runAsUser: 10001
+        volumeMounts:
+        - mountPath: /var/run/cilium/tetragon
+          name: tetragon-run
+          readOnly: true
+        - mountPath: /var/lib/ebpf-ml-mao-collector
+          name: collector-state
+        - mountPath: /tmp
+          name: tmp
+      - args:
+        - |-
+          while true; do
+
+            find /var/lib/ebpf-ml-mao-collector/reports -type f | sort | tail -n 5;
+            sleep 60;
+          done
+        command:
+        - /bin/sh
+        - -c
+        image: busybox:1.36
+        imagePullPolicy: IfNotPresent
+        name: report-shipper
+        volumeMounts:
+        - mountPath: /var/lib/ebpf-ml-mao-collector
+          name: collector-state
+      serviceAccountName: ebpf-ml-mao-collector
+      volumes:
+      - hostPath:
+          path: /var/run/cilium/tetragon
+          type: DirectoryOrCreate
+        name: tetragon-run
+      - hostPath:
+          path: /var/lib/ebpf-ml-mao-collector
+          type: DirectoryOrCreate
+        name: collector-state
+      - emptyDir: {}
+        name: tmp
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: ebpf-ml-mao-analyzer-ingress
+  namespace: ebpf-obs
+spec:
+  egress:
+  - to:
+    - podSelector: {}
+  ingress:
+  - from:
+    - podSelector:
+        matchLabels:
+          app: ebpf-ml-mao-collector
+    ports:
+    - port: 8080
+      protocol: TCP
+  podSelector:
+    matchLabels:
+      app: ebpf-ml-mao-analyzer
+  policyTypes:
+  - Ingress
+  - Egress
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: ebpf-ml-mao-collector-egress
+  namespace: ebpf-obs
+spec:
+  egress:
+  - ports:
+    - port: 8080
+      protocol: TCP
+    to:
+    - podSelector:
+        matchLabels:
+          app: ebpf-ml-mao-analyzer
+  - ports:
+    - port: 53
+      protocol: UDP
+    - port: 53
+      protocol: TCP
+    to:
+    - namespaceSelector: {}
+  - ports:
+    - port: 9090
+      protocol: TCP
+    to:
+    - namespaceSelector: {}
+  podSelector:
+    matchLabels:
+      app: ebpf-ml-mao-collector
+  policyTypes:
+  - Egress
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: ebpf-ml-mao-default-deny
+  namespace: ebpf-obs
+spec:
+  podSelector: {}
+  policyTypes:
+  - Ingress
+  - Egress

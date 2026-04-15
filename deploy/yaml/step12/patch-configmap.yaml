@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ebpf-ml-mao-runtime
+  namespace: ebpf-obs
+data:
+  COLLECTOR_SPOOL_TTL_SECONDS: "3600"
+  COLLECTOR_SPOOL_QUARANTINE_DIR: /var/lib/ebpf-ml-mao-collector/spool-quarantine
