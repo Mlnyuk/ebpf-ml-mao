@@ -3,13 +3,26 @@ from __future__ import annotations
 import argparse
 import json
 
-from .pipeline import run_phase1, run_phase2, run_phase3, run_phase4
+from .pipeline import (
+    run_phase1,
+    run_phase2,
+    run_phase3,
+    run_phase4,
+    run_phase5,
+    train_baseline_model_from_raw,
+)
 
 
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="Run the eBPF ML MAO MVP pipeline.")
     subparsers = parser.add_subparsers(dest="command", required=True)
+
+    train_model = subparsers.add_parser("train-model", help="Train and save a baseline model")
+    train_model.add_argument("--baseline-tetragon", required=True, help="Path to benign Tetragon JSONL")
+    train_model.add_argument("--baseline-prometheus", required=True, help="Path to benign Prometheus snapshot JSON")
+    train_model.add_argument("--model-path", required=True, help="Path to write the trained model JSON")
+    train_model.add_argument("--threshold", type=float, default=0.45, help="Anomaly threshold stored in the model")
 
     phase1 = subparsers.add_parser("phase1", help="Run the flat JSONL Phase 1 pipeline")
     phase1.add_argument("--baseline", required=True, help="Path to benign baseline JSONL")
@@ -38,6 +51,12 @@ def build_parser() -> argparse.ArgumentParser:
     phase4.add_argument("--input-tetragon", required=True, help="Path to target Tetragon JSONL")
     phase4.add_argument("--input-prometheus", required=True, help="Path to target Prometheus snapshot JSON")
     phase4.add_argument("--output-dir", required=True, help="Directory for generated reports")
+
+    phase5 = subparsers.add_parser("phase5", help="Run inference from a saved model")
+    phase5.add_argument("--model-path", required=True, help="Path to the trained model JSON")
+    phase5.add_argument("--input-tetragon", required=True, help="Path to target Tetragon JSONL")
+    phase5.add_argument("--input-prometheus", required=True, help="Path to target Prometheus snapshot JSON")
+    phase5.add_argument("--output-dir", required=True, help="Directory for generated reports")
     return parser
 
 
@@ -45,6 +64,15 @@ def build_parser() -> argparse.ArgumentParser:
 def main() -> int:
     parser = build_parser()
     args = parser.parse_args()
+    if args.command == "train-model":
+        model = train_baseline_model_from_raw(
+            args.baseline_tetragon,
+            args.baseline_prometheus,
+            args.model_path,
+            threshold=args.threshold,
+        )
+        print(json.dumps(model.to_dict(), indent=2))
+        return 0
     if args.command == "phase1":
         report = run_phase1(args.baseline, args.input, args.output_dir)
     elif args.command == "phase2":
@@ -65,10 +93,17 @@ def main() -> int:
             tetragon_tail_lines=args.tetragon_tail_lines,
             scrape_timeout=args.scrape_timeout,
         )
-    else:
+    elif args.command == "phase4":
         report = run_phase4(
             args.baseline_tetragon,
             args.baseline_prometheus,
+            args.input_tetragon,
+            args.input_prometheus,
+            args.output_dir,
+        )
+    else:
+        report = run_phase5(
+            args.model_path,
             args.input_tetragon,
             args.input_prometheus,
             args.output_dir,
