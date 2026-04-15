@@ -1,0 +1,31 @@
+{
+  "models": [
+    {
+      "id": "baseline-v2-02",
+      "path": "docs/steps/step8/output/models/baseline-v2.json",
+      "model_type": "baseline",
+      "schema_version": "v2",
+      "threshold": 0.45,
+      "feature_count": 10,
+      "created_at": "2026-04-15T12:23:57.327862+00:00",
+      "tags": [
+        "baseline",
+        "prod",
+        "reviewed"
+      ]
+    },
+    {
+      "id": "zscore-v2-01",
+      "path": "docs/steps/step8/output/models/zscore-v2.json",
+      "model_type": "zscore",
+      "schema_version": "v2",
+      "threshold": 0.45,
+      "feature_count": 10,
+      "created_at": "2026-04-15T12:23:56.700959+00:00",
+      "tags": [
+        "candidate"
+      ]
+    }
+  ],
+  "active_model_id": "baseline-v2-02"
+}

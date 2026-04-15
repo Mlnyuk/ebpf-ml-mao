@@ -11,7 +11,14 @@ from .pipeline import (
     run_phase5,
     train_baseline_model_from_raw,
 )
-from .registry import activate_model, load_registry
+from .registry import (
+    activate_model,
+    backup_registry,
+    load_registry,
+    prune_registry,
+    registry_status,
+    tag_model,
+)
 from .scoring import describe_model_file, migrate_model_file
 
 
@@ -79,9 +86,28 @@ def build_parser() -> argparse.ArgumentParser:
     registry_list = registry_subparsers.add_parser("list", help="List registered model artifacts")
     registry_list.add_argument("--registry-path", required=True, help="Registry JSON path")
 
+    registry_status_parser = registry_subparsers.add_parser("status", help="Show registry summary")
+    registry_status_parser.add_argument("--registry-path", required=True, help="Registry JSON path")
+
     registry_activate = registry_subparsers.add_parser("activate", help="Set the active registry model")
     registry_activate.add_argument("--registry-path", required=True, help="Registry JSON path")
     registry_activate.add_argument("--model-id", required=True, help="Model id to activate")
+
+    registry_tag = registry_subparsers.add_parser("tag", help="Append tags to a registry model")
+    registry_tag.add_argument("--registry-path", required=True, help="Registry JSON path")
+    registry_tag.add_argument("--model-id", required=True, help="Model id to tag")
+    registry_tag.add_argument("--tag", dest="tags", action="append", required=True, help="Tag to append")
+
+    registry_backup = registry_subparsers.add_parser("backup", help="Create a backup copy of the registry")
+    registry_backup.add_argument("--registry-path", required=True, help="Registry JSON path")
+    registry_backup.add_argument("--backup-path", help="Optional explicit backup output path")
+
+    registry_prune = registry_subparsers.add_parser("prune", help="Prune registry entries")
+    registry_prune.add_argument("--registry-path", required=True, help="Registry JSON path")
+    registry_prune.add_argument("--model-id", help="Specific model id to remove")
+    registry_prune.add_argument("--missing-only", action="store_true", help="Remove only entries whose artifacts are missing")
+    registry_prune.add_argument("--delete-artifact", action="store_true", help="Delete the artifact file when pruning a specific model")
+    registry_prune.add_argument("--no-backup", action="store_true", help="Skip registry backup before pruning")
     return parser
 
 
@@ -114,9 +140,24 @@ def main() -> int:
         return 0
     if args.command == "registry":
         if args.registry_command == "list":
-            print(json.dumps(load_registry(args.registry_path), indent=2))
+            payload = load_registry(args.registry_path)
+        elif args.registry_command == "status":
+            payload = registry_status(args.registry_path)
+        elif args.registry_command == "activate":
+            payload = activate_model(args.model_id, args.registry_path)
+        elif args.registry_command == "tag":
+            payload = tag_model(args.model_id, args.tags, args.registry_path)
+        elif args.registry_command == "backup":
+            payload = {"backup_path": backup_registry(args.registry_path, args.backup_path)}
         else:
-            print(json.dumps(activate_model(args.model_id, args.registry_path), indent=2))
+            payload = prune_registry(
+                registry_path=args.registry_path,
+                model_id=args.model_id,
+                missing_only=args.missing_only,
+                delete_artifact=args.delete_artifact,
+                create_backup=not args.no_backup,
+            )
+        print(json.dumps(payload, indent=2))
         return 0
     if args.command == "phase1":
         report = run_phase1(args.baseline, args.input, args.output_dir)

@@ -1,0 +1,6 @@
+{"time":"2026-04-15T00:00:00Z","type":"PROCESS_EXEC","process":{"pid":401,"binary":"/usr/bin/python3","node_name":"worker-1","pod":{"namespace":"shop","name":"checkout-6c8b5","workload":"checkout","container":{"name":"app"}}}}
+{"time":"2026-04-15T00:00:04Z","type":"PROCESS_EXEC","process":{"pid":402,"binary":"/usr/bin/bash","node_name":"worker-1","pod":{"namespace":"shop","name":"checkout-6c8b5","workload":"checkout","container":{"name":"app"}}}}
+{"time":"2026-04-15T00:00:31Z","type":"PROCESS_EXEC","process":{"pid":403,"binary":"/usr/bin/curl","node_name":"worker-1","pod":{"namespace":"shop","name":"checkout-6c8b5","workload":"checkout","container":{"name":"app"}}}}
+{"time":"2026-04-15T00:00:34Z","type":"PROCESS_EXEC","process":{"pid":404,"binary":"/usr/bin/nc","node_name":"worker-1","pod":{"namespace":"shop","name":"checkout-6c8b5","workload":"checkout","container":{"name":"app"}}}}
+{"time":"2026-04-15T00:00:08Z","type":"PROCESS_EXEC","process":{"pid":501,"binary":"/usr/bin/python3","node_name":"worker-2","pod":{"namespace":"payments","name":"payment-7f4a2","workload":"payment","container":{"name":"worker"}}}}
+{"time":"2026-04-15T00:00:12Z","type":"PROCESS_EXEC","process":{"pid":502,"binary":"/usr/bin/bash","node_name":"worker-2","pod":{"namespace":"payments","name":"payment-7f4a2","workload":"payment","container":{"name":"worker"}}}}

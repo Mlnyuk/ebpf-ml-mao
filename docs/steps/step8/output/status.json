@@ -1,0 +1,10 @@
+{
+  "model_count": 2,
+  "active_model_id": "baseline-v2-02",
+  "missing_artifact_count": 0,
+  "tagged_model_count": 2,
+  "model_types": [
+    "baseline",
+    "zscore"
+  ]
+}
