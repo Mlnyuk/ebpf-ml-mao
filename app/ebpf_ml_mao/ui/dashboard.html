@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>eBPF ML MAO Operations Console</title>
+    <link rel="stylesheet" href="/assets/dashboard.css" />
+  </head>
+  <body>
+    <div class="bg-orbit orbit-a"></div>
+    <div class="bg-orbit orbit-b"></div>
+    <main class="shell">
+      <section class="hero">
+        <div>
+          <p class="eyebrow">Step 15 Visualization</p>
+          <h1>Operations Console</h1>
+          <p class="lede">Analyzer 상태, workflow, queue, alert를 한 화면에서 보는 읽기 전용 대시보드입니다.</p>
+        </div>
+        <div class="hero-status">
+          <span id="status-pill" class="status-pill status-ok">Loading</span>
+          <p id="status-timestamp" class="meta">Waiting for analyzer snapshot</p>
+        </div>
+      </section>
+
+      <section class="metrics-grid">
+        <article class="metric-card accent-sand">
+          <h2>Ingest</h2>
+          <div class="metric-value" id="received-count">0</div>
+          <p class="metric-meta">received reports</p>
+        </article>
+        <article class="metric-card accent-terracotta">
+          <h2>Queue</h2>
+          <div class="metric-value" id="queue-count">0</div>
+          <p class="metric-meta">postprocess backlog</p>
+        </article>
+        <article class="metric-card accent-olive">
+          <h2>Spool</h2>
+          <div class="metric-value" id="spool-count">0</div>
+          <p class="metric-meta">collector retry backlog</p>
+        </article>
+        <article class="metric-card accent-slate">
+          <h2>Alerts</h2>
+          <div class="metric-value" id="alert-count">0</div>
+          <p class="metric-meta">active warnings and criticals</p>
+        </article>
+      </section>
+
+      <section class="detail-grid">
+        <article class="panel wide">
+          <div class="panel-head">
+            <h2>Alert Feed</h2>
+            <span class="meta">/v1/alerts</span>
+          </div>
+          <ul id="alert-list" class="alert-list"></ul>
+        </article>
+        <article class="panel">
+          <div class="panel-head">
+            <h2>Registry</h2>
+            <span class="meta">Active model</span>
+          </div>
+          <dl class="kv-list">
+            <div><dt>Active</dt><dd id="active-model">-</dd></div>
+            <div><dt>Models</dt><dd id="model-count">0</dd></div>
+            <div><dt>Missing</dt><dd id="missing-artifacts">0</dd></div>
+          </dl>
+        </article>
+        <article class="panel">
+          <div class="panel-head">
+            <h2>Workflow</h2>
+            <span class="meta">Latest verdict</span>
+          </div>
+          <dl class="kv-list">
+            <div><dt>Latest</dt><dd id="latest-verdict">-</dd></div>
+            <div><dt>Nodes</dt><dd id="workflow-nodes">0</dd></div>
+            <div><dt>Duplicates</dt><dd id="duplicate-count">0</dd></div>
+          </dl>
+          <div id="verdict-bars" class="bars"></div>
+        </article>
+        <article class="panel">
+          <div class="panel-head">
+            <h2>Queue Health</h2>
+            <span class="meta">/v1/queue</span>
+          </div>
+          <dl class="kv-list">
+            <div><dt>Pending</dt><dd id="queue-pending">0</dd></div>
+            <div><dt>Failed</dt><dd id="queue-failed">0</dd></div>
+            <div><dt>Oldest age</dt><dd id="queue-age">-</dd></div>
+          </dl>
+        </article>
+        <article class="panel">
+          <div class="panel-head">
+            <h2>Spool Health</h2>
+            <span class="meta">collector</span>
+          </div>
+          <dl class="kv-list">
+            <div><dt>Expired</dt><dd id="spool-expired">0</dd></div>
+            <div><dt>Quarantined</dt><dd id="spool-quarantined">0</dd></div>
+            <div><dt>Oldest age</dt><dd id="spool-age">-</dd></div>
+          </dl>
+        </article>
+      </section>
+    </main>
+    <script src="/assets/dashboard.js"></script>
+  </body>
+</html>

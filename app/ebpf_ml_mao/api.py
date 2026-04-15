@@ -3,9 +3,11 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import mimetypes
 import time
 from http import HTTPStatus
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+from importlib import resources
 from pathlib import Path
 from typing import Any
 
@@ -360,16 +362,29 @@ def build_dashboard_snapshot(
     return snapshot.to_dict()
 
 
-class AnalyzerAPIHandler(BaseHTTPRequestHandler):
-    server_version = "ebpf-ml-mao/step13"
+def _ui_asset(name: str) -> bytes:
+    return resources.files("ebpf_ml_mao.ui").joinpath(name).read_bytes()
 
-    def _json_response(self, status: int, payload: dict[str, Any]) -> None:
-        body = json.dumps(payload, indent=2).encode("utf-8")
+
+def _ui_text(name: str) -> str:
+    return resources.files("ebpf_ml_mao.ui").joinpath(name).read_text(encoding="utf-8")
+
+
+class AnalyzerAPIHandler(BaseHTTPRequestHandler):
+    server_version = "ebpf-ml-mao/step15"
+
+    def _bytes_response(self, status: int, body: bytes, *, content_type: str) -> None:
         self.send_response(status)
-        self.send_header("Content-Type", "application/json")
+        self.send_header("Content-Type", content_type)
         self.send_header("Content-Length", str(len(body)))
         self.end_headers()
         self.wfile.write(body)
+
+    def _json_response(self, status: int, payload: dict[str, Any]) -> None:
+        self._bytes_response(status, json.dumps(payload, indent=2).encode("utf-8"), content_type="application/json")
+
+    def _text_response(self, status: int, body: str, *, content_type: str = "text/html; charset=utf-8") -> None:
+        self._bytes_response(status, body.encode("utf-8"), content_type=content_type)
 
     def _read_json(self) -> dict[str, Any]:
         content_length = int(self.headers.get("Content-Length", "0"))
@@ -435,6 +450,18 @@ class AnalyzerAPIHandler(BaseHTTPRequestHandler):
         )
 
     def do_GET(self) -> None:  # noqa: N802
+        if self.path in {"/", "/ui"}:
+            self._text_response(HTTPStatus.OK, _ui_text("dashboard.html"))
+            return
+        if self.path.startswith("/assets/"):
+            name = self.path.removeprefix("/assets/")
+            if name not in {"dashboard.css", "dashboard.js"}:
+                self._json_response(HTTPStatus.NOT_FOUND, {"status": "error", "error": "not found"})
+                return
+            body = _ui_asset(name)
+            content_type, _ = mimetypes.guess_type(name)
+            self._bytes_response(HTTPStatus.OK, body, content_type=content_type or "application/octet-stream")
+            return
         if self.path == "/healthz":
             self._json_response(HTTPStatus.OK, {"status": "ok", "component": "analyzer"})
             return

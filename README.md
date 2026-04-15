@@ -66,8 +66,9 @@ flowchart TD
 - [`docs/architecture/MAO/Agent.md`](./docs/architecture/MAO/Agent.md): 에이전트 역할 분리와 운영 메모
 - [`docs/architecture/ebpf-ml-mao/README.md`](./docs/architecture/ebpf-ml-mao/README.md): eBPF + ML 청사진 문서 묶음 개요
 - [`docs/architecture/ebpf-ml-mao/04-mvp-scope.md`](./docs/architecture/ebpf-ml-mao/04-mvp-scope.md): MVP 범위 정리
-- [`docs/steps/step14/README.md`](./docs/steps/step14/README.md): 현재 최신 구현 단계 문서
+- [`docs/steps/step15/README.md`](./docs/steps/step15/README.md): 현재 최신 구현 단계 문서
 - [`docs/operations/runbook.md`](./docs/operations/runbook.md): 실배포 운영 runbook
+- [`docs/steps/step15/README.md`](./docs/steps/step15/README.md): 운영 시각화 단계 문서
 - [`deploy/yaml/tetragon-tracingpolicy.yaml`](./deploy/yaml/tetragon-tracingpolicy.yaml): Tetragon 정책 실험 예시
 - [`docs/architecture/MAO/Orchestrator-Playbook.md`](./docs/architecture/MAO/Orchestrator-Playbook.md): 오케스트레이터 운영 규칙
 - [`docs/architecture/MAO/Order-Templates.md`](./docs/architecture/MAO/Order-Templates.md): 에이전트별 오더 템플릿
