@@ -5,6 +5,7 @@ from pathlib import Path
 from .adapters import adapt_prometheus_snapshot, adapt_tetragon_events
 from .agents import analyze, correlate, review, summarize
 from .features import extract_features, window_events
+from .live import scrape_prometheus_snapshot, tail_jsonl
 from .loader import load_json, load_jsonl
 from .models import AnalysisReport, NormalizedEvent
 from .normalizer import normalize_event
@@ -81,6 +82,36 @@ def run_phase2(
     input_events = adapt_tetragon_events(input_tetragon) + adapt_prometheus_snapshot(
         input_prometheus
     )
+    return build_report(
+        sorted(baseline_events, key=lambda event: event.ts),
+        sorted(input_events, key=lambda event: event.ts),
+        output_dir,
+    )
+
+
+def run_phase3(
+    baseline_tetragon_path: str | Path,
+    baseline_prometheus_path: str | Path,
+    tetragon_log_path: str | Path,
+    prometheus_url: str,
+    output_dir: str | Path,
+    *,
+    tetragon_tail_lines: int = 100,
+    scrape_timeout: float = 5.0,
+) -> AnalysisReport:
+    baseline_tetragon = load_jsonl(baseline_tetragon_path)
+    baseline_prometheus = load_json(baseline_prometheus_path)
+
+    live_tetragon = tail_jsonl(tetragon_log_path, max_lines=tetragon_tail_lines)
+    live_prometheus_events = scrape_prometheus_snapshot(
+        prometheus_url,
+        timeout=scrape_timeout,
+    )
+
+    baseline_events = adapt_tetragon_events(baseline_tetragon) + adapt_prometheus_snapshot(
+        baseline_prometheus
+    )
+    input_events = adapt_tetragon_events(live_tetragon) + live_prometheus_events
     return build_report(
         sorted(baseline_events, key=lambda event: event.ts),
         sorted(input_events, key=lambda event: event.ts),

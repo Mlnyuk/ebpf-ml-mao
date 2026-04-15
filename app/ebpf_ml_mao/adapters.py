@@ -9,12 +9,22 @@ from .models import NormalizedEvent
 
 def _parse_timestamp(value: Any) -> float:
     if isinstance(value, (int, float)):
-        return float(value)
+        numeric = float(value)
+        return numeric / 1000.0 if numeric > 1_000_000_000_000 else numeric
     if isinstance(value, str):
+        stripped = value.strip()
+        try:
+            numeric = float(stripped)
+        except ValueError:
+            numeric = None
+        if numeric is not None:
+            return numeric / 1000.0 if numeric > 1_000_000_000_000 else numeric
         if value.endswith("Z"):
             return datetime.fromisoformat(value.replace("Z", "+00:00")).timestamp()
         return datetime.fromisoformat(value).timestamp()
     raise ValueError(f"unsupported timestamp value: {value!r}")
+
+
 def adapt_tetragon_event(raw: dict[str, Any]) -> NormalizedEvent:
     process = raw.get("process", {})
     pod = process.get("pod", {})
@@ -55,13 +65,14 @@ def _coerce_value(value: Any) -> float:
 
 
 def adapt_prometheus_snapshot(snapshot: dict[str, Any]) -> list[NormalizedEvent]:
-    timestamp = _parse_timestamp(snapshot.get("timestamp", 0.0))
+    default_timestamp = _parse_timestamp(snapshot.get("timestamp", 0.0))
     grouped: dict[tuple[str, str, str, str], dict[str, Any]] = defaultdict(
         lambda: {
             "cpu_usage": 0.0,
             "memory_usage": 0.0,
             "network_connections": 0,
             "namespace": "default",
+            "timestamp": None,
         }
     )
 
@@ -75,6 +86,12 @@ def adapt_prometheus_snapshot(snapshot: dict[str, Any]) -> list[NormalizedEvent]
         key = (workload, pod, container, node)
         bucket = grouped[key]
         bucket["namespace"] = str(labels.get("namespace", "default"))
+        item_timestamp = _parse_timestamp(item.get("timestamp", default_timestamp))
+        bucket["timestamp"] = (
+            item_timestamp
+            if bucket["timestamp"] is None
+            else max(float(bucket["timestamp"]), item_timestamp)
+        )
 
         metric = str(item.get("metric", ""))
         value = _coerce_value(item.get("value", 0.0))
@@ -89,7 +106,6 @@ def adapt_prometheus_snapshot(snapshot: dict[str, Any]) -> list[NormalizedEvent]
     for (workload, pod, container, node), values in grouped.items():
         events.append(
             NormalizedEvent(
-                ts=timestamp,
                 source="prometheus",
                 event_type="prometheus_snapshot",
                 node=node,
@@ -97,6 +113,7 @@ def adapt_prometheus_snapshot(snapshot: dict[str, Any]) -> list[NormalizedEvent]
                 pod=pod,
                 container=container,
                 pid=0,
+                ts=float(values["timestamp"] if values["timestamp"] is not None else default_timestamp),
                 cpu_usage=float(values["cpu_usage"]),
                 memory_usage=float(values["memory_usage"]),
                 network_connections=int(values["network_connections"]),

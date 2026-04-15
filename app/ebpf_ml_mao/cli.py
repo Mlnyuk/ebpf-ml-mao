@@ -3,7 +3,7 @@ from __future__ import annotations
 import argparse
 import json
 
-from .pipeline import run_phase1, run_phase2
+from .pipeline import run_phase1, run_phase2, run_phase3
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -21,6 +21,15 @@ def build_parser() -> argparse.ArgumentParser:
     phase2.add_argument("--input-tetragon", required=True, help="Path to target Tetragon JSONL")
     phase2.add_argument("--input-prometheus", required=True, help="Path to target Prometheus snapshot JSON")
     phase2.add_argument("--output-dir", required=True, help="Directory for generated reports")
+
+    phase3 = subparsers.add_parser("phase3", help="Run the live ingestion Phase 3 pipeline")
+    phase3.add_argument("--baseline-tetragon", required=True, help="Path to benign Tetragon JSONL")
+    phase3.add_argument("--baseline-prometheus", required=True, help="Path to benign Prometheus snapshot JSON")
+    phase3.add_argument("--tetragon-log", required=True, help="Path to the live Tetragon JSONL log")
+    phase3.add_argument("--prometheus-url", required=True, help="Prometheus scrape URL")
+    phase3.add_argument("--output-dir", required=True, help="Directory for generated reports")
+    phase3.add_argument("--tetragon-tail-lines", type=int, default=100, help="How many log lines to tail from the Tetragon file")
+    phase3.add_argument("--scrape-timeout", type=float, default=5.0, help="Prometheus scrape timeout in seconds")
     return parser
 
 
@@ -29,13 +38,23 @@ def main() -> int:
     args = parser.parse_args()
     if args.command == "phase1":
         report = run_phase1(args.baseline, args.input, args.output_dir)
-    else:
+    elif args.command == "phase2":
         report = run_phase2(
             args.baseline_tetragon,
             args.baseline_prometheus,
             args.input_tetragon,
             args.input_prometheus,
             args.output_dir,
+        )
+    else:
+        report = run_phase3(
+            args.baseline_tetragon,
+            args.baseline_prometheus,
+            args.tetragon_log,
+            args.prometheus_url,
+            args.output_dir,
+            tetragon_tail_lines=args.tetragon_tail_lines,
+            scrape_timeout=args.scrape_timeout,
         )
     print(json.dumps(report.to_dict(), indent=2))
     return 0

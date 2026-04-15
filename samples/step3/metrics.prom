@@ -1,0 +1,9 @@
+# HELP container_cpu_usage_percent Synthetic CPU metric
+# TYPE container_cpu_usage_percent gauge
+container_cpu_usage_percent{namespace="shop",pod="checkout-6c8b5",workload="checkout",container="app",node="worker-1"} 86 1776211224000
+# HELP container_memory_working_set_bytes Synthetic memory metric
+# TYPE container_memory_working_set_bytes gauge
+container_memory_working_set_bytes{namespace="shop",pod="checkout-6c8b5",workload="checkout",container="app",node="worker-1"} 372 1776211224000
+# HELP container_network_connections Synthetic network metric
+# TYPE container_network_connections gauge
+container_network_connections{namespace="shop",pod="checkout-6c8b5",workload="checkout",container="app",node="worker-1"} 26 1776211224000
