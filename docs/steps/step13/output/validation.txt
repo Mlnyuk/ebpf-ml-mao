@@ -1,0 +1,5 @@
+python3 -m unittest discover -s tests -v
+Result: OK (38 tests)
+
+kubectl kustomize deploy/yaml/step13
+Result: rendered successfully

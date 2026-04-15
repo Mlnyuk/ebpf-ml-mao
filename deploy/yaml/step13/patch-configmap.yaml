@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ebpf-ml-mao-runtime
+  namespace: ebpf-obs
+data:
+  ANALYZER_POSTPROCESS_QUEUE_DIR: /var/lib/ebpf-ml-mao/postprocess-queue
+  ANALYZER_COLLECTOR_SPOOL_DIR: ""
+  ANALYZER_QUEUE_TTL_SECONDS: "86400"
+  ANALYZER_ALERT_QUEUE_THRESHOLD: "20"
+  ANALYZER_ALERT_SPOOL_THRESHOLD: "10"
+  ANALYZER_ALERT_DUPLICATE_RATIO_THRESHOLD: "0.25"

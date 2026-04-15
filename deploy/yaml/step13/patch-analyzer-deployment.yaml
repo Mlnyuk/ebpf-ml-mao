@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ebpf-ml-mao-analyzer
+  namespace: ebpf-obs
+spec:
+  template:
+    spec:
+      containers:
+        - name: analyzer
+          args:
+            - --host
+            - 0.0.0.0
+            - --port
+            - "8080"
+            - --registry-path
+            - $(REGISTRY_PATH)
+            - --ingest-dir
+            - $(ANALYZER_INGEST_DIR)
+            - --shared-token
+            - $(ANALYZER_SHARED_TOKEN)
+            - --collector-spool-dir
+            - $(ANALYZER_COLLECTOR_SPOOL_DIR)
+            - --postprocess-queue-dir
+            - $(ANALYZER_POSTPROCESS_QUEUE_DIR)
+            - --spool-ttl-seconds
+            - $(COLLECTOR_SPOOL_TTL_SECONDS)
+            - --queue-ttl-seconds
+            - $(ANALYZER_QUEUE_TTL_SECONDS)
+            - --queue-alert-threshold
+            - $(ANALYZER_ALERT_QUEUE_THRESHOLD)
+            - --spool-alert-threshold
+            - $(ANALYZER_ALERT_SPOOL_THRESHOLD)
+            - --duplicate-ratio-threshold
+            - $(ANALYZER_ALERT_DUPLICATE_RATIO_THRESHOLD)

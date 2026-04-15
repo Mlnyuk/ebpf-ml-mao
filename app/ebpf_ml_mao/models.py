@@ -69,3 +69,58 @@ class BatchAnalysisReport:
             "report_count": len(self.reports),
             "reports": [report.to_dict() for report in self.reports],
         }
+
+
+@dataclass(slots=True)
+class AlertRecord:
+    name: str
+    severity: str
+    message: str
+    value: float | int | str
+    threshold: float | int | str | None = None
+
+    def to_dict(self) -> dict[str, Any]:
+        return asdict(self)
+
+
+@dataclass(slots=True)
+class QueueSnapshot:
+    count: int
+    pending_count: int
+    failed_count: int
+    expired_count: int
+    oldest_age_seconds: int | None
+    ttl_seconds: int
+    quarantined_count: int = 0
+
+    def to_dict(self) -> dict[str, Any]:
+        return asdict(self)
+
+
+@dataclass(slots=True)
+class DashboardSnapshot:
+    component: str
+    timestamp: int
+    summary: dict[str, Any]
+    counters: dict[str, Any]
+    registry: dict[str, Any]
+    ingest: dict[str, Any]
+    workflow: dict[str, Any]
+    queue: dict[str, Any]
+    spool: dict[str, Any]
+    alerts: list[AlertRecord]
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "status": "ok",
+            "component": self.component,
+            "timestamp": self.timestamp,
+            "summary": self.summary,
+            "counters": self.counters,
+            "registry": self.registry,
+            "ingest": self.ingest,
+            "workflow": self.workflow,
+            "queue": self.queue,
+            "spool": self.spool,
+            "alerts": [alert.to_dict() for alert in self.alerts],
+        }

@@ -9,7 +9,9 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from typing import Any
 
+from .models import AlertRecord, DashboardSnapshot
 from .registry import load_registry, registry_status
+from .transport import enqueue_postprocess, queue_status, spool_status
 
 
 def _payload_digest(payload: dict[str, Any]) -> str:
@@ -89,6 +91,21 @@ def load_ingest_index(ingest_dir: str | Path, *, repair: bool = False) -> dict[s
         return rebuild_ingest_index(base)
 
 
+def load_workflow_summary(ingest_dir: str | Path, *, repair: bool = False) -> dict[str, Any]:
+    base = Path(ingest_dir)
+    path = _workflow_path(base)
+    if not path.exists():
+        index = load_ingest_index(base, repair=repair)
+        return _save_workflow_summary(base, index)
+    try:
+        return json.loads(path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as exc:
+        if not repair:
+            raise ValueError(f"workflow summary is not valid JSON: {path}") from exc
+        index = load_ingest_index(base, repair=True)
+        return _save_workflow_summary(base, index)
+
+
 def _save_ingest_index(ingest_dir: Path, index: dict[str, Any]) -> None:
     _atomic_write_json(_index_path(ingest_dir), index)
 
@@ -96,23 +113,35 @@ def _save_ingest_index(ingest_dir: Path, index: dict[str, Any]) -> None:
 def _save_workflow_summary(ingest_dir: Path, index: dict[str, Any]) -> dict[str, Any]:
     items = list(index.get("items", {}).values())
     verdicts: dict[str, int] = {}
+    phases: dict[str, int] = {}
     for item in items:
         verdict = item.get("verdict", "unknown")
         verdicts[verdict] = verdicts.get(verdict, 0) + 1
+        phase = item.get("phase", "unknown")
+        phases[phase] = phases.get(phase, 0) + 1
     workflow = {
         "received_count": index.get("received_count", 0),
         "unique_count": index.get("unique_count", 0),
         "duplicates_count": index.get("duplicates_count", 0),
         "nodes": sorted({item["node_name"] for item in items}),
         "verdicts": verdicts,
+        "phases": phases,
+        "latest_verdict": items[-1].get("verdict", "unknown") if items else None,
     }
     _atomic_write_json(_workflow_path(ingest_dir), workflow)
     return workflow
 
 
-def store_ingest_payload(ingest_dir: str | Path, payload: dict[str, Any]) -> dict[str, Any]:
+def store_ingest_payload(
+    ingest_dir: str | Path,
+    payload: dict[str, Any],
+    *,
+    queue_dir: str | Path | None = None,
+    queue_ttl_seconds: int = 86400,
+) -> dict[str, Any]:
     base = Path(ingest_dir)
     base.mkdir(parents=True, exist_ok=True)
+    queue_base = Path(queue_dir) if queue_dir is not None else base / "postprocess-queue"
     index = load_ingest_index(base, repair=True)
     digest = _payload_digest(payload)
     index["received_count"] = int(index.get("received_count", 0)) + 1
@@ -131,6 +160,7 @@ def store_ingest_payload(ingest_dir: str | Path, payload: dict[str, Any]) -> dic
             "digest": digest,
             "path": existing["path"],
             "workflow": workflow,
+            "queue": {"status": "skipped", "reason": "duplicate"},
         }
 
     target_dir = base / node_name
@@ -147,16 +177,191 @@ def store_ingest_payload(ingest_dir: str | Path, payload: dict[str, Any]) -> dic
     index["unique_count"] = len(index["items"])
     _save_ingest_index(base, index)
     workflow = _save_workflow_summary(base, index)
+    queue_payload = {
+        "digest": digest,
+        "node_name": node_name,
+        "report_name": report_name,
+        "stored_path": str(target_path),
+        "phase": str(payload.get("phase", "unknown")),
+        "verdict": verdict,
+        "received_at": int(time.time()),
+    }
+    queued_path = enqueue_postprocess(queue_base, queue_payload, ttl_seconds=queue_ttl_seconds)
     return {
         "status": "stored",
         "digest": digest,
         "path": str(target_path),
         "workflow": workflow,
+        "queue": {"status": "queued", "path": str(queued_path)},
     }
 
 
+def _alert_state(alerts: list[AlertRecord]) -> str:
+    severities = {alert.severity for alert in alerts}
+    if "critical" in severities:
+        return "critical"
+    if "warning" in severities:
+        return "warning"
+    return "ok"
+
+
+def _build_alerts(
+    registry: dict[str, Any],
+    ingest: dict[str, Any],
+    workflow: dict[str, Any],
+    queue: dict[str, Any],
+    spool: dict[str, Any],
+    *,
+    queue_alert_threshold: int,
+    spool_alert_threshold: int,
+    duplicate_ratio_threshold: float,
+) -> list[AlertRecord]:
+    alerts: list[AlertRecord] = []
+    if registry.get("active_model_id") is None:
+        alerts.append(AlertRecord(
+            name="active_model",
+            severity="critical",
+            message="registry has no active model",
+            value="missing",
+            threshold="configured",
+        ))
+    if int(registry.get("missing_artifact_count", 0)) > 0:
+        alerts.append(AlertRecord(
+            name="missing_model_artifact",
+            severity="critical",
+            message="registry references model artifacts that do not exist",
+            value=int(registry.get("missing_artifact_count", 0)),
+            threshold=0,
+        ))
+    queue_count = int(queue.get("count", 0))
+    if queue_count > queue_alert_threshold:
+        alerts.append(AlertRecord(
+            name="queue_backlog",
+            severity="warning",
+            message="postprocess queue backlog exceeded threshold",
+            value=queue_count,
+            threshold=queue_alert_threshold,
+        ))
+    spool_count = int(spool.get("count", 0))
+    if spool_count > spool_alert_threshold:
+        alerts.append(AlertRecord(
+            name="spool_backlog",
+            severity="warning",
+            message="collector spool backlog exceeded threshold",
+            value=spool_count,
+            threshold=spool_alert_threshold,
+        ))
+    received_count = int(ingest.get("received_count", 0))
+    duplicate_count = int(ingest.get("duplicates_count", 0))
+    duplicate_ratio = (duplicate_count / received_count) if received_count else 0.0
+    if duplicate_ratio > duplicate_ratio_threshold:
+        alerts.append(AlertRecord(
+            name="duplicate_ratio",
+            severity="warning",
+            message="ingest duplicate ratio exceeded threshold",
+            value=round(duplicate_ratio, 4),
+            threshold=duplicate_ratio_threshold,
+        ))
+    if int(queue.get("quarantined_count", 0)) > 0:
+        alerts.append(AlertRecord(
+            name="queue_quarantine",
+            severity="warning",
+            message="corrupt queue items were quarantined",
+            value=int(queue.get("quarantined_count", 0)),
+            threshold=0,
+        ))
+    if int(spool.get("quarantined_count", 0)) > 0:
+        alerts.append(AlertRecord(
+            name="spool_quarantine",
+            severity="warning",
+            message="corrupt spool items were quarantined",
+            value=int(spool.get("quarantined_count", 0)),
+            threshold=0,
+        ))
+    if workflow.get("latest_verdict") == "anomalous":
+        alerts.append(AlertRecord(
+            name="latest_verdict",
+            severity="warning",
+            message="latest workflow verdict is anomalous",
+            value="anomalous",
+            threshold="normal",
+        ))
+    return alerts
+
+
+def build_dashboard_snapshot(
+    registry_path: str | Path,
+    ingest_dir: str | Path,
+    *,
+    collector_spool_dir: str | Path | None = None,
+    postprocess_queue_dir: str | Path | None = None,
+    spool_ttl_seconds: int = 3600,
+    queue_ttl_seconds: int = 86400,
+    queue_alert_threshold: int = 20,
+    spool_alert_threshold: int = 10,
+    duplicate_ratio_threshold: float = 0.25,
+) -> dict[str, Any]:
+    registry = registry_status(registry_path)
+    ingest = load_ingest_index(ingest_dir, repair=True)
+    workflow = load_workflow_summary(ingest_dir, repair=True)
+    queue_dir = Path(postprocess_queue_dir) if postprocess_queue_dir else Path(ingest_dir) / "postprocess-queue"
+    queue = queue_status(queue_dir, ttl_seconds=queue_ttl_seconds)
+    if collector_spool_dir:
+        spool = spool_status(collector_spool_dir, ttl_seconds=spool_ttl_seconds)
+    else:
+        spool = {
+            "count": 0,
+            "expired_count": 0,
+            "ttl_seconds": spool_ttl_seconds,
+            "oldest_age_seconds": None,
+            "quarantined_count": 0,
+            "available": False,
+        }
+    alerts = _build_alerts(
+        registry,
+        ingest,
+        workflow,
+        queue,
+        spool,
+        queue_alert_threshold=queue_alert_threshold,
+        spool_alert_threshold=spool_alert_threshold,
+        duplicate_ratio_threshold=duplicate_ratio_threshold,
+    )
+    state = _alert_state(alerts)
+    snapshot = DashboardSnapshot(
+        component="analyzer",
+        timestamp=int(time.time()),
+        summary={
+            "state": state,
+            "alert_count": len(alerts),
+            "warning_count": sum(1 for alert in alerts if alert.severity == "warning"),
+            "critical_count": sum(1 for alert in alerts if alert.severity == "critical"),
+            "latest_verdict": workflow.get("latest_verdict"),
+        },
+        counters={
+            "received_count": ingest.get("received_count", 0),
+            "unique_count": ingest.get("unique_count", 0),
+            "duplicates_count": ingest.get("duplicates_count", 0),
+            "queue_count": queue.get("count", 0),
+            "spool_count": spool.get("count", 0),
+        },
+        registry=registry,
+        ingest={
+            "received_count": ingest.get("received_count", 0),
+            "unique_count": ingest.get("unique_count", 0),
+            "duplicates_count": ingest.get("duplicates_count", 0),
+            "repaired_at": ingest.get("repaired_at"),
+        },
+        workflow=workflow,
+        queue=queue,
+        spool=spool,
+        alerts=alerts,
+    )
+    return snapshot.to_dict()
+
+
 class AnalyzerAPIHandler(BaseHTTPRequestHandler):
-    server_version = "ebpf-ml-mao/step12"
+    server_version = "ebpf-ml-mao/step13"
 
     def _json_response(self, status: int, payload: dict[str, Any]) -> None:
         body = json.dumps(payload, indent=2).encode("utf-8")
@@ -188,43 +393,109 @@ class AnalyzerAPIHandler(BaseHTTPRequestHandler):
     def ingest_dir(self) -> Path:
         return Path(self.server.ingest_dir)  # type: ignore[attr-defined]
 
+    @property
+    def collector_spool_dir(self) -> str:
+        return str(getattr(self.server, "collector_spool_dir", ""))  # type: ignore[attr-defined]
+
+    @property
+    def postprocess_queue_dir(self) -> Path:
+        return Path(self.server.postprocess_queue_dir)  # type: ignore[attr-defined]
+
+    @property
+    def spool_ttl_seconds(self) -> int:
+        return int(getattr(self.server, "spool_ttl_seconds", 3600))  # type: ignore[attr-defined]
+
+    @property
+    def queue_ttl_seconds(self) -> int:
+        return int(getattr(self.server, "queue_ttl_seconds", 86400))  # type: ignore[attr-defined]
+
+    @property
+    def queue_alert_threshold(self) -> int:
+        return int(getattr(self.server, "queue_alert_threshold", 20))  # type: ignore[attr-defined]
+
+    @property
+    def spool_alert_threshold(self) -> int:
+        return int(getattr(self.server, "spool_alert_threshold", 10))  # type: ignore[attr-defined]
+
+    @property
+    def duplicate_ratio_threshold(self) -> float:
+        return float(getattr(self.server, "duplicate_ratio_threshold", 0.25))  # type: ignore[attr-defined]
+
+    def _dashboard(self) -> dict[str, Any]:
+        return build_dashboard_snapshot(
+            self.registry_path,
+            self.ingest_dir,
+            collector_spool_dir=self.collector_spool_dir,
+            postprocess_queue_dir=self.postprocess_queue_dir,
+            spool_ttl_seconds=self.spool_ttl_seconds,
+            queue_ttl_seconds=self.queue_ttl_seconds,
+            queue_alert_threshold=self.queue_alert_threshold,
+            spool_alert_threshold=self.spool_alert_threshold,
+            duplicate_ratio_threshold=self.duplicate_ratio_threshold,
+        )
+
     def do_GET(self) -> None:  # noqa: N802
         if self.path == "/healthz":
-            self._json_response(HTTPStatus.OK, {"status": "ok"})
+            self._json_response(HTTPStatus.OK, {"status": "ok", "component": "analyzer"})
             return
         if self.path == "/readyz":
             try:
-                status = registry_status(self.registry_path)
-                ingest = load_ingest_index(self.ingest_dir, repair=True)
+                dashboard = self._dashboard()
             except ValueError as exc:
                 self._json_response(HTTPStatus.SERVICE_UNAVAILABLE, {"status": "error", "error": str(exc)})
                 return
-            self._json_response(HTTPStatus.OK, {"status": "ready", "registry": status, "ingest": ingest["unique_count"]})
+            if dashboard["summary"]["state"] == "critical":
+                self._json_response(HTTPStatus.SERVICE_UNAVAILABLE, dashboard)
+                return
+            self._json_response(HTTPStatus.OK, dashboard)
             return
         if self.path == "/v1/status":
             try:
-                registry = registry_status(self.registry_path)
-                ingest = load_ingest_index(self.ingest_dir, repair=True)
+                payload = self._dashboard()
             except ValueError as exc:
-                self._json_response(HTTPStatus.BAD_REQUEST, {"error": str(exc)})
+                self._json_response(HTTPStatus.BAD_REQUEST, {"status": "error", "error": str(exc)})
+                return
+            self._json_response(HTTPStatus.OK, payload)
+            return
+        if self.path == "/v1/dashboard":
+            try:
+                payload = self._dashboard()
+            except ValueError as exc:
+                self._json_response(HTTPStatus.BAD_REQUEST, {"status": "error", "error": str(exc)})
+                return
+            self._json_response(HTTPStatus.OK, payload)
+            return
+        if self.path == "/v1/alerts":
+            try:
+                dashboard = self._dashboard()
+            except ValueError as exc:
+                self._json_response(HTTPStatus.BAD_REQUEST, {"status": "error", "error": str(exc)})
                 return
             self._json_response(HTTPStatus.OK, {
-                "status": "ok",
-                "registry": registry,
-                "ingest_dir": str(self.ingest_dir),
-                "ingest": {
-                    "received_count": ingest.get("received_count", 0),
-                    "unique_count": ingest.get("unique_count", 0),
-                    "duplicates_count": ingest.get("duplicates_count", 0),
-                    "repaired_at": ingest.get("repaired_at"),
-                },
+                "status": dashboard["summary"]["state"],
+                "component": dashboard["component"],
+                "timestamp": dashboard["timestamp"],
+                "summary": dashboard["summary"],
+                "alerts": dashboard["alerts"],
             })
+            return
+        if self.path == "/v1/workflow":
+            try:
+                payload = load_workflow_summary(self.ingest_dir, repair=True)
+            except ValueError as exc:
+                self._json_response(HTTPStatus.BAD_REQUEST, {"status": "error", "error": str(exc)})
+                return
+            self._json_response(HTTPStatus.OK, payload)
+            return
+        if self.path == "/v1/queue":
+            payload = queue_status(self.postprocess_queue_dir, ttl_seconds=self.queue_ttl_seconds)
+            self._json_response(HTTPStatus.OK, payload)
             return
         if self.path == "/v1/ingest":
             try:
                 payload = load_ingest_index(self.ingest_dir, repair=True)
             except ValueError as exc:
-                self._json_response(HTTPStatus.BAD_REQUEST, {"error": str(exc)})
+                self._json_response(HTTPStatus.BAD_REQUEST, {"status": "error", "error": str(exc)})
                 return
             self._json_response(HTTPStatus.OK, payload)
             return
@@ -232,40 +503,67 @@ class AnalyzerAPIHandler(BaseHTTPRequestHandler):
             try:
                 payload = load_registry(self.registry_path)
             except ValueError as exc:
-                self._json_response(HTTPStatus.BAD_REQUEST, {"error": str(exc)})
+                self._json_response(HTTPStatus.BAD_REQUEST, {"status": "error", "error": str(exc)})
                 return
             self._json_response(HTTPStatus.OK, payload)
             return
-        self._json_response(HTTPStatus.NOT_FOUND, {"error": "not found"})
+        self._json_response(HTTPStatus.NOT_FOUND, {"status": "error", "error": "not found"})
 
     def do_POST(self) -> None:  # noqa: N802
         if self.path != "/v1/reports":
-            self._json_response(HTTPStatus.NOT_FOUND, {"error": "not found"})
+            self._json_response(HTTPStatus.NOT_FOUND, {"status": "error", "error": "not found"})
             return
         if not self._authorized():
-            self._json_response(HTTPStatus.UNAUTHORIZED, {"error": "unauthorized"})
+            self._json_response(HTTPStatus.UNAUTHORIZED, {"status": "error", "error": "unauthorized"})
             return
         try:
             payload = self._read_json()
         except ValueError as exc:
-            self._json_response(HTTPStatus.BAD_REQUEST, {"error": str(exc)})
+            self._json_response(HTTPStatus.BAD_REQUEST, {"status": "error", "error": str(exc)})
             return
         if not isinstance(payload.get("report"), dict):
-            self._json_response(HTTPStatus.BAD_REQUEST, {"error": "report must be a JSON object"})
+            self._json_response(HTTPStatus.BAD_REQUEST, {"status": "error", "error": "report must be a JSON object"})
             return
         if "node_name" not in payload:
-            self._json_response(HTTPStatus.BAD_REQUEST, {"error": "node_name is required"})
+            self._json_response(HTTPStatus.BAD_REQUEST, {"status": "error", "error": "node_name is required"})
             return
-        result = store_ingest_payload(self.ingest_dir, payload)
+        result = store_ingest_payload(
+            self.ingest_dir,
+            payload,
+            queue_dir=self.postprocess_queue_dir,
+            queue_ttl_seconds=self.queue_ttl_seconds,
+        )
         self._json_response(HTTPStatus.OK if result["status"] == "duplicate" else HTTPStatus.ACCEPTED, result)
 
 
-def serve_api(host: str, port: int, *, registry_path: str | Path, ingest_dir: str | Path, shared_token: str = "") -> None:
+def serve_api(
+    host: str,
+    port: int,
+    *,
+    registry_path: str | Path,
+    ingest_dir: str | Path,
+    shared_token: str = "",
+    collector_spool_dir: str | Path | None = None,
+    postprocess_queue_dir: str | Path | None = None,
+    spool_ttl_seconds: int = 3600,
+    queue_ttl_seconds: int = 86400,
+    queue_alert_threshold: int = 20,
+    spool_alert_threshold: int = 10,
+    duplicate_ratio_threshold: float = 0.25,
+) -> None:
     server = ThreadingHTTPServer((host, port), AnalyzerAPIHandler)
     server.registry_path = str(Path(registry_path))  # type: ignore[attr-defined]
     server.ingest_dir = str(Path(ingest_dir))  # type: ignore[attr-defined]
     server.shared_token = shared_token  # type: ignore[attr-defined]
+    server.collector_spool_dir = str(collector_spool_dir or "")  # type: ignore[attr-defined]
+    server.postprocess_queue_dir = str(Path(postprocess_queue_dir) if postprocess_queue_dir else Path(ingest_dir) / "postprocess-queue")  # type: ignore[attr-defined]
+    server.spool_ttl_seconds = spool_ttl_seconds  # type: ignore[attr-defined]
+    server.queue_ttl_seconds = queue_ttl_seconds  # type: ignore[attr-defined]
+    server.queue_alert_threshold = queue_alert_threshold  # type: ignore[attr-defined]
+    server.spool_alert_threshold = spool_alert_threshold  # type: ignore[attr-defined]
+    server.duplicate_ratio_threshold = duplicate_ratio_threshold  # type: ignore[attr-defined]
     Path(ingest_dir).mkdir(parents=True, exist_ok=True)
+    Path(server.postprocess_queue_dir).mkdir(parents=True, exist_ok=True)  # type: ignore[arg-type]
     server.serve_forever()
 
 
@@ -276,10 +574,34 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--registry-path", required=True)
     parser.add_argument("--ingest-dir", required=True)
     parser.add_argument("--shared-token", default="")
+    parser.add_argument("--collector-spool-dir", default="")
+    parser.add_argument("--postprocess-queue-dir", default="")
+    parser.add_argument("--spool-ttl-seconds", type=int, default=3600)
+    parser.add_argument("--queue-ttl-seconds", type=int, default=86400)
+    parser.add_argument("--queue-alert-threshold", type=int, default=20)
+    parser.add_argument("--spool-alert-threshold", type=int, default=10)
+    parser.add_argument("--duplicate-ratio-threshold", type=float, default=0.25)
     return parser
 
 
 def main() -> int:
     args = build_parser().parse_args()
-    serve_api(args.host, args.port, registry_path=args.registry_path, ingest_dir=args.ingest_dir, shared_token=args.shared_token)
+    serve_api(
+        args.host,
+        args.port,
+        registry_path=args.registry_path,
+        ingest_dir=args.ingest_dir,
+        shared_token=args.shared_token,
+        collector_spool_dir=args.collector_spool_dir,
+        postprocess_queue_dir=args.postprocess_queue_dir,
+        spool_ttl_seconds=args.spool_ttl_seconds,
+        queue_ttl_seconds=args.queue_ttl_seconds,
+        queue_alert_threshold=args.queue_alert_threshold,
+        spool_alert_threshold=args.spool_alert_threshold,
+        duplicate_ratio_threshold=args.duplicate_ratio_threshold,
+    )
     return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

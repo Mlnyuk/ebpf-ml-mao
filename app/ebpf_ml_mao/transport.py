@@ -5,6 +5,13 @@ import time
 from pathlib import Path
 from urllib import error, request
 
+from .models import QueueSnapshot
+
+
+def _write_json(path: Path, payload: dict) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(payload, indent=2), encoding="utf-8")
+
 
 def build_report_payload(node_name: str, report_path: str | Path, *, phase: str = "phase3") -> dict:
     path = Path(report_path)
@@ -50,7 +57,30 @@ def spool_report(spool_dir: str | Path, payload: dict, *, ttl_seconds: int = 360
         "payload": payload,
     }
     path = spool / f"{int(time.time() * 1000)}-{payload.get('node_name', 'node')}.json"
-    path.write_text(json.dumps(envelope, indent=2), encoding="utf-8")
+    _write_json(path, envelope)
+    return path
+
+
+def enqueue_postprocess(
+    queue_dir: str | Path,
+    payload: dict,
+    *,
+    task_type: str = "report-ingest",
+    ttl_seconds: int = 86400,
+) -> Path:
+    queue = Path(queue_dir)
+    queue.mkdir(parents=True, exist_ok=True)
+    ts = int(time.time())
+    envelope = {
+        "queued_at": ts,
+        "expires_at": ts + max(ttl_seconds, 0),
+        "attempts": 0,
+        "status": "pending",
+        "task_type": task_type,
+        "payload": payload,
+    }
+    path = queue / f"{int(time.time() * 1000)}-{task_type}.json"
+    _write_json(path, envelope)
     return path
 
 
@@ -67,15 +97,70 @@ def spool_status(spool_dir: str | Path, *, ttl_seconds: int = 3600) -> dict:
     now = int(time.time())
     files = sorted(spool.glob("*.json"))
     expired = 0
+    oldest_age_seconds: int | None = None
     for path in files:
         try:
             envelope = json.loads(path.read_text(encoding="utf-8"))
             expires_at = int(envelope.get("expires_at", 0))
+            queued_at = int(envelope.get("queued_at", path.stat().st_mtime))
+            age = max(now - queued_at, 0)
+            oldest_age_seconds = age if oldest_age_seconds is None else max(oldest_age_seconds, age)
             if expires_at and expires_at <= now:
                 expired += 1
         except Exception:
             expired += 1
-    return {"count": len(files), "expired_count": expired, "ttl_seconds": ttl_seconds}
+    quarantine_dir = spool / "quarantine"
+    quarantined_count = len(list(quarantine_dir.glob("*.json"))) if quarantine_dir.exists() else 0
+    return {
+        "count": len(files),
+        "expired_count": expired,
+        "ttl_seconds": ttl_seconds,
+        "oldest_age_seconds": oldest_age_seconds,
+        "quarantined_count": quarantined_count,
+    }
+
+
+def queue_status(
+    queue_dir: str | Path,
+    *,
+    ttl_seconds: int = 86400,
+    quarantine_dir: str | Path | None = None,
+) -> dict:
+    queue = Path(queue_dir)
+    queue.mkdir(parents=True, exist_ok=True)
+    quarantine = Path(quarantine_dir or queue / "quarantine")
+    now = int(time.time())
+    files = sorted(queue.glob("*.json"))
+    pending = 0
+    failed = 0
+    expired = 0
+    oldest_age_seconds: int | None = None
+    for path in files:
+        try:
+            envelope = json.loads(path.read_text(encoding="utf-8"))
+            expires_at = int(envelope.get("expires_at", 0))
+            queued_at = int(envelope.get("queued_at", path.stat().st_mtime))
+            status = str(envelope.get("status", "pending"))
+            age = max(now - queued_at, 0)
+            oldest_age_seconds = age if oldest_age_seconds is None else max(oldest_age_seconds, age)
+            if expires_at and expires_at <= now:
+                expired += 1
+            if status == "failed":
+                failed += 1
+            else:
+                pending += 1
+        except Exception:
+            expired += 1
+    snapshot = QueueSnapshot(
+        count=len(files),
+        pending_count=pending,
+        failed_count=failed,
+        expired_count=expired,
+        oldest_age_seconds=oldest_age_seconds,
+        ttl_seconds=ttl_seconds,
+        quarantined_count=len(list(quarantine.glob("*.json"))) if quarantine.exists() else 0,
+    )
+    return snapshot.to_dict()
 
 
 def prune_spool(spool_dir: str | Path, *, ttl_seconds: int = 3600, quarantine_dir: str | Path | None = None) -> dict:
@@ -86,6 +171,30 @@ def prune_spool(spool_dir: str | Path, *, ttl_seconds: int = 3600, quarantine_di
     removed = 0
     quarantined: list[str] = []
     for path in sorted(spool.glob("*.json")):
+        try:
+            envelope = json.loads(path.read_text(encoding="utf-8"))
+            expires_at = int(envelope.get("expires_at", 0))
+            if expires_at and expires_at <= now:
+                path.unlink()
+                removed += 1
+        except Exception:
+            quarantined.append(_quarantine_file(path, quarantine))
+    return {"removed": removed, "quarantined": quarantined}
+
+
+def prune_queue(
+    queue_dir: str | Path,
+    *,
+    ttl_seconds: int = 86400,
+    quarantine_dir: str | Path | None = None,
+) -> dict:
+    queue = Path(queue_dir)
+    queue.mkdir(parents=True, exist_ok=True)
+    quarantine = Path(quarantine_dir or queue / "quarantine")
+    now = int(time.time())
+    removed = 0
+    quarantined: list[str] = []
+    for path in sorted(queue.glob("*.json")):
         try:
             envelope = json.loads(path.read_text(encoding="utf-8"))
             expires_at = int(envelope.get("expires_at", 0))

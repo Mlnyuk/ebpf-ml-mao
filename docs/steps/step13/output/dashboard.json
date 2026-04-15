@@ -1,0 +1,82 @@
+{
+  "status": "ok",
+  "component": "analyzer",
+  "timestamp": 1776258849,
+  "summary": {
+    "state": "warning",
+    "alert_count": 2,
+    "warning_count": 2,
+    "critical_count": 0,
+    "latest_verdict": "anomalous"
+  },
+  "counters": {
+    "received_count": 1,
+    "unique_count": 1,
+    "duplicates_count": 0,
+    "queue_count": 1,
+    "spool_count": 0
+  },
+  "registry": {
+    "model_count": 1,
+    "active_model_id": "baseline-v2-01",
+    "missing_artifact_count": 0,
+    "tagged_model_count": 1,
+    "model_types": [
+      "baseline"
+    ]
+  },
+  "ingest": {
+    "received_count": 1,
+    "unique_count": 1,
+    "duplicates_count": 0,
+    "repaired_at": null
+  },
+  "workflow": {
+    "received_count": 1,
+    "unique_count": 1,
+    "duplicates_count": 0,
+    "nodes": [
+      "node-a"
+    ],
+    "verdicts": {
+      "anomalous": 1
+    },
+    "phases": {
+      "phase3": 1
+    },
+    "latest_verdict": "anomalous"
+  },
+  "queue": {
+    "count": 1,
+    "pending_count": 1,
+    "failed_count": 0,
+    "expired_count": 0,
+    "oldest_age_seconds": 0,
+    "ttl_seconds": 86400,
+    "quarantined_count": 0
+  },
+  "spool": {
+    "count": 0,
+    "expired_count": 0,
+    "ttl_seconds": 3600,
+    "oldest_age_seconds": null,
+    "quarantined_count": 0,
+    "available": false
+  },
+  "alerts": [
+    {
+      "name": "queue_backlog",
+      "severity": "warning",
+      "message": "postprocess queue backlog exceeded threshold",
+      "value": 1,
+      "threshold": 0
+    },
+    {
+      "name": "latest_verdict",
+      "severity": "warning",
+      "message": "latest workflow verdict is anomalous",
+      "value": "anomalous",
+      "threshold": "normal"
+    }
+  ]
+}
