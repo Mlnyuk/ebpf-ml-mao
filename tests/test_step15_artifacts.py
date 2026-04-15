@@ -13,6 +13,8 @@ if str(APP_DIR) not in sys.path:
 class Step15ArtifactsTest(unittest.TestCase):
     def test_step15_docs_and_ui_assets_exist(self) -> None:
         self.assertTrue(Path(ROOT, "docs/steps/step15/README.md").exists())
+        self.assertTrue(Path(ROOT, "deploy/yaml/step15/kustomization.yaml").exists())
+        self.assertTrue(Path(ROOT, "deploy/yaml/step15/ui-service.yaml").exists())
         self.assertTrue(Path(ROOT, "app/ebpf_ml_mao/ui/dashboard.html").exists())
         self.assertTrue(Path(ROOT, "app/ebpf_ml_mao/ui/dashboard.css").exists())
         self.assertTrue(Path(ROOT, "app/ebpf_ml_mao/ui/dashboard.js").exists())
