@@ -12,28 +12,28 @@ spec:
             - >-
               mkdir -p ${COLLECTOR_OUTPUT_DIR}/${NODE_NAME} ${COLLECTOR_SPOOL_DIR} ${COLLECTOR_SPOOL_QUARANTINE_DIR} /tmp &&
               while true; do
-                PYTHONPATH=/app/app python3 -m ebpf_ml_mao spool-prune
-                --spool-dir ${COLLECTOR_SPOOL_DIR}
-                --ttl-seconds ${COLLECTOR_SPOOL_TTL_SECONDS}
+                PYTHONPATH=/app/app python3 -m ebpf_ml_mao spool-prune \
+                --spool-dir ${COLLECTOR_SPOOL_DIR} \
+                --ttl-seconds ${COLLECTOR_SPOOL_TTL_SECONDS} \
                 --quarantine-dir ${COLLECTOR_SPOOL_QUARANTINE_DIR} || true;
-                PYTHONPATH=/app/app python3 -m ebpf_ml_mao drain-spool
-                --api-url ${ANALYZER_API_URL}
-                --spool-dir ${COLLECTOR_SPOOL_DIR}
-                --shared-token ${ANALYZER_SHARED_TOKEN}
-                --ttl-seconds ${COLLECTOR_SPOOL_TTL_SECONDS}
+                PYTHONPATH=/app/app python3 -m ebpf_ml_mao drain-spool \
+                --api-url ${ANALYZER_API_URL} \
+                --spool-dir ${COLLECTOR_SPOOL_DIR} \
+                --shared-token ${ANALYZER_SHARED_TOKEN} \
+                --ttl-seconds ${COLLECTOR_SPOOL_TTL_SECONDS} \
                 --quarantine-dir ${COLLECTOR_SPOOL_QUARANTINE_DIR} || true;
-                PYTHONPATH=/app/app python3 -m ebpf_ml_mao phase3
-                --baseline-tetragon ${BASELINE_TETRAGON_PATH}
-                --baseline-prometheus ${BASELINE_PROMETHEUS_PATH}
-                --tetragon-log ${TETRAGON_LOG_PATH}
-                --prometheus-url ${PROMETHEUS_URL}
+                PYTHONPATH=/app/app python3 -m ebpf_ml_mao phase3 \
+                --baseline-tetragon ${BASELINE_TETRAGON_PATH} \
+                --baseline-prometheus ${BASELINE_PROMETHEUS_PATH} \
+                --tetragon-log ${TETRAGON_LOG_PATH} \
+                --prometheus-url ${PROMETHEUS_URL} \
                 --output-dir ${COLLECTOR_OUTPUT_DIR}/${NODE_NAME} &&
-                PYTHONPATH=/app/app python3 -m ebpf_ml_mao ship-report
-                --api-url ${ANALYZER_API_URL}
-                --node-name ${NODE_NAME}
-                --report-path ${COLLECTOR_OUTPUT_DIR}/${NODE_NAME}/report.json
-                --spool-dir ${COLLECTOR_SPOOL_DIR}
-                --shared-token ${ANALYZER_SHARED_TOKEN}
+                PYTHONPATH=/app/app python3 -m ebpf_ml_mao ship-report \
+                --api-url ${ANALYZER_API_URL} \
+                --node-name ${NODE_NAME} \
+                --report-path ${COLLECTOR_OUTPUT_DIR}/${NODE_NAME}/report.json \
+                --spool-dir ${COLLECTOR_SPOOL_DIR} \
+                --shared-token ${ANALYZER_SHARED_TOKEN} \
                 --spool-ttl-seconds ${COLLECTOR_SPOOL_TTL_SECONDS};
                 sleep ${ANALYSIS_INTERVAL_SECONDS};
               done

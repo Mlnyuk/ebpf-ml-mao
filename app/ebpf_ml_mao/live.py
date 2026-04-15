@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import re
 import time
 import urllib.request
 from collections import deque
@@ -28,16 +29,13 @@ def scrape_prometheus_text(url: str, timeout: float = 5.0) -> str:
 
 
 def _parse_labels(raw_labels: str) -> dict[str, str]:
-    labels: dict[str, str] = {}
+    """Parse Prometheus label string, handling quoted values that contain commas."""
     if not raw_labels:
-        return labels
-    for item in raw_labels.split(","):
-        item = item.strip()
-        if not item:
-            continue
-        key, value = item.split("=", 1)
-        labels[key.strip()] = value.strip().strip('"')
-    return labels
+        return {}
+    return {
+        m.group(1): m.group(2).replace('\\"', '"').replace("\\\\", "\\").replace("\\n", "\n")
+        for m in re.finditer(r'(\w+)="((?:[^"\\]|\\.)*)"', raw_labels)
+    }
 
 
 def parse_prometheus_text(text: str, scraped_at: float | None = None) -> dict:

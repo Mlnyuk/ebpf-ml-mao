@@ -1,0 +1,23 @@
+# Mount fixed live.py via ConfigMap subPath to fix Prometheus label parsing.
+# The original live.py incorrectly splits label values on commas, breaking on
+# metrics like prometheus_build_info{tags="netgo,builtinassets",...}.
+# Using subPath so only live.py is replaced; other module files are unaffected.
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: ebpf-ml-mao-collector
+  namespace: ebpf-obs
+spec:
+  template:
+    spec:
+      volumes:
+        - name: live-py-patch
+          configMap:
+            name: ebpf-ml-mao-live-py
+      containers:
+        - name: collector
+          volumeMounts:
+            - name: live-py-patch
+              mountPath: /app/app/ebpf_ml_mao/live.py
+              subPath: live.py
+              readOnly: true

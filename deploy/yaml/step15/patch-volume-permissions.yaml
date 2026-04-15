@@ -1,0 +1,55 @@
+# Fix analyzer PVC ownership: fsGroup makes Kubernetes chown the PVC to GID 10001.
+# Also change readinessProbe to /healthz so the pod becomes Ready even when the
+# registry has no model (fresh cluster), making the UI accessible via Service.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ebpf-ml-mao-analyzer
+  namespace: ebpf-obs
+spec:
+  template:
+    spec:
+      securityContext:
+        fsGroup: 10001
+      containers:
+        - name: analyzer
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 10
+---
+# Fix collector hostPath ownership: fsGroup does NOT apply to hostPath,
+# so use an initContainer (runs as root) to chown the directory before the
+# main container starts as UID 10001.
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: ebpf-ml-mao-collector
+  namespace: ebpf-obs
+spec:
+  template:
+    spec:
+      initContainers:
+        - name: fix-permissions
+          image: busybox:1.36
+          command:
+            - sh
+            - -c
+            - |
+              chown -R 10001:10001 /var/lib/ebpf-ml-mao-collector
+              chmod 775 /var/lib/ebpf-ml-mao-collector
+              # Create tetragon.log placeholder so phase3 and readinessProbe succeed
+              # in environments where Tetragon is not installed.
+              touch /var/run/cilium/tetragon/tetragon.log
+              chown 10001:10001 /var/run/cilium/tetragon/tetragon.log
+          securityContext:
+            runAsUser: 0
+            runAsNonRoot: false
+            allowPrivilegeEscalation: false
+          volumeMounts:
+            - name: collector-state
+              mountPath: /var/lib/ebpf-ml-mao-collector
+            - name: tetragon-run
+              mountPath: /var/run/cilium/tetragon

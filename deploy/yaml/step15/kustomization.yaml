@@ -5,3 +5,7 @@ resources:
   - ui-service.yaml
 patches:
   - path: patch-serviceaccounts.yaml
+  - path: patch-volume-permissions.yaml
+  - path: patch-configmap.yaml
+  - path: patch-networkpolicy-dns.yaml
+  - path: patch-collector-live-py.yaml

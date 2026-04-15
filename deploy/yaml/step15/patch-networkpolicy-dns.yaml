@@ -1,0 +1,46 @@
+# NodeLocal DNSCache (169.254.25.10) is a node-level link-local service,
+# not a pod, so namespaceSelector:{} does not match it.
+# Replace the full egress spec to add the ipBlock DNS rule while preserving
+# the original rules (analyzer:8080, ns-selector:53, prometheus:9090).
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: ebpf-ml-mao-collector-egress
+  namespace: ebpf-obs
+spec:
+  podSelector:
+    matchLabels:
+      app: ebpf-ml-mao-collector
+  policyTypes:
+    - Egress
+  egress:
+    - to:
+        - podSelector:
+            matchLabels:
+              app: ebpf-ml-mao-analyzer
+      ports:
+        - protocol: TCP
+          port: 8080
+    # DNS via cluster pods (CoreDNS)
+    - to:
+        - namespaceSelector: {}
+      ports:
+        - protocol: UDP
+          port: 53
+        - protocol: TCP
+          port: 53
+    # DNS via NodeLocal DNSCache (link-local, not matched by namespaceSelector)
+    - to:
+        - ipBlock:
+            cidr: 169.254.25.10/32
+      ports:
+        - protocol: UDP
+          port: 53
+        - protocol: TCP
+          port: 53
+    # Prometheus scrape
+    - to:
+        - namespaceSelector: {}
+      ports:
+        - protocol: TCP
+          port: 9090
