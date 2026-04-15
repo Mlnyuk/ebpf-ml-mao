@@ -1,0 +1,27 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run unit tests
+        run: python3 -m unittest discover -s tests -v
+      - name: Install kubectl
+        uses: azure/setup-kubectl@v4
+        with:
+          version: v1.30.0
+      - name: Render Step 14 manifests
+        run: kubectl kustomize deploy/yaml/step14 > /tmp/step14-rendered.yaml
+      - name: Client dry-run Step 14 manifests
+        run: kubectl apply --dry-run=client -k deploy/yaml/step14 > /tmp/step14-dryrun.yaml
+      - name: Build image
+        run: docker build -t ghcr.io/mlnyuk/ebpf-ml-mao:ci .

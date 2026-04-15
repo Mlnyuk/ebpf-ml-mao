@@ -1,0 +1,11 @@
+python3 -m unittest discover -s tests -v
+Result: OK (42 tests)
+
+kubectl kustomize deploy/yaml/step14
+Result: rendered successfully
+
+kubectl apply --dry-run=client -k deploy/yaml/step14
+Result: client dry-run succeeded
+
+docker build -t ghcr.io/mlnyuk/ebpf-ml-mao:step14-test .
+Result: not run successfully in this environment (`docker: command not found`)

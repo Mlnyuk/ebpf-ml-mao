@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ebpf-ml-mao-runtime
+  namespace: ebpf-obs
+data:
+  DEPLOYMENT_STEP: "step14"
+  DEPLOYMENT_IMAGE: ghcr.io/mlnyuk/ebpf-ml-mao:step14
+  DEPLOYMENT_RUNBOOK: docs/steps/step14/runbook.md
