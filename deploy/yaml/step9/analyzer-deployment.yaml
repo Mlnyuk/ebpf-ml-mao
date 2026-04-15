@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ebpf-ml-mao-analyzer
+  namespace: ebpf-obs
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ebpf-ml-mao-analyzer
+  template:
+    metadata:
+      labels:
+        app: ebpf-ml-mao-analyzer
+    spec:
+      serviceAccountName: ebpf-ml-mao-analyzer
+      containers:
+        - name: analyzer
+          image: ghcr.io/mlnyuk/ebpf-ml-mao:step9
+          imagePullPolicy: IfNotPresent
+          command: ["/bin/sh", "-c"]
+          args:
+            - >-
+              mkdir -p ${MODEL_DIR} ${REPORT_DIR} $(dirname ${REGISTRY_PATH}) &&
+              PYTHONPATH=/app python3 -m ebpf_ml_mao registry status --registry-path ${REGISTRY_PATH} || true &&
+              sleep infinity
+          envFrom:
+            - configMapRef:
+                name: ebpf-ml-mao-runtime
+          ports:
+            - name: http
+              containerPort: 8080
+          securityContext:
+            readOnlyRootFilesystem: true
+            allowPrivilegeEscalation: false
+            runAsNonRoot: true
+            runAsUser: 10001
+          volumeMounts:
+            - name: state
+              mountPath: /var/lib/ebpf-ml-mao
+            - name: tmp
+              mountPath: /tmp
+          readinessProbe:
+            exec:
+              command:
+                - /bin/sh
+                - -c
+                - test -f ${REGISTRY_PATH} || test -d ${MODEL_DIR}
+            initialDelaySeconds: 5
+            periodSeconds: 10
+      volumes:
+        - name: state
+          persistentVolumeClaim:
+            claimName: ebpf-ml-mao-state
+        - name: tmp
+          emptyDir: {}

@@ -1,0 +1,2 @@
+kubectl kustomize deploy/yaml/step9
+rendered successfully

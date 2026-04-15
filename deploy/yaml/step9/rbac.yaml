@@ -1,0 +1,45 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: ebpf-ml-mao-collector
+rules:
+  - apiGroups: [""]
+    resources: ["pods", "nodes", "namespaces"]
+    verbs: ["get", "list", "watch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: ebpf-ml-mao-collector
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: ebpf-ml-mao-collector
+subjects:
+  - kind: ServiceAccount
+    name: ebpf-ml-mao-collector
+    namespace: ebpf-obs
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: ebpf-ml-mao-analyzer
+  namespace: ebpf-obs
+rules:
+  - apiGroups: [""]
+    resources: ["configmaps"]
+    verbs: ["get", "list"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: ebpf-ml-mao-analyzer
+  namespace: ebpf-obs
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: ebpf-ml-mao-analyzer
+subjects:
+  - kind: ServiceAccount
+    name: ebpf-ml-mao-analyzer
+    namespace: ebpf-obs
