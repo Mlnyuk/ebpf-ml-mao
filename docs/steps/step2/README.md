@@ -70,13 +70,13 @@ PYTHONPATH=app python3 -m ebpf_ml_mao phase2 \
   --baseline-prometheus samples/step2/baseline_prometheus.json \
   --input-tetragon samples/step2/input_tetragon.jsonl \
   --input-prometheus samples/step2/input_prometheus.json \
-  --output-dir step2/output
+  --output-dir docs/steps/step2/output
 ```
 
 ## Output
 
-- `step2/output/report.json`
-- `step2/output/report.md`
+- `docs/steps/step2/output/report.json`
+- `docs/steps/step2/output/report.md`
 
 현재 샘플 기준으로 anomalous 판정이 나와야 정상입니다.
 

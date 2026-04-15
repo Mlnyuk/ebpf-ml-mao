@@ -32,8 +32,8 @@ JSONL sample input
 
 ## Sample Data
 
-- `samples/benign.jsonl`
-- `samples/anomalous.jsonl`
+- `samples/phase1/benign.jsonl`
+- `samples/phase1/anomalous.jsonl`
 
 두 파일 모두 동일 workload(`checkout`)를 기준으로 만들었고, anomalous 샘플에는 CPU 급등, 연결 증가, 반복 exec 이벤트를 넣었습니다.
 
@@ -43,15 +43,15 @@ JSONL sample input
 
 ```bash
 PYTHONPATH=app python3 -m ebpf_ml_mao phase1 \
-  --baseline samples/benign.jsonl \
-  --input samples/anomalous.jsonl \
-  --output-dir step1/output
+  --baseline samples/phase1/benign.jsonl \
+  --input samples/phase1/anomalous.jsonl \
+  --output-dir docs/steps/step1/output
 ```
 
 ## Output
 
-- `step1/output/report.json`
-- `step1/output/report.md`
+- `docs/steps/step1/output/report.json`
+- `docs/steps/step1/output/report.md`
 
 현재 샘플 기준 결과:
 

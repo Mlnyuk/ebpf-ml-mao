@@ -52,7 +52,7 @@ PYTHONPATH=app python3 -m ebpf_ml_mao phase3 \
   --baseline-prometheus samples/step2/baseline_prometheus.json \
   --tetragon-log samples/step3/tetragon-live.log \
   --prometheus-url http://127.0.0.1:9090/metrics \
-  --output-dir step3/output
+  --output-dir docs/steps/step3/output
 ```
 
 ## Verification

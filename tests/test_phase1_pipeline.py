@@ -18,7 +18,7 @@ from ebpf_ml_mao.pipeline import run_phase1
 
 class Phase1PipelineTest(unittest.TestCase):
     def test_normalizer_populates_required_fields(self) -> None:
-        raw = load_jsonl("samples/benign.jsonl")[0]
+        raw = load_jsonl("samples/phase1/benign.jsonl")[0]
         event = normalize_event(raw)
         self.assertEqual(event.source, "tetragon")
         self.assertEqual(event.workload, "checkout")
@@ -27,8 +27,8 @@ class Phase1PipelineTest(unittest.TestCase):
     def test_pipeline_generates_anomalous_report(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
             report = run_phase1(
-                "samples/benign.jsonl",
-                "samples/anomalous.jsonl",
+                "samples/phase1/benign.jsonl",
+                "samples/phase1/anomalous.jsonl",
                 temp_dir,
             )
             self.assertEqual(report.verdict, "anomalous")

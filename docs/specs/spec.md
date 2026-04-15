@@ -97,7 +97,7 @@ Across 8 non-control nodes:
 
 주의할 점:
 
-- 저장소의 `yaml/ebpf-step1.yaml`에 있는 `ebpf-agent`는 control-plane toleration이 없어서 control-plane에는 배포되지 않는다.
+- 저장소의 `deploy/yaml/ebpf-step1.yaml`에 있는 `ebpf-agent`는 control-plane toleration이 없어서 control-plane에는 배포되지 않는다.
 - 반면 실제 `tetragon-values.yaml`의 toleration 설정 덕분에 `tetragon`은 control-plane 포함 전체 노드에 올라가 있다.
 
 ### 2.2 Infra Nodes
@@ -254,7 +254,7 @@ GPU 노드는 현재 별도 taint 없이 일반 스케줄도 가능한 상태다
 
 ### 8.1 저장소에 정의된 배포
 
-`yaml/ebpf-step1.yaml` 기준:
+`deploy/yaml/ebpf-step1.yaml` 기준:
 
 - Namespace: `ebpf-obs`
 - ServiceAccount / ClusterRole / ClusterRoleBinding 포함
@@ -289,7 +289,7 @@ GPU 노드는 현재 별도 taint 없이 일반 스케줄도 가능한 상태다
 - `monitor-sensitive-files`
 - `monitor-privilege-escalation`
 
-저장소의 [`yaml/tetragon-tracingpolicy.yaml`](./yaml/tetragon-tracingpolicy.yaml)와 이름이 일치한다. 따라서 이 파일은 현재 실제 클러스터에도 반영된 것으로 보인다.
+저장소의 `[deploy/yaml/tetragon-tracingpolicy.yaml](../../deploy/yaml/tetragon-tracingpolicy.yaml)`와 이름이 일치한다. 따라서 이 파일은 현재 실제 클러스터에도 반영된 것으로 보인다.
 
 정책 기준 관측 범위:
 
@@ -300,7 +300,7 @@ GPU 노드는 현재 별도 taint 없이 일반 스케줄도 가능한 상태다
 
 ### 8.4 Tetragon과 Prometheus 연결
 
-`yaml/tetragon-values.yaml`에서는 다음이 활성화되어 있다.
+`deploy/yaml/tetragon-values.yaml`에서는 다음이 활성화되어 있다.
 
 - Tetragon Prometheus metrics `2112`
 - Tetragon Operator metrics
