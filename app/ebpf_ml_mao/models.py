@@ -59,3 +59,13 @@ class AnalysisReport:
             "agents": [asdict(agent_result) for agent_result in self.agent_results],
         }
 
+
+@dataclass(slots=True)
+class BatchAnalysisReport:
+    reports: list[AnalysisReport]
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "report_count": len(self.reports),
+            "reports": [report.to_dict() for report in self.reports],
+        }

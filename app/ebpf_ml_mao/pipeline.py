@@ -7,10 +7,34 @@ from .agents import analyze, correlate, review, summarize
 from .features import extract_features, window_events
 from .live import scrape_prometheus_snapshot, tail_jsonl
 from .loader import load_json, load_jsonl
-from .models import AnalysisReport, NormalizedEvent
+from .models import AnalysisReport, BatchAnalysisReport, NormalizedEvent
 from .normalizer import normalize_event
-from .report import write_json_report, write_markdown_report
+from .report import (
+    write_batch_json_report,
+    write_batch_markdown_report,
+    write_json_report,
+    write_markdown_report,
+)
 from .scoring import BaselineScorer, verdict_for_score
+
+
+
+def _build_single_report(feature_window, scorer: BaselineScorer) -> AnalysisReport:
+    score, confidence = scorer.score(feature_window)
+    verdict = verdict_for_score(score)
+    return AnalysisReport(
+        score=score,
+        verdict=verdict,
+        confidence=confidence,
+        feature_window=feature_window,
+        agent_results=[
+            summarize(feature_window),
+            analyze(feature_window, score),
+            correlate(feature_window),
+            review(score, verdict, confidence),
+        ],
+    )
+
 
 
 def build_report(
@@ -27,28 +51,45 @@ def build_report(
 
     scorer = BaselineScorer()
     scorer.fit(baseline_windows)
-    feature_window = input_windows[0]
-    score, confidence = scorer.score(feature_window)
-    verdict = verdict_for_score(score)
-
-    report = AnalysisReport(
-        score=score,
-        verdict=verdict,
-        confidence=confidence,
-        feature_window=feature_window,
-        agent_results=[
-            summarize(feature_window),
-            analyze(feature_window, score),
-            correlate(feature_window),
-            review(score, verdict, confidence),
-        ],
-    )
+    report = _build_single_report(input_windows[0], scorer)
 
     output_dir = Path(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
     write_json_report(report, output_dir / "report.json")
     write_markdown_report(report, output_dir / "report.md")
     return report
+
+
+
+def build_batch_report(
+    baseline_events: list[NormalizedEvent],
+    input_events: list[NormalizedEvent],
+    output_dir: str | Path,
+) -> BatchAnalysisReport:
+    baseline_windows = [extract_features(window) for window in window_events(baseline_events)]
+    input_windows = [extract_features(window) for window in window_events(input_events)]
+    if not baseline_windows:
+        raise ValueError("baseline dataset did not produce any feature windows")
+    if not input_windows:
+        raise ValueError("input dataset did not produce any feature windows")
+
+    scorer = BaselineScorer()
+    scorer.fit(baseline_windows)
+    reports = [_build_single_report(feature_window, scorer) for feature_window in input_windows]
+    reports.sort(key=lambda report: (report.feature_window.workload, report.feature_window.window_start))
+
+    batch_report = BatchAnalysisReport(reports=reports)
+    output_dir = Path(output_dir)
+    output_dir.mkdir(parents=True, exist_ok=True)
+    reports_dir = output_dir / "reports"
+    reports_dir.mkdir(parents=True, exist_ok=True)
+    write_batch_json_report(batch_report, output_dir / "report-index.json")
+    write_batch_markdown_report(batch_report, output_dir / "report-index.md")
+    for index, report in enumerate(batch_report.reports, start=1):
+        write_json_report(report, reports_dir / f"report-{index:02d}.json")
+        write_markdown_report(report, reports_dir / f"report-{index:02d}.md")
+    return batch_report
+
 
 
 def run_phase1(
@@ -62,6 +103,7 @@ def run_phase1(
     baseline_events = [normalize_event(item) for item in baseline_raw]
     input_events = [normalize_event(item) for item in input_raw]
     return build_report(baseline_events, input_events, output_dir)
+
 
 
 def run_phase2(
@@ -89,6 +131,7 @@ def run_phase2(
     )
 
 
+
 def run_phase3(
     baseline_tetragon_path: str | Path,
     baseline_prometheus_path: str | Path,
@@ -113,6 +156,32 @@ def run_phase3(
     )
     input_events = adapt_tetragon_events(live_tetragon) + live_prometheus_events
     return build_report(
+        sorted(baseline_events, key=lambda event: event.ts),
+        sorted(input_events, key=lambda event: event.ts),
+        output_dir,
+    )
+
+
+
+def run_phase4(
+    baseline_tetragon_path: str | Path,
+    baseline_prometheus_path: str | Path,
+    input_tetragon_path: str | Path,
+    input_prometheus_path: str | Path,
+    output_dir: str | Path,
+) -> BatchAnalysisReport:
+    baseline_tetragon = load_jsonl(baseline_tetragon_path)
+    input_tetragon = load_jsonl(input_tetragon_path)
+    baseline_prometheus = load_json(baseline_prometheus_path)
+    input_prometheus = load_json(input_prometheus_path)
+
+    baseline_events = adapt_tetragon_events(baseline_tetragon) + adapt_prometheus_snapshot(
+        baseline_prometheus
+    )
+    input_events = adapt_tetragon_events(input_tetragon) + adapt_prometheus_snapshot(
+        input_prometheus
+    )
+    return build_batch_report(
         sorted(baseline_events, key=lambda event: event.ts),
         sorted(input_events, key=lambda event: event.ts),
         output_dir,
