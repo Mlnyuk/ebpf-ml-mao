@@ -68,6 +68,9 @@ flowchart TD
 - [`docs/architecture/ebpf-ml-mao/04-mvp-scope.md`](./docs/architecture/ebpf-ml-mao/04-mvp-scope.md): MVP 범위 정리
 - [`docs/steps/step3/README.md`](./docs/steps/step3/README.md): 현재 최신 구현 단계 문서
 - [`deploy/yaml/tetragon-tracingpolicy.yaml`](./deploy/yaml/tetragon-tracingpolicy.yaml): Tetragon 정책 실험 예시
+- [`docs/architecture/MAO/Orchestrator-Playbook.md`](./docs/architecture/MAO/Orchestrator-Playbook.md): 오케스트레이터 운영 규칙
+- [`docs/architecture/MAO/Order-Templates.md`](./docs/architecture/MAO/Order-Templates.md): 에이전트별 오더 템플릿
+- [`docs/architecture/MAO/Execution-Protocol.md`](./docs/architecture/MAO/Execution-Protocol.md): 단계별 실행 프로토콜
 
 ## Current Focus
 
