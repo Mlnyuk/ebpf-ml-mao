@@ -11,6 +11,7 @@ MODEL_SCHEMA_V1 = "v1"
 MODEL_SCHEMA_V2 = "v2"
 SUPPORTED_SCHEMA_VERSIONS = {MODEL_SCHEMA_V1, MODEL_SCHEMA_V2}
 SUPPORTED_MODEL_TYPES = {"baseline", "zscore"}
+LATEST_SCHEMA_VERSION = MODEL_SCHEMA_V2
 
 
 @dataclass(slots=True)
@@ -63,6 +64,86 @@ class BaselineModel:
         )
         model.validate()
         return model
+
+
+MODEL_REGISTRY = {
+    "baseline": {
+        "schema_version": MODEL_SCHEMA_V2,
+        "payload_keys": ("baseline",),
+        "description": "Average-distance baseline scorer",
+    },
+    "zscore": {
+        "schema_version": MODEL_SCHEMA_V2,
+        "payload_keys": ("mean", "std"),
+        "description": "Mean/std deviation scorer",
+    },
+}
+
+
+def migrate_model_dict(
+    payload: dict,
+    *,
+    target_schema_version: str = LATEST_SCHEMA_VERSION,
+) -> dict:
+    if target_schema_version not in SUPPORTED_SCHEMA_VERSIONS:
+        raise ValueError(f"unsupported target schema_version: {target_schema_version}")
+
+    source_schema = str(payload.get("schema_version", MODEL_SCHEMA_V1))
+    if source_schema not in SUPPORTED_SCHEMA_VERSIONS:
+        raise ValueError(f"unsupported schema_version: {source_schema}")
+
+    model_type = str(payload.get("model_type", "baseline"))
+    if model_type not in SUPPORTED_MODEL_TYPES:
+        raise ValueError(f"unsupported model_type: {model_type}")
+
+    migrated = {
+        "schema_version": source_schema,
+        "model_type": model_type,
+        "feature_keys": list(payload["feature_keys"]),
+        "threshold": float(payload.get("threshold", 0.45)),
+    }
+    for key in ("baseline", "mean", "std"):
+        if key in payload:
+            migrated[key] = {name: float(value) for name, value in payload[key].items()}
+
+    if target_schema_version == MODEL_SCHEMA_V2 and source_schema == MODEL_SCHEMA_V1:
+        migrated["schema_version"] = MODEL_SCHEMA_V2
+    return migrated
+
+
+def migrate_model_file(
+    source_path: str | Path,
+    destination_path: str | Path,
+    *,
+    target_schema_version: str = LATEST_SCHEMA_VERSION,
+) -> BaselineModel:
+    payload = json.loads(Path(source_path).read_text(encoding="utf-8"))
+    migrated = migrate_model_dict(
+        payload,
+        target_schema_version=target_schema_version,
+    )
+    model = BaselineModel.from_dict(migrated)
+    target = Path(destination_path)
+    target.parent.mkdir(parents=True, exist_ok=True)
+    target.write_text(json.dumps(model.to_dict(), indent=2), encoding="utf-8")
+    return model
+
+
+def describe_model_file(path: str | Path) -> dict:
+    payload = json.loads(Path(path).read_text(encoding="utf-8"))
+    model = BaselineModel.from_dict(migrate_model_dict(payload))
+    registry_entry = MODEL_REGISTRY[model.model_type]
+    return {
+        "schema_version": model.schema_version,
+        "model_type": model.model_type,
+        "feature_keys": model.feature_keys,
+        "threshold": model.threshold,
+        "registry_entry": {
+            "description": registry_entry["description"],
+            "payload_keys": list(registry_entry["payload_keys"]),
+            "latest_schema_version": registry_entry["schema_version"],
+        },
+    }
 
 
 class BaselineScorer:
@@ -139,7 +220,7 @@ class BaselineScorer:
 
     def load_model(self, path: str | Path) -> BaselineModel:
         payload = json.loads(Path(path).read_text(encoding="utf-8"))
-        self.model = BaselineModel.from_dict(payload)
+        self.model = BaselineModel.from_dict(migrate_model_dict(payload))
         self.model_type = self.model.model_type
         return self.model
 

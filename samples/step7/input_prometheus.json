@@ -1,0 +1,113 @@
+{
+  "timestamp": "2026-04-15T00:00:35Z",
+  "series": [
+    {
+      "metric": "container_cpu_usage_percent",
+      "labels": {
+        "namespace": "shop",
+        "pod": "checkout-6c8b5",
+        "workload": "checkout",
+        "container": "app",
+        "node": "worker-1"
+      },
+      "value": 88.0,
+      "timestamp": "2026-04-15T00:00:24Z"
+    },
+    {
+      "metric": "container_memory_working_set_bytes",
+      "labels": {
+        "namespace": "shop",
+        "pod": "checkout-6c8b5",
+        "workload": "checkout",
+        "container": "app",
+        "node": "worker-1"
+      },
+      "value": 380.0,
+      "timestamp": "2026-04-15T00:00:24Z"
+    },
+    {
+      "metric": "container_network_connections",
+      "labels": {
+        "namespace": "shop",
+        "pod": "checkout-6c8b5",
+        "workload": "checkout",
+        "container": "app",
+        "node": "worker-1"
+      },
+      "value": 28,
+      "timestamp": "2026-04-15T00:00:24Z"
+    },
+    {
+      "metric": "container_cpu_usage_percent",
+      "labels": {
+        "namespace": "shop",
+        "pod": "checkout-6c8b5",
+        "workload": "checkout",
+        "container": "app",
+        "node": "worker-1"
+      },
+      "value": 91.0,
+      "timestamp": "2026-04-15T00:00:54Z"
+    },
+    {
+      "metric": "container_memory_working_set_bytes",
+      "labels": {
+        "namespace": "shop",
+        "pod": "checkout-6c8b5",
+        "workload": "checkout",
+        "container": "app",
+        "node": "worker-1"
+      },
+      "value": 392.0,
+      "timestamp": "2026-04-15T00:00:54Z"
+    },
+    {
+      "metric": "container_network_connections",
+      "labels": {
+        "namespace": "shop",
+        "pod": "checkout-6c8b5",
+        "workload": "checkout",
+        "container": "app",
+        "node": "worker-1"
+      },
+      "value": 31,
+      "timestamp": "2026-04-15T00:00:54Z"
+    },
+    {
+      "metric": "container_cpu_usage_percent",
+      "labels": {
+        "namespace": "payments",
+        "pod": "payment-7f4a2",
+        "workload": "payment",
+        "container": "worker",
+        "node": "worker-2"
+      },
+      "value": 67.0,
+      "timestamp": "2026-04-15T00:00:20Z"
+    },
+    {
+      "metric": "container_memory_working_set_bytes",
+      "labels": {
+        "namespace": "payments",
+        "pod": "payment-7f4a2",
+        "workload": "payment",
+        "container": "worker",
+        "node": "worker-2"
+      },
+      "value": 320.0,
+      "timestamp": "2026-04-15T00:00:20Z"
+    },
+    {
+      "metric": "container_network_connections",
+      "labels": {
+        "namespace": "payments",
+        "pod": "payment-7f4a2",
+        "workload": "payment",
+        "container": "worker",
+        "node": "worker-2"
+      },
+      "value": 15,
+      "timestamp": "2026-04-15T00:00:20Z"
+    }
+  ]
+}

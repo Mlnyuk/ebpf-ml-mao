@@ -1,0 +1,29 @@
+{
+  "schema_version": "v2",
+  "model_type": "baseline",
+  "feature_keys": [
+    "avg_cpu_usage",
+    "avg_memory_usage",
+    "avg_network_connections",
+    "event_count",
+    "exec_count",
+    "max_cpu_usage",
+    "max_memory_usage",
+    "max_network_connections",
+    "network_event_count",
+    "unique_pids"
+  ],
+  "threshold": 0.45,
+  "baseline": {
+    "avg_cpu_usage": 6.0,
+    "avg_memory_usage": 61.25,
+    "avg_network_connections": 0.75,
+    "event_count": 4.0,
+    "exec_count": 2.0,
+    "max_cpu_usage": 24.0,
+    "max_memory_usage": 245.0,
+    "max_network_connections": 3.0,
+    "network_event_count": 0.0,
+    "unique_pids": 3.0
+  }
+}

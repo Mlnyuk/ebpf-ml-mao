@@ -9,6 +9,7 @@ from .live import scrape_prometheus_snapshot, tail_jsonl
 from .loader import load_json, load_jsonl
 from .models import AnalysisReport, BatchAnalysisReport, NormalizedEvent
 from .normalizer import normalize_event
+from .registry import DEFAULT_REGISTRY_PATH, register_model, resolve_model_path
 from .report import (
     write_batch_json_report,
     write_batch_markdown_report,
@@ -16,7 +17,6 @@ from .report import (
     write_markdown_report,
 )
 from .scoring import BaselineModel, BaselineScorer, verdict_for_score
-
 
 
 def _build_single_report(feature_window, scorer: BaselineScorer) -> AnalysisReport:
@@ -37,10 +37,8 @@ def _build_single_report(feature_window, scorer: BaselineScorer) -> AnalysisRepo
     )
 
 
-
 def _feature_windows(events: list[NormalizedEvent]):
     return [extract_features(window) for window in window_events(events)]
-
 
 
 def _build_single_report_from_model(
@@ -57,7 +55,6 @@ def _build_single_report_from_model(
     write_json_report(report, output_dir / "report.json")
     write_markdown_report(report, output_dir / "report.md")
     return report
-
 
 
 def _build_batch_report_from_model(
@@ -85,13 +82,15 @@ def _build_batch_report_from_model(
     return batch_report
 
 
-
 def train_baseline_model(
     baseline_events: list[NormalizedEvent],
     model_path: str | Path,
     *,
     threshold: float = 0.45,
     model_type: str = "baseline",
+    registry_path: str | Path | None = None,
+    tags: list[str] | None = None,
+    activate: bool = False,
 ) -> BaselineModel:
     baseline_windows = _feature_windows(baseline_events)
     if not baseline_windows:
@@ -99,8 +98,15 @@ def train_baseline_model(
     scorer = BaselineScorer(model_type=model_type)
     model = scorer.fit(baseline_windows, threshold=threshold, model_type=model_type)
     scorer.save_model(model_path)
+    if registry_path is not None:
+        register_model(
+            model_path,
+            model,
+            registry_path=registry_path,
+            tags=tags,
+            activate=activate,
+        )
     return model
-
 
 
 def train_baseline_model_from_raw(
@@ -110,6 +116,9 @@ def train_baseline_model_from_raw(
     *,
     threshold: float = 0.45,
     model_type: str = "baseline",
+    registry_path: str | Path | None = None,
+    tags: list[str] | None = None,
+    activate: bool = False,
 ) -> BaselineModel:
     baseline_tetragon = load_jsonl(baseline_tetragon_path)
     baseline_prometheus = load_json(baseline_prometheus_path)
@@ -121,8 +130,10 @@ def train_baseline_model_from_raw(
         model_path,
         threshold=threshold,
         model_type=model_type,
+        registry_path=registry_path,
+        tags=tags,
+        activate=activate,
     )
-
 
 
 def build_report(
@@ -138,7 +149,6 @@ def build_report(
     return _build_single_report_from_model(input_events, output_dir, scorer)
 
 
-
 def build_batch_report(
     baseline_events: list[NormalizedEvent],
     input_events: list[NormalizedEvent],
@@ -152,7 +162,6 @@ def build_batch_report(
     return _build_batch_report_from_model(input_events, output_dir, scorer)
 
 
-
 def run_phase1(
     baseline_path: str | Path,
     input_path: str | Path,
@@ -164,7 +173,6 @@ def run_phase1(
     baseline_events = [normalize_event(item) for item in baseline_raw]
     input_events = [normalize_event(item) for item in input_raw]
     return build_report(baseline_events, input_events, output_dir)
-
 
 
 def run_phase2(
@@ -190,7 +198,6 @@ def run_phase2(
         sorted(input_events, key=lambda event: event.ts),
         output_dir,
     )
-
 
 
 def run_phase3(
@@ -223,7 +230,6 @@ def run_phase3(
     )
 
 
-
 def run_phase4(
     baseline_tetragon_path: str | Path,
     baseline_prometheus_path: str | Path,
@@ -249,12 +255,14 @@ def run_phase4(
     )
 
 
-
 def run_phase5(
-    model_path: str | Path,
+    model_path: str | Path | None,
     input_tetragon_path: str | Path,
     input_prometheus_path: str | Path,
     output_dir: str | Path,
+    *,
+    registry_path: str | Path | None = None,
+    model_id: str | None = None,
 ) -> BatchAnalysisReport:
     input_tetragon = load_jsonl(input_tetragon_path)
     input_prometheus = load_json(input_prometheus_path)
@@ -262,7 +270,12 @@ def run_phase5(
         input_prometheus
     )
     scorer = BaselineScorer()
-    scorer.load_model(model_path)
+    resolved_model_path = resolve_model_path(
+        model_path=model_path,
+        model_id=model_id,
+        registry_path=registry_path or DEFAULT_REGISTRY_PATH,
+    )
+    scorer.load_model(resolved_model_path)
     return _build_batch_report_from_model(
         sorted(input_events, key=lambda event: event.ts),
         output_dir,
