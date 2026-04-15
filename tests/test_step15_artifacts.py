@@ -17,6 +17,7 @@ class Step15ArtifactsTest(unittest.TestCase):
         self.assertTrue(Path(ROOT, "deploy/yaml/step15/ui-service.yaml").exists())
         self.assertTrue(Path(ROOT, "deploy/yaml/step15/patch-serviceaccounts.yaml").exists())
         self.assertTrue(Path(ROOT, "deploy/yaml/step15/ghcr-pull-secret.example.yaml").exists())
+        self.assertTrue(Path(ROOT, "deploy/yaml/step15/generated/live.py").exists())
         self.assertTrue(Path(ROOT, "app/ebpf_ml_mao/ui/dashboard.html").exists())
         self.assertTrue(Path(ROOT, "app/ebpf_ml_mao/ui/dashboard.css").exists())
         self.assertTrue(Path(ROOT, "app/ebpf_ml_mao/ui/dashboard.js").exists())

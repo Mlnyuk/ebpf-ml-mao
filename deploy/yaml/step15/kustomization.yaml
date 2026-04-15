@@ -3,6 +3,13 @@ kind: Kustomization
 resources:
   - ../step14
   - ui-service.yaml
+generatorOptions:
+  disableNameSuffixHash: true
+configMapGenerator:
+  - name: ebpf-ml-mao-live-py
+    namespace: ebpf-obs
+    files:
+      - live.py=generated/live.py
 patches:
   - path: patch-serviceaccounts.yaml
   - path: patch-volume-permissions.yaml

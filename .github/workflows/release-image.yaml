@@ -6,7 +6,7 @@ on:
       image_tag:
         description: Image tag to publish
         required: true
-        default: step14
+        default: step15
 
 jobs:
   publish:
@@ -30,10 +30,10 @@ jobs:
           context: .
           push: true
           tags: ghcr.io/mlnyuk/ebpf-ml-mao:${{ inputs.image_tag }}
-      - name: Render Step 14 manifests
-        run: kubectl kustomize deploy/yaml/step14 > step14-rendered.yaml
+      - name: Render Step 15 manifests
+        run: kubectl kustomize deploy/yaml/step15 > step15-rendered.yaml
       - name: Upload manifest artifact
         uses: actions/upload-artifact@v4
         with:
-          name: step14-rendered
-          path: step14-rendered.yaml
+          name: step15-rendered
+          path: step15-rendered.yaml

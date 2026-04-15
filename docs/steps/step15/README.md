@@ -17,6 +17,8 @@ Step 15 범위는 `시각화`입니다.
 - `deploy/yaml/step15/ui-service.yaml`
 - `deploy/yaml/step15/patch-serviceaccounts.yaml`
 - `deploy/yaml/step15/ghcr-pull-secret.example.yaml`
+- `deploy/yaml/step15/kustomization.yaml`
+  - `configMapGenerator` 로 `generated/live.py` 기반 `ebpf-ml-mao-live-py` 생성
 - `tests/test_step15_ui.py`
 - `tests/test_step15_artifacts.py`
 
@@ -50,6 +52,11 @@ kubectl create secret docker-registry ghcr-pull-secret \
 ```
 
 생성 후 `kubectl apply -k deploy/yaml/step15` 를 다시 적용하면 analyzer/collector ServiceAccount가 이 secret을 사용합니다.
+
+## Reproducibility
+
+- `ebpf-ml-mao-live-py` ConfigMap은 이제 `deploy/yaml/step15/kustomization.yaml`의 `configMapGenerator`가 직접 생성합니다.
+- 따라서 fresh cluster에서도 별도 수동 `kubectl create configmap` 없이 `kubectl apply -k deploy/yaml/step15` 만으로 동일한 collector patch가 재현됩니다.
 
 ## Validation
 

@@ -4,7 +4,7 @@ resources:
   - ../step13
 images:
   - name: ghcr.io/mlnyuk/ebpf-ml-mao
-    newTag: step14
+    newTag: step15
 patches:
   - path: patch-configmap.yaml
   - path: patch-analyzer-deployment.yaml
