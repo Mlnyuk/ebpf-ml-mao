@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
   - ../step14
   - ui-service.yaml
+  - hpa-analyzer.yaml
 generatorOptions:
   disableNameSuffixHash: true
 configMapGenerator:
@@ -15,4 +16,5 @@ patches:
   - path: patch-volume-permissions.yaml
   - path: patch-configmap.yaml
   - path: patch-networkpolicy-dns.yaml
+  - path: patch-analyzer-ui-ingress.yaml
   - path: patch-collector-live-py.yaml

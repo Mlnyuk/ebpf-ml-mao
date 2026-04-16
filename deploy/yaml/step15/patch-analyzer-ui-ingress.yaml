@@ -1,0 +1,20 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: ebpf-ml-mao-analyzer-ingress
+  namespace: ebpf-obs
+spec:
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              app: ebpf-ml-mao-collector
+      ports:
+        - protocol: TCP
+          port: 8080
+    - from:
+        - ipBlock:
+            cidr: 0.0.0.0/0
+      ports:
+        - protocol: TCP
+          port: 8080

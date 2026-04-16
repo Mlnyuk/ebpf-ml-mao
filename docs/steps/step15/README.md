@@ -60,6 +60,14 @@ kubectl create secret docker-registry ghcr-pull-secret \
 - `ebpf-ml-mao-live-py` ConfigMap은 이제 `deploy/yaml/step15/kustomization.yaml`의 `configMapGenerator`가 직접 생성합니다.
 - 따라서 fresh cluster에서도 별도 수동 `kubectl create configmap` 없이 `kubectl apply -k deploy/yaml/step15` 만으로 동일한 collector patch가 재현됩니다.
 
+
+## Scaling
+
+- `ANALYZER_ALERT_QUEUE_THRESHOLD` 는 `50` 으로 상향했습니다.
+- Step 15 overlay는 analyzer `HPA` 를 추가해서 CPU/메모리 압력에 따라 `minReplicas=1`, `maxReplicas=3` 범위에서 자동 확장할 수 있게 했습니다.
+- 다만 analyzer는 현재 `ReadWriteOnce` PVC 와 파일 기반 `registry/ingest/postprocess-queue` 를 공유하는 단일 writer 성격이 강하므로, 고정 `replicas: 2~3` 을 강제하는 것은 권장하지 않습니다.
+- backlog 기반 자동 확장은 아직 구현되지 않았습니다. 현재 HPA 는 `metrics-server` 의 CPU/메모리 메트릭만 사용합니다. backlog 대응은 별도 worker 또는 custom metrics/KEDA 단계가 필요합니다.
+
 ## Validation
 
 ```bash

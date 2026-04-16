@@ -9,3 +9,4 @@ data:
   DEPLOYMENT_RUNBOOK: docs/steps/step15/runbook.md
   # Correct Prometheus service name for this cluster (release: my-monitoring)
   PROMETHEUS_URL: http://my-monitoring-kube-prometh-prometheus.monitoring.svc.cluster.local:9090/metrics
+  ANALYZER_ALERT_QUEUE_THRESHOLD: "50"
