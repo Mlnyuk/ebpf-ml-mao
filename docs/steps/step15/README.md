@@ -26,7 +26,9 @@ Step 15 범위는 `시각화`입니다.
 
 - Service 이름: `ebpf-ml-mao-ui`
 - Namespace: `ebpf-obs`
-- 경로: `http://ebpf-ml-mao-ui.ebpf-obs.svc.cluster.local:8080/ui`
+- 타입: `NodePort`
+- 내부 경로: `http://ebpf-ml-mao-ui.ebpf-obs.svc.cluster.local:8080/ui`
+- 외부 노드 포트: `30002`
 - analyzer 기존 Service도 동일하게 `/ui`를 제공하지만, 시각화 접근 경로를 분리하려고 UI alias Service를 추가했습니다.
 
 ## Visualization Scope

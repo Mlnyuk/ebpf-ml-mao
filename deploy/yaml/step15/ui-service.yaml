@@ -4,10 +4,11 @@ metadata:
   name: ebpf-ml-mao-ui
   namespace: ebpf-obs
 spec:
-  type: ClusterIP
+  type: NodePort
   selector:
     app: ebpf-ml-mao-analyzer
   ports:
     - name: http
       port: 8080
       targetPort: 8080
+      nodePort: 30002
