@@ -1,0 +1,3 @@
+[memory-pressure] locating fault-target pod in namespace ebpf-obs-test
+[memory-pressure] writing temporary 128Mi file in fault-target-69df4f49c4-jjrs6
+[memory-pressure] completed temporary file pressure and cleanup

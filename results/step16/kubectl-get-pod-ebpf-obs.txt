@@ -1,0 +1,20 @@
+NAME                                    READY   STATUS              RESTARTS        AGE
+ebpf-agent-6xgj7                        1/1     Running             0               21d
+ebpf-agent-8c8js                        1/1     Running             0               21d
+ebpf-agent-mvlbd                        1/1     Running             0               21d
+ebpf-agent-n8fc4                        1/1     Running             0               21d
+ebpf-agent-qpvhb                        1/1     Running             0               21d
+ebpf-agent-t6gxc                        1/1     Running             0               21d
+ebpf-agent-wm78g                        1/1     Running             0               21d
+ebpf-agent-xqdjn                        1/1     Running             0               21d
+ebpf-ml-mao-analyzer-66fdfd764f-78td5   0/1     ContainerCreating   0               97s
+ebpf-ml-mao-analyzer-66fdfd764f-ml79v   0/1     ContainerCreating   0               2m38s
+ebpf-ml-mao-analyzer-66fdfd764f-ttwzs   1/1     Running             554 (87s ago)   12d
+ebpf-ml-mao-collector-59t6m             2/2     Running             0               12d
+ebpf-ml-mao-collector-7mhhj             2/2     Running             0               12d
+ebpf-ml-mao-collector-9vkh4             2/2     Running             0               12d
+ebpf-ml-mao-collector-cnbkj             2/2     Running             0               12d
+ebpf-ml-mao-collector-kkssm             2/2     Running             0               12d
+ebpf-ml-mao-collector-pj4m2             2/2     Running             0               12d
+ebpf-ml-mao-collector-r42hk             2/2     Running             0               12d
+ebpf-ml-mao-collector-rgtn5             2/2     Running             0               12d

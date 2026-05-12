@@ -1,0 +1,341 @@
+Name:             ebpf-ml-mao-analyzer-66fdfd764f-78td5
+Namespace:        ebpf-obs
+Priority:         0
+Service Account:  ebpf-ml-mao-analyzer
+Node:             worker-3/172.30.0.226
+Start Time:       Tue, 28 Apr 2026 00:57:32 +0000
+Labels:           app=ebpf-ml-mao-analyzer
+                  pod-template-hash=66fdfd764f
+Annotations:      kubectl.kubernetes.io/restartedAt: 2026-04-15T15:31:29Z
+                  ovn.kubernetes.io/allocated: true
+                  ovn.kubernetes.io/cidr: 10.233.64.0/18
+                  ovn.kubernetes.io/gateway: 10.233.64.1
+                  ovn.kubernetes.io/ip_address: 10.233.64.119
+                  ovn.kubernetes.io/logical_router: ovn-cluster
+                  ovn.kubernetes.io/logical_switch: ovn-default
+                  ovn.kubernetes.io/mac_address: 66:a3:66:c2:40:78
+                  ovn.kubernetes.io/pod_nic_type: veth_pair
+                  ovn.kubernetes.io/routed: true
+Status:           Pending
+IP:
+IPs:              <none>
+Controlled By:    ReplicaSet/ebpf-ml-mao-analyzer-66fdfd764f
+Containers:
+  analyzer:
+    Container ID:
+    Image:         ghcr.io/mlnyuk/ebpf-ml-mao:step15
+    Image ID:
+    Port:          8080/TCP (http)
+    Host Port:     0/TCP (http)
+    Command:
+      python3
+      -m
+      ebpf_ml_mao
+      api
+    Args:
+      --host
+      0.0.0.0
+      --port
+      8080
+      --registry-path
+      $(REGISTRY_PATH)
+      --ingest-dir
+      $(ANALYZER_INGEST_DIR)
+      --shared-token
+      $(ANALYZER_SHARED_TOKEN)
+      --collector-spool-dir
+      $(ANALYZER_COLLECTOR_SPOOL_DIR)
+      --postprocess-queue-dir
+      $(ANALYZER_POSTPROCESS_QUEUE_DIR)
+      --spool-ttl-seconds
+      $(COLLECTOR_SPOOL_TTL_SECONDS)
+      --queue-ttl-seconds
+      $(ANALYZER_QUEUE_TTL_SECONDS)
+      --queue-alert-threshold
+      $(ANALYZER_ALERT_QUEUE_THRESHOLD)
+      --spool-alert-threshold
+      $(ANALYZER_ALERT_SPOOL_THRESHOLD)
+      --duplicate-ratio-threshold
+      $(ANALYZER_ALERT_DUPLICATE_RATIO_THRESHOLD)
+    State:          Waiting
+      Reason:       ContainerCreating
+    Ready:          False
+    Restart Count:  0
+    Limits:
+      cpu:     500m
+      memory:  512Mi
+    Requests:
+      cpu:      100m
+      memory:   256Mi
+    Liveness:   http-get http://:8080/healthz delay=10s timeout=1s period=15s #success=1 #failure=3
+    Readiness:  http-get http://:8080/healthz delay=5s timeout=1s period=10s #success=1 #failure=3
+    Environment Variables from:
+      ebpf-ml-mao-runtime  ConfigMap  Optional: false
+      ebpf-ml-mao-secret   Secret     Optional: false
+    Environment:           <none>
+    Mounts:
+      /tmp from tmp (rw)
+      /var/lib/ebpf-ml-mao from state (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-8644x (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   False
+  Initialized                 True
+  Ready                       False
+  ContainersReady             False
+  PodScheduled                True
+Volumes:
+  state:
+    Type:       PersistentVolumeClaim (a reference to a PersistentVolumeClaim in the same namespace)
+    ClaimName:  ebpf-ml-mao-state
+    ReadOnly:   false
+  tmp:
+    Type:       EmptyDir (a temporary directory that shares a pod's lifetime)
+    Medium:
+    SizeLimit:  <unset>
+  kube-api-access-8644x:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    Optional:                false
+    DownwardAPI:             true
+QoS Class:                   Burstable
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type     Reason              Age   From                     Message
+  ----     ------              ----  ----                     -------
+  Normal   Scheduled           112s  default-scheduler        Successfully assigned ebpf-obs/ebpf-ml-mao-analyzer-66fdfd764f-78td5 to worker-3
+  Warning  FailedAttachVolume  112s  attachdetach-controller  Multi-Attach error for volume "pvc-8c9ac357-0e8e-4469-b2c7-d6fecbb6fde0" Volume is already used by pod(s) ebpf-ml-mao-analyzer-66fdfd764f-ttwzs
+
+
+Name:             ebpf-ml-mao-analyzer-66fdfd764f-ml79v
+Namespace:        ebpf-obs
+Priority:         0
+Service Account:  ebpf-ml-mao-analyzer
+Node:             worker-1/172.30.0.224
+Start Time:       Tue, 28 Apr 2026 00:56:31 +0000
+Labels:           app=ebpf-ml-mao-analyzer
+                  pod-template-hash=66fdfd764f
+Annotations:      kubectl.kubernetes.io/restartedAt: 2026-04-15T15:31:29Z
+                  ovn.kubernetes.io/allocated: true
+                  ovn.kubernetes.io/cidr: 10.233.64.0/18
+                  ovn.kubernetes.io/gateway: 10.233.64.1
+                  ovn.kubernetes.io/ip_address: 10.233.64.110
+                  ovn.kubernetes.io/logical_router: ovn-cluster
+                  ovn.kubernetes.io/logical_switch: ovn-default
+                  ovn.kubernetes.io/mac_address: ba:cc:6b:90:97:d0
+                  ovn.kubernetes.io/pod_nic_type: veth_pair
+                  ovn.kubernetes.io/routed: true
+Status:           Pending
+IP:
+IPs:              <none>
+Controlled By:    ReplicaSet/ebpf-ml-mao-analyzer-66fdfd764f
+Containers:
+  analyzer:
+    Container ID:
+    Image:         ghcr.io/mlnyuk/ebpf-ml-mao:step15
+    Image ID:
+    Port:          8080/TCP (http)
+    Host Port:     0/TCP (http)
+    Command:
+      python3
+      -m
+      ebpf_ml_mao
+      api
+    Args:
+      --host
+      0.0.0.0
+      --port
+      8080
+      --registry-path
+      $(REGISTRY_PATH)
+      --ingest-dir
+      $(ANALYZER_INGEST_DIR)
+      --shared-token
+      $(ANALYZER_SHARED_TOKEN)
+      --collector-spool-dir
+      $(ANALYZER_COLLECTOR_SPOOL_DIR)
+      --postprocess-queue-dir
+      $(ANALYZER_POSTPROCESS_QUEUE_DIR)
+      --spool-ttl-seconds
+      $(COLLECTOR_SPOOL_TTL_SECONDS)
+      --queue-ttl-seconds
+      $(ANALYZER_QUEUE_TTL_SECONDS)
+      --queue-alert-threshold
+      $(ANALYZER_ALERT_QUEUE_THRESHOLD)
+      --spool-alert-threshold
+      $(ANALYZER_ALERT_SPOOL_THRESHOLD)
+      --duplicate-ratio-threshold
+      $(ANALYZER_ALERT_DUPLICATE_RATIO_THRESHOLD)
+    State:          Waiting
+      Reason:       ContainerCreating
+    Ready:          False
+    Restart Count:  0
+    Limits:
+      cpu:     500m
+      memory:  512Mi
+    Requests:
+      cpu:      100m
+      memory:   256Mi
+    Liveness:   http-get http://:8080/healthz delay=10s timeout=1s period=15s #success=1 #failure=3
+    Readiness:  http-get http://:8080/healthz delay=5s timeout=1s period=10s #success=1 #failure=3
+    Environment Variables from:
+      ebpf-ml-mao-runtime  ConfigMap  Optional: false
+      ebpf-ml-mao-secret   Secret     Optional: false
+    Environment:           <none>
+    Mounts:
+      /tmp from tmp (rw)
+      /var/lib/ebpf-ml-mao from state (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-tdlm4 (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   False
+  Initialized                 True
+  Ready                       False
+  ContainersReady             False
+  PodScheduled                True
+Volumes:
+  state:
+    Type:       PersistentVolumeClaim (a reference to a PersistentVolumeClaim in the same namespace)
+    ClaimName:  ebpf-ml-mao-state
+    ReadOnly:   false
+  tmp:
+    Type:       EmptyDir (a temporary directory that shares a pod's lifetime)
+    Medium:
+    SizeLimit:  <unset>
+  kube-api-access-tdlm4:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    Optional:                false
+    DownwardAPI:             true
+QoS Class:                   Burstable
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type     Reason              Age    From                     Message
+  ----     ------              ----   ----                     -------
+  Normal   Scheduled           2m53s  default-scheduler        Successfully assigned ebpf-obs/ebpf-ml-mao-analyzer-66fdfd764f-ml79v to worker-1
+  Warning  FailedAttachVolume  2m53s  attachdetach-controller  Multi-Attach error for volume "pvc-8c9ac357-0e8e-4469-b2c7-d6fecbb6fde0" Volume is already used by pod(s) ebpf-ml-mao-analyzer-66fdfd764f-ttwzs
+
+
+Name:             ebpf-ml-mao-analyzer-66fdfd764f-ttwzs
+Namespace:        ebpf-obs
+Priority:         0
+Service Account:  ebpf-ml-mao-analyzer
+Node:             worker-2/172.30.0.225
+Start Time:       Wed, 15 Apr 2026 15:47:58 +0000
+Labels:           app=ebpf-ml-mao-analyzer
+                  pod-template-hash=66fdfd764f
+Annotations:      kubectl.kubernetes.io/restartedAt: 2026-04-15T15:31:29Z
+                  ovn.kubernetes.io/allocated: true
+                  ovn.kubernetes.io/cidr: 10.233.64.0/18
+                  ovn.kubernetes.io/gateway: 10.233.64.1
+                  ovn.kubernetes.io/ip_address: 10.233.64.175
+                  ovn.kubernetes.io/logical_router: ovn-cluster
+                  ovn.kubernetes.io/logical_switch: ovn-default
+                  ovn.kubernetes.io/mac_address: 22:fc:b3:94:f4:f3
+                  ovn.kubernetes.io/pod_nic_type: veth_pair
+                  ovn.kubernetes.io/routed: true
+Status:           Running
+IP:               10.233.64.175
+IPs:
+  IP:           10.233.64.175
+Controlled By:  ReplicaSet/ebpf-ml-mao-analyzer-66fdfd764f
+Containers:
+  analyzer:
+    Container ID:  containerd://7776d7bebc34c9e1784964203a23f7fff32aeb4815ae500ed5475a8bc4f44dc1
+    Image:         ghcr.io/mlnyuk/ebpf-ml-mao:step15
+    Image ID:      ghcr.io/mlnyuk/ebpf-ml-mao@sha256:e0121b1d120b8a9c5f6a6b9db84610283acfbb9a4f61eaf6de97a7cccc558629
+    Port:          8080/TCP (http)
+    Host Port:     0/TCP (http)
+    Command:
+      python3
+      -m
+      ebpf_ml_mao
+      api
+    Args:
+      --host
+      0.0.0.0
+      --port
+      8080
+      --registry-path
+      $(REGISTRY_PATH)
+      --ingest-dir
+      $(ANALYZER_INGEST_DIR)
+      --shared-token
+      $(ANALYZER_SHARED_TOKEN)
+      --collector-spool-dir
+      $(ANALYZER_COLLECTOR_SPOOL_DIR)
+      --postprocess-queue-dir
+      $(ANALYZER_POSTPROCESS_QUEUE_DIR)
+      --spool-ttl-seconds
+      $(COLLECTOR_SPOOL_TTL_SECONDS)
+      --queue-ttl-seconds
+      $(ANALYZER_QUEUE_TTL_SECONDS)
+      --queue-alert-threshold
+      $(ANALYZER_ALERT_QUEUE_THRESHOLD)
+      --spool-alert-threshold
+      $(ANALYZER_ALERT_SPOOL_THRESHOLD)
+      --duplicate-ratio-threshold
+      $(ANALYZER_ALERT_DUPLICATE_RATIO_THRESHOLD)
+    State:          Running
+      Started:      Tue, 28 Apr 2026 00:57:42 +0000
+    Last State:     Terminated
+      Reason:       OOMKilled
+      Exit Code:    137
+      Started:      Mon, 20 Apr 2026 21:43:28 +0000
+      Finished:     Tue, 28 Apr 2026 00:57:42 +0000
+    Ready:          True
+    Restart Count:  554
+    Limits:
+      cpu:     500m
+      memory:  512Mi
+    Requests:
+      cpu:      100m
+      memory:   256Mi
+    Liveness:   http-get http://:8080/healthz delay=10s timeout=1s period=15s #success=1 #failure=3
+    Readiness:  http-get http://:8080/healthz delay=5s timeout=1s period=10s #success=1 #failure=3
+    Environment Variables from:
+      ebpf-ml-mao-runtime  ConfigMap  Optional: false
+      ebpf-ml-mao-secret   Secret     Optional: false
+    Environment:           <none>
+    Mounts:
+      /tmp from tmp (rw)
+      /var/lib/ebpf-ml-mao from state (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-5c9sb (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True
+  Initialized                 True
+  Ready                       True
+  ContainersReady             True
+  PodScheduled                True
+Volumes:
+  state:
+    Type:       PersistentVolumeClaim (a reference to a PersistentVolumeClaim in the same namespace)
+    ClaimName:  ebpf-ml-mao-state
+    ReadOnly:   false
+  tmp:
+    Type:       EmptyDir (a temporary directory that shares a pod's lifetime)
+    Medium:
+    SizeLimit:  <unset>
+  kube-api-access-5c9sb:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    Optional:                false
+    DownwardAPI:             true
+QoS Class:                   Burstable
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type    Reason   Age   From     Message
+  ----    ------   ----  ----     -------
+  Normal  Pulled   102s  kubelet  spec.containers{analyzer}: Container image "ghcr.io/mlnyuk/ebpf-ml-mao:step15" already present on machine
+  Normal  Created  102s  kubelet  spec.containers{analyzer}: Created container: analyzer
+  Normal  Started  102s  kubelet  spec.containers{analyzer}: Started container analyzer

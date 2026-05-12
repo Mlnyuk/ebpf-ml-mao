@@ -66,7 +66,9 @@ flowchart TD
 - [`docs/architecture/MAO/Agent.md`](./docs/architecture/MAO/Agent.md): 에이전트 역할 분리와 운영 메모
 - [`docs/architecture/ebpf-ml-mao/README.md`](./docs/architecture/ebpf-ml-mao/README.md): eBPF + ML 청사진 문서 묶음 개요
 - [`docs/architecture/ebpf-ml-mao/04-mvp-scope.md`](./docs/architecture/ebpf-ml-mao/04-mvp-scope.md): MVP 범위 정리
-- [`docs/steps/step15/README.md`](./docs/steps/step15/README.md): 현재 최신 구현 단계 문서
+- [`docs/steps/step18/README.md`](./docs/steps/step18/README.md): 현재 최신 구현 단계 문서
+- [`docs/steps/step17/README.md`](./docs/steps/step17/README.md): Step 16 결과 집계 및 리포트 생성 단계 문서
+- [`docs/steps/step16/README.md`](./docs/steps/step16/README.md): live fault scenario validation 단계 문서
 - [`docs/operations/runbook.md`](./docs/operations/runbook.md): 실배포 운영 runbook
 - [`docs/steps/step15/README.md`](./docs/steps/step15/README.md): 운영 시각화 단계 문서
 - [`deploy/yaml/tetragon-tracingpolicy.yaml`](./deploy/yaml/tetragon-tracingpolicy.yaml): Tetragon 정책 실험 예시
@@ -81,7 +83,8 @@ flowchart TD
 1. eBPF 이벤트를 어떤 형태로 수집하고 표준화할지 정의
 2. 수집 데이터를 ML 추론과 연결할 처리 흐름 설계
 3. live ingestion 기반으로 실제 입력 경로를 붙이는 것
-4. 설계, 구현, 검증을 에이전트별로 분리해 병렬 작업 구조를 만드는 것
+4. live fault scenario로 eBPF/Tetragon + Prometheus anomaly pipeline을 검증하는 것
+5. 설계, 구현, 검증을 에이전트별로 분리해 병렬 작업 구조를 만드는 것
 
 ## How To Use
 
@@ -93,5 +96,8 @@ flowchart TD
 ## Notes
 
 - 현재는 문서와 MVP 구현이 함께 있는 저장소입니다.
+- Step 16은 실제 Kubernetes workload에 장애성 행위를 주입해 live 관측 기반 feature 변화와 anomaly report 생성을 검증합니다.
+- Step 17은 Step 16 검증 산출물을 재현 가능한 Markdown 실험 리포트로 집계합니다.
+- Step 18은 안정적인 Step 16/17 재검증을 위해 analyzer 저장소 복구와 single-writer 안전장치를 추가합니다.
 - `docs/specs/spec.txt`에는 환경 메모가 포함되어 있어 공개 범위는 계속 점검하는 편이 안전합니다.
 - 로컬 실행 부산물은 `.gitignore`로 제외되어 있습니다.

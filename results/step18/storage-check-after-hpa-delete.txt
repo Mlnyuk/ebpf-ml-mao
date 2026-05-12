@@ -1,0 +1,37 @@
+[analyzer-storage-check] namespace: ebpf-obs
+[analyzer-storage-check] analyzer deployment: ebpf-ml-mao-analyzer
+[analyzer-storage-check] analyzer data dir: /var/lib/ebpf-ml-mao
+
+[analyzer-storage-check] analyzer pods
+NAME                                    READY   STATUS    RESTARTS        AGE   IP              NODE       NOMINATED NODE   READINESS GATES
+ebpf-ml-mao-analyzer-66fdfd764f-ttwzs   1/1     Running   556 (29m ago)   12d   10.233.64.175   worker-2   <none>           <none>
+
+[analyzer-storage-check] PVCs
+NAME                STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   VOLUMEATTRIBUTESCLASS   AGE
+ebpf-ml-mao-state   Bound    pvc-8c9ac357-0e8e-4469-b2c7-d6fecbb6fde0   2Gi        RWO            longhorn       <unset>                 12d
+
+[analyzer-storage-check] HPAs
+No resources found in ebpf-obs namespace.
+
+[analyzer-storage-check] analyzer deployment replicas: 1
+
+[analyzer-storage-check] using analyzer pod: ebpf-ml-mao-analyzer-66fdfd764f-ttwzs
+[analyzer-storage-check] disk usage
+Filesystem                                              Size  Used Avail Use% Mounted on
+/dev/longhorn/pvc-8c9ac357-0e8e-4469-b2c7-d6fecbb6fde0  2.0G   52M  1.9G   3% /var/lib/ebpf-ml-mao
+
+[analyzer-storage-check] directory usage
+16K	/var/lib/ebpf-ml-mao/registry
+missing /var/lib/ebpf-ml-mao/models
+missing /var/lib/ebpf-ml-mao/reports
+3.5M	/var/lib/ebpf-ml-mao/ingest
+missing /var/lib/ebpf-ml-mao/spool
+3.3M	/var/lib/ebpf-ml-mao/postprocess-queue
+missing /var/lib/ebpf-ml-mao/queue
+
+[analyzer-storage-check] file counts
+/var/lib/ebpf-ml-mao/ingest: 84 files
+missing /var/lib/ebpf-ml-mao/reports
+missing /var/lib/ebpf-ml-mao/spool
+/var/lib/ebpf-ml-mao/postprocess-queue: 76 files
+missing /var/lib/ebpf-ml-mao/queue

@@ -1,0 +1,18 @@
+[step16-preflight] namespace: ebpf-obs
+[step16-preflight] strict mode: true
+[step16-preflight] analyzer desired replicas: 1
+[step16-preflight] analyzer ready replicas: 1
+[step16-preflight] collector DaemonSet exists: ebpf-ml-mao-collector
+[step16-preflight] UI service exists: ebpf-ml-mao-ui
+[step16-preflight] fault target deployment exists: ebpf-obs-test/fault-target
+[step16-preflight] checking analyzer data dir free space on pod ebpf-ml-mao-analyzer-66fdfd764f-ttwzs
+Filesystem                                              Size  Used Avail Use% Mounted on
+/dev/longhorn/pvc-8c9ac357-0e8e-4469-b2c7-d6fecbb6fde0  2.0G   52M  1.9G   3% /var/lib/ebpf-ml-mao
+[step16-preflight] preflight completed
+
+Actionable next commands:
+- kubectl scale deploy -n ebpf-obs ebpf-ml-mao-analyzer --replicas=1
+- kubectl delete hpa -n ebpf-obs <hpa-name>
+- bash scripts/analyzer_storage_check.sh
+- DRY_RUN=true bash scripts/analyzer_prune.sh
+- kubectl apply -k deploy/yaml/step18

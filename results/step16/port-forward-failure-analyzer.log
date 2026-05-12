@@ -1,0 +1,300 @@
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/app/app/ebpf_ml_mao/api.py", line 171, in store_ingest_payload
+    _atomic_write_json(target_path, payload)
+  File "/app/app/ebpf_ml_mao/api.py", line 39, in _atomic_write_json
+    tmp.write_text(json.dumps(payload, indent=2), encoding="utf-8")
+  File "/usr/local/lib/python3.12/pathlib.py", line 1047, in write_text
+    with self.open(mode='w', encoding=encoding, errors=errors, newline=newline) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 28] No space left on device: '/var/lib/ebpf-ml-mao/ingest/worker-1/8e962ba9089b-report.json.tmp'
+----------------------------------------
+172.30.0.225 - - [28/Apr/2026 00:58:53] "GET /healthz HTTP/1.1" 200 -
+----------------------------------------
+Exception occurred during processing of request from ('10.233.64.195', 45838)
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+  File "/usr/local/lib/python3.12/socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+  File "/usr/local/lib/python3.12/socketserver.py", line 766, in __init__
+    self.handle()
+  File "/usr/local/lib/python3.12/http/server.py", line 440, in handle
+    self.handle_one_request()
+  File "/usr/local/lib/python3.12/http/server.py", line 428, in handle_one_request
+    method()
+  File "/app/app/ebpf_ml_mao/api.py", line 557, in do_POST
+    result = store_ingest_payload(
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/app/app/ebpf_ml_mao/api.py", line 171, in store_ingest_payload
+    _atomic_write_json(target_path, payload)
+  File "/app/app/ebpf_ml_mao/api.py", line 39, in _atomic_write_json
+    tmp.write_text(json.dumps(payload, indent=2), encoding="utf-8")
+  File "/usr/local/lib/python3.12/pathlib.py", line 1047, in write_text
+    with self.open(mode='w', encoding=encoding, errors=errors, newline=newline) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 28] No space left on device: '/var/lib/ebpf-ml-mao/ingest/gpu-1/16840524b0ca-report.json.tmp'
+----------------------------------------
+172.30.0.225 - - [28/Apr/2026 00:58:54] "GET /healthz HTTP/1.1" 200 -
+----------------------------------------
+Exception occurred during processing of request from ('10.233.64.195', 45854)
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+  File "/usr/local/lib/python3.12/socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+  File "/usr/local/lib/python3.12/socketserver.py", line 766, in __init__
+    self.handle()
+  File "/usr/local/lib/python3.12/http/server.py", line 440, in handle
+    self.handle_one_request()
+  File "/usr/local/lib/python3.12/http/server.py", line 428, in handle_one_request
+    method()
+  File "/app/app/ebpf_ml_mao/api.py", line 557, in do_POST
+    result = store_ingest_payload(
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/app/app/ebpf_ml_mao/api.py", line 171, in store_ingest_payload
+    _atomic_write_json(target_path, payload)
+  File "/app/app/ebpf_ml_mao/api.py", line 39, in _atomic_write_json
+    tmp.write_text(json.dumps(payload, indent=2), encoding="utf-8")
+  File "/usr/local/lib/python3.12/pathlib.py", line 1047, in write_text
+    with self.open(mode='w', encoding=encoding, errors=errors, newline=newline) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 28] No space left on device: '/var/lib/ebpf-ml-mao/ingest/gpu-1/446233be7ecf-report.json.tmp'
+----------------------------------------
+----------------------------------------
+Exception occurred during processing of request from ('10.233.64.193', 60768)
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+  File "/usr/local/lib/python3.12/socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+  File "/usr/local/lib/python3.12/socketserver.py", line 766, in __init__
+    self.handle()
+  File "/usr/local/lib/python3.12/http/server.py", line 440, in handle
+    self.handle_one_request()
+  File "/usr/local/lib/python3.12/http/server.py", line 428, in handle_one_request
+    method()
+  File "/app/app/ebpf_ml_mao/api.py", line 557, in do_POST
+    result = store_ingest_payload(
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/app/app/ebpf_ml_mao/api.py", line 171, in store_ingest_payload
+    _atomic_write_json(target_path, payload)
+  File "/app/app/ebpf_ml_mao/api.py", line 39, in _atomic_write_json
+    tmp.write_text(json.dumps(payload, indent=2), encoding="utf-8")
+  File "/usr/local/lib/python3.12/pathlib.py", line 1047, in write_text
+    with self.open(mode='w', encoding=encoding, errors=errors, newline=newline) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 28] No space left on device: '/var/lib/ebpf-ml-mao/ingest/infra-2/06a0c3a760b3-report.json.tmp'
+----------------------------------------
+----------------------------------------
+Exception occurred during processing of request from ('10.233.64.192', 53196)
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+  File "/usr/local/lib/python3.12/socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+  File "/usr/local/lib/python3.12/socketserver.py", line 766, in __init__
+    self.handle()
+  File "/usr/local/lib/python3.12/http/server.py", line 440, in handle
+    self.handle_one_request()
+  File "/usr/local/lib/python3.12/http/server.py", line 428, in handle_one_request
+    method()
+  File "/app/app/ebpf_ml_mao/api.py", line 557, in do_POST
+    result = store_ingest_payload(
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/app/app/ebpf_ml_mao/api.py", line 171, in store_ingest_payload
+    _atomic_write_json(target_path, payload)
+  File "/app/app/ebpf_ml_mao/api.py", line 39, in _atomic_write_json
+    tmp.write_text(json.dumps(payload, indent=2), encoding="utf-8")
+  File "/usr/local/lib/python3.12/pathlib.py", line 1047, in write_text
+    with self.open(mode='w', encoding=encoding, errors=errors, newline=newline) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 28] No space left on device: '/var/lib/ebpf-ml-mao/ingest/infra-3/0433fb9b5b37-report.json.tmp'
+----------------------------------------
+----------------------------------------
+Exception occurred during processing of request from ('10.233.64.198', 48712)
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+  File "/usr/local/lib/python3.12/socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+  File "/usr/local/lib/python3.12/socketserver.py", line 766, in __init__
+    self.handle()
+  File "/usr/local/lib/python3.12/http/server.py", line 440, in handle
+    self.handle_one_request()
+  File "/usr/local/lib/python3.12/http/server.py", line 428, in handle_one_request
+    method()
+  File "/app/app/ebpf_ml_mao/api.py", line 557, in do_POST
+    result = store_ingest_payload(
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/app/app/ebpf_ml_mao/api.py", line 171, in store_ingest_payload
+    _atomic_write_json(target_path, payload)
+  File "/app/app/ebpf_ml_mao/api.py", line 39, in _atomic_write_json
+    tmp.write_text(json.dumps(payload, indent=2), encoding="utf-8")
+  File "/usr/local/lib/python3.12/pathlib.py", line 1047, in write_text
+    with self.open(mode='w', encoding=encoding, errors=errors, newline=newline) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 28] No space left on device: '/var/lib/ebpf-ml-mao/ingest/worker-3/338f260d5573-report.json.tmp'
+----------------------------------------
+172.30.0.225 - - [28/Apr/2026 00:59:04] "GET /healthz HTTP/1.1" 200 -
+172.30.0.225 - - [28/Apr/2026 00:59:08] "GET /healthz HTTP/1.1" 200 -
+----------------------------------------
+Exception occurred during processing of request from ('10.233.64.202', 50690)
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+  File "/usr/local/lib/python3.12/socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+  File "/usr/local/lib/python3.12/socketserver.py", line 766, in __init__
+    self.handle()
+  File "/usr/local/lib/python3.12/http/server.py", line 440, in handle
+    self.handle_one_request()
+  File "/usr/local/lib/python3.12/http/server.py", line 428, in handle_one_request
+    method()
+  File "/app/app/ebpf_ml_mao/api.py", line 557, in do_POST
+    result = store_ingest_payload(
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/app/app/ebpf_ml_mao/api.py", line 171, in store_ingest_payload
+    _atomic_write_json(target_path, payload)
+  File "/app/app/ebpf_ml_mao/api.py", line 39, in _atomic_write_json
+    tmp.write_text(json.dumps(payload, indent=2), encoding="utf-8")
+  File "/usr/local/lib/python3.12/pathlib.py", line 1047, in write_text
+    with self.open(mode='w', encoding=encoding, errors=errors, newline=newline) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 28] No space left on device: '/var/lib/ebpf-ml-mao/ingest/gpu-2/7039350dce31-report.json.tmp'
+----------------------------------------
+172.30.0.225 - - [28/Apr/2026 00:59:14] "GET /healthz HTTP/1.1" 200 -
+----------------------------------------
+Exception occurred during processing of request from ('10.233.64.199', 56786)
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+  File "/usr/local/lib/python3.12/socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+  File "/usr/local/lib/python3.12/socketserver.py", line 766, in __init__
+    self.handle()
+  File "/usr/local/lib/python3.12/http/server.py", line 440, in handle
+    self.handle_one_request()
+  File "/usr/local/lib/python3.12/http/server.py", line 428, in handle_one_request
+    method()
+  File "/app/app/ebpf_ml_mao/api.py", line 557, in do_POST
+    result = store_ingest_payload(
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/app/app/ebpf_ml_mao/api.py", line 171, in store_ingest_payload
+    _atomic_write_json(target_path, payload)
+  File "/app/app/ebpf_ml_mao/api.py", line 39, in _atomic_write_json
+    tmp.write_text(json.dumps(payload, indent=2), encoding="utf-8")
+  File "/usr/local/lib/python3.12/pathlib.py", line 1047, in write_text
+    with self.open(mode='w', encoding=encoding, errors=errors, newline=newline) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 28] No space left on device: '/var/lib/ebpf-ml-mao/ingest/worker-2/443958575680-report.json.tmp'
+----------------------------------------
+----------------------------------------
+Exception occurred during processing of request from ('10.233.64.196', 45782)
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+  File "/usr/local/lib/python3.12/socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+  File "/usr/local/lib/python3.12/socketserver.py", line 766, in __init__
+    self.handle()
+  File "/usr/local/lib/python3.12/http/server.py", line 440, in handle
+    self.handle_one_request()
+  File "/usr/local/lib/python3.12/http/server.py", line 428, in handle_one_request
+    method()
+  File "/app/app/ebpf_ml_mao/api.py", line 557, in do_POST
+    result = store_ingest_payload(
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/app/app/ebpf_ml_mao/api.py", line 171, in store_ingest_payload
+    _atomic_write_json(target_path, payload)
+  File "/app/app/ebpf_ml_mao/api.py", line 39, in _atomic_write_json
+    tmp.write_text(json.dumps(payload, indent=2), encoding="utf-8")
+  File "/usr/local/lib/python3.12/pathlib.py", line 1047, in write_text
+    with self.open(mode='w', encoding=encoding, errors=errors, newline=newline) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 28] No space left on device: '/var/lib/ebpf-ml-mao/ingest/infra-1/b6bdefc68985-report.json.tmp'
+----------------------------------------
+----------------------------------------
+Exception occurred during processing of request from ('10.233.64.194', 37920)
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+  File "/usr/local/lib/python3.12/socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+  File "/usr/local/lib/python3.12/socketserver.py", line 766, in __init__
+    self.handle()
+  File "/usr/local/lib/python3.12/http/server.py", line 440, in handle
+    self.handle_one_request()
+  File "/usr/local/lib/python3.12/http/server.py", line 428, in handle_one_request
+    method()
+  File "/app/app/ebpf_ml_mao/api.py", line 557, in do_POST
+    result = store_ingest_payload(
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/app/app/ebpf_ml_mao/api.py", line 171, in store_ingest_payload
+    _atomic_write_json(target_path, payload)
+  File "/app/app/ebpf_ml_mao/api.py", line 39, in _atomic_write_json
+    tmp.write_text(json.dumps(payload, indent=2), encoding="utf-8")
+  File "/usr/local/lib/python3.12/pathlib.py", line 1047, in write_text
+    with self.open(mode='w', encoding=encoding, errors=errors, newline=newline) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 28] No space left on device: '/var/lib/ebpf-ml-mao/ingest/worker-1/de73ff74d956-report.json.tmp'
+----------------------------------------
+----------------------------------------
+Exception occurred during processing of request from ('10.233.64.194', 37932)
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+  File "/usr/local/lib/python3.12/socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+  File "/usr/local/lib/python3.12/socketserver.py", line 766, in __init__
+    self.handle()
+  File "/usr/local/lib/python3.12/http/server.py", line 440, in handle
+    self.handle_one_request()
+  File "/usr/local/lib/python3.12/http/server.py", line 428, in handle_one_request
+    method()
+  File "/app/app/ebpf_ml_mao/api.py", line 557, in do_POST
+    result = store_ingest_payload(
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/app/app/ebpf_ml_mao/api.py", line 171, in store_ingest_payload
+    _atomic_write_json(target_path, payload)
+  File "/app/app/ebpf_ml_mao/api.py", line 39, in _atomic_write_json
+    tmp.write_text(json.dumps(payload, indent=2), encoding="utf-8")
+  File "/usr/local/lib/python3.12/pathlib.py", line 1047, in write_text
+    with self.open(mode='w', encoding=encoding, errors=errors, newline=newline) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 28] No space left on device: '/var/lib/ebpf-ml-mao/ingest/worker-1/93501308f902-report.json.tmp'
+----------------------------------------
+172.30.0.225 - - [28/Apr/2026 00:59:23] "GET /healthz HTTP/1.1" 200 -
+172.30.0.225 - - [28/Apr/2026 00:59:24] "GET /healthz HTTP/1.1" 200 -

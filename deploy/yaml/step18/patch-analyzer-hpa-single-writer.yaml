@@ -1,0 +1,8 @@
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: ebpf-ml-mao-analyzer
+  namespace: ebpf-obs
+spec:
+  minReplicas: 1
+  maxReplicas: 1
