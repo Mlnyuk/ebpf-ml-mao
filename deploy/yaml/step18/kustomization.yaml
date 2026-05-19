@@ -9,4 +9,4 @@ patches:
   - path: patch-configmap-image.yaml
 images:
   - name: ghcr.io/mlnyuk/ebpf-ml-mao
-    newTag: step18-calibrated
+    newTag: step18-target-filter
