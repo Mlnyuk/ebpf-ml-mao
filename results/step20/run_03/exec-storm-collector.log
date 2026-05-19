@@ -1,0 +1,601 @@
+Found 9 pods, using pod/ebpf-ml-mao-collector-t848b
+    "verdicts": {
+      "anomalous": 40,
+      "normal": 4
+    },
+    "phases": {
+      "phase3": 44
+    },
+    "latest_verdict": "anomalous"
+  },
+  "queue": {
+    "status": "queued",
+    "path": "/var/lib/ebpf-ml-mao/postprocess-queue/1779176588273-report-ingest.json"
+  },
+  "spooled": false
+}
+{
+  "removed": 0,
+  "quarantined": []
+}
+{
+  "sent": 0,
+  "failed": 0,
+  "expired": 0,
+  "quarantined": [],
+  "remaining": []
+}
+{
+  "score": 1.0,
+  "verdict": "anomalous",
+  "confidence": 1.0,
+  "feature_window": {
+    "window_start": 1779176609.897589,
+    "window_end": 1779176609.924479,
+    "workload": "instance-manager-0e6b9200343ddf45f7baad0563466781",
+    "values": {
+      "event_count": 13.0,
+      "tetragon_event_count": 13.0,
+      "prometheus_event_count": 0.0,
+      "exec_count": 0.0,
+      "network_event_count": 13.0,
+      "file_event_count": 0.0,
+      "privilege_event_count": 0.0,
+      "unique_pids": 1.0,
+      "window_duration_seconds": 1.0,
+      "event_rate_per_minute": 780.0,
+      "exec_rate_per_minute": 0.0,
+      "network_event_rate_per_minute": 780.0,
+      "avg_cpu_usage": 0.0,
+      "max_cpu_usage": 0.0,
+      "cpu_pressure_ratio": 0.0,
+      "avg_memory_usage": 0.0,
+      "max_memory_usage": 0.0,
+      "avg_network_connections": 0.0,
+      "max_network_connections": 0,
+      "network_connection_pressure": 0.0
+    }
+  },
+  "agents": [
+    {
+      "name": "summarizer",
+      "summary": "instance-manager-0e6b9200343ddf45f7baad0563466781 produced 13 events in 0s with 0 exec events and 13 network events."
+    },
+    {
+      "name": "analyst",
+      "summary": "Score 1.00 driven by no strong outliers."
+    },
+    {
+      "name": "correlator",
+      "summary": "Resource and event correlation suggests CPU 0.0% with 0 concurrent connections."
+    },
+    {
+      "name": "reviewer",
+      "summary": "Final verdict is anomalous with score 1.00 and confidence 1.00."
+    }
+  ]
+}
+{
+  "status": "stored",
+  "digest": "722d88ac9bc206843d33f2b781dd7ba38a652812bd9f3e69be5053db4c0d859e",
+  "path": "/var/lib/ebpf-ml-mao/ingest/gpu-2/722d88ac9bc2-report.json",
+  "workflow": {
+    "received_count": 54,
+    "unique_count": 51,
+    "duplicates_count": 3,
+    "nodes": [
+      "gpu-1",
+      "gpu-2",
+      "gpu-3",
+      "infra-1",
+      "infra-2",
+      "infra-3",
+      "worker-1",
+      "worker-2",
+      "worker-3"
+    ],
+    "verdicts": {
+      "anomalous": 47,
+      "normal": 4
+    },
+    "phases": {
+      "phase3": 51
+    },
+    "latest_verdict": "anomalous"
+  },
+  "queue": {
+    "status": "queued",
+    "path": "/var/lib/ebpf-ml-mao/postprocess-queue/1779176621208-report-ingest.json"
+  },
+  "spooled": false
+}
+{
+  "removed": 0,
+  "quarantined": []
+}
+{
+  "sent": 0,
+  "failed": 0,
+  "expired": 0,
+  "quarantined": [],
+  "remaining": []
+}
+{
+  "score": 0.9755,
+  "verdict": "anomalous",
+  "confidence": 0.9877,
+  "feature_window": {
+    "window_start": 1779176639.909286,
+    "window_end": 1779176639.928423,
+    "workload": "instance-manager-0e6b9200343ddf45f7baad0563466781",
+    "values": {
+      "event_count": 8.0,
+      "tetragon_event_count": 8.0,
+      "prometheus_event_count": 0.0,
+      "exec_count": 0.0,
+      "network_event_count": 8.0,
+      "file_event_count": 0.0,
+      "privilege_event_count": 0.0,
+      "unique_pids": 1.0,
+      "window_duration_seconds": 1.0,
+      "event_rate_per_minute": 480.0,
+      "exec_rate_per_minute": 0.0,
+      "network_event_rate_per_minute": 480.0,
+      "avg_cpu_usage": 0.0,
+      "max_cpu_usage": 0.0,
+      "cpu_pressure_ratio": 0.0,
+      "avg_memory_usage": 0.0,
+      "max_memory_usage": 0.0,
+      "avg_network_connections": 0.0,
+      "max_network_connections": 0,
+      "network_connection_pressure": 0.0
+    }
+  },
+  "agents": [
+    {
+      "name": "summarizer",
+      "summary": "instance-manager-0e6b9200343ddf45f7baad0563466781 produced 8 events in 0s with 0 exec events and 8 network events."
+    },
+    {
+      "name": "analyst",
+      "summary": "Score 0.98 driven by no strong outliers."
+    },
+    {
+      "name": "correlator",
+      "summary": "Resource and event correlation suggests CPU 0.0% with 0 concurrent connections."
+    },
+    {
+      "name": "reviewer",
+      "summary": "Final verdict is anomalous with score 0.98 and confidence 0.99."
+    }
+  ]
+}
+{
+  "status": "stored",
+  "digest": "f3422dd59f950a113120ea18ff38ce8c9f3e98aff6ab4d910b3aab723b7a61b9",
+  "path": "/var/lib/ebpf-ml-mao/ingest/gpu-2/f3422dd59f95-report.json",
+  "workflow": {
+    "received_count": 63,
+    "unique_count": 60,
+    "duplicates_count": 3,
+    "nodes": [
+      "gpu-1",
+      "gpu-2",
+      "gpu-3",
+      "infra-1",
+      "infra-2",
+      "infra-3",
+      "worker-1",
+      "worker-2",
+      "worker-3"
+    ],
+    "verdicts": {
+      "anomalous": 55,
+      "normal": 5
+    },
+    "phases": {
+      "phase3": 60
+    },
+    "latest_verdict": "anomalous"
+  },
+  "queue": {
+    "status": "queued",
+    "path": "/var/lib/ebpf-ml-mao/postprocess-queue/1779176654155-report-ingest.json"
+  },
+  "spooled": false
+}
+{
+  "removed": 0,
+  "quarantined": []
+}
+{
+  "sent": 0,
+  "failed": 0,
+  "expired": 0,
+  "quarantined": [],
+  "remaining": []
+}
+{
+  "score": 1.0,
+  "verdict": "anomalous",
+  "confidence": 1.0,
+  "feature_window": {
+    "window_start": 1779176679.89896,
+    "window_end": 1779176684.927859,
+    "workload": "instance-manager-0e6b9200343ddf45f7baad0563466781",
+    "values": {
+      "event_count": 42.0,
+      "tetragon_event_count": 42.0,
+      "prometheus_event_count": 0.0,
+      "exec_count": 4.0,
+      "network_event_count": 31.0,
+      "file_event_count": 5.0,
+      "privilege_event_count": 0.0,
+      "unique_pids": 3.0,
+      "window_duration_seconds": 5.0289,
+      "event_rate_per_minute": 501.1037,
+      "exec_rate_per_minute": 47.7242,
+      "network_event_rate_per_minute": 369.8623,
+      "avg_cpu_usage": 0.0,
+      "max_cpu_usage": 0.0,
+      "cpu_pressure_ratio": 0.0,
+      "avg_memory_usage": 0.0,
+      "max_memory_usage": 0.0,
+      "avg_network_connections": 0.0,
+      "max_network_connections": 0,
+      "network_connection_pressure": 0.0
+    }
+  },
+  "agents": [
+    {
+      "name": "summarizer",
+      "summary": "instance-manager-0e6b9200343ddf45f7baad0563466781 produced 42 events in 5s with 4 exec events and 31 network events."
+    },
+    {
+      "name": "analyst",
+      "summary": "Score 1.00 driven by repeated process execution."
+    },
+    {
+      "name": "correlator",
+      "summary": "Resource and event correlation suggests CPU 0.0% with 0 concurrent connections."
+    },
+    {
+      "name": "reviewer",
+      "summary": "Final verdict is anomalous with score 1.00 and confidence 1.00."
+    }
+  ]
+}
+{
+  "status": "stored",
+  "digest": "f9d12cb758386832b2dece2e64780846950c70c9de5055d65281e8b3f1c017dc",
+  "path": "/var/lib/ebpf-ml-mao/ingest/gpu-2/f9d12cb75838-report.json",
+  "workflow": {
+    "received_count": 72,
+    "unique_count": 69,
+    "duplicates_count": 3,
+    "nodes": [
+      "gpu-1",
+      "gpu-2",
+      "gpu-3",
+      "infra-1",
+      "infra-2",
+      "infra-3",
+      "worker-1",
+      "worker-2",
+      "worker-3"
+    ],
+    "verdicts": {
+      "anomalous": 64,
+      "normal": 5
+    },
+    "phases": {
+      "phase3": 69
+    },
+    "latest_verdict": "anomalous"
+  },
+  "queue": {
+    "status": "queued",
+    "path": "/var/lib/ebpf-ml-mao/postprocess-queue/1779176687100-report-ingest.json"
+  },
+  "spooled": false
+}
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md

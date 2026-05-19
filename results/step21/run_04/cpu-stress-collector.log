@@ -1,0 +1,379 @@
+Found 9 pods, using pod/ebpf-ml-mao-collector-b7s7n
+    "verdicts": {
+      "normal": 57,
+      "anomalous": 34
+    },
+    "phases": {
+      "phase3": 91
+    },
+    "latest_verdict": "anomalous"
+  },
+  "queue": {
+    "status": "queued",
+    "path": "/var/lib/ebpf-ml-mao/postprocess-queue/1779197691219-report-ingest.json"
+  },
+  "spooled": false
+}
+{
+  "removed": 0,
+  "quarantined": []
+}
+{
+  "sent": 0,
+  "failed": 0,
+  "expired": 0,
+  "quarantined": [],
+  "remaining": []
+}
+{
+  "score": 0.35,
+  "verdict": "normal",
+  "confidence": 0.5916,
+  "feature_window": {
+    "window_start": 1779197715.246654,
+    "window_end": 1779197721.868879,
+    "workload": "longhorn-manager",
+    "values": {
+      "event_count": 8.0,
+      "tetragon_event_count": 8.0,
+      "prometheus_event_count": 0.0,
+      "exec_count": 2.0,
+      "network_event_count": 2.0,
+      "file_event_count": 2.0,
+      "privilege_event_count": 0.0,
+      "unique_pids": 3.0,
+      "window_duration_seconds": 6.6222,
+      "event_rate_per_minute": 72.4832,
+      "exec_rate_per_minute": 18.1208,
+      "network_event_rate_per_minute": 18.1208,
+      "avg_cpu_usage": 0.0,
+      "max_cpu_usage": 0.0,
+      "cpu_pressure_ratio": 0.0,
+      "avg_memory_usage": 0.0,
+      "max_memory_usage": 0.0,
+      "avg_network_connections": 0.0,
+      "max_network_connections": 0,
+      "network_connection_pressure": 0.0
+    }
+  },
+  "agents": [
+    {
+      "name": "summarizer",
+      "summary": "longhorn-manager produced 8 events in 7s with 2 exec events and 2 network events."
+    },
+    {
+      "name": "analyst",
+      "summary": "Score 0.35 driven by no strong outliers."
+    },
+    {
+      "name": "correlator",
+      "summary": "Resource and event correlation suggests CPU 0.0% with 0 concurrent connections."
+    },
+    {
+      "name": "reviewer",
+      "summary": "Final verdict is normal with score 0.35 and confidence 0.59."
+    }
+  ]
+}
+{
+  "status": "stored",
+  "digest": "db4ba24985c1eb4ddb52fbc503a7f5f1932048a473753a5fc2d251316577ac83",
+  "path": "/var/lib/ebpf-ml-mao/ingest/gpu-2/db4ba24985c1-report.json",
+  "workflow": {
+    "received_count": 100,
+    "unique_count": 100,
+    "duplicates_count": 0,
+    "nodes": [
+      "gpu-1",
+      "gpu-2",
+      "gpu-3",
+      "infra-1",
+      "infra-2",
+      "infra-3",
+      "worker-1",
+      "worker-2",
+      "worker-3"
+    ],
+    "verdicts": {
+      "normal": 65,
+      "anomalous": 35
+    },
+    "phases": {
+      "phase3": 100
+    },
+    "latest_verdict": "normal"
+  },
+  "queue": {
+    "status": "queued",
+    "path": "/var/lib/ebpf-ml-mao/postprocess-queue/1779197724193-report-ingest.json"
+  },
+  "spooled": false
+}
+{
+  "removed": 0,
+  "quarantined": []
+}
+{
+  "sent": 0,
+  "failed": 0,
+  "expired": 0,
+  "quarantined": [],
+  "remaining": []
+}
+{
+  "score": 0.0478,
+  "verdict": "normal",
+  "confidence": 0.2187,
+  "feature_window": {
+    "window_start": 1779197755.988407,
+    "window_end": 1779197755.989482,
+    "workload": "qwen25-14b-v100",
+    "values": {
+      "event_count": 4.0,
+      "tetragon_event_count": 4.0,
+      "prometheus_event_count": 0.0,
+      "exec_count": 0.0,
+      "network_event_count": 0.0,
+      "file_event_count": 1.0,
+      "privilege_event_count": 0.0,
+      "unique_pids": 3.0,
+      "window_duration_seconds": 1.0,
+      "event_rate_per_minute": 240.0,
+      "exec_rate_per_minute": 0.0,
+      "network_event_rate_per_minute": 0.0,
+      "avg_cpu_usage": 0.0,
+      "max_cpu_usage": 0.0,
+      "cpu_pressure_ratio": 0.0,
+      "avg_memory_usage": 0.0,
+      "max_memory_usage": 0.0,
+      "avg_network_connections": 0.0,
+      "max_network_connections": 0,
+      "network_connection_pressure": 0.0
+    }
+  },
+  "agents": [
+    {
+      "name": "summarizer",
+      "summary": "qwen25-14b-v100 produced 4 events in 0s with 0 exec events and 0 network events."
+    },
+    {
+      "name": "analyst",
+      "summary": "Score 0.05 driven by no strong outliers."
+    },
+    {
+      "name": "correlator",
+      "summary": "Resource and event correlation suggests CPU 0.0% with 0 concurrent connections."
+    },
+    {
+      "name": "reviewer",
+      "summary": "Final verdict is normal with score 0.05 and confidence 0.22."
+    }
+  ]
+}
+{
+  "status": "stored",
+  "digest": "ef2d8bef5479b1ec794a4d95165d90a9badfe05b4f38c3a45fd38242e13934dc",
+  "path": "/var/lib/ebpf-ml-mao/ingest/gpu-2/ef2d8bef5479-report.json",
+  "workflow": {
+    "received_count": 109,
+    "unique_count": 109,
+    "duplicates_count": 0,
+    "nodes": [
+      "gpu-1",
+      "gpu-2",
+      "gpu-3",
+      "infra-1",
+      "infra-2",
+      "infra-3",
+      "worker-1",
+      "worker-2",
+      "worker-3"
+    ],
+    "verdicts": {
+      "normal": 70,
+      "anomalous": 39
+    },
+    "phases": {
+      "phase3": 109
+    },
+    "latest_verdict": "normal"
+  },
+  "queue": {
+    "status": "queued",
+    "path": "/var/lib/ebpf-ml-mao/postprocess-queue/1779197757124-report-ingest.json"
+  },
+  "spooled": false
+}
+{
+  "removed": 0,
+  "quarantined": []
+}
+{
+  "sent": 0,
+  "failed": 0,
+  "expired": 0,
+  "quarantined": [],
+  "remaining": []
+}
+{
+  "score": 0.0337,
+  "verdict": "normal",
+  "confidence": 0.1837,
+  "feature_window": {
+    "window_start": 1779197778.249688,
+    "window_end": 1779197788.249569,
+    "workload": "kuberay-operator",
+    "values": {
+      "event_count": 17.0,
+      "tetragon_event_count": 17.0,
+      "prometheus_event_count": 0.0,
+      "exec_count": 0.0,
+      "network_event_count": 0.0,
+      "file_event_count": 17.0,
+      "privilege_event_count": 0.0,
+      "unique_pids": 1.0,
+      "window_duration_seconds": 9.9999,
+      "event_rate_per_minute": 102.0012,
+      "exec_rate_per_minute": 0.0,
+      "network_event_rate_per_minute": 0.0,
+      "avg_cpu_usage": 0.0,
+      "max_cpu_usage": 0.0,
+      "cpu_pressure_ratio": 0.0,
+      "avg_memory_usage": 0.0,
+      "max_memory_usage": 0.0,
+      "avg_network_connections": 0.0,
+      "max_network_connections": 0,
+      "network_connection_pressure": 0.0
+    }
+  },
+  "agents": [
+    {
+      "name": "summarizer",
+      "summary": "kuberay-operator produced 17 events in 10s with 0 exec events and 0 network events."
+    },
+    {
+      "name": "analyst",
+      "summary": "Score 0.03 driven by no strong outliers."
+    },
+    {
+      "name": "correlator",
+      "summary": "Resource and event correlation suggests CPU 0.0% with 0 concurrent connections."
+    },
+    {
+      "name": "reviewer",
+      "summary": "Final verdict is normal with score 0.03 and confidence 0.18."
+    }
+  ]
+}
+{
+  "status": "stored",
+  "digest": "03a706acb022788ed63700ec89716305f3e53654da1eb98bb1eb1368db357e37",
+  "path": "/var/lib/ebpf-ml-mao/ingest/gpu-2/03a706acb022-report.json",
+  "workflow": {
+    "received_count": 118,
+    "unique_count": 118,
+    "duplicates_count": 0,
+    "nodes": [
+      "gpu-1",
+      "gpu-2",
+      "gpu-3",
+      "infra-1",
+      "infra-2",
+      "infra-3",
+      "worker-1",
+      "worker-2",
+      "worker-3"
+    ],
+    "verdicts": {
+      "normal": 76,
+      "anomalous": 42
+    },
+    "phases": {
+      "phase3": 118
+    },
+    "latest_verdict": "normal"
+  },
+  "queue": {
+    "status": "queued",
+    "path": "/var/lib/ebpf-ml-mao/postprocess-queue/1779197790067-report-ingest.json"
+  },
+  "spooled": false
+}
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md

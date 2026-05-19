@@ -1,0 +1,19 @@
+{
+  "received_count": 4,
+  "unique_count": 4,
+  "duplicates_count": 0,
+  "nodes": [
+    "gpu-3",
+    "worker-1",
+    "worker-2",
+    "worker-3"
+  ],
+  "verdicts": {
+    "normal": 3,
+    "anomalous": 1
+  },
+  "phases": {
+    "phase3": 4
+  },
+  "latest_verdict": "anomalous"
+}

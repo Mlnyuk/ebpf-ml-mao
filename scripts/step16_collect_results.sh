@@ -152,6 +152,15 @@ run_scenario() {
   collect_top "${name}"
 }
 
+if [[ "${WARMUP_BASELINE:-false}" == "true" ]]; then
+  log "running fault-target warmup before baseline (WARMUP_DURATION=${WARMUP_DURATION:-60}s)"
+  WARMUP_DURATION="${WARMUP_DURATION:-60}" \
+  WARMUP_INTERVAL="${WARMUP_INTERVAL:-5}" \
+    bash "$(dirname "$0")/step16_warmup_baseline.sh" || log "warmup script returned non-zero; continuing"
+  log "settling ${WARMUP_SETTLE_SECONDS:-15}s after warmup before baseline snapshot"
+  sleep "${WARMUP_SETTLE_SECONDS:-15}"
+fi
+
 log "collecting baseline snapshots from ${API_BASE}"
 collect_snapshot "baseline"
 collect_logs "baseline"

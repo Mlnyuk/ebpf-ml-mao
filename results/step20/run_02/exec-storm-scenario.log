@@ -1,0 +1,3 @@
+[exec-storm] locating fault-target pod in namespace ebpf-obs-test
+[exec-storm] starting 100 kubectl exec iterations against fault-target-69df4f49c4-jjrs6
+[exec-storm] completed 100 kubectl exec iterations

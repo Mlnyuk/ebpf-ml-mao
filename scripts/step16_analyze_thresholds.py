@@ -9,7 +9,7 @@ from pathlib import Path
 from statistics import mean
 from typing import Any
 
-RESULT_DIR = Path("results/step16")
+RESULT_DIR = Path(os.environ.get("RESULT_DIR", "results/step16"))
 REPORT_PATH = RESULT_DIR / "threshold-analysis.md"
 CSV_PATH = RESULT_DIR / "threshold-analysis.csv"
 INGEST_SCORES_PATH = RESULT_DIR / "fault-target-ingest-scores.jsonl"

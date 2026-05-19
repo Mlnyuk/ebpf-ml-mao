@@ -1,0 +1,70 @@
+{
+  "total_windows": 12,
+  "per_run_counts": [
+    [
+      "run_01",
+      3
+    ],
+    [
+      "run_02",
+      2
+    ],
+    [
+      "run_03",
+      3
+    ],
+    [
+      "run_04",
+      2
+    ],
+    [
+      "run_05",
+      2
+    ]
+  ],
+  "feature_keys": [
+    "avg_cpu_usage",
+    "avg_memory_usage",
+    "avg_network_connections",
+    "cpu_pressure_ratio",
+    "event_count",
+    "event_rate_per_minute",
+    "exec_count",
+    "exec_rate_per_minute",
+    "file_event_count",
+    "max_cpu_usage",
+    "max_memory_usage",
+    "max_network_connections",
+    "network_connection_pressure",
+    "network_event_count",
+    "network_event_rate_per_minute",
+    "privilege_event_count",
+    "prometheus_event_count",
+    "tetragon_event_count",
+    "unique_pids",
+    "window_duration_seconds"
+  ],
+  "baseline": {
+    "avg_cpu_usage": 0.0,
+    "avg_memory_usage": 0.0,
+    "avg_network_connections": 0.0,
+    "cpu_pressure_ratio": 0.0,
+    "event_count": 12.5,
+    "event_rate_per_minute": 154.72170833333334,
+    "exec_count": 10.0,
+    "exec_rate_per_minute": 123.77736666666668,
+    "file_event_count": 0.0,
+    "max_cpu_usage": 0.0,
+    "max_memory_usage": 0.0,
+    "max_network_connections": 0.0,
+    "network_connection_pressure": 0.0,
+    "network_event_count": 0.0,
+    "network_event_rate_per_minute": 0.0,
+    "privilege_event_count": 0.0,
+    "prometheus_event_count": 0.0,
+    "tetragon_event_count": 12.5,
+    "unique_pids": 2.5,
+    "window_duration_seconds": 9.120466666666667
+  },
+  "threshold": 0.45
+}

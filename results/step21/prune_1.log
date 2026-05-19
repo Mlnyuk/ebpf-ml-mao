@@ -1,0 +1,26 @@
+[analyzer-prune] namespace: ebpf-obs
+[analyzer-prune] analyzer deployment: ebpf-ml-mao-analyzer
+[analyzer-prune] data dir: /var/lib/ebpf-ml-mao
+[analyzer-prune] target directories: ingest reports spool postprocess-queue queue
+[analyzer-prune] age threshold: files older than 1 day(s)
+[analyzer-prune] max files per directory: 0 (0 disables count-based pruning)
+[analyzer-prune] dry run: false
+[analyzer-prune] dry-run candidate list limit: 200
+[analyzer-prune] print deleted files: false
+[analyzer-prune] prune all generated files: true
+[analyzer-prune][WARN] This command targets generated runtime/experiment data only. It never touches registry or models.
+[analyzer-prune][WARN] If DRY_RUN=false, this may delete collected experiment/runtime data.
+--- /var/lib/ebpf-ml-mao/ingest ---
+candidate files: 25
+candidate rule: all generated files
+DELETING candidate files under /var/lib/ebpf-ml-mao/ingest
+--- /var/lib/ebpf-ml-mao/reports ---
+missing; skipped
+--- /var/lib/ebpf-ml-mao/spool ---
+missing; skipped
+--- /var/lib/ebpf-ml-mao/postprocess-queue ---
+candidate files: 23
+candidate rule: all generated files
+DELETING candidate files under /var/lib/ebpf-ml-mao/postprocess-queue
+--- /var/lib/ebpf-ml-mao/queue ---
+missing; skipped

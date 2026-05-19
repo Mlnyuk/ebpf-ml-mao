@@ -1,0 +1,5 @@
+scenario,alerts,tetragon_lines,fault_target_lines,score_min,score_mean,score_max,detected,top_features
+exec-storm,2,200,50,0.4664,0.5090,0.6028,yes,"network_event_count=19.00, event_count=19.00, unique_pids=1.00"
+network-burst,2,200,50,0.5937,0.8963,1.0000,yes,"event_count=52.00, network_event_count=46.00, unique_pids=4.00"
+cpu-stress,2,200,50,1.0000,1.0000,1.0000,yes,"event_count=56.00, network_event_count=50.00, unique_pids=3.00"
+memory-pressure,2,66,6,n/a,n/a,n/a,yes,"network_event_count=34.00, event_count=34.00, unique_pids=3.00"

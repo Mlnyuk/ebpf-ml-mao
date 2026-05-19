@@ -1,0 +1,6 @@
+run,baseline_verdict,baseline_correct,baseline_samples,exec-storm_verdict,exec-storm_correct,exec-storm_samples,network-burst_verdict,network-burst_correct,network-burst_samples,cpu-stress_verdict,cpu-stress_correct,cpu-stress_samples,memory-pressure_verdict,memory-pressure_correct,memory-pressure_samples
+run_01,anomalous,no,3,anomalous,yes,4,anomalous,yes,5,anomalous,yes,2,anomalous,yes,0
+run_02,anomalous,no,2,anomalous,yes,4,anomalous,yes,6,anomalous,yes,2,anomalous,yes,1
+run_03,anomalous,no,3,anomalous,yes,3,anomalous,yes,5,anomalous,yes,1,anomalous,yes,1
+run_04,anomalous,no,2,anomalous,yes,4,anomalous,yes,7,anomalous,yes,2,anomalous,yes,0
+run_05,anomalous,no,2,anomalous,yes,3,anomalous,yes,6,anomalous,yes,2,anomalous,yes,1

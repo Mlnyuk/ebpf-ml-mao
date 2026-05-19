@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ebpf-ml-mao-runtime
+  namespace: ebpf-obs
+data:
+  # Step 21: point the collector's baseline inputs at a ConfigMap-mounted
+  # JSONL containing real fault-target file_open events instead of the
+  # samples/step2/* files baked into the image. This makes the live phase3
+  # scorer learn the deployed workload's distribution and lets baseline
+  # windows score below the 0.45 verdict threshold.
+  BASELINE_TETRAGON_PATH: /etc/ebpf-ml-mao/baseline/baseline_tetragon.jsonl
+  BASELINE_PROMETHEUS_PATH: /etc/ebpf-ml-mao/baseline/baseline_prometheus.json

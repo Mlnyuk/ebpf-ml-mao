@@ -1,0 +1,19 @@
+{
+  "received_count": 5,
+  "unique_count": 5,
+  "duplicates_count": 0,
+  "nodes": [
+    "gpu-2",
+    "gpu-3",
+    "infra-1",
+    "infra-2",
+    "worker-1"
+  ],
+  "verdicts": {
+    "normal": 5
+  },
+  "phases": {
+    "phase3": 5
+  },
+  "latest_verdict": "normal"
+}

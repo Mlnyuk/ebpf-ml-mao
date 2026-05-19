@@ -1,0 +1,15 @@
+apiVersion: cilium.io/v1alpha1
+kind: TracingPolicyNamespaced
+metadata:
+  name: step21-fault-file-coverage
+  namespace: ebpf-obs-test
+spec:
+  podSelector:
+    matchLabels:
+      app: fault-target
+  kprobes:
+    - call: "security_file_open"
+      syscall: false
+      args:
+        - index: 0
+          type: "file"

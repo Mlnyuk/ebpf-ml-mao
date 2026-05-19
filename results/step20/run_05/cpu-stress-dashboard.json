@@ -1,0 +1,91 @@
+{
+  "status": "ok",
+  "component": "analyzer",
+  "timestamp": 1779178144,
+  "summary": {
+    "state": "warning",
+    "alert_count": 2,
+    "warning_count": 2,
+    "critical_count": 0,
+    "latest_verdict": "anomalous"
+  },
+  "counters": {
+    "received_count": 135,
+    "unique_count": 135,
+    "duplicates_count": 0,
+    "queue_count": 135,
+    "spool_count": 0
+  },
+  "registry": {
+    "model_count": 1,
+    "active_model_id": "baseline-v2-01",
+    "missing_artifact_count": 0,
+    "tagged_model_count": 1,
+    "model_types": [
+      "baseline"
+    ]
+  },
+  "ingest": {
+    "received_count": 135,
+    "unique_count": 135,
+    "duplicates_count": 0,
+    "repaired_at": null
+  },
+  "workflow": {
+    "received_count": 135,
+    "unique_count": 135,
+    "duplicates_count": 0,
+    "nodes": [
+      "gpu-1",
+      "gpu-2",
+      "gpu-3",
+      "infra-1",
+      "infra-2",
+      "infra-3",
+      "worker-1",
+      "worker-2",
+      "worker-3"
+    ],
+    "verdicts": {
+      "anomalous": 121,
+      "normal": 14
+    },
+    "phases": {
+      "phase3": 135
+    },
+    "latest_verdict": "anomalous"
+  },
+  "queue": {
+    "count": 135,
+    "pending_count": 135,
+    "failed_count": 0,
+    "expired_count": 0,
+    "oldest_age_seconds": 488,
+    "ttl_seconds": 86400,
+    "quarantined_count": 0
+  },
+  "spool": {
+    "count": 0,
+    "expired_count": 0,
+    "ttl_seconds": 3600,
+    "oldest_age_seconds": null,
+    "quarantined_count": 0,
+    "available": false
+  },
+  "alerts": [
+    {
+      "name": "queue_backlog",
+      "severity": "warning",
+      "message": "postprocess queue backlog exceeded threshold",
+      "value": 135,
+      "threshold": 50
+    },
+    {
+      "name": "latest_verdict",
+      "severity": "warning",
+      "message": "latest workflow verdict is anomalous",
+      "value": "anomalous",
+      "threshold": "normal"
+    }
+  ]
+}

@@ -2,11 +2,12 @@
 from __future__ import annotations
 
 import json
+import os
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-RESULT_DIR = Path("results/step16")
+RESULT_DIR = Path(os.environ.get("RESULT_DIR", "results/step16"))
 REPORT_PATH = RESULT_DIR / "experiment-report.md"
 SCENARIOS = ["exec-storm", "network-burst", "cpu-stress", "memory-pressure"]
 KINDS = ["dashboard", "alerts", "workflow"]

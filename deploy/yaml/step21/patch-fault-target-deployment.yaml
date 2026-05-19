@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fault-target
+  namespace: ebpf-obs-test
+spec:
+  template:
+    spec:
+      containers:
+        - name: fault-target
+          # Switch to python:3.11-alpine so the workload can drive a steady
+          # file_open baseline without spawning new exec events. The previous
+          # busybox `while true; do sleep 3600; done` command produced no
+          # scoring windows in steady state, forcing an external kubectl exec
+          # warmup that polluted the exec_count signal and made exec-storm
+          # statistically inseparable from baseline.
+          image: python:3.11-alpine
+          imagePullPolicy: IfNotPresent
+          command:
+            - python3
+            - -u
+            - -c
+            - |
+              import time
+              # Slow, deterministic baseline: open two well-known files every
+              # 5 seconds. The Python interpreter is the only exec event for
+              # the lifetime of this pod, so exec_count drops to ~0 during
+              # baseline windows and any fault scenario's exec activity is
+              # cleanly separable.
+              files = ("/etc/hostname", "/etc/resolv.conf")
+              while True:
+                  for path in files:
+                      with open(path, "rb") as handle:
+                          handle.read(64)
+                  time.sleep(5)

@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import csv
 import json
+import os
 from collections import defaultdict
 from dataclasses import dataclass
 from pathlib import Path
@@ -11,7 +12,7 @@ from typing import Any
 
 from step16_analyze_thresholds import iter_json_objects, read_text, scores_for, INGEST_SCORES_PATH
 
-RESULT_DIR = Path("results/step16")
+RESULT_DIR = Path(os.environ.get("RESULT_DIR", "results/step16"))
 REPORT_PATH = RESULT_DIR / "paper-results.md"
 CSV_PATH = RESULT_DIR / "paper-results.csv"
 SCENARIOS = ["exec-storm", "network-burst", "cpu-stress", "memory-pressure"]

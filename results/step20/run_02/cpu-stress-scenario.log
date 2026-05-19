@@ -1,0 +1,3 @@
+[cpu-stress] locating fault-target pod in namespace ebpf-obs-test
+[cpu-stress] starting 30s bounded CPU busy loop in fault-target-69df4f49c4-jjrs6
+[cpu-stress] completed 30s CPU stress run
