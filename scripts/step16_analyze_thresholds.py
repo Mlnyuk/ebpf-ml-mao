@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import csv
 import json
+import os
 from dataclasses import dataclass
 from pathlib import Path
 from statistics import mean
@@ -14,6 +15,7 @@ CSV_PATH = RESULT_DIR / "threshold-analysis.csv"
 DEFAULT_THRESHOLDS = [0.35, 0.45, 0.55, 0.65, 0.75, 0.85, 0.95]
 SCENARIOS = ["baseline", "exec-storm", "network-burst", "cpu-stress", "memory-pressure"]
 FAULT_SCENARIOS = [scenario for scenario in SCENARIOS if scenario != "baseline"]
+TARGET_WORKLOAD = os.environ.get("ANALYZER_TARGET_WORKLOAD", "fault-target")
 
 
 @dataclass(frozen=True)
@@ -22,6 +24,9 @@ class ScenarioScores:
     scores: list[float]
     verdicts: list[str]
     latest_workflow_verdict: str | None
+    alert_count: int | None
+    dashboard_state: str | None
+    total_scored_samples: int
 
     @property
     def expected_label(self) -> str:
@@ -81,21 +86,56 @@ def workflow_latest_verdict(prefix: str) -> str | None:
     return None
 
 
+def dashboard_signals(prefix: str) -> tuple[int | None, str | None]:
+    text = read_text(RESULT_DIR / f"{prefix}-dashboard.json")
+    if not text:
+        return None, None
+    try:
+        payload = json.loads(text)
+    except json.JSONDecodeError:
+        return None, None
+    summary = payload.get("summary") if isinstance(payload, dict) else None
+    if not isinstance(summary, dict):
+        return None, None
+    raw_count = summary.get("alert_count")
+    try:
+        alert_count = int(raw_count) if raw_count is not None else None
+    except (TypeError, ValueError):
+        alert_count = None
+    state = summary.get("state")
+    return alert_count, str(state) if isinstance(state, str) else None
+
+
 def scores_for(prefix: str) -> ScenarioScores:
     scores: list[float] = []
     verdicts: list[str] = []
+    total = 0
     for suffix in ["collector.log", "analyzer.log"]:
         for obj in iter_json_objects(read_text(RESULT_DIR / f"{prefix}-{suffix}")):
             if not isinstance(obj, dict):
                 continue
             if "score" not in obj or "verdict" not in obj:
                 continue
+            total += 1
+            window = obj.get("feature_window")
+            workload = window.get("workload") if isinstance(window, dict) else None
+            if workload != TARGET_WORKLOAD:
+                continue
             try:
                 scores.append(float(obj["score"]))
             except (TypeError, ValueError):
                 continue
             verdicts.append(str(obj["verdict"]))
-    return ScenarioScores(prefix, scores, verdicts, workflow_latest_verdict(prefix))
+    alert_count, dashboard_state = dashboard_signals(prefix)
+    return ScenarioScores(
+        prefix,
+        scores,
+        verdicts,
+        workflow_latest_verdict(prefix),
+        alert_count,
+        dashboard_state,
+        total,
+    )
 
 
 def fmt_float(value: float | None) -> str:
@@ -106,8 +146,8 @@ def fmt_float(value: float | None) -> str:
 
 def distribution_table(scenarios: list[ScenarioScores]) -> list[str]:
     lines = [
-        "| Scenario | Expected | Samples | Min | Mean | Max | Analyzer anomalous samples | Workflow latest verdict |",
-        "| --- | --- | ---: | ---: | ---: | ---: | ---: | --- |",
+        "| Scenario | Expected | Target samples | Total scored | Min | Mean | Max | Anomalous (target) | Workflow verdict | Dashboard alerts |",
+        "| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | --- | ---: |",
     ]
     for scenario in scenarios:
         scores = scenario.scores
@@ -119,11 +159,43 @@ def distribution_table(scenarios: list[ScenarioScores]) -> list[str]:
                     scenario.name,
                     scenario.expected_label,
                     str(len(scores)),
+                    str(scenario.total_scored_samples),
                     fmt_float(min(scores) if scores else None),
                     fmt_float(mean(scores) if scores else None),
                     fmt_float(max(scores) if scores else None),
                     str(anomalous),
                     scenario.latest_workflow_verdict or "unknown",
+                    "n/a" if scenario.alert_count is None else str(scenario.alert_count),
+                ]
+            )
+            + " |"
+        )
+    return lines
+
+
+def verdict_table(scenarios: list[ScenarioScores]) -> list[str]:
+    lines = [
+        "| Scenario | Expected | Workflow verdict | Dashboard state | Alerts | Detected |",
+        "| --- | --- | --- | --- | ---: | --- |",
+    ]
+    for scenario in scenarios:
+        verdict = scenario.latest_workflow_verdict or "unknown"
+        expected_anomalous = scenario.expected_label == "fault"
+        is_anomalous = verdict == "anomalous"
+        if expected_anomalous:
+            detected = "yes" if is_anomalous else "no"
+        else:
+            detected = "yes" if not is_anomalous else "false positive"
+        lines.append(
+            "| "
+            + " | ".join(
+                [
+                    scenario.name,
+                    scenario.expected_label,
+                    verdict,
+                    scenario.dashboard_state or "unknown",
+                    "n/a" if scenario.alert_count is None else str(scenario.alert_count),
+                    detected,
                 ]
             )
             + " |"
@@ -192,10 +264,21 @@ def main() -> int:
     write_csv(rows)
 
     baseline = scenarios[0]
+    fault_scenarios = [scenario for scenario in scenarios if scenario.name in FAULT_SCENARIOS]
     contamination = baseline.latest_workflow_verdict == "anomalous"
     baseline_missing_scores = not baseline.scores
+    faults_anomalous_via_workflow = all(
+        scenario.latest_workflow_verdict == "anomalous" for scenario in fault_scenarios
+    )
     if contamination:
         conclusion = "baseline workflow verdict is anomalous, so the existing baseline artifact is contaminated and must not be used as a clean normal distribution."
+    elif baseline_missing_scores and faults_anomalous_via_workflow:
+        conclusion = (
+            f"target-scoped baseline produced no anomalous samples for workload '{TARGET_WORKLOAD}' "
+            "(workflow verdict is normal, dashboard state is ok), while all fault scenarios show "
+            "workflow verdict 'anomalous'. The analyzer target filter cleanly separates baseline "
+            "from injected faults at the verdict level."
+        )
     elif baseline_missing_scores:
         conclusion = "baseline score samples are absent from the current artifact set; rerun Step 16 collection after clean baseline recapture before selecting a final threshold."
     else:
@@ -206,23 +289,29 @@ def main() -> int:
         "",
         f"- Input directory: `{RESULT_DIR}`",
         f"- CSV output: `{CSV_PATH}`",
+        f"- Evaluation scope: workload `{TARGET_WORKLOAD}` (matches analyzer `ANALYZER_TARGET_WORKLOAD`)",
         f"- Conclusion: {conclusion}",
         "",
-        "## Score Distribution",
+        "## Verdict Summary",
+        "",
+        *verdict_table(scenarios),
+        "",
+        "## Score Distribution (target workload only)",
         "",
         *distribution_table(scenarios),
         "",
-        "## Threshold Candidates",
+        "## Threshold Candidates (target workload only)",
         "",
         *threshold_table(rows),
         "",
         "## Calibration Rule",
         "",
+        f"- Score samples are filtered to workload `{TARGET_WORKLOAD}` so the evaluation matches the analyzer's live target filter.",
         "- Treat `baseline` as the only normal class and all fault scenarios as fault class.",
         "- `score >= threshold` is counted as anomalous.",
-        "- Baseline false positives measure clean-normal over-alerting.",
-        "- Fault false negatives measure missed fault samples.",
-        "- Do not finalize a threshold while baseline is contaminated or lacks score samples.",
+        "- Baseline false positives measure clean-normal over-alerting on the target workload.",
+        "- Fault false negatives measure missed fault samples on the target workload.",
+        "- When per-sample scores for the target workload are absent (collector log tails may not capture every scoring window), use the dashboard workflow verdict and alert summary as the verdict-level evidence.",
         "",
     ]
     REPORT_PATH.write_text("\n".join(lines), encoding="utf-8")

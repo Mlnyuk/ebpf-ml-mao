@@ -1,19 +1,19 @@
 {
   "status": "ok",
   "component": "analyzer",
-  "timestamp": 1779159639,
+  "timestamp": 1779165413,
   "summary": {
     "state": "warning",
-    "alert_count": 1,
-    "warning_count": 1,
+    "alert_count": 2,
+    "warning_count": 2,
     "critical_count": 0,
-    "latest_verdict": "normal"
+    "latest_verdict": "anomalous"
   },
   "counters": {
-    "received_count": 3460,
-    "unique_count": 3454,
-    "duplicates_count": 6,
-    "queue_count": 160,
+    "received_count": 136,
+    "unique_count": 136,
+    "duplicates_count": 0,
+    "queue_count": 135,
     "spool_count": 0
   },
   "registry": {
@@ -26,15 +26,15 @@
     ]
   },
   "ingest": {
-    "received_count": 3460,
-    "unique_count": 3454,
-    "duplicates_count": 6,
-    "repaired_at": null
+    "received_count": 136,
+    "unique_count": 136,
+    "duplicates_count": 0,
+    "repaired_at": 1779164993
   },
   "workflow": {
-    "received_count": 3460,
-    "unique_count": 3454,
-    "duplicates_count": 6,
+    "received_count": 136,
+    "unique_count": 136,
+    "duplicates_count": 0,
     "nodes": [
       "gpu-1",
       "gpu-2",
@@ -47,20 +47,20 @@
       "worker-3"
     ],
     "verdicts": {
-      "anomalous": 3074,
-      "normal": 380
+      "anomalous": 118,
+      "normal": 18
     },
     "phases": {
-      "phase3": 3454
+      "phase3": 136
     },
-    "latest_verdict": "normal"
+    "latest_verdict": "anomalous"
   },
   "queue": {
-    "count": 160,
-    "pending_count": 160,
+    "count": 135,
+    "pending_count": 135,
     "failed_count": 0,
     "expired_count": 0,
-    "oldest_age_seconds": 579,
+    "oldest_age_seconds": 484,
     "ttl_seconds": 86400,
     "quarantined_count": 0
   },
@@ -77,8 +77,15 @@
       "name": "queue_backlog",
       "severity": "warning",
       "message": "postprocess queue backlog exceeded threshold",
-      "value": 160,
+      "value": 135,
       "threshold": 50
+    },
+    {
+      "name": "latest_verdict",
+      "severity": "warning",
+      "message": "latest workflow verdict is anomalous",
+      "value": "anomalous",
+      "threshold": "normal"
     }
   ]
 }

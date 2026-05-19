@@ -1,7 +1,7 @@
 {
-  "received_count": 3386,
-  "unique_count": 3380,
-  "duplicates_count": 6,
+  "received_count": 62,
+  "unique_count": 62,
+  "duplicates_count": 0,
   "nodes": [
     "gpu-1",
     "gpu-2",
@@ -14,11 +14,11 @@
     "worker-3"
   ],
   "verdicts": {
-    "anomalous": 3009,
-    "normal": 371
+    "anomalous": 56,
+    "normal": 6
   },
   "phases": {
-    "phase3": 3380
+    "phase3": 62
   },
   "latest_verdict": "anomalous"
 }

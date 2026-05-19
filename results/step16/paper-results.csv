@@ -1,5 +1,5 @@
 scenario,alerts,tetragon_lines,fault_target_lines,score_min,score_mean,score_max,detected,top_features
-exec-storm,2,200,50,1.0000,1.0000,1.0000,yes,"event_count=100.00, unique_pids=1.00, network_event_count=0.00"
-network-burst,2,200,50,0.7583,0.8597,1.0000,yes,"event_count=63.00, unique_pids=1.00, network_event_count=0.00"
-cpu-stress,1,200,50,0.3958,0.7180,1.0000,yes,"event_count=100.00, unique_pids=1.00, network_event_count=0.00"
-memory-pressure,2,200,50,0.3958,0.7986,1.0000,yes,"event_count=100.00, unique_pids=1.00, network_event_count=0.00"
+exec-storm,2,142,6,0.4664,0.6443,1.0000,yes,"event_count=59.00, network_event_count=53.00, unique_pids=2.00"
+network-burst,2,200,50,0.4664,0.8221,1.0000,yes,"event_count=43.00, network_event_count=38.00, unique_pids=2.00"
+cpu-stress,2,200,50,0.4664,0.6443,1.0000,yes,"event_count=53.00, network_event_count=39.00, unique_pids=4.00"
+memory-pressure,2,200,50,0.4664,0.7291,1.0000,yes,"event_count=53.00, network_event_count=39.00, unique_pids=4.00"

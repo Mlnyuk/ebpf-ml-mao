@@ -1,7 +1,7 @@
 {
   "status": "warning",
   "component": "analyzer",
-  "timestamp": 1779159683,
+  "timestamp": 1779165456,
   "summary": {
     "state": "warning",
     "alert_count": 2,
@@ -14,7 +14,7 @@
       "name": "queue_backlog",
       "severity": "warning",
       "message": "postprocess queue backlog exceeded threshold",
-      "value": 173,
+      "value": 145,
       "threshold": 50
     },
     {
