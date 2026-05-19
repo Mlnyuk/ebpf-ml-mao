@@ -29,6 +29,13 @@ Related commit: `35ebcec` (`Finalize Step 16 fault coverage validation`)
 - Prometheus + Grafana 비교 표
 - 결과 해석 문단 초안
 
+## Resolution
+
+- Added `scripts/step16_generate_paper_tables.py`.
+- Generated `results/step16/paper-results.md`.
+- Generated `results/step16/paper-results.csv`.
+- The Markdown output includes scenario detection, feature summary, anomaly score range, Tetragon coverage, and Prometheus + Grafana comparison tables.
+
 ## Done
 
 - 장애 시나리오별 feature, score, verdict가 한눈에 비교된다.

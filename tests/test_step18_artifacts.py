@@ -23,6 +23,8 @@ class Step18ArtifactsTest(unittest.TestCase):
         content = Path(ROOT, "scripts/analyzer_prune.sh").read_text(encoding="utf-8")
         self.assertIn("DRY_RUN", content)
         self.assertIn("OLDER_THAN_DAYS", content)
+        self.assertIn("MAX_FILES_PER_DIR", content)
+        self.assertIn("PRINT_DELETED", content)
         delete_index = content.find("-delete")
         self.assertNotEqual(delete_index, -1)
         guard_index = content.find("dry_run")
@@ -37,11 +39,23 @@ class Step18ArtifactsTest(unittest.TestCase):
     def test_step18_deploy_and_docs_exist(self) -> None:
         self.assertTrue(Path(ROOT, "deploy/yaml/step18/kustomization.yaml").exists())
         self.assertTrue(Path(ROOT, "deploy/yaml/step18/patch-analyzer-hpa-single-writer.yaml").exists())
+        self.assertTrue(Path(ROOT, "deploy/yaml/step18/patch-analyzer-pvc-storage.yaml").exists())
+        self.assertTrue(Path(ROOT, "deploy/yaml/step18/analyzer-prune-cronjob.yaml").exists())
         self.assertTrue(Path(ROOT, "docs/steps/step18/README.md").exists())
+
+    def test_step18_kustomization_includes_retention_and_pvc_patch(self) -> None:
+        content = Path(ROOT, "deploy/yaml/step18/kustomization.yaml").read_text(encoding="utf-8")
+        self.assertIn("analyzer-prune-cronjob.yaml", content)
+        self.assertIn("patch-analyzer-pvc-storage.yaml", content)
+        pvc_patch = Path(ROOT, "deploy/yaml/step18/patch-analyzer-pvc-storage.yaml").read_text(encoding="utf-8")
+        self.assertIn("8Gi", pvc_patch)
+        cronjob = Path(ROOT, "deploy/yaml/step18/analyzer-prune-cronjob.yaml").read_text(encoding="utf-8")
+        self.assertIn("CronJob", cronjob)
+        self.assertIn("MAX_FILES_PER_DIR", cronjob)
 
     def test_step18_readme_mentions_required_topics(self) -> None:
         content = Path(ROOT, "docs/steps/step18/README.md").read_text(encoding="utf-8")
-        for term in ["storage check", "prune", "preflight", "HPA", "single-writer"]:
+        for term in ["storage check", "prune", "preflight", "HPA", "single-writer", "CronJob", "8Gi"]:
             with self.subTest(term=term):
                 self.assertIn(term, content)
 

@@ -65,3 +65,14 @@ class Step16ArtifactsTest(unittest.TestCase):
         self.assertIn("spec.nodeName", content)
         self.assertIn("--field-selector", content)
         self.assertIn("app=fault-target", content)
+        self.assertIn('collect_logs "baseline"', content)
+
+    def test_step16_analysis_scripts_generate_expected_outputs(self) -> None:
+        for script_name, output_name in [
+            ("step16_analyze_thresholds.py", "threshold-analysis.md"),
+            ("step16_generate_paper_tables.py", "paper-results.md"),
+        ]:
+            with self.subTest(script=script_name):
+                content = Path(ROOT, "scripts", script_name).read_text(encoding="utf-8")
+                self.assertIn(output_name, content)
+                self.assertIn("results/step16", content)

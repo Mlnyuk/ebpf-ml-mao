@@ -1,0 +1,56 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: ebpf-ml-mao-analyzer-prune
+  namespace: ebpf-obs
+spec:
+  schedule: "17 */6 * * *"
+  concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 3
+  jobTemplate:
+    spec:
+      backoffLimit: 1
+      template:
+        spec:
+          restartPolicy: Never
+          containers:
+            - name: prune
+              image: ghcr.io/mlnyuk/ebpf-ml-mao:step15
+              imagePullPolicy: IfNotPresent
+              env:
+                - name: ANALYZER_DATA_DIR
+                  value: /var/lib/ebpf-ml-mao
+                - name: OLDER_THAN_DAYS
+                  value: "1"
+                - name: MAX_FILES_PER_DIR
+                  value: "5000"
+              command:
+                - /bin/sh
+                - -c
+                - |
+                  set -eu
+                  base="${ANALYZER_DATA_DIR}"
+                  older="${OLDER_THAN_DAYS}"
+                  max_files="${MAX_FILES_PER_DIR}"
+                  for name in ingest reports spool postprocess-queue queue; do
+                    dir="${base}/${name}"
+                    [ -d "${dir}" ] || continue
+                    find "${dir}" -type f -mtime +"${older}" -delete 2>/dev/null || true
+                    count="$(find "${dir}" -type f 2>/dev/null | wc -l | tr -d ' ')"
+                    if [ "${count}" -gt "${max_files}" ]; then
+                      delete_count="$((count - max_files))"
+                      find "${dir}" -type f -printf '%T@ %p\n' 2>/dev/null \
+                        | sort -n \
+                        | head -n "${delete_count}" \
+                        | cut -d' ' -f2- \
+                        | xargs -r rm -f
+                    fi
+                  done
+              volumeMounts:
+                - name: analyzer-state
+                  mountPath: /var/lib/ebpf-ml-mao
+          volumes:
+            - name: analyzer-state
+              persistentVolumeClaim:
+                claimName: ebpf-ml-mao-state

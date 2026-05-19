@@ -28,6 +28,14 @@ Related commit: `35ebcec` (`Finalize Step 16 fault coverage validation`)
 - storage preflight 개선 결과
 - 장기 실험 가능 기준 문서
 
+## Resolution
+
+- Added `deploy/yaml/step18/patch-analyzer-pvc-storage.yaml` to request 8Gi for `ebpf-ml-mao-state`.
+- Added `deploy/yaml/step18/analyzer-prune-cronjob.yaml` for automatic generated-data retention.
+- Extended `scripts/analyzer_prune.sh` with `MAX_FILES_PER_DIR` and `PRINT_DELETED`.
+- Extended `scripts/analyzer_storage_check.sh` with inode usage and file-count warnings.
+- Updated Step 18 docs and tests to cover the PVC expansion and CronJob retention path.
+
 ## Done
 
 - Step 16~18 반복 실행 중 inode 고갈이 재발하지 않는다.

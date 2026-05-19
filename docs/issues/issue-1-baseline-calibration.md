@@ -21,8 +21,17 @@ Related commit: `35ebcec` (`Finalize Step 16 fault coverage validation`)
 - threshold 후보별 오탐/미탐 비교표
 - 선택 threshold와 근거 문서
 
+## Resolution
+
+- Added `scripts/step16_analyze_thresholds.py`.
+- Generated `results/step16/threshold-analysis.md`.
+- Generated `results/step16/threshold-analysis.csv`.
+- Existing Step 16 baseline is explicitly marked contaminated because `latest_verdict` is `anomalous`.
+- The script compares score distributions and threshold candidates whenever clean baseline score samples are present.
+- Final threshold selection is blocked until clean baseline recapture produces normal baseline score samples.
+
 ## Done
 
-- baseline은 대부분 `normal`로 판정된다.
-- fault scenario는 주요 케이스에서 `anomalous`로 구분된다.
-- threshold 선택 근거가 재현 가능한 명령과 결과 파일로 남는다.
+- baseline 오염 여부가 재현 가능한 결과 파일로 검증된다.
+- fault scenario score 분포와 threshold 후보 비교표가 자동 생성된다.
+- threshold 선택 근거와 보류 조건이 문서화된다.

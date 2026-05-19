@@ -7,6 +7,8 @@ ANALYZER_DATA_DIR="${ANALYZER_DATA_DIR:-/var/lib/ebpf-ml-mao}"
 OLDER_THAN_DAYS="${OLDER_THAN_DAYS:-1}"
 DRY_RUN="${DRY_RUN:-true}"
 CANDIDATE_LIST_LIMIT="${CANDIDATE_LIST_LIMIT:-200}"
+MAX_FILES_PER_DIR="${MAX_FILES_PER_DIR:-0}"
+PRINT_DELETED="${PRINT_DELETED:-false}"
 
 log() {
   echo "[analyzer-prune] $*"
@@ -31,13 +33,25 @@ if [[ "${DRY_RUN}" != "true" && "${DRY_RUN}" != "false" ]]; then
   exit 2
 fi
 
+if ! [[ "${MAX_FILES_PER_DIR}" =~ ^[0-9]+$ ]]; then
+  echo "MAX_FILES_PER_DIR must be a non-negative integer" >&2
+  exit 2
+fi
+
+if [[ "${PRINT_DELETED}" != "true" && "${PRINT_DELETED}" != "false" ]]; then
+  echo "PRINT_DELETED must be true or false" >&2
+  exit 2
+fi
+
 log "namespace: ${NS}"
 log "analyzer deployment: ${ANALYZER_DEPLOY}"
 log "data dir: ${ANALYZER_DATA_DIR}"
 log "target directories: ingest reports spool postprocess-queue queue"
 log "age threshold: files older than ${OLDER_THAN_DAYS} day(s)"
+log "max files per directory: ${MAX_FILES_PER_DIR} (0 disables count-based pruning)"
 log "dry run: ${DRY_RUN}"
 log "dry-run candidate list limit: ${CANDIDATE_LIST_LIMIT}"
+log "print deleted files: ${PRINT_DELETED}"
 warn "This command targets generated runtime/experiment data only. It never touches registry or models."
 warn "If DRY_RUN=false, this may delete collected experiment/runtime data."
 
@@ -53,6 +67,8 @@ kubectl exec -n "${NS}" "${pod}" -- /bin/sh -c "
   older='${OLDER_THAN_DAYS}'
   dry_run='${DRY_RUN}'
   limit='${CANDIDATE_LIST_LIMIT}'
+  max_files='${MAX_FILES_PER_DIR}'
+  print_deleted='${PRINT_DELETED}'
   for name in ingest reports spool postprocess-queue queue; do
     dir=\"\${base}/\${name}\"
     echo \"--- \${dir} ---\"
@@ -67,7 +83,25 @@ kubectl exec -n "${NS}" "${pod}" -- /bin/sh -c "
       find \"\${dir}\" -type f -mtime +\"\${older}\" -print 2>/dev/null | sed 's/^/DRY-RUN /' | head -n \"\${limit}\"
     else
       echo \"DELETING candidate files under \${dir}\"
-      find \"\${dir}\" -type f -mtime +\"\${older}\" -print -delete 2>/dev/null
+      if [ \"\${print_deleted}\" = \"true\" ]; then
+        find \"\${dir}\" -type f -mtime +\"\${older}\" -print -delete 2>/dev/null
+      else
+        find \"\${dir}\" -type f -mtime +\"\${older}\" -delete 2>/dev/null
+      fi
+    fi
+
+    if [ \"\${max_files}\" -gt 0 ]; then
+      total=\$(find \"\${dir}\" -type f 2>/dev/null | wc -l | tr -d ' ')
+      echo \"total files after age pass: \${total}\"
+      if [ \"\${total}\" -gt \"\${max_files}\" ]; then
+        remove_count=\$((total - max_files))
+        echo \"count-based prune candidates: \${remove_count}\"
+        if [ \"\${dry_run}\" = \"true\" ]; then
+          find \"\${dir}\" -type f -printf '%T@ %p\n' 2>/dev/null | sort -n | head -n \"\${remove_count}\" | cut -d' ' -f2- | sed 's/^/DRY-RUN count-prune /' | head -n \"\${limit}\"
+        else
+          find \"\${dir}\" -type f -printf '%T@ %p\n' 2>/dev/null | sort -n | head -n \"\${remove_count}\" | cut -d' ' -f2- | xargs -r rm -f
+        fi
+      fi
     fi
   done
 "

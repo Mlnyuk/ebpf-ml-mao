@@ -127,6 +127,7 @@ run_scenario() {
 
 log "collecting baseline snapshots from ${API_BASE}"
 collect_snapshot "baseline"
+collect_logs "baseline"
 
 run_scenario "exec-storm" "scripts/fault-scenarios/exec-storm.sh"
 run_scenario "network-burst" "scripts/fault-scenarios/network-burst.sh"

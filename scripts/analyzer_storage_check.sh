@@ -4,6 +4,7 @@ set -euo pipefail
 NS="${NS:-ebpf-obs}"
 ANALYZER_DEPLOY="${ANALYZER_DEPLOY:-ebpf-ml-mao-analyzer}"
 ANALYZER_DATA_DIR="${ANALYZER_DATA_DIR:-/var/lib/ebpf-ml-mao}"
+MAX_FILES_WARN="${MAX_FILES_WARN:-5000}"
 
 log() {
   echo "[analyzer-storage-check] $*"
@@ -29,6 +30,7 @@ hpa_targets() {
 log "namespace: ${NS}"
 log "analyzer deployment: ${ANALYZER_DEPLOY}"
 log "analyzer data dir: ${ANALYZER_DATA_DIR}"
+log "file count warning threshold: ${MAX_FILES_WARN}"
 
 echo
 log "analyzer pods"
@@ -66,6 +68,10 @@ log "disk usage"
 kubectl exec -n "${NS}" "${pod}" -- /bin/sh -c "df -h '${ANALYZER_DATA_DIR}' 2>/dev/null || df -h" || true
 
 echo
+log "inode usage"
+kubectl exec -n "${NS}" "${pod}" -- /bin/sh -c "df -i '${ANALYZER_DATA_DIR}' 2>/dev/null || df -i" || true
+
+echo
 log "directory usage"
 kubectl exec -n "${NS}" "${pod}" -- /bin/sh -c "
   set -eu
@@ -85,11 +91,15 @@ log "file counts"
 kubectl exec -n "${NS}" "${pod}" -- /bin/sh -c "
   set -eu
   base='${ANALYZER_DATA_DIR}'
+  max_files='${MAX_FILES_WARN}'
   for name in ingest reports spool postprocess-queue queue; do
     dir=\"\${base}/\${name}\"
     if [ -d \"\${dir}\" ]; then
       count=\$(find \"\${dir}\" -type f 2>/dev/null | wc -l | tr -d ' ')
       echo \"\${dir}: \${count} files\"
+      if [ \"\${count}\" -gt \"\${max_files}\" ]; then
+        echo \"WARN \${dir}: file count exceeds \${max_files}\"
+      fi
     else
       echo \"missing \${dir}\"
     fi
