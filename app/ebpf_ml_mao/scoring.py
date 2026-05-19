@@ -14,6 +14,39 @@ SUPPORTED_MODEL_TYPES = {"baseline", "zscore"}
 LATEST_SCHEMA_VERSION = MODEL_SCHEMA_V2
 ZSCORE_AVG_SCALE = 3.0
 ZSCORE_PEAK_SCALE = 4.0
+GENERIC_FEATURE_PEAK_CAP = 0.35
+GENERIC_FEATURES = {
+    "event_count",
+    "tetragon_event_count",
+    "prometheus_event_count",
+    "event_rate_per_minute",
+    "exec_rate_per_minute",
+    "network_event_rate_per_minute",
+    "window_duration_seconds",
+    "unique_pids",
+}
+FEATURE_WEIGHTS = {
+    "event_count": 0.10,
+    "tetragon_event_count": 0.10,
+    "prometheus_event_count": 0.10,
+    "event_rate_per_minute": 0.10,
+    "window_duration_seconds": 0.05,
+    "unique_pids": 0.20,
+    "exec_count": 1.50,
+    "exec_rate_per_minute": 1.50,
+    "network_event_count": 1.40,
+    "network_event_rate_per_minute": 1.40,
+    "file_event_count": 1.20,
+    "privilege_event_count": 1.60,
+    "avg_cpu_usage": 1.20,
+    "max_cpu_usage": 1.40,
+    "cpu_pressure_ratio": 1.40,
+    "avg_memory_usage": 1.10,
+    "max_memory_usage": 1.30,
+    "avg_network_connections": 1.10,
+    "max_network_connections": 1.30,
+    "network_connection_pressure": 1.30,
+}
 
 
 @dataclass(slots=True)
@@ -252,30 +285,60 @@ class BaselineScorer:
         raise ValueError(f"unsupported model_type: {self.model.model_type}")
 
     def _score_baseline(self, feature_window: FeatureWindow) -> tuple[float, float]:
-        distances: list[float] = []
+        generic_distances: list[float] = []
+        semantic_distances: list[float] = []
         for key in self.model.feature_keys:
             baseline_value = self.model.baseline[key]
             observed_value = feature_window.values.get(key, 0.0)
             scale = max(abs(baseline_value), 1.0)
-            distances.append(abs(observed_value - baseline_value) / scale)
-        avg_distance = sum(distances) / len(distances)
-        score = min(1.0, avg_distance / 2.0)
-        confidence = min(1.0, math.sqrt(avg_distance / 2.0))
+            weighted_distance = (
+                abs(observed_value - baseline_value)
+                / scale
+                * FEATURE_WEIGHTS.get(key, 1.0)
+            )
+            if key in GENERIC_FEATURES:
+                generic_distances.append(weighted_distance)
+            else:
+                semantic_distances.append(weighted_distance)
+        semantic_score = 0.0
+        if semantic_distances:
+            avg_semantic_distance = sum(semantic_distances) / len(semantic_distances)
+            semantic_score = avg_semantic_distance / 2.0
+        generic_score = 0.0
+        if generic_distances:
+            avg_generic_distance = sum(generic_distances) / len(generic_distances)
+            generic_score = min(GENERIC_FEATURE_PEAK_CAP, avg_generic_distance / 2.0)
+        score = min(1.0, max(semantic_score, generic_score))
+        confidence = min(1.0, math.sqrt(score))
         return score, confidence
 
     def _score_zscore(self, feature_window: FeatureWindow) -> tuple[float, float]:
-        z_values: list[float] = []
+        generic_z_values: list[float] = []
+        semantic_z_values: list[float] = []
         for key in self.model.feature_keys:
             mean = self.model.mean[key]
             std = self.model.std.get(key, 0.0)
             safe_std = std if std > 0 else 1.0
             observed_value = feature_window.values.get(key, 0.0)
-            z_values.append(abs(observed_value - mean) / safe_std)
-        avg_z = sum(z_values) / len(z_values)
-        max_z = max(z_values)
-        avg_component = avg_z / ZSCORE_AVG_SCALE
-        peak_component = max_z / ZSCORE_PEAK_SCALE
-        score = min(1.0, max(avg_component, peak_component))
+            weighted_z = abs(observed_value - mean) / safe_std * FEATURE_WEIGHTS.get(key, 1.0)
+            if key in GENERIC_FEATURES:
+                generic_z_values.append(weighted_z)
+            else:
+                semantic_z_values.append(weighted_z)
+        semantic_component = 0.0
+        if semantic_z_values:
+            avg_z = sum(semantic_z_values) / len(semantic_z_values)
+            max_z = max(semantic_z_values)
+            semantic_component = max(avg_z / ZSCORE_AVG_SCALE, max_z / ZSCORE_PEAK_SCALE)
+        generic_component = 0.0
+        if generic_z_values:
+            avg_z = sum(generic_z_values) / len(generic_z_values)
+            max_z = max(generic_z_values)
+            generic_component = min(
+                GENERIC_FEATURE_PEAK_CAP,
+                max(avg_z / ZSCORE_AVG_SCALE, max_z / ZSCORE_PEAK_SCALE),
+            )
+        score = min(1.0, max(semantic_component, generic_component))
         confidence = min(1.0, math.sqrt(score))
         return score, confidence
 

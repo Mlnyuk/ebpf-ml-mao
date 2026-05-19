@@ -1,0 +1,259 @@
+{
+  "removed": 0,
+  "quarantined": []
+}
+{
+  "sent": 0,
+  "failed": 0,
+  "expired": 0,
+  "quarantined": [],
+  "remaining": []
+}
+{
+  "score": 1.0,
+  "verdict": "anomalous",
+  "confidence": 1.0,
+  "feature_window": {
+    "window_start": 1779159733.83174,
+    "window_end": 1779159746.9173,
+    "workload": "unknown-workload",
+    "values": {
+      "event_count": 100.0,
+      "exec_count": 0.0,
+      "network_event_count": 0.0,
+      "unique_pids": 1.0,
+      "avg_cpu_usage": 0.0,
+      "max_cpu_usage": 0.0,
+      "avg_memory_usage": 0.0,
+      "max_memory_usage": 0.0,
+      "avg_network_connections": 0.0,
+      "max_network_connections": 0
+    }
+  },
+  "agents": [
+    {
+      "name": "summarizer",
+      "summary": "unknown-workload produced 100 events in 13s with 0 exec events and 0 network events."
+    },
+    {
+      "name": "analyst",
+      "summary": "Score 1.00 driven by no strong outliers."
+    },
+    {
+      "name": "correlator",
+      "summary": "Resource and event correlation suggests CPU 0.0% with 0 concurrent connections."
+    },
+    {
+      "name": "reviewer",
+      "summary": "Final verdict is anomalous with score 1.00 and confidence 1.00."
+    }
+  ]
+}
+{
+  "status": "stored",
+  "digest": "6e75168ccacefd0c8c5d54d2221c2f01a770e1fcd9110e2d5ae3ed9b5161dde5",
+  "path": "/var/lib/ebpf-ml-mao/ingest/gpu-1/6e75168ccace-report.json",
+  "workflow": {
+    "received_count": 3491,
+    "unique_count": 3485,
+    "duplicates_count": 6,
+    "nodes": [
+      "gpu-1",
+      "gpu-2",
+      "gpu-3",
+      "infra-1",
+      "infra-2",
+      "infra-3",
+      "worker-1",
+      "worker-2",
+      "worker-3"
+    ],
+    "verdicts": {
+      "anomalous": 3101,
+      "normal": 384
+    },
+    "phases": {
+      "phase3": 3485
+    },
+    "latest_verdict": "anomalous"
+  },
+  "queue": {
+    "status": "queued",
+    "path": "/var/lib/ebpf-ml-mao/postprocess-queue/1779159748520-report-ingest.json"
+  },
+  "spooled": false
+}
+{
+  "removed": 0,
+  "quarantined": []
+}
+{
+  "sent": 0,
+  "failed": 0,
+  "expired": 0,
+  "quarantined": [],
+  "remaining": []
+}
+{
+  "score": 1.0,
+  "verdict": "anomalous",
+  "confidence": 1.0,
+  "feature_window": {
+    "window_start": 1779159766.30444,
+    "window_end": 1779159779.901972,
+    "workload": "unknown-workload",
+    "values": {
+      "event_count": 96.0,
+      "exec_count": 0.0,
+      "network_event_count": 0.0,
+      "unique_pids": 1.0,
+      "avg_cpu_usage": 0.0,
+      "max_cpu_usage": 0.0,
+      "avg_memory_usage": 0.0,
+      "max_memory_usage": 0.0,
+      "avg_network_connections": 0.0,
+      "max_network_connections": 0
+    }
+  },
+  "agents": [
+    {
+      "name": "summarizer",
+      "summary": "unknown-workload produced 96 events in 14s with 0 exec events and 0 network events."
+    },
+    {
+      "name": "analyst",
+      "summary": "Score 1.00 driven by no strong outliers."
+    },
+    {
+      "name": "correlator",
+      "summary": "Resource and event correlation suggests CPU 0.0% with 0 concurrent connections."
+    },
+    {
+      "name": "reviewer",
+      "summary": "Final verdict is anomalous with score 1.00 and confidence 1.00."
+    }
+  ]
+}
+{
+  "status": "stored",
+  "digest": "fa0cc486aecec80f00ab5caff1662eedfa82f555a86c08dc3a3451fa770d12b9",
+  "path": "/var/lib/ebpf-ml-mao/ingest/gpu-1/fa0cc486aece-report.json",
+  "workflow": {
+    "received_count": 3500,
+    "unique_count": 3494,
+    "duplicates_count": 6,
+    "nodes": [
+      "gpu-1",
+      "gpu-2",
+      "gpu-3",
+      "infra-1",
+      "infra-2",
+      "infra-3",
+      "worker-1",
+      "worker-2",
+      "worker-3"
+    ],
+    "verdicts": {
+      "anomalous": 3109,
+      "normal": 385
+    },
+    "phases": {
+      "phase3": 3494
+    },
+    "latest_verdict": "anomalous"
+  },
+  "queue": {
+    "status": "queued",
+    "path": "/var/lib/ebpf-ml-mao/postprocess-queue/1779159781520-report-ingest.json"
+  },
+  "spooled": false
+}
+{
+  "removed": 0,
+  "quarantined": []
+}
+{
+  "sent": 0,
+  "failed": 0,
+  "expired": 0,
+  "quarantined": [],
+  "remaining": []
+}
+{
+  "score": 1.0,
+  "verdict": "anomalous",
+  "confidence": 1.0,
+  "feature_window": {
+    "window_start": 1779159801.28247,
+    "window_end": 1779159809.852242,
+    "workload": "unknown-workload",
+    "values": {
+      "event_count": 67.0,
+      "exec_count": 0.0,
+      "network_event_count": 0.0,
+      "unique_pids": 1.0,
+      "avg_cpu_usage": 0.0,
+      "max_cpu_usage": 0.0,
+      "avg_memory_usage": 0.0,
+      "max_memory_usage": 0.0,
+      "avg_network_connections": 0.0,
+      "max_network_connections": 0
+    }
+  },
+  "agents": [
+    {
+      "name": "summarizer",
+      "summary": "unknown-workload produced 67 events in 9s with 0 exec events and 0 network events."
+    },
+    {
+      "name": "analyst",
+      "summary": "Score 1.00 driven by no strong outliers."
+    },
+    {
+      "name": "correlator",
+      "summary": "Resource and event correlation suggests CPU 0.0% with 0 concurrent connections."
+    },
+    {
+      "name": "reviewer",
+      "summary": "Final verdict is anomalous with score 1.00 and confidence 1.00."
+    }
+  ]
+}
+{
+  "status": "stored",
+  "digest": "793d55cab30045ed2db56fd9818964bb871fbf97ac081b232a6da61e7e931527",
+  "path": "/var/lib/ebpf-ml-mao/ingest/gpu-1/793d55cab300-report.json",
+  "workflow": {
+    "received_count": 3509,
+    "unique_count": 3503,
+    "duplicates_count": 6,
+    "nodes": [
+      "gpu-1",
+      "gpu-2",
+      "gpu-3",
+      "infra-1",
+      "infra-2",
+      "infra-3",
+      "worker-1",
+      "worker-2",
+      "worker-3"
+    ],
+    "verdicts": {
+      "anomalous": 3117,
+      "normal": 386
+    },
+    "phases": {
+      "phase3": 3503
+    },
+    "latest_verdict": "anomalous"
+  },
+  "queue": {
+    "status": "queued",
+    "path": "/var/lib/ebpf-ml-mao/postprocess-queue/1779159814527-report-ingest.json"
+  },
+  "spooled": false
+}
+/var/lib/ebpf-ml-mao-collector/reports/gpu-1/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-1/report.md
+/var/lib/ebpf-ml-mao-collector/reports/gpu-1/report.json
+/var/lib/ebpf-ml-mao-collector/reports/gpu-1/report.md

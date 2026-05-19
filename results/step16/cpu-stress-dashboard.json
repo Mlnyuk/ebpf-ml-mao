@@ -1,19 +1,19 @@
 {
   "status": "ok",
   "component": "analyzer",
-  "timestamp": 1778548351,
+  "timestamp": 1779159639,
   "summary": {
     "state": "warning",
-    "alert_count": 2,
-    "warning_count": 2,
+    "alert_count": 1,
+    "warning_count": 1,
     "critical_count": 0,
-    "latest_verdict": "anomalous"
+    "latest_verdict": "normal"
   },
   "counters": {
-    "received_count": 118,
-    "unique_count": 118,
-    "duplicates_count": 0,
-    "queue_count": 123,
+    "received_count": 3460,
+    "unique_count": 3454,
+    "duplicates_count": 6,
+    "queue_count": 160,
     "spool_count": 0
   },
   "registry": {
@@ -26,15 +26,15 @@
     ]
   },
   "ingest": {
-    "received_count": 118,
-    "unique_count": 118,
-    "duplicates_count": 0,
+    "received_count": 3460,
+    "unique_count": 3454,
+    "duplicates_count": 6,
     "repaired_at": null
   },
   "workflow": {
-    "received_count": 118,
-    "unique_count": 118,
-    "duplicates_count": 0,
+    "received_count": 3460,
+    "unique_count": 3454,
+    "duplicates_count": 6,
     "nodes": [
       "gpu-1",
       "gpu-2",
@@ -47,20 +47,20 @@
       "worker-3"
     ],
     "verdicts": {
-      "normal": 11,
-      "anomalous": 107
+      "anomalous": 3074,
+      "normal": 380
     },
     "phases": {
-      "phase3": 118
+      "phase3": 3454
     },
-    "latest_verdict": "anomalous"
+    "latest_verdict": "normal"
   },
   "queue": {
-    "count": 123,
-    "pending_count": 123,
+    "count": 160,
+    "pending_count": 160,
     "failed_count": 0,
     "expired_count": 0,
-    "oldest_age_seconds": 480,
+    "oldest_age_seconds": 579,
     "ttl_seconds": 86400,
     "quarantined_count": 0
   },
@@ -77,15 +77,8 @@
       "name": "queue_backlog",
       "severity": "warning",
       "message": "postprocess queue backlog exceeded threshold",
-      "value": 123,
+      "value": 160,
       "threshold": 50
-    },
-    {
-      "name": "latest_verdict",
-      "severity": "warning",
-      "message": "latest workflow verdict is anomalous",
-      "value": "anomalous",
-      "threshold": "normal"
     }
   ]
 }

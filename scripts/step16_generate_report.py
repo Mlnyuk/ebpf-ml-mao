@@ -130,6 +130,8 @@ def file_inventory() -> list[str]:
     expected = [RESULT_DIR / f"baseline-{kind}.json" for kind in KINDS]
     expected.append(RESULT_DIR / "baseline-tetragon-tail.jsonl")
     expected.append(RESULT_DIR / "baseline-tetragon-fault-target.jsonl")
+    expected.append(RESULT_DIR / "baseline-analyzer.log")
+    expected.append(RESULT_DIR / "baseline-collector.log")
     for scenario in SCENARIOS:
         expected.extend(RESULT_DIR / f"{scenario}-{kind}.json" for kind in KINDS)
         expected.append(RESULT_DIR / f"{scenario}-tetragon-tail.jsonl")

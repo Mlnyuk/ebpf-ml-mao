@@ -29,6 +29,8 @@ Related commit: `35ebcec` (`Finalize Step 16 fault coverage validation`)
 - Existing Step 16 baseline is explicitly marked contaminated because `latest_verdict` is `anomalous`.
 - The script compares score distributions and threshold candidates whenever clean baseline score samples are present.
 - Final threshold selection is blocked until clean baseline recapture produces normal baseline score samples.
+- Updated `app/ebpf_ml_mao/scoring.py` so generic event-volume spikes are capped below the default anomaly threshold unless semantic fault features such as exec, network, CPU, memory, file, or privilege signals also move.
+- Added regression coverage in `tests/test_step6_models.py` for event-count-only false positives and exec-count fault detection.
 
 ## Done
 

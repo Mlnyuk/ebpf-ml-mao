@@ -1,19 +1,19 @@
 {
   "status": "ok",
   "component": "analyzer",
-  "timestamp": 1778548284,
+  "timestamp": 1779159567,
   "summary": {
     "state": "warning",
-    "alert_count": 1,
-    "warning_count": 1,
+    "alert_count": 2,
+    "warning_count": 2,
     "critical_count": 0,
-    "latest_verdict": "normal"
+    "latest_verdict": "anomalous"
   },
   "counters": {
-    "received_count": 99,
-    "unique_count": 99,
-    "duplicates_count": 0,
-    "queue_count": 104,
+    "received_count": 3440,
+    "unique_count": 3434,
+    "duplicates_count": 6,
+    "queue_count": 139,
     "spool_count": 0
   },
   "registry": {
@@ -26,15 +26,15 @@
     ]
   },
   "ingest": {
-    "received_count": 99,
-    "unique_count": 99,
-    "duplicates_count": 0,
+    "received_count": 3440,
+    "unique_count": 3434,
+    "duplicates_count": 6,
     "repaired_at": null
   },
   "workflow": {
-    "received_count": 99,
-    "unique_count": 99,
-    "duplicates_count": 0,
+    "received_count": 3440,
+    "unique_count": 3434,
+    "duplicates_count": 6,
     "nodes": [
       "gpu-1",
       "gpu-2",
@@ -47,20 +47,20 @@
       "worker-3"
     ],
     "verdicts": {
-      "normal": 9,
-      "anomalous": 90
+      "anomalous": 3060,
+      "normal": 374
     },
     "phases": {
-      "phase3": 99
+      "phase3": 3434
     },
-    "latest_verdict": "normal"
+    "latest_verdict": "anomalous"
   },
   "queue": {
-    "count": 104,
-    "pending_count": 104,
+    "count": 139,
+    "pending_count": 139,
     "failed_count": 0,
     "expired_count": 0,
-    "oldest_age_seconds": 413,
+    "oldest_age_seconds": 507,
     "ttl_seconds": 86400,
     "quarantined_count": 0
   },
@@ -77,8 +77,15 @@
       "name": "queue_backlog",
       "severity": "warning",
       "message": "postprocess queue backlog exceeded threshold",
-      "value": 104,
+      "value": 139,
       "threshold": 50
+    },
+    {
+      "name": "latest_verdict",
+      "severity": "warning",
+      "message": "latest workflow verdict is anomalous",
+      "value": "anomalous",
+      "threshold": "normal"
     }
   ]
 }

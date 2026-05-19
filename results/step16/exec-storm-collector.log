@@ -6,18 +6,18 @@ Found 9 pods, using pod/ebpf-ml-mao-collector-rgtn5
     },
     {
       "name": "reviewer",
-      "summary": "Final verdict is anomalous with score 0.92 and confidence 0.96."
+      "summary": "Final verdict is anomalous with score 0.51 and confidence 0.71."
     }
   ]
 }
 {
   "status": "stored",
-  "digest": "bc2f7b22486bdf001f806f84eb1ea5f7cbc029cb4dfe4f2a4065f7fc9704158f",
-  "path": "/var/lib/ebpf-ml-mao/ingest/gpu-1/bc2f7b22486b-report.json",
+  "digest": "4a8bf228f2bdfbac158d30b4a1a19db76ff6fabe1fbd26cbd2e47188f9a304e3",
+  "path": "/var/lib/ebpf-ml-mao/ingest/gpu-1/4a8bf228f2bd-report.json",
   "workflow": {
-    "received_count": 26,
-    "unique_count": 26,
-    "duplicates_count": 0,
+    "received_count": 3354,
+    "unique_count": 3348,
+    "duplicates_count": 6,
     "nodes": [
       "gpu-1",
       "gpu-2",
@@ -30,17 +30,17 @@ Found 9 pods, using pod/ebpf-ml-mao-collector-rgtn5
       "worker-3"
     ],
     "verdicts": {
-      "normal": 3,
-      "anomalous": 23
+      "anomalous": 2981,
+      "normal": 367
     },
     "phases": {
-      "phase3": 26
+      "phase3": 3348
     },
     "latest_verdict": "anomalous"
   },
   "queue": {
     "status": "queued",
-    "path": "/var/lib/ebpf-ml-mao/postprocess-queue/1778548020235-report-ingest.json"
+    "path": "/var/lib/ebpf-ml-mao/postprocess-queue/1779159253421-report-ingest.json"
   },
   "spooled": false
 }
@@ -60,11 +60,11 @@ Found 9 pods, using pod/ebpf-ml-mao-collector-rgtn5
   "verdict": "anomalous",
   "confidence": 1.0,
   "feature_window": {
-    "window_start": 1778548020.147116,
-    "window_end": 1778548043.831512,
+    "window_start": 1779159271.781958,
+    "window_end": 1779159284.809463,
     "workload": "unknown-workload",
     "values": {
-      "event_count": 86.0,
+      "event_count": 100.0,
       "exec_count": 0.0,
       "network_event_count": 0.0,
       "unique_pids": 1.0,
@@ -79,7 +79,7 @@ Found 9 pods, using pod/ebpf-ml-mao-collector-rgtn5
   "agents": [
     {
       "name": "summarizer",
-      "summary": "unknown-workload produced 86 events in 24s with 0 exec events and 0 network events."
+      "summary": "unknown-workload produced 100 events in 13s with 0 exec events and 0 network events."
     },
     {
       "name": "analyst",
@@ -97,12 +97,12 @@ Found 9 pods, using pod/ebpf-ml-mao-collector-rgtn5
 }
 {
   "status": "stored",
-  "digest": "9510e45e11809845132b1711972f88b6adca0c10e87b6f9e659b4c14ebb6efdb",
-  "path": "/var/lib/ebpf-ml-mao/ingest/gpu-1/9510e45e1180-report.json",
+  "digest": "1dbe742bf977069e0c133563dac7b3ffd376f09aac4d34250911492e6c3b1b56",
+  "path": "/var/lib/ebpf-ml-mao/ingest/gpu-1/1dbe742bf977-report.json",
   "workflow": {
-    "received_count": 35,
-    "unique_count": 35,
-    "duplicates_count": 0,
+    "received_count": 3363,
+    "unique_count": 3357,
+    "duplicates_count": 6,
     "nodes": [
       "gpu-1",
       "gpu-2",
@@ -115,102 +115,17 @@ Found 9 pods, using pod/ebpf-ml-mao-collector-rgtn5
       "worker-3"
     ],
     "verdicts": {
-      "normal": 4,
-      "anomalous": 31
+      "anomalous": 2988,
+      "normal": 369
     },
     "phases": {
-      "phase3": 35
+      "phase3": 3357
     },
     "latest_verdict": "anomalous"
   },
   "queue": {
     "status": "queued",
-    "path": "/var/lib/ebpf-ml-mao/postprocess-queue/1778548053135-report-ingest.json"
-  },
-  "spooled": false
-}
-{
-  "removed": 0,
-  "quarantined": []
-}
-{
-  "sent": 0,
-  "failed": 0,
-  "expired": 0,
-  "quarantined": [],
-  "remaining": []
-}
-{
-  "score": 0.8958,
-  "verdict": "anomalous",
-  "confidence": 0.9465,
-  "feature_window": {
-    "window_start": 1778548052.428641,
-    "window_end": 1778548073.831535,
-    "workload": "unknown-workload",
-    "values": {
-      "event_count": 46.0,
-      "exec_count": 0.0,
-      "network_event_count": 0.0,
-      "unique_pids": 1.0,
-      "avg_cpu_usage": 0.0,
-      "max_cpu_usage": 0.0,
-      "avg_memory_usage": 0.0,
-      "max_memory_usage": 0.0,
-      "avg_network_connections": 0.0,
-      "max_network_connections": 0
-    }
-  },
-  "agents": [
-    {
-      "name": "summarizer",
-      "summary": "unknown-workload produced 46 events in 21s with 0 exec events and 0 network events."
-    },
-    {
-      "name": "analyst",
-      "summary": "Score 0.90 driven by no strong outliers."
-    },
-    {
-      "name": "correlator",
-      "summary": "Resource and event correlation suggests CPU 0.0% with 0 concurrent connections."
-    },
-    {
-      "name": "reviewer",
-      "summary": "Final verdict is anomalous with score 0.90 and confidence 0.95."
-    }
-  ]
-}
-{
-  "status": "stored",
-  "digest": "3e140ea1b39925b8c13a46a6218e3d869e83dea886eb3c67860bce20269c8ca4",
-  "path": "/var/lib/ebpf-ml-mao/ingest/gpu-1/3e140ea1b399-report.json",
-  "workflow": {
-    "received_count": 44,
-    "unique_count": 44,
-    "duplicates_count": 0,
-    "nodes": [
-      "gpu-1",
-      "gpu-2",
-      "gpu-3",
-      "infra-1",
-      "infra-2",
-      "infra-3",
-      "worker-1",
-      "worker-2",
-      "worker-3"
-    ],
-    "verdicts": {
-      "normal": 4,
-      "anomalous": 40
-    },
-    "phases": {
-      "phase3": 44
-    },
-    "latest_verdict": "anomalous"
-  },
-  "queue": {
-    "status": "queued",
-    "path": "/var/lib/ebpf-ml-mao/postprocess-queue/1778548086030-report-ingest.json"
+    "path": "/var/lib/ebpf-ml-mao/postprocess-queue/1779159286421-report-ingest.json"
   },
   "spooled": false
 }
@@ -230,11 +145,11 @@ Found 9 pods, using pod/ebpf-ml-mao-collector-rgtn5
   "verdict": "anomalous",
   "confidence": 1.0,
   "feature_window": {
-    "window_start": 1778548080.336309,
-    "window_end": 1778548103.830987,
+    "window_start": 1779159301.289923,
+    "window_end": 1779159317.814049,
     "workload": "unknown-workload",
     "values": {
-      "event_count": 80.0,
+      "event_count": 100.0,
       "exec_count": 0.0,
       "network_event_count": 0.0,
       "unique_pids": 1.0,
@@ -249,7 +164,7 @@ Found 9 pods, using pod/ebpf-ml-mao-collector-rgtn5
   "agents": [
     {
       "name": "summarizer",
-      "summary": "unknown-workload produced 80 events in 23s with 0 exec events and 0 network events."
+      "summary": "unknown-workload produced 100 events in 17s with 0 exec events and 0 network events."
     },
     {
       "name": "analyst",
@@ -267,12 +182,12 @@ Found 9 pods, using pod/ebpf-ml-mao-collector-rgtn5
 }
 {
   "status": "stored",
-  "digest": "9ae2cd9eb47ccbda522366a4377c6f1c8939405c5c9fcc9b8e25c2f097214c69",
-  "path": "/var/lib/ebpf-ml-mao/ingest/gpu-1/9ae2cd9eb47c-report.json",
+  "digest": "1806e0b46278ab60dcbcabb8f64a93af907baab8f38f9627ea7c5f7bdc96b436",
+  "path": "/var/lib/ebpf-ml-mao/ingest/gpu-1/1806e0b46278-report.json",
   "workflow": {
-    "received_count": 53,
-    "unique_count": 53,
-    "duplicates_count": 0,
+    "received_count": 3373,
+    "unique_count": 3367,
+    "duplicates_count": 6,
     "nodes": [
       "gpu-1",
       "gpu-2",
@@ -285,17 +200,102 @@ Found 9 pods, using pod/ebpf-ml-mao-collector-rgtn5
       "worker-3"
     ],
     "verdicts": {
-      "normal": 4,
-      "anomalous": 49
+      "anomalous": 2996,
+      "normal": 371
     },
     "phases": {
-      "phase3": 53
+      "phase3": 3367
     },
     "latest_verdict": "anomalous"
   },
   "queue": {
     "status": "queued",
-    "path": "/var/lib/ebpf-ml-mao/postprocess-queue/1778548118955-report-ingest.json"
+    "path": "/var/lib/ebpf-ml-mao/postprocess-queue/1779159319421-report-ingest.json"
+  },
+  "spooled": false
+}
+{
+  "removed": 0,
+  "quarantined": []
+}
+{
+  "sent": 0,
+  "failed": 0,
+  "expired": 0,
+  "quarantined": [],
+  "remaining": []
+}
+{
+  "score": 1.0,
+  "verdict": "anomalous",
+  "confidence": 1.0,
+  "feature_window": {
+    "window_start": 1779159337.714227,
+    "window_end": 1779159351.331575,
+    "workload": "unknown-workload",
+    "values": {
+      "event_count": 100.0,
+      "exec_count": 0.0,
+      "network_event_count": 0.0,
+      "unique_pids": 1.0,
+      "avg_cpu_usage": 0.0,
+      "max_cpu_usage": 0.0,
+      "avg_memory_usage": 0.0,
+      "max_memory_usage": 0.0,
+      "avg_network_connections": 0.0,
+      "max_network_connections": 0
+    }
+  },
+  "agents": [
+    {
+      "name": "summarizer",
+      "summary": "unknown-workload produced 100 events in 14s with 0 exec events and 0 network events."
+    },
+    {
+      "name": "analyst",
+      "summary": "Score 1.00 driven by no strong outliers."
+    },
+    {
+      "name": "correlator",
+      "summary": "Resource and event correlation suggests CPU 0.0% with 0 concurrent connections."
+    },
+    {
+      "name": "reviewer",
+      "summary": "Final verdict is anomalous with score 1.00 and confidence 1.00."
+    }
+  ]
+}
+{
+  "status": "stored",
+  "digest": "72b6c35ff2ec579adcf47f5838ae4b45f202f30d19fa87255f138aee6c173530",
+  "path": "/var/lib/ebpf-ml-mao/ingest/gpu-1/72b6c35ff2ec-report.json",
+  "workflow": {
+    "received_count": 3382,
+    "unique_count": 3376,
+    "duplicates_count": 6,
+    "nodes": [
+      "gpu-1",
+      "gpu-2",
+      "gpu-3",
+      "infra-1",
+      "infra-2",
+      "infra-3",
+      "worker-1",
+      "worker-2",
+      "worker-3"
+    ],
+    "verdicts": {
+      "anomalous": 3005,
+      "normal": 371
+    },
+    "phases": {
+      "phase3": 3376
+    },
+    "latest_verdict": "anomalous"
+  },
+  "queue": {
+    "status": "queued",
+    "path": "/var/lib/ebpf-ml-mao/postprocess-queue/1779159352419-report-ingest.json"
   },
   "spooled": false
 }

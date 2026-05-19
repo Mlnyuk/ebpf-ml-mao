@@ -129,6 +129,38 @@ class Step6ModelsTest(unittest.TestCase):
         self.assertGreaterEqual(score, 0.45)
         self.assertGreater(confidence, 0.0)
 
+    def test_zscore_event_count_only_spike_is_capped_below_threshold(self) -> None:
+        baseline = [
+            FeatureWindow(
+                window_start=1.0,
+                window_end=31.0,
+                workload="fault-target",
+                values={
+                    "event_count": 2.0,
+                    "tetragon_event_count": 2.0,
+                    "exec_count": 0.0,
+                    "network_event_count": 0.0,
+                    "unique_pids": 1.0,
+                    "avg_cpu_usage": 0.0,
+                    "max_cpu_usage": 0.0,
+                    "avg_memory_usage": 0.0,
+                    "max_memory_usage": 0.0,
+                    "avg_network_connections": 0.0,
+                    "max_network_connections": 0.0,
+                },
+            )
+        ]
+        scorer = BaselineScorer(model_type="zscore")
+        scorer.fit(baseline, threshold=0.45, model_type="zscore")
+        noisy_normal = FeatureWindow(
+            window_start=61.0,
+            window_end=91.0,
+            workload="fault-target",
+            values={**baseline[0].values, "event_count": 100.0, "tetragon_event_count": 100.0},
+        )
+        score, _ = scorer.score(noisy_normal)
+        self.assertLess(score, 0.45)
+
     def test_unknown_schema_version_is_rejected(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
             model_path = Path(temp_dir, "bad-model.json")

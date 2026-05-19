@@ -1,19 +1,19 @@
 {
   "status": "ok",
   "component": "analyzer",
-  "timestamp": 1778548072,
+  "timestamp": 1779159867,
   "summary": {
     "state": "warning",
-    "alert_count": 1,
-    "warning_count": 1,
+    "alert_count": 2,
+    "warning_count": 2,
     "critical_count": 0,
     "latest_verdict": "anomalous"
   },
   "counters": {
-    "received_count": 41,
-    "unique_count": 41,
-    "duplicates_count": 0,
-    "queue_count": 46,
+    "received_count": 3523,
+    "unique_count": 3517,
+    "duplicates_count": 6,
+    "queue_count": 224,
     "spool_count": 0
   },
   "registry": {
@@ -26,15 +26,15 @@
     ]
   },
   "ingest": {
-    "received_count": 41,
-    "unique_count": 41,
-    "duplicates_count": 0,
+    "received_count": 3523,
+    "unique_count": 3517,
+    "duplicates_count": 6,
     "repaired_at": null
   },
   "workflow": {
-    "received_count": 41,
-    "unique_count": 41,
-    "duplicates_count": 0,
+    "received_count": 3523,
+    "unique_count": 3517,
+    "duplicates_count": 6,
     "nodes": [
       "gpu-1",
       "gpu-2",
@@ -47,20 +47,20 @@
       "worker-3"
     ],
     "verdicts": {
-      "normal": 4,
-      "anomalous": 37
+      "anomalous": 3131,
+      "normal": 386
     },
     "phases": {
-      "phase3": 41
+      "phase3": 3517
     },
     "latest_verdict": "anomalous"
   },
   "queue": {
-    "count": 46,
-    "pending_count": 46,
+    "count": 224,
+    "pending_count": 224,
     "failed_count": 0,
     "expired_count": 0,
-    "oldest_age_seconds": 201,
+    "oldest_age_seconds": 807,
     "ttl_seconds": 86400,
     "quarantined_count": 0
   },
@@ -73,6 +73,13 @@
     "available": false
   },
   "alerts": [
+    {
+      "name": "queue_backlog",
+      "severity": "warning",
+      "message": "postprocess queue backlog exceeded threshold",
+      "value": 224,
+      "threshold": 50
+    },
     {
       "name": "latest_verdict",
       "severity": "warning",

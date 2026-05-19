@@ -1,21 +1,28 @@
 {
   "status": "warning",
   "component": "analyzer",
-  "timestamp": 1778548284,
+  "timestamp": 1779159567,
   "summary": {
     "state": "warning",
-    "alert_count": 1,
-    "warning_count": 1,
+    "alert_count": 2,
+    "warning_count": 2,
     "critical_count": 0,
-    "latest_verdict": "normal"
+    "latest_verdict": "anomalous"
   },
   "alerts": [
     {
       "name": "queue_backlog",
       "severity": "warning",
       "message": "postprocess queue backlog exceeded threshold",
-      "value": 104,
+      "value": 139,
       "threshold": 50
+    },
+    {
+      "name": "latest_verdict",
+      "severity": "warning",
+      "message": "latest workflow verdict is anomalous",
+      "value": "anomalous",
+      "threshold": "normal"
     }
   ]
 }
