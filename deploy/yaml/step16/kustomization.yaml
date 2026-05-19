@@ -3,3 +3,4 @@ kind: Kustomization
 resources:
   - ../step15
   - fault-workloads.yaml
+  - tetragon-fault-coverage-policy.yaml

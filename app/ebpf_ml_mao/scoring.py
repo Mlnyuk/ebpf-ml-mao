@@ -12,6 +12,8 @@ MODEL_SCHEMA_V2 = "v2"
 SUPPORTED_SCHEMA_VERSIONS = {MODEL_SCHEMA_V1, MODEL_SCHEMA_V2}
 SUPPORTED_MODEL_TYPES = {"baseline", "zscore"}
 LATEST_SCHEMA_VERSION = MODEL_SCHEMA_V2
+ZSCORE_AVG_SCALE = 3.0
+ZSCORE_PEAK_SCALE = 4.0
 
 
 @dataclass(slots=True)
@@ -270,7 +272,10 @@ class BaselineScorer:
             observed_value = feature_window.values.get(key, 0.0)
             z_values.append(abs(observed_value - mean) / safe_std)
         avg_z = sum(z_values) / len(z_values)
-        score = min(1.0, avg_z / 3.0)
+        max_z = max(z_values)
+        avg_component = avg_z / ZSCORE_AVG_SCALE
+        peak_component = max_z / ZSCORE_PEAK_SCALE
+        score = min(1.0, max(avg_component, peak_component))
         confidence = min(1.0, math.sqrt(score))
         return score, confidence
 

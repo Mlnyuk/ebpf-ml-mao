@@ -8,6 +8,7 @@ Step 16 범위는 `live fault scenario validation`입니다.
 
 - `deploy/yaml/step16/kustomization.yaml`
 - `deploy/yaml/step16/fault-workloads.yaml`
+- `deploy/yaml/step16/tetragon-fault-coverage-policy.yaml`
 - `scripts/fault-scenarios/exec-storm.sh`
 - `scripts/fault-scenarios/network-burst.sh`
 - `scripts/fault-scenarios/cpu-stress.sh`
@@ -25,6 +26,15 @@ Step 16은 `ebpf-obs-test` namespace에 `fault-target` Deployment를 생성합�
   - limits: CPU `500m`, memory `256Mi`
 
 이 workload는 장애성 행위를 주입하기 위한 안전한 관측 대상이며, 운영 analyzer의 PVC/registry/ingest 동작은 바꾸지 않습니다.
+
+## Tetragon Coverage
+
+Step 16 overlay는 `ebpf-obs-test` namespace에 `TracingPolicyNamespaced` coverage policy를 같이 적용하고, `podSelector.matchLabels.app=fault-target`로 테스트 workload에만 제한합니다.
+
+- `sys_execve`: `exec-storm` 및 다른 scenario의 in-pod command 실행을 `process_exec` feature로 반영하기 위한 coverage
+- `tcp_connect`: `network-burst`의 outbound connection 시도를 `network_connection` feature로 반영하기 위한 coverage
+
+collector는 `TETRAGON_LOG_PATH`의 tail을 읽기 때문에, scenario 직후 `scripts/step16_collect_results.sh`가 `*-tetragon-tail.jsonl`을 함께 저장합니다. 이 파일에서 `process_exec`, `process_kprobe`, `tcp_connect`, `fault-target` 키워드가 보이지 않으면 anomaly score 이전 단계에서 Tetragon coverage가 부족한 것입니다.
 
 ## Scenarios
 

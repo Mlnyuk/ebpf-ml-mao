@@ -1,0 +1,33 @@
+apiVersion: cilium.io/v1alpha1
+kind: TracingPolicyNamespaced
+metadata:
+  name: step16-fault-exec-coverage
+  namespace: ebpf-obs-test
+spec:
+  podSelector:
+    matchLabels:
+      app: fault-target
+  kprobes:
+    - call: "sys_execve"
+      syscall: true
+      args:
+        - index: 0
+          type: "string"
+        - index: 1
+          type: "char_buf"
+---
+apiVersion: cilium.io/v1alpha1
+kind: TracingPolicyNamespaced
+metadata:
+  name: step16-fault-network-coverage
+  namespace: ebpf-obs-test
+spec:
+  podSelector:
+    matchLabels:
+      app: fault-target
+  kprobes:
+    - call: "tcp_connect"
+      syscall: false
+      args:
+        - index: 0
+          type: "sock"

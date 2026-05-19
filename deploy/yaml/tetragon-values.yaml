@@ -20,7 +20,8 @@ tetragon:
         release: my-monitoring   # kube-prometheus-stack release 라벨
 
   # JSON 이벤트 파일 출력 (선택적 파이프라인용)
-  exportFilename: "/var/run/cilium/tetragon/tetragon.log"
+  exportFilename: "tetragon.log"
+  exportFilePerm: "644"
 
   # gRPC 이벤트 서버 활성화 (tetra CLI 연결용)
   grpc:

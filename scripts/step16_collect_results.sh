@@ -54,11 +54,49 @@ collect_top() {
   fi
 }
 
+collect_tetragon_tail() {
+  local scenario="$1"
+  local target_node
+  local collector_pod
+
+  target_node="$(kubectl get pod -n "${NAMESPACE}" -l app=fault-target -o jsonpath='{.items[0].spec.nodeName}' 2>/dev/null || true)"
+  if [[ -z "${target_node}" ]]; then
+    write_json_error "${RESULT_DIR}/${scenario}-tetragon-tail.jsonl" "fault-target pod not found; cannot choose node-local collector"
+    log "fault-target pod not found; wrote error JSON to ${scenario}-tetragon-tail.jsonl"
+    return
+  fi
+
+  collector_pod="$(
+    kubectl get pod -n ebpf-obs \
+      -l app=ebpf-ml-mao-collector \
+      --field-selector "spec.nodeName=${target_node}" \
+      -o jsonpath='{.items[0].metadata.name}' 2>/dev/null || true
+  )"
+  if [[ -z "${collector_pod}" ]]; then
+    write_json_error "${RESULT_DIR}/${scenario}-tetragon-tail.jsonl" "collector pod not found on ${target_node}; cannot inspect Tetragon tail"
+    log "collector pod not found on ${target_node}; wrote error JSON to ${scenario}-tetragon-tail.jsonl"
+    return
+  fi
+
+  if kubectl exec -n ebpf-obs "${collector_pod}" -c collector -- /bin/sh -c 'tail -n "${TETRAGON_TAIL_LINES:-200}" "${TETRAGON_LOG_PATH}"' > "${RESULT_DIR}/${scenario}-tetragon-tail.jsonl" 2>&1; then
+    log "wrote ${scenario}-tetragon-tail.jsonl"
+  else
+    log "failed to collect Tetragon tail; see ${scenario}-tetragon-tail.jsonl"
+  fi
+
+  if kubectl exec -n ebpf-obs "${collector_pod}" -c collector -- /bin/sh -c 'grep -F "fault-target" "${TETRAGON_LOG_PATH}" | tail -n "${TETRAGON_TARGET_TAIL_LINES:-50}" || true' > "${RESULT_DIR}/${scenario}-tetragon-fault-target.jsonl" 2>&1; then
+    log "wrote ${scenario}-tetragon-fault-target.jsonl"
+  else
+    log "failed to collect fault-target Tetragon events; see ${scenario}-tetragon-fault-target.jsonl"
+  fi
+}
+
 collect_snapshot() {
   local prefix="$1"
   collect_endpoint "/v1/dashboard" "${RESULT_DIR}/${prefix}-dashboard.json"
   collect_endpoint "/v1/alerts" "${RESULT_DIR}/${prefix}-alerts.json"
   collect_endpoint "/v1/workflow" "${RESULT_DIR}/${prefix}-workflow.json"
+  collect_tetragon_tail "${prefix}"
 }
 
 run_scenario() {

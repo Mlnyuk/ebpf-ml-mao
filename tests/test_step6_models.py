@@ -13,6 +13,7 @@ if str(APP_DIR) not in sys.path:
 
 from ebpf_ml_mao.pipeline import run_phase5, train_baseline_model_from_raw
 from ebpf_ml_mao.scoring import BaselineScorer
+from ebpf_ml_mao.models import FeatureWindow
 
 
 class Step6ModelsTest(unittest.TestCase):
@@ -58,6 +59,75 @@ class Step6ModelsTest(unittest.TestCase):
             self.assertEqual(len(batch.reports), 3)
             self.assertTrue(Path(temp_dir, "report-index.json").exists())
             self.assertTrue(any(report.verdict in {"normal", "anomalous"} for report in batch.reports))
+
+    def test_zscore_peak_signal_is_not_diluted_by_many_features(self) -> None:
+        baseline = [
+            FeatureWindow(
+                window_start=1.0,
+                window_end=31.0,
+                workload="fault-target",
+                values={
+                    "event_count": 2.0,
+                    "tetragon_event_count": 2.0,
+                    "prometheus_event_count": 0.0,
+                    "exec_count": 2.0,
+                    "network_event_count": 0.0,
+                    "file_event_count": 0.0,
+                    "privilege_event_count": 0.0,
+                    "unique_pids": 2.0,
+                    "window_duration_seconds": 30.0,
+                    "event_rate_per_minute": 4.0,
+                    "exec_rate_per_minute": 4.0,
+                    "network_event_rate_per_minute": 0.0,
+                    "avg_cpu_usage": 0.0,
+                    "max_cpu_usage": 0.0,
+                    "cpu_pressure_ratio": 0.0,
+                    "avg_memory_usage": 0.0,
+                    "max_memory_usage": 0.0,
+                    "avg_network_connections": 0.0,
+                    "max_network_connections": 0.0,
+                    "network_connection_pressure": 0.0,
+                },
+            ),
+            FeatureWindow(
+                window_start=61.0,
+                window_end=91.0,
+                workload="fault-target",
+                values={
+                    "event_count": 3.0,
+                    "tetragon_event_count": 3.0,
+                    "prometheus_event_count": 0.0,
+                    "exec_count": 3.0,
+                    "network_event_count": 0.0,
+                    "file_event_count": 0.0,
+                    "privilege_event_count": 0.0,
+                    "unique_pids": 3.0,
+                    "window_duration_seconds": 30.0,
+                    "event_rate_per_minute": 6.0,
+                    "exec_rate_per_minute": 6.0,
+                    "network_event_rate_per_minute": 0.0,
+                    "avg_cpu_usage": 0.0,
+                    "max_cpu_usage": 0.0,
+                    "cpu_pressure_ratio": 0.0,
+                    "avg_memory_usage": 0.0,
+                    "max_memory_usage": 0.0,
+                    "avg_network_connections": 0.0,
+                    "max_network_connections": 0.0,
+                    "network_connection_pressure": 0.0,
+                },
+            ),
+        ]
+        scorer = BaselineScorer(model_type="zscore")
+        scorer.fit(baseline, threshold=0.45, model_type="zscore")
+        fault = FeatureWindow(
+            window_start=121.0,
+            window_end=151.0,
+            workload="fault-target",
+            values={**baseline[0].values, "exec_count": 12.0, "exec_rate_per_minute": 24.0},
+        )
+        score, confidence = scorer.score(fault)
+        self.assertGreaterEqual(score, 0.45)
+        self.assertGreater(confidence, 0.0)
 
     def test_unknown_schema_version_is_rejected(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:

@@ -1,19 +1,19 @@
 {
   "status": "ok",
   "component": "analyzer",
-  "timestamp": 1777340763,
+  "timestamp": 1778548351,
   "summary": {
     "state": "warning",
-    "alert_count": 1,
-    "warning_count": 1,
+    "alert_count": 2,
+    "warning_count": 2,
     "critical_count": 0,
-    "latest_verdict": "normal"
+    "latest_verdict": "anomalous"
   },
   "counters": {
-    "received_count": 187,
-    "unique_count": 187,
+    "received_count": 118,
+    "unique_count": 118,
     "duplicates_count": 0,
-    "queue_count": 203,
+    "queue_count": 123,
     "spool_count": 0
   },
   "registry": {
@@ -26,18 +26,19 @@
     ]
   },
   "ingest": {
-    "received_count": 187,
-    "unique_count": 187,
+    "received_count": 118,
+    "unique_count": 118,
     "duplicates_count": 0,
     "repaired_at": null
   },
   "workflow": {
-    "received_count": 187,
-    "unique_count": 187,
+    "received_count": 118,
+    "unique_count": 118,
     "duplicates_count": 0,
     "nodes": [
       "gpu-1",
       "gpu-2",
+      "gpu-3",
       "infra-1",
       "infra-2",
       "infra-3",
@@ -46,19 +47,20 @@
       "worker-3"
     ],
     "verdicts": {
-      "normal": 187
+      "normal": 11,
+      "anomalous": 107
     },
     "phases": {
-      "phase3": 187
+      "phase3": 118
     },
-    "latest_verdict": "normal"
+    "latest_verdict": "anomalous"
   },
   "queue": {
-    "count": 203,
-    "pending_count": 203,
+    "count": 123,
+    "pending_count": 123,
     "failed_count": 0,
     "expired_count": 0,
-    "oldest_age_seconds": 794,
+    "oldest_age_seconds": 480,
     "ttl_seconds": 86400,
     "quarantined_count": 0
   },
@@ -75,8 +77,15 @@
       "name": "queue_backlog",
       "severity": "warning",
       "message": "postprocess queue backlog exceeded threshold",
-      "value": 203,
+      "value": 123,
       "threshold": 50
+    },
+    {
+      "name": "latest_verdict",
+      "severity": "warning",
+      "message": "latest workflow verdict is anomalous",
+      "value": "anomalous",
+      "threshold": "normal"
     }
   ]
 }

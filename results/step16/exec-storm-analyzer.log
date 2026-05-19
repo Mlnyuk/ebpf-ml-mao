@@ -1,200 +1,200 @@
-172.30.0.225 - - [28/Apr/2026 01:34:47] "GET /healthz HTTP/1.1" 200 -
-10.233.64.192 - - [28/Apr/2026 01:34:52] "POST /v1/reports HTTP/1.1" 202 -
-10.233.64.195 - - [28/Apr/2026 01:34:52] "POST /v1/reports HTTP/1.1" 202 -
-172.30.0.225 - - [28/Apr/2026 01:34:53] "GET /healthz HTTP/1.1" 200 -
-172.30.0.225 - - [28/Apr/2026 01:34:57] "GET /healthz HTTP/1.1" 200 -
-10.233.64.198 - - [28/Apr/2026 01:34:59] "POST /v1/reports HTTP/1.1" 202 -
-10.233.64.199 - - [28/Apr/2026 01:35:03] "POST /v1/reports HTTP/1.1" 202 -
-10.233.64.196 - - [28/Apr/2026 01:35:04] "POST /v1/reports HTTP/1.1" 202 -
-172.30.0.225 - - [28/Apr/2026 01:35:07] "GET /healthz HTTP/1.1" 200 -
-172.30.0.225 - - [28/Apr/2026 01:35:08] "GET /healthz HTTP/1.1" 200 -
-10.233.64.194 - - [28/Apr/2026 01:35:10] "POST /v1/reports HTTP/1.1" 202 -
-10.233.64.202 - - [28/Apr/2026 01:35:10] "POST /v1/reports HTTP/1.1" 202 -
-172.30.0.225 - - [28/Apr/2026 01:35:17] "GET /healthz HTTP/1.1" 200 -
-10.233.64.193 - - [28/Apr/2026 01:35:17] "POST /v1/reports HTTP/1.1" 202 -
-172.30.0.225 - - [28/Apr/2026 01:35:23] "GET /healthz HTTP/1.1" 200 -
-10.233.64.192 - - [28/Apr/2026 01:35:24] "POST /v1/reports HTTP/1.1" 202 -
-10.233.64.195 - - [28/Apr/2026 01:35:25] "POST /v1/reports HTTP/1.1" 202 -
-172.30.0.225 - - [28/Apr/2026 01:35:27] "GET /healthz HTTP/1.1" 200 -
-10.233.64.198 - - [28/Apr/2026 01:35:32] "POST /v1/reports HTTP/1.1" 202 -
-10.233.64.199 - - [28/Apr/2026 01:35:36] "POST /v1/reports HTTP/1.1" 202 -
-10.233.64.196 - - [28/Apr/2026 01:35:36] "POST /v1/reports HTTP/1.1" 202 -
-172.30.0.225 - - [28/Apr/2026 01:35:37] "GET /healthz HTTP/1.1" 200 -
-172.30.0.225 - - [28/Apr/2026 01:35:38] "GET /healthz HTTP/1.1" 200 -
-10.233.64.194 - - [28/Apr/2026 01:35:42] "POST /v1/reports HTTP/1.1" 202 -
-10.233.64.202 - - [28/Apr/2026 01:35:43] "POST /v1/reports HTTP/1.1" 202 -
-172.30.0.225 - - [28/Apr/2026 01:35:47] "GET /healthz HTTP/1.1" 200 -
-10.233.64.193 - - [28/Apr/2026 01:35:49] "POST /v1/reports HTTP/1.1" 202 -
-172.30.0.225 - - [28/Apr/2026 01:35:53] "GET /healthz HTTP/1.1" 200 -
-10.233.64.192 - - [28/Apr/2026 01:35:56] "POST /v1/reports HTTP/1.1" 202 -
-172.30.0.225 - - [28/Apr/2026 01:35:57] "GET /healthz HTTP/1.1" 200 -
-10.233.64.195 - - [28/Apr/2026 01:35:58] "POST /v1/reports HTTP/1.1" 202 -
-10.233.64.198 - - [28/Apr/2026 01:36:04] "POST /v1/reports HTTP/1.1" 202 -
-172.30.0.225 - - [28/Apr/2026 01:36:07] "GET /healthz HTTP/1.1" 200 -
-10.233.64.196 - - [28/Apr/2026 01:36:08] "POST /v1/reports HTTP/1.1" 202 -
-10.233.64.199 - - [28/Apr/2026 01:36:08] "POST /v1/reports HTTP/1.1" 202 -
-172.30.0.225 - - [28/Apr/2026 01:36:08] "GET /healthz HTTP/1.1" 200 -
-10.233.64.194 - - [28/Apr/2026 01:36:14] "POST /v1/reports HTTP/1.1" 202 -
-10.233.64.202 - - [28/Apr/2026 01:36:16] "POST /v1/reports HTTP/1.1" 202 -
-172.30.0.225 - - [28/Apr/2026 01:36:17] "GET /healthz HTTP/1.1" 200 -
-10.233.64.193 - - [28/Apr/2026 01:36:21] "POST /v1/reports HTTP/1.1" 202 -
-172.30.0.225 - - [28/Apr/2026 01:36:23] "GET /healthz HTTP/1.1" 200 -
-172.30.0.225 - - [28/Apr/2026 01:36:27] "GET /healthz HTTP/1.1" 200 -
-10.233.64.192 - - [28/Apr/2026 01:36:28] "POST /v1/reports HTTP/1.1" 202 -
-10.233.64.195 - - [28/Apr/2026 01:36:31] "POST /v1/reports HTTP/1.1" 202 -
-10.233.64.198 - - [28/Apr/2026 01:36:36] "POST /v1/reports HTTP/1.1" 202 -
-172.30.0.225 - - [28/Apr/2026 01:36:37] "GET /healthz HTTP/1.1" 200 -
-172.30.0.225 - - [28/Apr/2026 01:36:38] "GET /healthz HTTP/1.1" 200 -
-10.233.64.196 - - [28/Apr/2026 01:36:40] "POST /v1/reports HTTP/1.1" 202 -
-10.233.64.199 - - [28/Apr/2026 01:36:40] "POST /v1/reports HTTP/1.1" 202 -
-10.233.64.194 - - [28/Apr/2026 01:36:46] "POST /v1/reports HTTP/1.1" 202 -
-172.30.0.225 - - [28/Apr/2026 01:36:47] "GET /healthz HTTP/1.1" 200 -
-10.233.64.202 - - [28/Apr/2026 01:36:49] "POST /v1/reports HTTP/1.1" 202 -
-172.30.0.225 - - [28/Apr/2026 01:36:53] "GET /healthz HTTP/1.1" 200 -
-10.233.64.193 - - [28/Apr/2026 01:36:53] "POST /v1/reports HTTP/1.1" 202 -
-172.30.0.225 - - [28/Apr/2026 01:36:57] "GET /healthz HTTP/1.1" 200 -
-10.233.64.192 - - [28/Apr/2026 01:37:01] "POST /v1/reports HTTP/1.1" 202 -
-10.233.64.195 - - [28/Apr/2026 01:37:04] "POST /v1/reports HTTP/1.1" 202 -
-172.30.0.225 - - [28/Apr/2026 01:37:07] "GET /healthz HTTP/1.1" 200 -
-172.30.0.225 - - [28/Apr/2026 01:37:08] "GET /healthz HTTP/1.1" 200 -
-10.233.64.198 - - [28/Apr/2026 01:37:09] "POST /v1/reports HTTP/1.1" 202 -
-10.233.64.196 - - [28/Apr/2026 01:37:12] "POST /v1/reports HTTP/1.1" 202 -
-10.233.64.199 - - [28/Apr/2026 01:37:13] "POST /v1/reports HTTP/1.1" 202 -
-172.30.0.225 - - [28/Apr/2026 01:37:17] "GET /healthz HTTP/1.1" 200 -
-10.233.64.194 - - [28/Apr/2026 01:37:18] "POST /v1/reports HTTP/1.1" 202 -
-10.233.64.202 - - [28/Apr/2026 01:37:22] "POST /v1/reports HTTP/1.1" 202 -
-172.30.0.225 - - [28/Apr/2026 01:37:23] "GET /healthz HTTP/1.1" 200 -
-10.233.64.193 - - [28/Apr/2026 01:37:25] "POST /v1/reports HTTP/1.1" 202 -
-172.30.0.225 - - [28/Apr/2026 01:37:27] "GET /healthz HTTP/1.1" 200 -
-10.233.64.192 - - [28/Apr/2026 01:37:33] "POST /v1/reports HTTP/1.1" 202 -
-10.233.64.195 - - [28/Apr/2026 01:37:37] "POST /v1/reports HTTP/1.1" 202 -
-172.30.0.225 - - [28/Apr/2026 01:37:37] "GET /healthz HTTP/1.1" 200 -
-172.30.0.225 - - [28/Apr/2026 01:37:38] "GET /healthz HTTP/1.1" 200 -
-10.233.64.198 - - [28/Apr/2026 01:37:41] "POST /v1/reports HTTP/1.1" 202 -
-10.233.64.196 - - [28/Apr/2026 01:37:44] "POST /v1/reports HTTP/1.1" 202 -
-10.233.64.199 - - [28/Apr/2026 01:37:45] "POST /v1/reports HTTP/1.1" 202 -
-172.30.0.225 - - [28/Apr/2026 01:37:47] "GET /healthz HTTP/1.1" 200 -
-10.233.64.194 - - [28/Apr/2026 01:37:50] "POST /v1/reports HTTP/1.1" 202 -
-172.30.0.225 - - [28/Apr/2026 01:37:53] "GET /healthz HTTP/1.1" 200 -
-10.233.64.202 - - [28/Apr/2026 01:37:55] "POST /v1/reports HTTP/1.1" 202 -
-172.30.0.225 - - [28/Apr/2026 01:37:57] "GET /healthz HTTP/1.1" 200 -
-10.233.64.193 - - [28/Apr/2026 01:37:58] "POST /v1/reports HTTP/1.1" 202 -
-10.233.64.192 - - [28/Apr/2026 01:38:05] "POST /v1/reports HTTP/1.1" 202 -
-172.30.0.225 - - [28/Apr/2026 01:38:07] "GET /healthz HTTP/1.1" 200 -
-172.30.0.225 - - [28/Apr/2026 01:38:08] "GET /healthz HTTP/1.1" 200 -
-10.233.64.195 - - [28/Apr/2026 01:38:09] "POST /v1/reports HTTP/1.1" 202 -
-10.233.64.198 - - [28/Apr/2026 01:38:13] "POST /v1/reports HTTP/1.1" 202 -
-10.233.64.196 - - [28/Apr/2026 01:38:17] "POST /v1/reports HTTP/1.1" 202 -
-172.30.0.225 - - [28/Apr/2026 01:38:17] "GET /healthz HTTP/1.1" 200 -
-10.233.64.199 - - [28/Apr/2026 01:38:18] "POST /v1/reports HTTP/1.1" 202 -
-10.233.64.194 - - [28/Apr/2026 01:38:22] "POST /v1/reports HTTP/1.1" 202 -
-172.30.0.225 - - [28/Apr/2026 01:38:23] "GET /healthz HTTP/1.1" 200 -
-172.30.0.225 - - [28/Apr/2026 01:38:27] "GET /healthz HTTP/1.1" 200 -
-10.233.64.202 - - [28/Apr/2026 01:38:27] "POST /v1/reports HTTP/1.1" 202 -
-10.233.64.193 - - [28/Apr/2026 01:38:30] "POST /v1/reports HTTP/1.1" 202 -
-172.30.0.225 - - [28/Apr/2026 01:38:37] "GET /healthz HTTP/1.1" 200 -
-10.233.64.192 - - [28/Apr/2026 01:38:37] "POST /v1/reports HTTP/1.1" 202 -
-172.30.0.225 - - [28/Apr/2026 01:38:38] "GET /healthz HTTP/1.1" 200 -
-10.233.64.195 - - [28/Apr/2026 01:38:42] "POST /v1/reports HTTP/1.1" 202 -
-10.233.64.198 - - [28/Apr/2026 01:38:46] "POST /v1/reports HTTP/1.1" 202 -
-172.30.0.225 - - [28/Apr/2026 01:38:47] "GET /healthz HTTP/1.1" 200 -
-10.233.64.196 - - [28/Apr/2026 01:38:49] "POST /v1/reports HTTP/1.1" 202 -
-10.233.64.199 - - [28/Apr/2026 01:38:50] "POST /v1/reports HTTP/1.1" 202 -
-172.30.0.225 - - [28/Apr/2026 01:38:53] "GET /healthz HTTP/1.1" 200 -
-10.233.64.194 - - [28/Apr/2026 01:38:55] "POST /v1/reports HTTP/1.1" 202 -
-172.30.0.225 - - [28/Apr/2026 01:38:57] "GET /healthz HTTP/1.1" 200 -
-10.233.64.202 - - [28/Apr/2026 01:39:00] "POST /v1/reports HTTP/1.1" 202 -
-10.233.64.193 - - [28/Apr/2026 01:39:02] "POST /v1/reports HTTP/1.1" 202 -
-172.30.0.225 - - [28/Apr/2026 01:39:07] "GET /healthz HTTP/1.1" 200 -
-172.30.0.225 - - [28/Apr/2026 01:39:08] "GET /healthz HTTP/1.1" 200 -
-10.233.64.192 - - [28/Apr/2026 01:39:09] "POST /v1/reports HTTP/1.1" 202 -
-10.233.64.195 - - [28/Apr/2026 01:39:15] "POST /v1/reports HTTP/1.1" 202 -
-172.30.0.225 - - [28/Apr/2026 01:39:17] "GET /healthz HTTP/1.1" 200 -
-10.233.64.198 - - [28/Apr/2026 01:39:18] "POST /v1/reports HTTP/1.1" 202 -
-10.233.64.196 - - [28/Apr/2026 01:39:21] "POST /v1/reports HTTP/1.1" 202 -
-10.233.64.199 - - [28/Apr/2026 01:39:23] "POST /v1/reports HTTP/1.1" 202 -
-172.30.0.225 - - [28/Apr/2026 01:39:23] "GET /healthz HTTP/1.1" 200 -
-172.30.0.225 - - [28/Apr/2026 01:39:27] "GET /healthz HTTP/1.1" 200 -
-10.233.64.194 - - [28/Apr/2026 01:39:27] "POST /v1/reports HTTP/1.1" 202 -
-10.233.64.202 - - [28/Apr/2026 01:39:33] "POST /v1/reports HTTP/1.1" 202 -
-10.233.64.193 - - [28/Apr/2026 01:39:34] "POST /v1/reports HTTP/1.1" 202 -
-172.30.0.225 - - [28/Apr/2026 01:39:37] "GET /healthz HTTP/1.1" 200 -
-172.30.0.225 - - [28/Apr/2026 01:39:38] "GET /healthz HTTP/1.1" 200 -
-10.233.64.192 - - [28/Apr/2026 01:39:41] "POST /v1/reports HTTP/1.1" 202 -
-172.30.0.225 - - [28/Apr/2026 01:39:47] "GET /healthz HTTP/1.1" 200 -
-10.233.64.195 - - [28/Apr/2026 01:39:48] "POST /v1/reports HTTP/1.1" 202 -
-10.233.64.198 - - [28/Apr/2026 01:39:50] "POST /v1/reports HTTP/1.1" 202 -
-10.233.64.196 - - [28/Apr/2026 01:39:53] "POST /v1/reports HTTP/1.1" 202 -
-172.30.0.225 - - [28/Apr/2026 01:39:53] "GET /healthz HTTP/1.1" 200 -
-10.233.64.199 - - [28/Apr/2026 01:39:55] "POST /v1/reports HTTP/1.1" 202 -
-172.30.0.225 - - [28/Apr/2026 01:39:57] "GET /healthz HTTP/1.1" 200 -
-10.233.64.194 - - [28/Apr/2026 01:39:59] "POST /v1/reports HTTP/1.1" 202 -
-10.233.64.193 - - [28/Apr/2026 01:40:06] "POST /v1/reports HTTP/1.1" 202 -
-10.233.64.202 - - [28/Apr/2026 01:40:06] "POST /v1/reports HTTP/1.1" 202 -
-172.30.0.225 - - [28/Apr/2026 01:40:07] "GET /healthz HTTP/1.1" 200 -
-172.30.0.225 - - [28/Apr/2026 01:40:08] "GET /healthz HTTP/1.1" 200 -
-10.233.64.192 - - [28/Apr/2026 01:40:14] "POST /v1/reports HTTP/1.1" 202 -
-172.30.0.225 - - [28/Apr/2026 01:40:17] "GET /healthz HTTP/1.1" 200 -
-10.233.64.195 - - [28/Apr/2026 01:40:21] "POST /v1/reports HTTP/1.1" 202 -
-10.233.64.198 - - [28/Apr/2026 01:40:23] "POST /v1/reports HTTP/1.1" 202 -
-172.30.0.225 - - [28/Apr/2026 01:40:23] "GET /healthz HTTP/1.1" 200 -
-10.233.64.196 - - [28/Apr/2026 01:40:25] "POST /v1/reports HTTP/1.1" 202 -
-172.30.0.225 - - [28/Apr/2026 01:40:27] "GET /healthz HTTP/1.1" 200 -
-10.233.64.199 - - [28/Apr/2026 01:40:28] "POST /v1/reports HTTP/1.1" 202 -
-10.233.64.194 - - [28/Apr/2026 01:40:31] "POST /v1/reports HTTP/1.1" 202 -
-172.30.0.225 - - [28/Apr/2026 01:40:37] "GET /healthz HTTP/1.1" 200 -
-172.30.0.225 - - [28/Apr/2026 01:40:38] "GET /healthz HTTP/1.1" 200 -
-10.233.64.193 - - [28/Apr/2026 01:40:38] "POST /v1/reports HTTP/1.1" 202 -
-10.233.64.202 - - [28/Apr/2026 01:40:39] "POST /v1/reports HTTP/1.1" 202 -
-10.233.64.192 - - [28/Apr/2026 01:40:46] "POST /v1/reports HTTP/1.1" 202 -
-172.30.0.225 - - [28/Apr/2026 01:40:47] "GET /healthz HTTP/1.1" 200 -
-172.30.0.225 - - [28/Apr/2026 01:40:53] "GET /healthz HTTP/1.1" 200 -
-10.233.64.195 - - [28/Apr/2026 01:40:54] "POST /v1/reports HTTP/1.1" 202 -
-10.233.64.198 - - [28/Apr/2026 01:40:55] "POST /v1/reports HTTP/1.1" 202 -
-172.30.0.225 - - [28/Apr/2026 01:40:57] "GET /healthz HTTP/1.1" 200 -
-10.233.64.196 - - [28/Apr/2026 01:40:57] "POST /v1/reports HTTP/1.1" 202 -
-127.0.0.1 - - [28/Apr/2026 01:40:59] "GET /healthz HTTP/1.1" 200 -
-10.233.64.199 - - [28/Apr/2026 01:41:01] "POST /v1/reports HTTP/1.1" 202 -
-10.233.64.194 - - [28/Apr/2026 01:41:03] "POST /v1/reports HTTP/1.1" 202 -
-172.30.0.225 - - [28/Apr/2026 01:41:07] "GET /healthz HTTP/1.1" 200 -
-172.30.0.225 - - [28/Apr/2026 01:41:08] "GET /healthz HTTP/1.1" 200 -
-10.233.64.193 - - [28/Apr/2026 01:41:10] "POST /v1/reports HTTP/1.1" 202 -
-10.233.64.202 - - [28/Apr/2026 01:41:12] "POST /v1/reports HTTP/1.1" 202 -
-172.30.0.225 - - [28/Apr/2026 01:41:17] "GET /healthz HTTP/1.1" 200 -
-10.233.64.192 - - [28/Apr/2026 01:41:18] "POST /v1/reports HTTP/1.1" 202 -
-172.30.0.225 - - [28/Apr/2026 01:41:23] "GET /healthz HTTP/1.1" 200 -
-172.30.0.225 - - [28/Apr/2026 01:41:27] "GET /healthz HTTP/1.1" 200 -
-10.233.64.195 - - [28/Apr/2026 01:41:27] "POST /v1/reports HTTP/1.1" 202 -
-10.233.64.198 - - [28/Apr/2026 01:41:28] "POST /v1/reports HTTP/1.1" 202 -
-127.0.0.1 - - [28/Apr/2026 01:41:28] "GET /v1/dashboard HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 01:41:28] "GET /v1/alerts HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 01:41:28] "GET /v1/workflow HTTP/1.1" 200 -
-10.233.64.196 - - [28/Apr/2026 01:41:30] "POST /v1/reports HTTP/1.1" 202 -
-10.233.64.199 - - [28/Apr/2026 01:41:33] "POST /v1/reports HTTP/1.1" 202 -
-10.233.64.194 - - [28/Apr/2026 01:41:36] "POST /v1/reports HTTP/1.1" 202 -
-172.30.0.225 - - [28/Apr/2026 01:41:37] "GET /healthz HTTP/1.1" 200 -
-172.30.0.225 - - [28/Apr/2026 01:41:38] "GET /healthz HTTP/1.1" 200 -
-10.233.64.193 - - [28/Apr/2026 01:41:43] "POST /v1/reports HTTP/1.1" 202 -
-10.233.64.202 - - [28/Apr/2026 01:41:45] "POST /v1/reports HTTP/1.1" 202 -
-172.30.0.225 - - [28/Apr/2026 01:41:47] "GET /healthz HTTP/1.1" 200 -
-10.233.64.192 - - [28/Apr/2026 01:41:50] "POST /v1/reports HTTP/1.1" 202 -
-172.30.0.225 - - [28/Apr/2026 01:41:53] "GET /healthz HTTP/1.1" 200 -
-172.30.0.225 - - [28/Apr/2026 01:41:57] "GET /healthz HTTP/1.1" 200 -
-10.233.64.195 - - [28/Apr/2026 01:41:59] "POST /v1/reports HTTP/1.1" 202 -
-10.233.64.198 - - [28/Apr/2026 01:42:00] "POST /v1/reports HTTP/1.1" 202 -
-10.233.64.196 - - [28/Apr/2026 01:42:02] "POST /v1/reports HTTP/1.1" 202 -
-10.233.64.199 - - [28/Apr/2026 01:42:06] "POST /v1/reports HTTP/1.1" 202 -
-172.30.0.225 - - [28/Apr/2026 01:42:07] "GET /healthz HTTP/1.1" 200 -
-10.233.64.194 - - [28/Apr/2026 01:42:08] "POST /v1/reports HTTP/1.1" 202 -
-172.30.0.225 - - [28/Apr/2026 01:42:08] "GET /healthz HTTP/1.1" 200 -
-10.233.64.193 - - [28/Apr/2026 01:42:15] "POST /v1/reports HTTP/1.1" 202 -
-172.30.0.225 - - [28/Apr/2026 01:42:17] "GET /healthz HTTP/1.1" 200 -
-10.233.64.202 - - [28/Apr/2026 01:42:18] "POST /v1/reports HTTP/1.1" 202 -
-10.233.64.192 - - [28/Apr/2026 01:42:23] "POST /v1/reports HTTP/1.1" 202 -
-172.30.0.225 - - [28/Apr/2026 01:42:23] "GET /healthz HTTP/1.1" 200 -
-172.30.0.225 - - [28/Apr/2026 01:42:27] "GET /healthz HTTP/1.1" 200 -
-10.233.64.195 - - [28/Apr/2026 01:42:32] "POST /v1/reports HTTP/1.1" 202 -
-10.233.64.198 - - [28/Apr/2026 01:42:32] "POST /v1/reports HTTP/1.1" 202 -
-127.0.0.1 - - [28/Apr/2026 01:42:34] "GET /v1/dashboard HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 01:42:34] "GET /v1/alerts HTTP/1.1" 200 -
-127.0.0.1 - - [28/Apr/2026 01:42:34] "GET /v1/workflow HTTP/1.1" 200 -
+    self.handle_one_request()
+  File "/usr/local/lib/python3.12/http/server.py", line 428, in handle_one_request
+    method()
+  File "/app/app/ebpf_ml_mao/api.py", line 557, in do_POST
+    result = store_ingest_payload(
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/app/app/ebpf_ml_mao/api.py", line 147, in store_ingest_payload
+    index = load_ingest_index(base, repair=True)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/app/ebpf_ml_mao/api.py", line 93, in load_ingest_index
+    return rebuild_ingest_index(base)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/app/ebpf_ml_mao/api.py", line 51, in rebuild_ingest_index
+    payload = json.loads(path.read_text(encoding="utf-8"))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/pathlib.py", line 1027, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/var/lib/ebpf-ml-mao/ingest/gpu-1/019dc28a6c41-report.json'
+----------------------------------------
+----------------------------------------
+Exception occurred during processing of request from ('10.233.64.192', 56642)
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+  File "/usr/local/lib/python3.12/socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+  File "/usr/local/lib/python3.12/socketserver.py", line 766, in __init__
+    self.handle()
+  File "/usr/local/lib/python3.12/http/server.py", line 440, in handle
+    self.handle_one_request()
+  File "/usr/local/lib/python3.12/http/server.py", line 428, in handle_one_request
+    method()
+  File "/app/app/ebpf_ml_mao/api.py", line 557, in do_POST
+    result = store_ingest_payload(
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/app/app/ebpf_ml_mao/api.py", line 180, in store_ingest_payload
+    _save_ingest_index(base, index)
+  File "/app/app/ebpf_ml_mao/api.py", line 112, in _save_ingest_index
+    _atomic_write_json(_index_path(ingest_dir), index)
+  File "/app/app/ebpf_ml_mao/api.py", line 40, in _atomic_write_json
+    tmp.replace(path)
+  File "/usr/local/lib/python3.12/pathlib.py", line 1376, in replace
+    os.replace(self, target)
+FileNotFoundError: [Errno 2] No such file or directory: '/var/lib/ebpf-ml-mao/ingest/index.json.tmp' -> '/var/lib/ebpf-ml-mao/ingest/index.json'
+----------------------------------------
+----------------------------------------
+Exception occurred during processing of request from ('10.233.64.202', 50184)
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+  File "/usr/local/lib/python3.12/socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+  File "/usr/local/lib/python3.12/socketserver.py", line 766, in __init__
+    self.handle()
+  File "/usr/local/lib/python3.12/http/server.py", line 440, in handle
+    self.handle_one_request()
+  File "/usr/local/lib/python3.12/http/server.py", line 428, in handle_one_request
+    method()
+  File "/app/app/ebpf_ml_mao/api.py", line 557, in do_POST
+    result = store_ingest_payload(
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/app/app/ebpf_ml_mao/api.py", line 180, in store_ingest_payload
+    _save_ingest_index(base, index)
+  File "/app/app/ebpf_ml_mao/api.py", line 112, in _save_ingest_index
+    _atomic_write_json(_index_path(ingest_dir), index)
+  File "/app/app/ebpf_ml_mao/api.py", line 40, in _atomic_write_json
+    tmp.replace(path)
+  File "/usr/local/lib/python3.12/pathlib.py", line 1376, in replace
+    os.replace(self, target)
+FileNotFoundError: [Errno 2] No such file or directory: '/var/lib/ebpf-ml-mao/ingest/index.json.tmp' -> '/var/lib/ebpf-ml-mao/ingest/index.json'
+10.233.65.20 - - [12/May/2026 01:05:30] "POST /v1/reports HTTP/1.1" 202 -
+----------------------------------------
+172.30.0.225 - - [12/May/2026 01:05:32] "GET /healthz HTTP/1.1" 200 -
+10.233.64.194 - - [12/May/2026 01:05:37] "POST /v1/reports HTTP/1.1" 202 -
+10.233.64.198 - - [12/May/2026 01:05:38] "POST /v1/reports HTTP/1.1" 202 -
+172.30.0.225 - - [12/May/2026 01:05:38] "GET /healthz HTTP/1.1" 200 -
+172.30.0.225 - - [12/May/2026 01:05:42] "GET /healthz HTTP/1.1" 200 -
+10.233.64.193 - - [12/May/2026 01:05:47] "POST /v1/reports HTTP/1.1" 202 -
+10.233.64.196 - - [12/May/2026 01:05:48] "POST /v1/reports HTTP/1.1" 202 -
+172.30.0.225 - - [12/May/2026 01:05:52] "GET /healthz HTTP/1.1" 200 -
+172.30.0.225 - - [12/May/2026 01:05:53] "GET /healthz HTTP/1.1" 200 -
+10.233.64.195 - - [12/May/2026 01:05:54] "POST /v1/reports HTTP/1.1" 202 -
+10.233.64.199 - - [12/May/2026 01:06:00] "POST /v1/reports HTTP/1.1" 202 -
+172.30.0.225 - - [12/May/2026 01:06:02] "GET /healthz HTTP/1.1" 200 -
+10.233.65.20 - - [12/May/2026 01:06:02] "POST /v1/reports HTTP/1.1" 202 -
+10.233.64.192 - - [12/May/2026 01:06:02] "POST /v1/reports HTTP/1.1" 202 -
+10.233.64.202 - - [12/May/2026 01:06:03] "POST /v1/reports HTTP/1.1" 202 -
+172.30.0.225 - - [12/May/2026 01:06:08] "GET /healthz HTTP/1.1" 200 -
+10.233.64.194 - - [12/May/2026 01:06:10] "POST /v1/reports HTTP/1.1" 202 -
+172.30.0.225 - - [12/May/2026 01:06:12] "GET /healthz HTTP/1.1" 200 -
+10.233.64.198 - - [12/May/2026 01:06:13] "POST /v1/reports HTTP/1.1" 202 -
+10.233.64.193 - - [12/May/2026 01:06:19] "POST /v1/reports HTTP/1.1" 202 -
+172.30.0.225 - - [12/May/2026 01:06:22] "GET /healthz HTTP/1.1" 200 -
+10.233.64.196 - - [12/May/2026 01:06:23] "POST /v1/reports HTTP/1.1" 202 -
+172.30.0.225 - - [12/May/2026 01:06:23] "GET /healthz HTTP/1.1" 200 -
+10.233.64.195 - - [12/May/2026 01:06:27] "POST /v1/reports HTTP/1.1" 202 -
+172.30.0.225 - - [12/May/2026 01:06:32] "GET /healthz HTTP/1.1" 200 -
+----------------------------------------
+Exception occurred during processing of request from ('10.233.65.20', 35168)
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+  File "/usr/local/lib/python3.12/socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+  File "/usr/local/lib/python3.12/socketserver.py", line 766, in __init__
+    self.handle()
+  File "/usr/local/lib/python3.12/http/server.py", line 440, in handle
+    self.handle_one_request()
+  File "/usr/local/lib/python3.12/http/server.py", line 428, in handle_one_request
+    method()
+  File "/app/app/ebpf_ml_mao/api.py", line 557, in do_POST
+    result = store_ingest_payload(
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/app/app/ebpf_ml_mao/api.py", line 180, in store_ingest_payload
+    _save_ingest_index(base, index)
+  File "/app/app/ebpf_ml_mao/api.py", line 112, in _save_ingest_index
+    _atomic_write_json(_index_path(ingest_dir), index)
+  File "/app/app/ebpf_ml_mao/api.py", line 40, in _atomic_write_json
+    tmp.replace(path)
+  File "/usr/local/lib/python3.12/pathlib.py", line 1376, in replace
+    os.replace(self, target)
+FileNotFoundError: [Errno 2] No such file or directory: '/var/lib/ebpf-ml-mao/ingest/index.json.tmp' -> '/var/lib/ebpf-ml-mao/ingest/index.json'
+----------------------------------------
+10.233.64.199 - - [12/May/2026 01:06:35] "POST /v1/reports HTTP/1.1" 202 -
+10.233.64.192 - - [12/May/2026 01:06:35] "POST /v1/reports HTTP/1.1" 202 -
+10.233.64.202 - - [12/May/2026 01:06:36] "POST /v1/reports HTTP/1.1" 202 -
+172.30.0.225 - - [12/May/2026 01:06:38] "GET /healthz HTTP/1.1" 200 -
+172.30.0.225 - - [12/May/2026 01:06:42] "GET /healthz HTTP/1.1" 200 -
+10.233.64.194 - - [12/May/2026 01:06:42] "POST /v1/reports HTTP/1.1" 202 -
+10.233.64.198 - - [12/May/2026 01:06:45] "POST /v1/reports HTTP/1.1" 202 -
+10.233.64.193 - - [12/May/2026 01:06:52] "POST /v1/reports HTTP/1.1" 202 -
+172.30.0.225 - - [12/May/2026 01:06:52] "GET /healthz HTTP/1.1" 200 -
+172.30.0.225 - - [12/May/2026 01:06:53] "GET /healthz HTTP/1.1" 200 -
+10.233.64.196 - - [12/May/2026 01:06:55] "POST /v1/reports HTTP/1.1" 202 -
+10.233.64.195 - - [12/May/2026 01:07:00] "POST /v1/reports HTTP/1.1" 202 -
+172.30.0.225 - - [12/May/2026 01:07:02] "GET /healthz HTTP/1.1" 200 -
+10.233.65.20 - - [12/May/2026 01:07:07] "POST /v1/reports HTTP/1.1" 202 -
+10.233.64.192 - - [12/May/2026 01:07:07] "POST /v1/reports HTTP/1.1" 202 -
+10.233.64.199 - - [12/May/2026 01:07:07] "POST /v1/reports HTTP/1.1" 202 -
+172.30.0.225 - - [12/May/2026 01:07:08] "GET /healthz HTTP/1.1" 200 -
+10.233.64.202 - - [12/May/2026 01:07:09] "POST /v1/reports HTTP/1.1" 202 -
+172.30.0.225 - - [12/May/2026 01:07:12] "GET /healthz HTTP/1.1" 200 -
+10.233.64.194 - - [12/May/2026 01:07:14] "POST /v1/reports HTTP/1.1" 202 -
+10.233.64.198 - - [12/May/2026 01:07:18] "POST /v1/reports HTTP/1.1" 202 -
+172.30.0.225 - - [12/May/2026 01:07:22] "GET /healthz HTTP/1.1" 200 -
+172.30.0.225 - - [12/May/2026 01:07:23] "GET /healthz HTTP/1.1" 200 -
+10.233.64.193 - - [12/May/2026 01:07:24] "POST /v1/reports HTTP/1.1" 202 -
+127.0.0.1 - - [12/May/2026 01:07:25] "GET /healthz HTTP/1.1" 200 -
+10.233.64.196 - - [12/May/2026 01:07:27] "POST /v1/reports HTTP/1.1" 202 -
+172.30.0.225 - - [12/May/2026 01:07:32] "GET /healthz HTTP/1.1" 200 -
+10.233.64.195 - - [12/May/2026 01:07:33] "POST /v1/reports HTTP/1.1" 202 -
+172.30.0.225 - - [12/May/2026 01:07:38] "GET /healthz HTTP/1.1" 200 -
+10.233.65.20 - - [12/May/2026 01:07:39] "POST /v1/reports HTTP/1.1" 202 -
+10.233.64.192 - - [12/May/2026 01:07:39] "POST /v1/reports HTTP/1.1" 202 -
+10.233.64.199 - - [12/May/2026 01:07:40] "POST /v1/reports HTTP/1.1" 202 -
+10.233.64.202 - - [12/May/2026 01:07:42] "POST /v1/reports HTTP/1.1" 202 -
+172.30.0.225 - - [12/May/2026 01:07:42] "GET /healthz HTTP/1.1" 200 -
+10.233.64.194 - - [12/May/2026 01:07:46] "POST /v1/reports HTTP/1.1" 202 -
+10.233.64.198 - - [12/May/2026 01:07:50] "POST /v1/reports HTTP/1.1" 202 -
+172.30.0.225 - - [12/May/2026 01:07:52] "GET /healthz HTTP/1.1" 200 -
+127.0.0.1 - - [12/May/2026 01:07:52] "GET /v1/dashboard HTTP/1.1" 200 -
+127.0.0.1 - - [12/May/2026 01:07:52] "GET /v1/alerts HTTP/1.1" 200 -
+127.0.0.1 - - [12/May/2026 01:07:52] "GET /v1/workflow HTTP/1.1" 200 -
+172.30.0.225 - - [12/May/2026 01:07:53] "GET /healthz HTTP/1.1" 200 -
+10.233.64.193 - - [12/May/2026 01:07:56] "POST /v1/reports HTTP/1.1" 202 -
+10.233.64.196 - - [12/May/2026 01:07:59] "POST /v1/reports HTTP/1.1" 202 -
+172.30.0.225 - - [12/May/2026 01:08:02] "GET /healthz HTTP/1.1" 200 -
+10.233.64.195 - - [12/May/2026 01:08:06] "POST /v1/reports HTTP/1.1" 202 -
+172.30.0.225 - - [12/May/2026 01:08:08] "GET /healthz HTTP/1.1" 200 -
+10.233.65.20 - - [12/May/2026 01:08:11] "POST /v1/reports HTTP/1.1" 202 -
+10.233.64.192 - - [12/May/2026 01:08:11] "POST /v1/reports HTTP/1.1" 202 -
+172.30.0.225 - - [12/May/2026 01:08:12] "GET /healthz HTTP/1.1" 200 -
+10.233.64.199 - - [12/May/2026 01:08:13] "POST /v1/reports HTTP/1.1" 202 -
+10.233.64.202 - - [12/May/2026 01:08:15] "POST /v1/reports HTTP/1.1" 202 -
+10.233.64.194 - - [12/May/2026 01:08:18] "POST /v1/reports HTTP/1.1" 202 -
+172.30.0.225 - - [12/May/2026 01:08:22] "GET /healthz HTTP/1.1" 200 -
+10.233.64.198 - - [12/May/2026 01:08:22] "POST /v1/reports HTTP/1.1" 202 -
+172.30.0.225 - - [12/May/2026 01:08:23] "GET /healthz HTTP/1.1" 200 -
+10.233.64.193 - - [12/May/2026 01:08:28] "POST /v1/reports HTTP/1.1" 202 -
+10.233.64.196 - - [12/May/2026 01:08:31] "POST /v1/reports HTTP/1.1" 202 -
+172.30.0.225 - - [12/May/2026 01:08:32] "GET /healthz HTTP/1.1" 200 -
+172.30.0.225 - - [12/May/2026 01:08:38] "GET /healthz HTTP/1.1" 200 -
+10.233.64.195 - - [12/May/2026 01:08:38] "POST /v1/reports HTTP/1.1" 202 -
+172.30.0.225 - - [12/May/2026 01:08:42] "GET /healthz HTTP/1.1" 200 -
+10.233.65.20 - - [12/May/2026 01:08:43] "POST /v1/reports HTTP/1.1" 202 -
+10.233.64.192 - - [12/May/2026 01:08:44] "POST /v1/reports HTTP/1.1" 202 -
+10.233.64.199 - - [12/May/2026 01:08:45] "POST /v1/reports HTTP/1.1" 202 -
+10.233.64.202 - - [12/May/2026 01:08:47] "POST /v1/reports HTTP/1.1" 202 -
+10.233.64.194 - - [12/May/2026 01:08:50] "POST /v1/reports HTTP/1.1" 202 -
+172.30.0.225 - - [12/May/2026 01:08:52] "GET /healthz HTTP/1.1" 200 -
+172.30.0.225 - - [12/May/2026 01:08:53] "GET /healthz HTTP/1.1" 200 -
+10.233.64.198 - - [12/May/2026 01:08:55] "POST /v1/reports HTTP/1.1" 202 -
+127.0.0.1 - - [12/May/2026 01:08:59] "GET /v1/dashboard HTTP/1.1" 200 -
+127.0.0.1 - - [12/May/2026 01:08:59] "GET /v1/alerts HTTP/1.1" 200 -
+127.0.0.1 - - [12/May/2026 01:08:59] "GET /v1/workflow HTTP/1.1" 200 -
+10.233.64.193 - - [12/May/2026 01:09:00] "POST /v1/reports HTTP/1.1" 202 -

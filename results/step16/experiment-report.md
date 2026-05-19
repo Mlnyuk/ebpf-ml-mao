@@ -1,114 +1,164 @@
 # Step 16 Fault Scenario Experiment Report
 
-- Generated at: `2026-04-28T01:48:20.835799+00:00`
+- Generated at: `2026-05-12T01:16:01.282818+00:00`
 - Result directory: `results/step16`
 
 ## Input Files
 
-- `results/step16/baseline-dashboard.json`: found, 1609 bytes
-- `results/step16/baseline-alerts.json`: found, 423 bytes
-- `results/step16/baseline-workflow.json`: found, 317 bytes
-- `results/step16/exec-storm-dashboard.json`: found, 1609 bytes
-- `results/step16/exec-storm-alerts.json`: found, 423 bytes
-- `results/step16/exec-storm-workflow.json`: found, 317 bytes
-- `results/step16/exec-storm-analyzer.log`: found, 14576 bytes
-- `results/step16/exec-storm-collector.log`: found, 23666 bytes
-- `results/step16/network-burst-dashboard.json`: found, 1609 bytes
+- `results/step16/baseline-dashboard.json`: found, 1648 bytes
+- `results/step16/baseline-alerts.json`: found, 433 bytes
+- `results/step16/baseline-workflow.json`: found, 349 bytes
+- `results/step16/baseline-tetragon-tail.jsonl`: found, 1229633 bytes
+- `results/step16/baseline-tetragon-fault-target.jsonl`: found, 200773 bytes
+- `results/step16/exec-storm-dashboard.json`: found, 1827 bytes
+- `results/step16/exec-storm-alerts.json`: found, 612 bytes
+- `results/step16/exec-storm-workflow.json`: found, 349 bytes
+- `results/step16/exec-storm-tetragon-tail.jsonl`: found, 1231368 bytes
+- `results/step16/exec-storm-tetragon-fault-target.jsonl`: found, 248267 bytes
+- `results/step16/exec-storm-analyzer.log`: found, 12902 bytes
+- `results/step16/exec-storm-collector.log`: found, 23613 bytes
+- `results/step16/network-burst-dashboard.json`: found, 1638 bytes
 - `results/step16/network-burst-alerts.json`: found, 423 bytes
-- `results/step16/network-burst-workflow.json`: found, 317 bytes
-- `results/step16/network-burst-analyzer.log`: found, 14568 bytes
-- `results/step16/network-burst-collector.log`: found, 23664 bytes
-- `results/step16/cpu-stress-dashboard.json`: found, 1609 bytes
-- `results/step16/cpu-stress-alerts.json`: found, 423 bytes
-- `results/step16/cpu-stress-workflow.json`: found, 317 bytes
-- `results/step16/cpu-stress-analyzer.log`: found, 14565 bytes
-- `results/step16/cpu-stress-collector.log`: found, 23664 bytes
-- `results/step16/cpu-stress-kubectl-top.txt`: found, 124 bytes
-- `results/step16/memory-pressure-dashboard.json`: found, 1609 bytes
-- `results/step16/memory-pressure-alerts.json`: found, 423 bytes
-- `results/step16/memory-pressure-workflow.json`: found, 317 bytes
-- `results/step16/memory-pressure-analyzer.log`: found, 14552 bytes
-- `results/step16/memory-pressure-collector.log`: found, 23664 bytes
-- `results/step16/memory-pressure-kubectl-top.txt`: found, 124 bytes
+- `results/step16/network-burst-workflow.json`: found, 346 bytes
+- `results/step16/network-burst-tetragon-tail.jsonl`: found, 1226127 bytes
+- `results/step16/network-burst-tetragon-fault-target.jsonl`: found, 268522 bytes
+- `results/step16/network-burst-analyzer.log`: found, 14053 bytes
+- `results/step16/network-burst-collector.log`: found, 23606 bytes
+- `results/step16/cpu-stress-dashboard.json`: found, 1840 bytes
+- `results/step16/cpu-stress-alerts.json`: found, 613 bytes
+- `results/step16/cpu-stress-workflow.json`: found, 354 bytes
+- `results/step16/cpu-stress-tetragon-tail.jsonl`: found, 879357 bytes
+- `results/step16/cpu-stress-tetragon-fault-target.jsonl`: found, 265620 bytes
+- `results/step16/cpu-stress-analyzer.log`: found, 14135 bytes
+- `results/step16/cpu-stress-collector.log`: found, 23598 bytes
+- `results/step16/cpu-stress-kubectl-top.txt`: found, 108 bytes
+- `results/step16/memory-pressure-dashboard.json`: found, 1840 bytes
+- `results/step16/memory-pressure-alerts.json`: found, 613 bytes
+- `results/step16/memory-pressure-workflow.json`: found, 354 bytes
+- `results/step16/memory-pressure-tetragon-tail.jsonl`: found, 1232111 bytes
+- `results/step16/memory-pressure-tetragon-fault-target.jsonl`: found, 264908 bytes
+- `results/step16/memory-pressure-analyzer.log`: found, 14490 bytes
+- `results/step16/memory-pressure-collector.log`: found, 23595 bytes
+- `results/step16/memory-pressure-kubectl-top.txt`: found, 108 bytes
 
 ## Scenario Summary
 
-| Scenario | Snapshot status | Alerts | anomalous | score | exec | network | cpu | memory |
-| --- | --- | ---: | --- | --- | --- | --- | --- | --- |
-| exec-storm | complete | 1 | no | no | no | no | no | no |
-| network-burst | complete | 1 | no | no | no | no | no | no |
-| cpu-stress | complete | 1 | no | no | no | no | no | no |
-| memory-pressure | complete | 1 | no | no | no | no | no | no |
+| Scenario | Snapshot status | Alerts | Tetragon lines | anomalous | score | process_exec | process_kprobe | tcp_connect | fault-target |
+| --- | --- | ---: | ---: | --- | --- | --- | --- | --- | --- |
+| exec-storm | complete | 2 | 200 | yes | no | yes | yes | yes | yes |
+| network-burst | complete | 1 | 200 | yes | no | yes | yes | yes | yes |
+| cpu-stress | complete | 2 | 143 | yes | no | yes | yes | yes | yes |
+| memory-pressure | complete | 2 | 200 | yes | no | yes | yes | yes | yes |
 
 ## Baseline
 
 - Snapshot status: `complete`
 - Alerts: `1`
+- Tetragon tail lines: `200`
+- Tetragon fault-target lines: `37`
 - `baseline-dashboard.json`: `ok`
 - `baseline-alerts.json`: `ok`
 - `baseline-workflow.json`: `ok`
-- Contains `anomalous`: no
+- `baseline-tetragon-tail.jsonl`: `ok`
+- `baseline-tetragon-fault-target.jsonl`: `ok`
+- Contains `anomalous`: yes
 - Contains `score`: no
-- Contains `exec`: no
+- Contains `exec`: yes
 - Contains `network`: no
-- Contains `cpu`: no
-- Contains `memory`: no
+- Contains `cpu`: yes
+- Contains `memory`: yes
+- Contains `process_exec`: yes
+- Contains `process_kprobe`: yes
+- Contains `tcp_connect`: yes
+- Contains `fault-target`: yes
 
 ## exec-storm
 
 - Snapshot status: `complete`
-- Alerts: `1`
+- Alerts: `2`
+- Tetragon tail lines: `200`
+- Tetragon fault-target lines: `46`
 - `exec-storm-dashboard.json`: `ok`
 - `exec-storm-alerts.json`: `ok`
 - `exec-storm-workflow.json`: `ok`
-- Contains `anomalous`: no
+- `exec-storm-tetragon-tail.jsonl`: `ok`
+- `exec-storm-tetragon-fault-target.jsonl`: `ok`
+- Contains `anomalous`: yes
 - Contains `score`: no
-- Contains `exec`: no
+- Contains `exec`: yes
 - Contains `network`: no
-- Contains `cpu`: no
-- Contains `memory`: no
+- Contains `cpu`: yes
+- Contains `memory`: yes
+- Contains `process_exec`: yes
+- Contains `process_kprobe`: yes
+- Contains `tcp_connect`: yes
+- Contains `fault-target`: yes
 
 ## network-burst
 
 - Snapshot status: `complete`
 - Alerts: `1`
+- Tetragon tail lines: `200`
+- Tetragon fault-target lines: `50`
 - `network-burst-dashboard.json`: `ok`
 - `network-burst-alerts.json`: `ok`
 - `network-burst-workflow.json`: `ok`
-- Contains `anomalous`: no
+- `network-burst-tetragon-tail.jsonl`: `ok`
+- `network-burst-tetragon-fault-target.jsonl`: `ok`
+- Contains `anomalous`: yes
 - Contains `score`: no
-- Contains `exec`: no
+- Contains `exec`: yes
 - Contains `network`: no
-- Contains `cpu`: no
-- Contains `memory`: no
+- Contains `cpu`: yes
+- Contains `memory`: yes
+- Contains `process_exec`: yes
+- Contains `process_kprobe`: yes
+- Contains `tcp_connect`: yes
+- Contains `fault-target`: yes
 
 ## cpu-stress
 
 - Snapshot status: `complete`
-- Alerts: `1`
+- Alerts: `2`
+- Tetragon tail lines: `143`
+- Tetragon fault-target lines: `50`
 - `cpu-stress-dashboard.json`: `ok`
 - `cpu-stress-alerts.json`: `ok`
 - `cpu-stress-workflow.json`: `ok`
-- Contains `anomalous`: no
+- `cpu-stress-tetragon-tail.jsonl`: `ok`
+- `cpu-stress-tetragon-fault-target.jsonl`: `ok`
+- Contains `anomalous`: yes
 - Contains `score`: no
-- Contains `exec`: no
+- Contains `exec`: yes
 - Contains `network`: no
-- Contains `cpu`: no
-- Contains `memory`: no
+- Contains `cpu`: yes
+- Contains `memory`: yes
+- Contains `process_exec`: yes
+- Contains `process_kprobe`: yes
+- Contains `tcp_connect`: yes
+- Contains `fault-target`: yes
 
 ## memory-pressure
 
 - Snapshot status: `complete`
-- Alerts: `1`
+- Alerts: `2`
+- Tetragon tail lines: `200`
+- Tetragon fault-target lines: `50`
 - `memory-pressure-dashboard.json`: `ok`
 - `memory-pressure-alerts.json`: `ok`
 - `memory-pressure-workflow.json`: `ok`
-- Contains `anomalous`: no
+- `memory-pressure-tetragon-tail.jsonl`: `ok`
+- `memory-pressure-tetragon-fault-target.jsonl`: `ok`
+- Contains `anomalous`: yes
 - Contains `score`: no
-- Contains `exec`: no
+- Contains `exec`: yes
 - Contains `network`: no
-- Contains `cpu`: no
-- Contains `memory`: no
+- Contains `cpu`: yes
+- Contains `memory`: yes
+- Contains `process_exec`: yes
+- Contains `process_kprobe`: yes
+- Contains `tcp_connect`: yes
+- Contains `fault-target`: yes
 
 ## Notes
 

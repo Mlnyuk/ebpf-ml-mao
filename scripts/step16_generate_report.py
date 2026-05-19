@@ -10,7 +10,18 @@ RESULT_DIR = Path("results/step16")
 REPORT_PATH = RESULT_DIR / "experiment-report.md"
 SCENARIOS = ["exec-storm", "network-burst", "cpu-stress", "memory-pressure"]
 KINDS = ["dashboard", "alerts", "workflow"]
-KEYWORDS = ["anomalous", "score", "exec", "network", "cpu", "memory"]
+KEYWORDS = [
+    "anomalous",
+    "score",
+    "exec",
+    "network",
+    "cpu",
+    "memory",
+    "process_exec",
+    "process_kprobe",
+    "tcp_connect",
+    "fault-target",
+]
 
 
 def read_text(path: Path) -> tuple[bool, str]:
@@ -75,6 +86,16 @@ def indicators_for(prefix: str) -> dict[str, Any]:
             parsed_payloads.append(payload)
             texts.append(json.dumps(payload, sort_keys=True))
 
+    tetragon_exists, tetragon_text = read_text(RESULT_DIR / f"{prefix}-tetragon-tail.jsonl")
+    statuses["tetragon-tail"] = "ok" if tetragon_exists and tetragon_text else "missing"
+    if tetragon_text:
+        texts.append(tetragon_text)
+
+    target_exists, target_text = read_text(RESULT_DIR / f"{prefix}-tetragon-fault-target.jsonl")
+    statuses["tetragon-fault-target"] = "ok" if target_exists and target_text else "missing"
+    if target_text:
+        texts.append(target_text)
+
     combined = "\n".join(texts).lower()
     count = None
     for payload in parsed_payloads:
@@ -85,6 +106,8 @@ def indicators_for(prefix: str) -> dict[str, Any]:
     return {
         "statuses": statuses,
         "alert_count": count,
+        "tetragon_lines": len([line for line in tetragon_text.splitlines() if line.strip()]) if tetragon_text else 0,
+        "tetragon_fault_target_lines": len([line for line in target_text.splitlines() if line.strip()]) if target_text else 0,
         "keywords": {keyword: (keyword in combined) for keyword in KEYWORDS},
     }
 
@@ -105,8 +128,12 @@ def yes_no(value: bool) -> str:
 
 def file_inventory() -> list[str]:
     expected = [RESULT_DIR / f"baseline-{kind}.json" for kind in KINDS]
+    expected.append(RESULT_DIR / "baseline-tetragon-tail.jsonl")
+    expected.append(RESULT_DIR / "baseline-tetragon-fault-target.jsonl")
     for scenario in SCENARIOS:
         expected.extend(RESULT_DIR / f"{scenario}-{kind}.json" for kind in KINDS)
+        expected.append(RESULT_DIR / f"{scenario}-tetragon-tail.jsonl")
+        expected.append(RESULT_DIR / f"{scenario}-tetragon-fault-target.jsonl")
         expected.append(RESULT_DIR / f"{scenario}-analyzer.log")
         expected.append(RESULT_DIR / f"{scenario}-collector.log")
         if scenario in {"cpu-stress", "memory-pressure"}:
@@ -127,9 +154,12 @@ def section_for(prefix: str, title: str) -> list[str]:
         "",
         f"- Snapshot status: `{status_label(indicators['statuses'])}`",
         f"- Alerts: `{indicators['alert_count'] if indicators['alert_count'] is not None else 'unknown'}`",
+        f"- Tetragon tail lines: `{indicators['tetragon_lines']}`",
+        f"- Tetragon fault-target lines: `{indicators['tetragon_fault_target_lines']}`",
     ]
     for kind, status in indicators["statuses"].items():
-        lines.append(f"- `{prefix}-{kind}.json`: `{status}`")
+        suffix = "jsonl" if kind.startswith("tetragon-") else "json"
+        lines.append(f"- `{prefix}-{kind}.{suffix}`: `{status}`")
     lines.extend(
         [
             f"- Contains `anomalous`: {yes_no(indicators['keywords']['anomalous'])}",
@@ -138,6 +168,10 @@ def section_for(prefix: str, title: str) -> list[str]:
             f"- Contains `network`: {yes_no(indicators['keywords']['network'])}",
             f"- Contains `cpu`: {yes_no(indicators['keywords']['cpu'])}",
             f"- Contains `memory`: {yes_no(indicators['keywords']['memory'])}",
+            f"- Contains `process_exec`: {yes_no(indicators['keywords']['process_exec'])}",
+            f"- Contains `process_kprobe`: {yes_no(indicators['keywords']['process_kprobe'])}",
+            f"- Contains `tcp_connect`: {yes_no(indicators['keywords']['tcp_connect'])}",
+            f"- Contains `fault-target`: {yes_no(indicators['keywords']['fault-target'])}",
             "",
         ]
     )
@@ -146,8 +180,8 @@ def section_for(prefix: str, title: str) -> list[str]:
 
 def scenario_table() -> list[str]:
     lines = [
-        "| Scenario | Snapshot status | Alerts | anomalous | score | exec | network | cpu | memory |",
-        "| --- | --- | ---: | --- | --- | --- | --- | --- | --- |",
+        "| Scenario | Snapshot status | Alerts | Tetragon lines | anomalous | score | process_exec | process_kprobe | tcp_connect | fault-target |",
+        "| --- | --- | ---: | ---: | --- | --- | --- | --- | --- | --- |",
     ]
     for scenario in SCENARIOS:
         indicators = indicators_for(scenario)
@@ -160,12 +194,13 @@ def scenario_table() -> list[str]:
                     scenario,
                     status_label(indicators["statuses"]),
                     str(alerts),
+                    str(indicators["tetragon_lines"]),
                     yes_no(keywords["anomalous"]),
                     yes_no(keywords["score"]),
-                    yes_no(keywords["exec"]),
-                    yes_no(keywords["network"]),
-                    yes_no(keywords["cpu"]),
-                    yes_no(keywords["memory"]),
+                    yes_no(keywords["process_exec"]),
+                    yes_no(keywords["process_kprobe"]),
+                    yes_no(keywords["tcp_connect"]),
+                    yes_no(keywords["fault-target"]),
                 ]
             )
             + " |"
