@@ -68,7 +68,7 @@ Step 18 실험 overlay 적용:
 kubectl apply -k deploy/yaml/step18
 ```
 
-이 overlay는 analyzer PVC 요청 용량을 8Gi로 늘리고, generated runtime data를 6시간마다 정리하는 CronJob을 추가한다.
+이 overlay는 analyzer PVC 요청 용량을 8Gi로 늘리고, generated runtime data를 6시간마다 정리하는 CronJob을 추가하며, `ghcr.io/mlnyuk/ebpf-ml-mao:step18-calibrated` 이미지를 사용한다.
 
 Step 18 render 검증:
 

@@ -47,11 +47,14 @@ class Step18ArtifactsTest(unittest.TestCase):
         content = Path(ROOT, "deploy/yaml/step18/kustomization.yaml").read_text(encoding="utf-8")
         self.assertIn("analyzer-prune-cronjob.yaml", content)
         self.assertIn("patch-analyzer-pvc-storage.yaml", content)
+        self.assertIn("step18-calibrated", content)
         pvc_patch = Path(ROOT, "deploy/yaml/step18/patch-analyzer-pvc-storage.yaml").read_text(encoding="utf-8")
         self.assertIn("8Gi", pvc_patch)
         cronjob = Path(ROOT, "deploy/yaml/step18/analyzer-prune-cronjob.yaml").read_text(encoding="utf-8")
         self.assertIn("CronJob", cronjob)
         self.assertIn("MAX_FILES_PER_DIR", cronjob)
+        config_patch = Path(ROOT, "deploy/yaml/step18/patch-configmap-image.yaml").read_text(encoding="utf-8")
+        self.assertIn("DEPLOYMENT_IMAGE", config_patch)
 
     def test_step18_readme_mentions_required_topics(self) -> None:
         content = Path(ROOT, "docs/steps/step18/README.md").read_text(encoding="utf-8")

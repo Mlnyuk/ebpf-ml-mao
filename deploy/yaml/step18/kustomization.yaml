@@ -6,3 +6,7 @@ resources:
 patches:
   - path: patch-analyzer-hpa-single-writer.yaml
   - path: patch-analyzer-pvc-storage.yaml
+  - path: patch-configmap-image.yaml
+images:
+  - name: ghcr.io/mlnyuk/ebpf-ml-mao
+    newTag: step18-calibrated
