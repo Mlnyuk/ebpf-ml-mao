@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import os
 from pathlib import Path
 
 from .adapters import adapt_prometheus_snapshot, adapt_tetragon_events
@@ -209,6 +210,8 @@ def run_phase3(
     *,
     tetragon_tail_lines: int = 100,
     scrape_timeout: float = 5.0,
+    target_namespace: str | None = None,
+    target_workload: str | None = None,
 ) -> AnalysisReport:
     baseline_tetragon = load_jsonl(baseline_tetragon_path)
     baseline_prometheus = load_json(baseline_prometheus_path)
@@ -223,11 +226,38 @@ def run_phase3(
         baseline_prometheus
     )
     input_events = adapt_tetragon_events(live_tetragon) + live_prometheus_events
+    input_events = _filter_target_events(
+        input_events,
+        namespace=target_namespace or os.getenv("ANALYZER_TARGET_NAMESPACE"),
+        workload=target_workload or os.getenv("ANALYZER_TARGET_WORKLOAD"),
+    )
     return build_report(
         sorted(baseline_events, key=lambda event: event.ts),
         sorted(input_events, key=lambda event: event.ts),
         output_dir,
     )
+
+
+def _filter_target_events(
+    events: list[NormalizedEvent],
+    *,
+    namespace: str | None = None,
+    workload: str | None = None,
+) -> list[NormalizedEvent]:
+    namespace = namespace.strip() if namespace else ""
+    workload = workload.strip() if workload else ""
+    if not namespace and not workload:
+        return events
+
+    filtered = []
+    for event in events:
+        event_namespace = str(event.metadata.get("namespace", ""))
+        if namespace and event_namespace != namespace:
+            continue
+        if workload and event.workload != workload:
+            continue
+        filtered.append(event)
+    return filtered or events
 
 
 def run_phase4(

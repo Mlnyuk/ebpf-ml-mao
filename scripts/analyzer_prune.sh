@@ -9,6 +9,7 @@ DRY_RUN="${DRY_RUN:-true}"
 CANDIDATE_LIST_LIMIT="${CANDIDATE_LIST_LIMIT:-200}"
 MAX_FILES_PER_DIR="${MAX_FILES_PER_DIR:-0}"
 PRINT_DELETED="${PRINT_DELETED:-false}"
+PRUNE_ALL="${PRUNE_ALL:-false}"
 
 log() {
   echo "[analyzer-prune] $*"
@@ -43,6 +44,11 @@ if [[ "${PRINT_DELETED}" != "true" && "${PRINT_DELETED}" != "false" ]]; then
   exit 2
 fi
 
+if [[ "${PRUNE_ALL}" != "true" && "${PRUNE_ALL}" != "false" ]]; then
+  echo "PRUNE_ALL must be true or false" >&2
+  exit 2
+fi
+
 log "namespace: ${NS}"
 log "analyzer deployment: ${ANALYZER_DEPLOY}"
 log "data dir: ${ANALYZER_DATA_DIR}"
@@ -52,6 +58,7 @@ log "max files per directory: ${MAX_FILES_PER_DIR} (0 disables count-based pruni
 log "dry run: ${DRY_RUN}"
 log "dry-run candidate list limit: ${CANDIDATE_LIST_LIMIT}"
 log "print deleted files: ${PRINT_DELETED}"
+log "prune all generated files: ${PRUNE_ALL}"
 warn "This command targets generated runtime/experiment data only. It never touches registry or models."
 warn "If DRY_RUN=false, this may delete collected experiment/runtime data."
 
@@ -69,6 +76,7 @@ kubectl exec -n "${NS}" "${pod}" -- /bin/sh -c "
   limit='${CANDIDATE_LIST_LIMIT}'
   max_files='${MAX_FILES_PER_DIR}'
   print_deleted='${PRINT_DELETED}'
+  prune_all='${PRUNE_ALL}'
   for name in ingest reports spool postprocess-queue queue; do
     dir=\"\${base}/\${name}\"
     echo \"--- \${dir} ---\"
@@ -76,17 +84,36 @@ kubectl exec -n "${NS}" "${pod}" -- /bin/sh -c "
       echo \"missing; skipped\"
       continue
     fi
-    count=\$(find \"\${dir}\" -type f -mtime +\"\${older}\" 2>/dev/null | wc -l | tr -d ' ')
+    if [ \"\${prune_all}\" = \"true\" ]; then
+      find_expr=\"all generated files\"
+      count=\$(find \"\${dir}\" -type f 2>/dev/null | wc -l | tr -d ' ')
+    else
+      find_expr=\"files older than \${older} day(s)\"
+      count=\$(find \"\${dir}\" -type f -mtime +\"\${older}\" 2>/dev/null | wc -l | tr -d ' ')
+    fi
     echo \"candidate files: \${count}\"
+    echo \"candidate rule: \${find_expr}\"
     if [ \"\${dry_run}\" = \"true\" ]; then
       echo \"showing up to \${limit} candidate file(s)\"
-      find \"\${dir}\" -type f -mtime +\"\${older}\" -print 2>/dev/null | sed 's/^/DRY-RUN /' | head -n \"\${limit}\"
+      if [ \"\${prune_all}\" = \"true\" ]; then
+        find \"\${dir}\" -type f -print 2>/dev/null | sed 's/^/DRY-RUN /' | head -n \"\${limit}\"
+      else
+        find \"\${dir}\" -type f -mtime +\"\${older}\" -print 2>/dev/null | sed 's/^/DRY-RUN /' | head -n \"\${limit}\"
+      fi
     else
       echo \"DELETING candidate files under \${dir}\"
       if [ \"\${print_deleted}\" = \"true\" ]; then
-        find \"\${dir}\" -type f -mtime +\"\${older}\" -print -delete 2>/dev/null
+        if [ \"\${prune_all}\" = \"true\" ]; then
+          find \"\${dir}\" -type f -print -delete 2>/dev/null
+        else
+          find \"\${dir}\" -type f -mtime +\"\${older}\" -print -delete 2>/dev/null
+        fi
       else
-        find \"\${dir}\" -type f -mtime +\"\${older}\" -delete 2>/dev/null
+        if [ \"\${prune_all}\" = \"true\" ]; then
+          find \"\${dir}\" -type f -delete 2>/dev/null
+        else
+          find \"\${dir}\" -type f -mtime +\"\${older}\" -delete 2>/dev/null
+        fi
       fi
     fi
 

@@ -25,6 +25,7 @@ class Step18ArtifactsTest(unittest.TestCase):
         self.assertIn("OLDER_THAN_DAYS", content)
         self.assertIn("MAX_FILES_PER_DIR", content)
         self.assertIn("PRINT_DELETED", content)
+        self.assertIn("PRUNE_ALL", content)
         delete_index = content.find("-delete")
         self.assertNotEqual(delete_index, -1)
         guard_index = content.find("dry_run")
@@ -55,6 +56,8 @@ class Step18ArtifactsTest(unittest.TestCase):
         self.assertIn("MAX_FILES_PER_DIR", cronjob)
         config_patch = Path(ROOT, "deploy/yaml/step18/patch-configmap-image.yaml").read_text(encoding="utf-8")
         self.assertIn("DEPLOYMENT_IMAGE", config_patch)
+        self.assertIn("ANALYZER_TARGET_NAMESPACE", config_patch)
+        self.assertIn("ANALYZER_TARGET_WORKLOAD", config_patch)
 
     def test_step18_readme_mentions_required_topics(self) -> None:
         content = Path(ROOT, "docs/steps/step18/README.md").read_text(encoding="utf-8")

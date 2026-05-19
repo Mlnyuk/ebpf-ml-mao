@@ -22,6 +22,7 @@ GENERIC_FEATURES = {
     "event_rate_per_minute",
     "exec_rate_per_minute",
     "network_event_rate_per_minute",
+    "file_event_count",
     "window_duration_seconds",
     "unique_pids",
 }
@@ -36,7 +37,7 @@ FEATURE_WEIGHTS = {
     "exec_rate_per_minute": 1.50,
     "network_event_count": 1.40,
     "network_event_rate_per_minute": 1.40,
-    "file_event_count": 1.20,
+    "file_event_count": 0.10,
     "privilege_event_count": 1.60,
     "avg_cpu_usage": 1.20,
     "max_cpu_usage": 1.40,

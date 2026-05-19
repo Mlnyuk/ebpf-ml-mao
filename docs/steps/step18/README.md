@@ -56,6 +56,12 @@ DRY_RUN=false OLDER_THAN_DAYS=1 bash scripts/analyzer_prune.sh
 DRY_RUN=true MAX_FILES_PER_DIR=5000 bash scripts/analyzer_prune.sh
 ```
 
+실험 history를 완전히 비우고 clean baseline부터 다시 시작:
+
+```bash
+DRY_RUN=false PRUNE_ALL=true bash scripts/analyzer_prune.sh
+```
+
 실험 전 preflight:
 
 ```bash
@@ -68,7 +74,7 @@ Step 18 실험 overlay 적용:
 kubectl apply -k deploy/yaml/step18
 ```
 
-이 overlay는 analyzer PVC 요청 용량을 8Gi로 늘리고, generated runtime data를 6시간마다 정리하는 CronJob을 추가하며, `ghcr.io/mlnyuk/ebpf-ml-mao:step18-calibrated` 이미지를 사용한다.
+이 overlay는 analyzer PVC 요청 용량을 8Gi로 늘리고, generated runtime data를 6시간마다 정리하는 CronJob을 추가하며, `ghcr.io/mlnyuk/ebpf-ml-mao:step18-calibrated` 이미지를 사용한다. Step 16 live scoring은 `ANALYZER_TARGET_NAMESPACE=ebpf-obs-test`, `ANALYZER_TARGET_WORKLOAD=fault-target`로 제한해 인프라 워크로드가 baseline을 오염시키지 않게 한다.
 
 Step 18 render 검증:
 
@@ -129,6 +135,7 @@ python3 scripts/step16_generate_report.py
 - prune targets only generated runtime directories: `ingest`, `reports`, `spool`, `postprocess-queue`, `queue`.
 - prune never targets `registry` or `models`.
 - `MAX_FILES_PER_DIR` enables count-based pruning to reduce inode exhaustion risk.
+- `PRUNE_ALL=true` clears generated runtime history for clean baseline reruns.
 - Step 18 overlay patches the inherited analyzer HPA to `minReplicas: 1` and `maxReplicas: 1` for experiment safety.
 - Step 18 overlay patches `ebpf-ml-mao-state` from 2Gi to 8Gi. The storage class must allow volume expansion for an existing Longhorn/PVC resize to complete.
 
