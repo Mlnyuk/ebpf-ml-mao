@@ -3,7 +3,7 @@
 - Input directory: `results/step16`
 - CSV output: `results/step16/threshold-analysis.csv`
 - Evaluation scope: workload `fault-target` (matches analyzer `ANALYZER_TARGET_WORKLOAD`)
-- Conclusion: target-scoped baseline produced no anomalous samples for workload 'fault-target' (workflow verdict is normal, dashboard state is ok), while all fault scenarios show workflow verdict 'anomalous'. The analyzer target filter cleanly separates baseline from injected faults at the verdict level.
+- Conclusion: baseline produced no fault-target score samples (verdict=normal, alerts=0), while all fault scenarios show verdict 'anomalous' with fault-target scores ranging from 0.4323 to 1.0000. Threshold 0.35 achieves FP=0 and FN=0.
 
 ## Verdict Summary
 
@@ -20,22 +20,22 @@
 | Scenario | Expected | Target samples | Total scored | Min | Mean | Max | Anomalous (target) | Workflow verdict | Dashboard alerts |
 | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | --- | ---: |
 | baseline | normal | 0 | 3 | n/a | n/a | n/a | 0 | normal | 0 |
-| exec-storm | fault | 0 | 3 | n/a | n/a | n/a | 0 | anomalous | 2 |
-| network-burst | fault | 0 | 3 | n/a | n/a | n/a | 0 | anomalous | 2 |
-| cpu-stress | fault | 0 | 3 | n/a | n/a | n/a | 0 | anomalous | 2 |
-| memory-pressure | fault | 0 | 3 | n/a | n/a | n/a | 0 | anomalous | 2 |
+| exec-storm | fault | 3 | 3 | 0.4323 | 0.7693 | 1.0000 | 2 | anomalous | 2 |
+| network-burst | fault | 6 | 6 | 1.0000 | 1.0000 | 1.0000 | 6 | anomalous | 2 |
+| cpu-stress | fault | 2 | 2 | 1.0000 | 1.0000 | 1.0000 | 2 | anomalous | 2 |
+| memory-pressure | fault | 1 | 1 | 0.7732 | 0.7732 | 0.7732 | 1 | anomalous | 2 |
 
 ## Threshold Candidates (target workload only)
 
 | Threshold | Baseline samples | Fault samples | False positives | FP rate | False negatives | FN rate |
 | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| 0.35 | 0 | 0 | 0 | n/a | 0 | n/a |
-| 0.45 | 0 | 0 | 0 | n/a | 0 | n/a |
-| 0.55 | 0 | 0 | 0 | n/a | 0 | n/a |
-| 0.65 | 0 | 0 | 0 | n/a | 0 | n/a |
-| 0.75 | 0 | 0 | 0 | n/a | 0 | n/a |
-| 0.85 | 0 | 0 | 0 | n/a | 0 | n/a |
-| 0.95 | 0 | 0 | 0 | n/a | 0 | n/a |
+| 0.35 | 0 | 12 | 0 | n/a | 0 | 0.0000 |
+| 0.45 | 0 | 12 | 0 | n/a | 1 | 0.0833 |
+| 0.55 | 0 | 12 | 0 | n/a | 1 | 0.0833 |
+| 0.65 | 0 | 12 | 0 | n/a | 1 | 0.0833 |
+| 0.75 | 0 | 12 | 0 | n/a | 1 | 0.0833 |
+| 0.85 | 0 | 12 | 0 | n/a | 2 | 0.1667 |
+| 0.95 | 0 | 12 | 0 | n/a | 3 | 0.2500 |
 
 ## Calibration Rule
 

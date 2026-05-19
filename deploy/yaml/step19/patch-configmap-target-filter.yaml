@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ebpf-ml-mao-runtime
+  namespace: ebpf-obs
+data:
+  DEPLOYMENT_STEP: "step19"
+  DEPLOYMENT_RUNBOOK: docs/steps/step19/README.md
+  ANALYZER_TARGET_NAMESPACE: ebpf-obs-test
+  ANALYZER_TARGET_WORKLOAD: fault-target

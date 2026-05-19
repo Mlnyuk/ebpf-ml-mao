@@ -91,6 +91,33 @@ collect_tetragon_tail() {
   fi
 }
 
+collect_fault_target_ingest_scores() {
+  local analyzer_pod
+  analyzer_pod="$(
+    kubectl get pod -n ebpf-obs \
+      -l app=ebpf-ml-mao-analyzer \
+      -o jsonpath='{.items[0].metadata.name}' 2>/dev/null || true
+  )"
+  if [[ -z "${analyzer_pod}" ]]; then
+    log "analyzer pod not found; skipping fault-target ingest score dump"
+    return
+  fi
+
+  local out_path="${RESULT_DIR}/fault-target-ingest-scores.jsonl"
+  if kubectl exec -n ebpf-obs "${analyzer_pod}" -- sh -c '
+    find /var/lib/ebpf-ml-mao/ingest -name "*-report.json" 2>/dev/null | \
+    while IFS= read -r f; do
+      if grep -q fault-target "$f" 2>/dev/null; then
+        cat "$f"
+      fi
+    done
+  ' 2>/dev/null | python3 "$(dirname "$0")/step16_extract_fault_target_scores.py" > "${out_path}"; then
+    log "wrote ${out_path} (scenario labels assigned by step16_analyze_thresholds.py)"
+  else
+    log "failed to dump fault-target ingest scores; ${out_path} may be incomplete"
+  fi
+}
+
 collect_snapshot() {
   local prefix="$1"
   collect_endpoint "/v1/dashboard" "${RESULT_DIR}/${prefix}-dashboard.json"
@@ -133,5 +160,8 @@ run_scenario "exec-storm" "scripts/fault-scenarios/exec-storm.sh"
 run_scenario "network-burst" "scripts/fault-scenarios/network-burst.sh"
 run_scenario "cpu-stress" "scripts/fault-scenarios/cpu-stress.sh"
 run_scenario "memory-pressure" "scripts/fault-scenarios/memory-pressure.sh"
+
+log "dumping fault-target ingest scores from analyzer PVC"
+collect_fault_target_ingest_scores
 
 log "result collection complete: ${RESULT_DIR}"

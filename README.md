@@ -66,7 +66,8 @@ flowchart TD
 - [`docs/architecture/MAO/Agent.md`](./docs/architecture/MAO/Agent.md): 에이전트 역할 분리와 운영 메모
 - [`docs/architecture/ebpf-ml-mao/README.md`](./docs/architecture/ebpf-ml-mao/README.md): eBPF + ML 청사진 문서 묶음 개요
 - [`docs/architecture/ebpf-ml-mao/04-mvp-scope.md`](./docs/architecture/ebpf-ml-mao/04-mvp-scope.md): MVP 범위 정리
-- [`docs/steps/step18/README.md`](./docs/steps/step18/README.md): 현재 최신 구현 단계 문서
+- [`docs/steps/step19/README.md`](./docs/steps/step19/README.md): 현재 최신 구현 단계 문서 (analyzer target filter)
+- [`docs/steps/step18/README.md`](./docs/steps/step18/README.md): analyzer storage recovery 및 single-writer 보호 단계 문서
 - [`docs/steps/step17/README.md`](./docs/steps/step17/README.md): Step 16 결과 집계 및 리포트 생성 단계 문서
 - [`docs/steps/step16/README.md`](./docs/steps/step16/README.md): live fault scenario validation 단계 문서
 - [`docs/operations/runbook.md`](./docs/operations/runbook.md): 실배포 운영 runbook

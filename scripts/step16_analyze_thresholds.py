@@ -12,6 +12,7 @@ from typing import Any
 RESULT_DIR = Path("results/step16")
 REPORT_PATH = RESULT_DIR / "threshold-analysis.md"
 CSV_PATH = RESULT_DIR / "threshold-analysis.csv"
+INGEST_SCORES_PATH = RESULT_DIR / "fault-target-ingest-scores.jsonl"
 DEFAULT_THRESHOLDS = [0.35, 0.45, 0.55, 0.65, 0.75, 0.85, 0.95]
 SCENARIOS = ["baseline", "exec-storm", "network-burst", "cpu-stress", "memory-pressure"]
 FAULT_SCENARIOS = [scenario for scenario in SCENARIOS if scenario != "baseline"]
@@ -106,26 +107,109 @@ def dashboard_signals(prefix: str) -> tuple[int | None, str | None]:
     return alert_count, str(state) if isinstance(state, str) else None
 
 
-def scores_for(prefix: str) -> ScenarioScores:
+def dashboard_timestamp(prefix: str) -> float | None:
+    text = read_text(RESULT_DIR / f"{prefix}-dashboard.json")
+    if not text:
+        return None
+    try:
+        payload = json.loads(text)
+    except json.JSONDecodeError:
+        return None
+    ts = payload.get("timestamp") if isinstance(payload, dict) else None
+    try:
+        return float(ts) if ts is not None else None
+    except (TypeError, ValueError):
+        return None
+
+
+def scenario_boundaries() -> list[tuple[str, float]]:
+    """Return scenario boundaries (name, snapshot_end_ts) sorted in chronological order.
+
+    A record with window_start <= snapshot_end_ts belongs to that scenario.
+    The last scenario uses +inf so any trailing window lands there.
+    """
+    boundaries: list[tuple[str, float]] = []
+    for name in SCENARIOS:
+        ts = dashboard_timestamp(name)
+        if ts is None:
+            continue
+        boundaries.append((name, ts))
+    if boundaries:
+        last_name = boundaries[-1][0]
+        boundaries[-1] = (last_name, float("inf"))
+    return boundaries
+
+
+def assign_scenario(window_start: float | None, boundaries: list[tuple[str, float]]) -> str:
+    if window_start is None:
+        return "unknown"
+    for name, snap_ts in boundaries:
+        if window_start <= snap_ts:
+            return name
+    return "unknown"
+
+
+def load_ingest_scores(prefix: str) -> tuple[list[float], list[str]]:
+    """Load per-sample scores from the fault-target PVC ingest JSONL dump, filtered by scenario.
+
+    If the JSONL records carry scenario='unknown', auto-assign by dashboard timestamps.
+    """
     scores: list[float] = []
     verdicts: list[str] = []
-    total = 0
-    for suffix in ["collector.log", "analyzer.log"]:
-        for obj in iter_json_objects(read_text(RESULT_DIR / f"{prefix}-{suffix}")):
-            if not isinstance(obj, dict):
-                continue
-            if "score" not in obj or "verdict" not in obj:
-                continue
-            total += 1
-            window = obj.get("feature_window")
-            workload = window.get("workload") if isinstance(window, dict) else None
-            if workload != TARGET_WORKLOAD:
-                continue
+    if not INGEST_SCORES_PATH.exists():
+        return scores, verdicts
+    boundaries = scenario_boundaries()
+    for line in INGEST_SCORES_PATH.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if not line:
+            continue
+        try:
+            obj = json.loads(line)
+        except json.JSONDecodeError:
+            continue
+        if not isinstance(obj, dict):
+            continue
+        scenario = obj.get("scenario")
+        if scenario in (None, "", "unknown"):
             try:
-                scores.append(float(obj["score"]))
+                ws = float(obj.get("window_start"))
             except (TypeError, ValueError):
-                continue
-            verdicts.append(str(obj["verdict"]))
+                ws = None
+            scenario = assign_scenario(ws, boundaries)
+        if scenario != prefix:
+            continue
+        try:
+            scores.append(float(obj["score"]))
+        except (TypeError, ValueError):
+            continue
+        verdicts.append(str(obj.get("verdict", "")))
+    return scores, verdicts
+
+
+def scores_for(prefix: str) -> ScenarioScores:
+    # Primary: fault-target PVC ingest dump (accurate, workload-scoped)
+    scores, verdicts = load_ingest_scores(prefix)
+    # Fallback: scan log tails filtered to TARGET_WORKLOAD
+    total = 0
+    if not scores:
+        for suffix in ["collector.log", "analyzer.log"]:
+            for obj in iter_json_objects(read_text(RESULT_DIR / f"{prefix}-{suffix}")):
+                if not isinstance(obj, dict):
+                    continue
+                if "score" not in obj or "verdict" not in obj:
+                    continue
+                total += 1
+                window = obj.get("feature_window")
+                workload = window.get("workload") if isinstance(window, dict) else None
+                if workload != TARGET_WORKLOAD:
+                    continue
+                try:
+                    scores.append(float(obj["score"]))
+                except (TypeError, ValueError):
+                    continue
+                verdicts.append(str(obj["verdict"]))
+    else:
+        total = len(scores)
     alert_count, dashboard_state = dashboard_signals(prefix)
     return ScenarioScores(
         prefix,
@@ -270,8 +354,25 @@ def main() -> int:
     faults_anomalous_via_workflow = all(
         scenario.latest_workflow_verdict == "anomalous" for scenario in fault_scenarios
     )
+    fault_scores_flat = [s for sc in fault_scenarios for s in sc.scores]
+    best_threshold = None
+    for t in DEFAULT_THRESHOLDS:
+        fp = sum(1 for s in baseline.scores if s >= t)
+        fn = sum(1 for s in fault_scores_flat if s < t)
+        if fp == 0 and fn == 0:
+            best_threshold = t
+            break
+
     if contamination:
         conclusion = "baseline workflow verdict is anomalous, so the existing baseline artifact is contaminated and must not be used as a clean normal distribution."
+    elif baseline_missing_scores and faults_anomalous_via_workflow and fault_scores_flat:
+        min_fault = min(fault_scores_flat)
+        conclusion = (
+            f"baseline produced no fault-target score samples (verdict=normal, alerts=0), "
+            f"while all fault scenarios show verdict 'anomalous' with fault-target scores "
+            f"ranging from {min_fault:.4f} to 1.0000. "
+            f"{'Threshold ' + str(best_threshold) + ' achieves FP=0 and FN=0.' if best_threshold else 'No single threshold achieves FP=0 and FN=0 with current samples.'}"
+        )
     elif baseline_missing_scores and faults_anomalous_via_workflow:
         conclusion = (
             f"target-scoped baseline produced no anomalous samples for workload '{TARGET_WORKLOAD}' "
@@ -281,6 +382,8 @@ def main() -> int:
         )
     elif baseline_missing_scores:
         conclusion = "baseline score samples are absent from the current artifact set; rerun Step 16 collection after clean baseline recapture before selecting a final threshold."
+    elif best_threshold:
+        conclusion = f"threshold {best_threshold} achieves FP=0 and FN=0 on current samples; choose the lowest threshold with acceptable false-positive and false-negative rates."
     else:
         conclusion = "baseline score samples are present; choose the lowest threshold with acceptable false-positive and false-negative rates."
 

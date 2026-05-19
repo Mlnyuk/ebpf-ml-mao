@@ -9,7 +9,7 @@ from pathlib import Path
 from statistics import mean
 from typing import Any
 
-from step16_analyze_thresholds import iter_json_objects, read_text, scores_for
+from step16_analyze_thresholds import iter_json_objects, read_text, scores_for, INGEST_SCORES_PATH
 
 RESULT_DIR = Path("results/step16")
 REPORT_PATH = RESULT_DIR / "paper-results.md"
@@ -77,6 +77,29 @@ def alert_count(prefix: str) -> int | None:
 
 def feature_values(prefix: str) -> dict[str, list[float]]:
     values: dict[str, list[float]] = defaultdict(list)
+    # Primary: fault-target PVC ingest JSONL (accurate, workload-scoped)
+    if INGEST_SCORES_PATH.exists():
+        for line in INGEST_SCORES_PATH.read_text(encoding="utf-8").splitlines():
+            line = line.strip()
+            if not line:
+                continue
+            try:
+                obj = json.loads(line)
+            except json.JSONDecodeError:
+                continue
+            if not isinstance(obj, dict) or obj.get("scenario") != prefix:
+                continue
+            raw_values = obj.get("values")
+            if not isinstance(raw_values, dict):
+                continue
+            for feature in FEATURES:
+                try:
+                    values[feature].append(float(raw_values[feature]))
+                except (KeyError, TypeError, ValueError):
+                    continue
+        if values:
+            return dict(values)
+    # Fallback: scan log tails
     for suffix in ["collector.log", "analyzer.log"]:
         for obj in iter_json_objects(read_text(RESULT_DIR / f"{prefix}-{suffix}")):
             if not isinstance(obj, dict):
