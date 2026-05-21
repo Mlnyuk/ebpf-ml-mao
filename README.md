@@ -66,7 +66,8 @@ flowchart TD
 - [`docs/architecture/MAO/Agent.md`](./docs/architecture/MAO/Agent.md): 에이전트 역할 분리와 운영 메모
 - [`docs/architecture/ebpf-ml-mao/README.md`](./docs/architecture/ebpf-ml-mao/README.md): eBPF + ML 청사진 문서 묶음 개요
 - [`docs/architecture/ebpf-ml-mao/04-mvp-scope.md`](./docs/architecture/ebpf-ml-mao/04-mvp-scope.md): MVP 범위 정리
-- [`docs/steps/step21/README.md`](./docs/steps/step21/README.md): 현재 최신 구현 단계 문서 (baseline workload redesign + model retraining)
+- [`docs/steps/step22/README.md`](./docs/steps/step22/README.md): 현재 최신 구현 단계 문서 (memory-pressure detection fix)
+- [`docs/steps/step21/README.md`](./docs/steps/step21/README.md): baseline workload redesign + model retraining 단계 문서
 - [`docs/steps/step20/README.md`](./docs/steps/step20/README.md): repeated experiment validation 단계 문서
 - [`docs/steps/step19/README.md`](./docs/steps/step19/README.md): analyzer target filter 단계 문서
 - [`docs/steps/step18/README.md`](./docs/steps/step18/README.md): analyzer storage recovery 및 single-writer 보호 단계 문서
