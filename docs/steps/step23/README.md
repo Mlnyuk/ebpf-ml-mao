@@ -76,6 +76,29 @@ curl http://localhost:8080/v1/dashboard | jq '.workflow.workloads'
 }
 ```
 
+## Deploy (이미지 재빌드 없이)
+
+UI 파일(html/js/css)과 backend `api.py`는 컨테이너 이미지에 패키징됩니다
+(`importlib.resources`, `/app/app/ebpf_ml_mao/`). 컨테이너 빌드 도구가 없는 환경에서는
+`scripts/step23_deploy_ui.sh`가 두 ConfigMap을 만들어 실행 중인 analyzer pod에 마운트합니다.
+
+```bash
+# UI(dir) + api.py(subPath)를 ConfigMap으로 마운트, 롤아웃, 인덱스 재구성
+bash scripts/step23_deploy_ui.sh
+
+# 되돌리기 (ConfigMap 삭제)
+bash scripts/step23_deploy_ui.sh --revert
+```
+
+- `ebpf-ml-mao-ui-assets`: dashboard.html/js/css → `/app/app/ebpf_ml_mao/ui`
+- `ebpf-ml-mao-api-patch`: api.py → `/app/app/ebpf_ml_mao/api.py` (subPath)
+- 기존 인덱스는 옛 api.py로 작성돼 workload 필드가 없으므로, 스크립트가 pod 내에서
+  `rebuild_ingest_index`를 호출해 저장된 리포트 원본에서 per-workload 필드를 재구성합니다.
+- analyzer는 NodePort `30002`(svc `ebpf-ml-mao-ui`)로 노출됩니다.
+
+> 이것은 빌드 도구가 없는 환경용 stop-gap입니다. 영구적 방법은 committed `app/` 소스로
+> 이미지를 재빌드해 배포하는 것입니다.
+
 ## 호환성
 
 - 기존 `/v1/dashboard`, `/v1/alerts`, `/v1/workflow` 응답 필드는 모두 유지(추가만 함).
