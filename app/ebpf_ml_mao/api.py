@@ -40,6 +40,44 @@ def _atomic_write_json(path: Path, payload: dict[str, Any]) -> None:
     tmp.replace(path)
 
 
+# How many recent score samples to retain per workload for the dashboard timeline.
+WORKLOAD_HISTORY_LIMIT = 40
+
+
+def _coerce_float(value: Any) -> float | None:
+    try:
+        return float(value)
+    except (TypeError, ValueError):
+        return None
+
+
+def _index_item(payload: dict[str, Any], path: Path, *, default_node: str) -> dict[str, Any]:
+    """Build an ingest index entry, capturing the anomaly signal (score,
+    workload, window, features) so the dashboard can render per-workload state
+    instead of only a cluster-wide verdict."""
+    report = payload.get("report", {})
+    report = report if isinstance(report, dict) else {}
+    feature_window = report.get("feature_window", {})
+    feature_window = feature_window if isinstance(feature_window, dict) else {}
+    values = feature_window.get("values", {})
+    values = values if isinstance(values, dict) else {}
+    features = {str(k): v for k, v in values.items() if _coerce_float(v) is not None}
+    return {
+        "node_name": str(payload.get("node_name", default_node)),
+        "report_name": str(payload.get("report_name", path.name)),
+        "path": str(path),
+        "phase": str(payload.get("phase", "unknown")),
+        "verdict": report.get("verdict", "unknown"),
+        "score": _coerce_float(report.get("score")),
+        "confidence": _coerce_float(report.get("confidence")),
+        "workload": str(feature_window.get("workload") or "unknown"),
+        "window_start": _coerce_float(feature_window.get("window_start")),
+        "window_end": _coerce_float(feature_window.get("window_end")),
+        "features": features,
+        "received_at": int(payload.get("received_at", time.time())),
+    }
+
+
 def rebuild_ingest_index(ingest_dir: str | Path) -> dict[str, Any]:
     base = Path(ingest_dir)
     base.mkdir(parents=True, exist_ok=True)
@@ -54,14 +92,7 @@ def rebuild_ingest_index(ingest_dir: str | Path) -> dict[str, Any]:
         if not isinstance(payload, dict) or not isinstance(payload.get("report"), dict):
             continue
         digest = _payload_digest(payload)
-        report = payload.get("report", {})
-        items[digest] = {
-            "node_name": str(payload.get("node_name", path.parent.name)),
-            "report_name": str(payload.get("report_name", path.name)),
-            "path": str(path),
-            "phase": str(payload.get("phase", "unknown")),
-            "verdict": report.get("verdict", "unknown") if isinstance(report, dict) else "unknown",
-        }
+        items[digest] = _index_item(payload, path, default_node=path.parent.name)
     index = {
         "received_count": len(items),
         "unique_count": len(items),
@@ -112,8 +143,71 @@ def _save_ingest_index(ingest_dir: Path, index: dict[str, Any]) -> None:
     _atomic_write_json(_index_path(ingest_dir), index)
 
 
+def _item_sort_key(item: dict[str, Any]) -> tuple[float, float]:
+    received = _coerce_float(item.get("received_at")) or 0.0
+    window = _coerce_float(item.get("window_start")) or 0.0
+    return (received, window)
+
+
+def _top_feature(features: dict[str, Any]) -> dict[str, Any] | None:
+    best_name: str | None = None
+    best_value = 0.0
+    for name, raw in features.items():
+        value = _coerce_float(raw)
+        if value is None:
+            continue
+        if abs(value) > abs(best_value):
+            best_value = value
+            best_name = name
+    if best_name is None:
+        return None
+    return {"name": best_name, "value": round(best_value, 4)}
+
+
+def _summarize_workloads(items: list[dict[str, Any]]) -> dict[str, dict[str, Any]]:
+    """Per-workload anomaly view so the dashboard shows each workload's own
+    verdict and recent scores instead of a single cluster-wide latest verdict."""
+    grouped: dict[str, list[dict[str, Any]]] = {}
+    for item in items:
+        workload = str(item.get("workload") or "unknown")
+        grouped.setdefault(workload, []).append(item)
+
+    workloads: dict[str, dict[str, Any]] = {}
+    for workload, group in grouped.items():
+        ordered = sorted(group, key=_item_sort_key)
+        latest = ordered[-1]
+        scored = [it for it in ordered if _coerce_float(it.get("score")) is not None]
+        anomalous = sum(1 for it in ordered if it.get("verdict") == "anomalous")
+        recent = ordered[-WORKLOAD_HISTORY_LIMIT:]
+        history = [
+            {
+                "score": _coerce_float(it.get("score")),
+                "verdict": it.get("verdict", "unknown"),
+                "window_start": _coerce_float(it.get("window_start")),
+                "window_end": _coerce_float(it.get("window_end")),
+                "received_at": _coerce_float(it.get("received_at")),
+            }
+            for it in recent
+        ]
+        workloads[workload] = {
+            "sample_count": len(ordered),
+            "anomalous_count": anomalous,
+            "detection_rate": round(anomalous / len(ordered), 4) if ordered else 0.0,
+            "latest_verdict": latest.get("verdict", "unknown"),
+            "latest_score": _coerce_float(latest.get("score")),
+            "latest_window_end": _coerce_float(latest.get("window_end")),
+            "latest_node": latest.get("node_name", "unknown"),
+            "latest_features": latest.get("features", {}),
+            "top_feature": _top_feature(latest.get("features", {}) or {}),
+            "score_count": len(scored),
+            "recent_scores": history,
+        }
+    return workloads
+
+
 def _save_workflow_summary(ingest_dir: Path, index: dict[str, Any]) -> dict[str, Any]:
     items = list(index.get("items", {}).values())
+    ordered_items = sorted(items, key=_item_sort_key)
     verdicts: dict[str, int] = {}
     phases: dict[str, int] = {}
     for item in items:
@@ -128,7 +222,8 @@ def _save_workflow_summary(ingest_dir: Path, index: dict[str, Any]) -> dict[str,
         "nodes": sorted({item["node_name"] for item in items}),
         "verdicts": verdicts,
         "phases": phases,
-        "latest_verdict": items[-1].get("verdict", "unknown") if items else None,
+        "latest_verdict": ordered_items[-1].get("verdict", "unknown") if ordered_items else None,
+        "workloads": _summarize_workloads(items),
     }
     _atomic_write_json(_workflow_path(ingest_dir), workflow)
     return workflow
@@ -169,13 +264,9 @@ def store_ingest_payload(
     target_dir.mkdir(parents=True, exist_ok=True)
     target_path = target_dir / f"{digest[:12]}-{report_name}"
     _atomic_write_json(target_path, payload)
-    index["items"][digest] = {
-        "node_name": node_name,
-        "report_name": report_name,
-        "path": str(target_path),
-        "phase": str(payload.get("phase", "unknown")),
-        "verdict": verdict,
-    }
+    item_payload = dict(payload)
+    item_payload.setdefault("received_at", int(time.time()))
+    index["items"][digest] = _index_item(item_payload, target_path, default_node=node_name)
     index["unique_count"] = len(index["items"])
     _save_ingest_index(base, index)
     workflow = _save_workflow_summary(base, index)
@@ -513,6 +604,18 @@ class AnalyzerAPIHandler(BaseHTTPRequestHandler):
                 self._json_response(HTTPStatus.BAD_REQUEST, {"status": "error", "error": str(exc)})
                 return
             self._json_response(HTTPStatus.OK, payload)
+            return
+        if self.path == "/v1/scores":
+            try:
+                workflow = load_workflow_summary(self.ingest_dir, repair=True)
+            except ValueError as exc:
+                self._json_response(HTTPStatus.BAD_REQUEST, {"status": "error", "error": str(exc)})
+                return
+            self._json_response(HTTPStatus.OK, {
+                "component": "analyzer",
+                "timestamp": int(time.time()),
+                "workloads": workflow.get("workloads", {}),
+            })
             return
         if self.path == "/v1/queue":
             payload = queue_status(self.postprocess_queue_dir, ttl_seconds=self.queue_ttl_seconds)
