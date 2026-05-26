@@ -20,6 +20,17 @@ from .report import (
 from .scoring import BaselineModel, BaselineScorer, verdict_for_score
 
 
+def _runtime_score_threshold(default: float = 0.45) -> float:
+    raw_threshold = os.getenv("ANALYZER_SCORE_THRESHOLD")
+    if not raw_threshold:
+        return default
+    try:
+        threshold = float(raw_threshold)
+    except ValueError:
+        return default
+    return threshold if 0 < threshold < 1 else default
+
+
 def _build_single_report(feature_window, scorer: BaselineScorer) -> AnalysisReport:
     score, confidence = scorer.score(feature_window)
     threshold = scorer.model.threshold if scorer.model is not None else 0.45
@@ -146,7 +157,7 @@ def build_report(
     if not baseline_windows:
         raise ValueError("baseline dataset did not produce any feature windows")
     scorer = BaselineScorer(model_type="baseline")
-    scorer.fit(baseline_windows)
+    scorer.fit(baseline_windows, threshold=_runtime_score_threshold())
     return _build_single_report_from_model(input_events, output_dir, scorer)
 
 
@@ -159,7 +170,7 @@ def build_batch_report(
     if not baseline_windows:
         raise ValueError("baseline dataset did not produce any feature windows")
     scorer = BaselineScorer(model_type="baseline")
-    scorer.fit(baseline_windows)
+    scorer.fit(baseline_windows, threshold=_runtime_score_threshold())
     return _build_batch_report_from_model(input_events, output_dir, scorer)
 
 

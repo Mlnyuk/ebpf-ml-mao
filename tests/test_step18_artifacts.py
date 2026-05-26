@@ -48,7 +48,7 @@ class Step18ArtifactsTest(unittest.TestCase):
         content = Path(ROOT, "deploy/yaml/step18/kustomization.yaml").read_text(encoding="utf-8")
         self.assertIn("analyzer-prune-cronjob.yaml", content)
         self.assertIn("patch-analyzer-pvc-storage.yaml", content)
-        self.assertIn("step18-strict-target", content)
+        self.assertIn("step18-threshold-035", content)
         pvc_patch = Path(ROOT, "deploy/yaml/step18/patch-analyzer-pvc-storage.yaml").read_text(encoding="utf-8")
         self.assertIn("8Gi", pvc_patch)
         cronjob = Path(ROOT, "deploy/yaml/step18/analyzer-prune-cronjob.yaml").read_text(encoding="utf-8")
@@ -58,6 +58,7 @@ class Step18ArtifactsTest(unittest.TestCase):
         self.assertIn("DEPLOYMENT_IMAGE", config_patch)
         self.assertIn("ANALYZER_TARGET_NAMESPACE", config_patch)
         self.assertIn("ANALYZER_TARGET_WORKLOAD", config_patch)
+        self.assertIn('ANALYZER_SCORE_THRESHOLD: "0.35"', config_patch)
 
     def test_step18_readme_mentions_required_topics(self) -> None:
         content = Path(ROOT, "docs/steps/step18/README.md").read_text(encoding="utf-8")

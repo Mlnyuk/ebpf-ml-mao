@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import os
 import socketserver
 import sys
 import tempfile
@@ -16,7 +17,7 @@ if str(APP_DIR) not in sys.path:
 
 from ebpf_ml_mao.live import parse_prometheus_text, scrape_prometheus_snapshot, tail_jsonl
 import ebpf_ml_mao.pipeline as pipeline
-from ebpf_ml_mao.pipeline import run_phase3
+from ebpf_ml_mao.pipeline import _runtime_score_threshold, run_phase3
 
 
 class _MetricsHandler(BaseHTTPRequestHandler):
@@ -108,6 +109,17 @@ class Step3LiveTest(unittest.TestCase):
             self.assertEqual(events, [])
         finally:
             pipeline.scrape_prometheus_snapshot = original_scraper
+
+    def test_runtime_score_threshold_uses_valid_env_override(self) -> None:
+        original = os.environ.get("ANALYZER_SCORE_THRESHOLD")
+        os.environ["ANALYZER_SCORE_THRESHOLD"] = "0.35"
+        try:
+            self.assertEqual(_runtime_score_threshold(), 0.35)
+        finally:
+            if original is None:
+                os.environ.pop("ANALYZER_SCORE_THRESHOLD", None)
+            else:
+                os.environ["ANALYZER_SCORE_THRESHOLD"] = original
 
 
 if __name__ == "__main__":
