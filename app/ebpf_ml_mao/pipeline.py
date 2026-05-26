@@ -268,7 +268,7 @@ def _filter_target_events(
         if workload and event.workload != workload:
             continue
         filtered.append(event)
-    return filtered or events
+    return filtered
 
 
 def run_phase4(

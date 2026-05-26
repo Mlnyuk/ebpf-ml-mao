@@ -52,6 +52,30 @@ class Step19TargetFilterTest(unittest.TestCase):
 
         self.assertEqual(filtered, [target])
 
+    def test_target_filter_does_not_fallback_to_infra_events(self) -> None:
+        infra = NormalizedEvent(
+            ts=2.0,
+            source="tetragon",
+            event_type="network_connection",
+            node="node-1",
+            workload="instance-manager",
+            pod="instance-manager-0",
+            container="manager",
+            pid=20,
+            cpu_usage=0.0,
+            memory_usage=0.0,
+            network_connections=0,
+            metadata={"namespace": "longhorn-system"},
+        )
+
+        filtered = _filter_target_events(
+            [infra],
+            namespace="ebpf-obs-test",
+            workload="fault-target",
+        )
+
+        self.assertEqual(filtered, [])
+
 
 if __name__ == "__main__":
     unittest.main()
