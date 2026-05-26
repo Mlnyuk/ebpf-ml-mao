@@ -74,7 +74,7 @@ Step 18 실험 overlay 적용:
 kubectl apply -k deploy/yaml/step18
 ```
 
-이 overlay는 analyzer PVC 요청 용량을 8Gi로 늘리고, generated runtime data를 6시간마다 정리하는 CronJob을 추가하며, `ghcr.io/mlnyuk/ebpf-ml-mao:step18-target-filter` 이미지를 사용한다. Step 16 live scoring은 `ANALYZER_TARGET_NAMESPACE=ebpf-obs-test`, `ANALYZER_TARGET_WORKLOAD=fault-target`로 제한해 인프라 워크로드가 baseline을 오염시키지 않게 한다.
+이 overlay는 analyzer PVC 요청 용량을 8Gi로 늘리고, generated runtime data를 6시간마다 정리하는 CronJob을 추가하며, `ghcr.io/mlnyuk/ebpf-ml-mao:step18-tetragon-only` 이미지를 사용한다. Step 16 live scoring은 `ANALYZER_TARGET_NAMESPACE=ebpf-obs-test`, `ANALYZER_TARGET_WORKLOAD=fault-target`로 제한해 인프라 워크로드가 baseline을 오염시키지 않게 한다. Prometheus scrape endpoint가 내려가도 Tetragon 이벤트만으로 live report 생성을 계속한다.
 
 Step 18 render 검증:
 

@@ -217,7 +217,7 @@ def run_phase3(
     baseline_prometheus = load_json(baseline_prometheus_path)
 
     live_tetragon = tail_jsonl(tetragon_log_path, max_lines=tetragon_tail_lines)
-    live_prometheus_events = scrape_prometheus_snapshot(
+    live_prometheus_events = _scrape_prometheus_snapshot_or_empty(
         prometheus_url,
         timeout=scrape_timeout,
     )
@@ -236,6 +236,17 @@ def run_phase3(
         sorted(input_events, key=lambda event: event.ts),
         output_dir,
     )
+
+
+def _scrape_prometheus_snapshot_or_empty(
+    prometheus_url: str,
+    *,
+    timeout: float,
+) -> list[NormalizedEvent]:
+    try:
+        return scrape_prometheus_snapshot(prometheus_url, timeout=timeout)
+    except Exception:
+        return []
 
 
 def _filter_target_events(

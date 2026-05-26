@@ -5,7 +5,7 @@ metadata:
   namespace: ebpf-obs
 data:
   DEPLOYMENT_STEP: "step18"
-  DEPLOYMENT_IMAGE: ghcr.io/mlnyuk/ebpf-ml-mao:step18-target-filter
+  DEPLOYMENT_IMAGE: ghcr.io/mlnyuk/ebpf-ml-mao:step18-tetragon-only
   DEPLOYMENT_RUNBOOK: docs/steps/step18/README.md
   ANALYZER_TARGET_NAMESPACE: ebpf-obs-test
   ANALYZER_TARGET_WORKLOAD: fault-target

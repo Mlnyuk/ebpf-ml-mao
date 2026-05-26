@@ -15,6 +15,7 @@ if str(APP_DIR) not in sys.path:
     sys.path.insert(0, str(APP_DIR))
 
 from ebpf_ml_mao.live import parse_prometheus_text, scrape_prometheus_snapshot, tail_jsonl
+import ebpf_ml_mao.pipeline as pipeline
 from ebpf_ml_mao.pipeline import run_phase3
 
 
@@ -91,6 +92,22 @@ class Step3LiveTest(unittest.TestCase):
             finally:
                 server.shutdown()
                 thread.join(timeout=2)
+
+    def test_phase3_prometheus_scrape_failure_falls_back_to_tetragon_only(self) -> None:
+        original_scraper = pipeline.scrape_prometheus_snapshot
+
+        def fail_scrape(url: str, timeout: float = 5.0):
+            raise OSError("prometheus unavailable")
+
+        pipeline.scrape_prometheus_snapshot = fail_scrape
+        try:
+            events = pipeline._scrape_prometheus_snapshot_or_empty(
+                "http://127.0.0.1:1/metrics",
+                timeout=0.1,
+            )
+            self.assertEqual(events, [])
+        finally:
+            pipeline.scrape_prometheus_snapshot = original_scraper
 
 
 if __name__ == "__main__":
