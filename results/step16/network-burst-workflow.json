@@ -1,24 +1,15 @@
 {
-  "received_count": 116,
-  "unique_count": 116,
+  "received_count": 8,
+  "unique_count": 8,
   "duplicates_count": 0,
   "nodes": [
-    "gpu-1",
-    "gpu-2",
-    "gpu-3",
-    "infra-1",
-    "infra-2",
-    "infra-3",
-    "worker-1",
-    "worker-2",
-    "worker-3"
+    "gpu-1"
   ],
   "verdicts": {
-    "anomalous": 99,
-    "normal": 17
+    "anomalous": 8
   },
   "phases": {
-    "phase3": 116
+    "phase3": 8
   },
   "latest_verdict": "anomalous"
 }

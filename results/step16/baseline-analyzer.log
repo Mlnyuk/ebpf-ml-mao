@@ -1,54 +1,10 @@
-172.30.0.227 - - [19/May/2026 04:29:28] "GET /healthz HTTP/1.1" 200 -
-172.30.0.227 - - [19/May/2026 04:29:30] "GET /healthz HTTP/1.1" 200 -
-10.233.65.189 - - [19/May/2026 04:29:36] "POST /v1/reports HTTP/1.1" 202 -
-10.233.65.193 - - [19/May/2026 04:29:36] "POST /v1/reports HTTP/1.1" 202 -
-10.233.65.190 - - [19/May/2026 04:29:37] "POST /v1/reports HTTP/1.1" 202 -
-172.30.0.227 - - [19/May/2026 04:29:38] "GET /healthz HTTP/1.1" 200 -
-10.233.65.188 - - [19/May/2026 04:29:42] "POST /v1/reports HTTP/1.1" 202 -
-----------------------------------------
-Exception occurred during processing of request from ('10.233.65.192', 50370)
-10.233.65.185 - - [19/May/2026 04:29:43] "POST /v1/reports HTTP/1.1" 202 -
-Traceback (most recent call last):
-  File "/usr/local/lib/python3.12/socketserver.py", line 697, in process_request_thread
-    self.finish_request(request, client_address)
-  File "/usr/local/lib/python3.12/socketserver.py", line 362, in finish_request
-    self.RequestHandlerClass(request, client_address, self)
-  File "/usr/local/lib/python3.12/socketserver.py", line 766, in __init__
-    self.handle()
-  File "/usr/local/lib/python3.12/http/server.py", line 440, in handle
-    self.handle_one_request()
-  File "/usr/local/lib/python3.12/http/server.py", line 428, in handle_one_request
-    method()
-  File "/app/app/ebpf_ml_mao/api.py", line 557, in do_POST
-    result = store_ingest_payload(
-             ^^^^^^^^^^^^^^^^^^^^^
-  File "/app/app/ebpf_ml_mao/api.py", line 180, in store_ingest_payload
-    _save_ingest_index(base, index)
-  File "/app/app/ebpf_ml_mao/api.py", line 112, in _save_ingest_index
-    _atomic_write_json(_index_path(ingest_dir), index)
-  File "/app/app/ebpf_ml_mao/api.py", line 40, in _atomic_write_json
-    tmp.replace(path)
-  File "/usr/local/lib/python3.12/pathlib.py", line 1376, in replace
-    os.replace(self, target)
-FileNotFoundError: [Errno 2] No such file or directory: '/var/lib/ebpf-ml-mao/ingest/index.json.tmp' -> '/var/lib/ebpf-ml-mao/ingest/index.json'
-----------------------------------------
-172.30.0.227 - - [19/May/2026 04:29:45] "GET /healthz HTTP/1.1" 200 -
-172.30.0.227 - - [19/May/2026 04:29:48] "GET /healthz HTTP/1.1" 200 -
-10.233.65.187 - - [19/May/2026 04:29:53] "POST /v1/reports HTTP/1.1" 202 -
-10.233.65.186 - - [19/May/2026 04:29:56] "POST /v1/reports HTTP/1.1" 202 -
-172.30.0.227 - - [19/May/2026 04:29:58] "GET /healthz HTTP/1.1" 200 -
-10.233.65.191 - - [19/May/2026 04:29:59] "POST /v1/reports HTTP/1.1" 202 -
-172.30.0.227 - - [19/May/2026 04:30:00] "GET /healthz HTTP/1.1" 200 -
-172.30.0.227 - - [19/May/2026 04:30:08] "GET /healthz HTTP/1.1" 200 -
-10.233.65.189 - - [19/May/2026 04:30:08] "POST /v1/reports HTTP/1.1" 202 -
-10.233.65.193 - - [19/May/2026 04:30:09] "POST /v1/reports HTTP/1.1" 202 -
-10.233.65.190 - - [19/May/2026 04:30:10] "POST /v1/reports HTTP/1.1" 202 -
-127.0.0.1 - - [19/May/2026 04:30:14] "GET /v1/dashboard HTTP/1.1" 200 -
-10.233.65.188 - - [19/May/2026 04:30:14] "POST /v1/reports HTTP/1.1" 202 -
-10.233.65.192 - - [19/May/2026 04:30:15] "POST /v1/reports HTTP/1.1" 202 -
-172.30.0.227 - - [19/May/2026 04:30:15] "GET /healthz HTTP/1.1" 200 -
-10.233.65.185 - - [19/May/2026 04:30:16] "POST /v1/reports HTTP/1.1" 202 -
-172.30.0.227 - - [19/May/2026 04:30:18] "GET /healthz HTTP/1.1" 200 -
-127.0.0.1 - - [19/May/2026 04:30:21] "GET /v1/dashboard HTTP/1.1" 200 -
-127.0.0.1 - - [19/May/2026 04:30:21] "GET /v1/alerts HTTP/1.1" 200 -
-127.0.0.1 - - [19/May/2026 04:30:21] "GET /v1/workflow HTTP/1.1" 200 -
+172.30.0.227 - - [26/May/2026 01:59:35] "GET /healthz HTTP/1.1" 200 -
+172.30.0.227 - - [26/May/2026 01:59:38] "GET /healthz HTTP/1.1" 200 -
+172.30.0.227 - - [26/May/2026 01:59:45] "GET /healthz HTTP/1.1" 200 -
+172.30.0.227 - - [26/May/2026 01:59:53] "GET /healthz HTTP/1.1" 200 -
+172.30.0.227 - - [26/May/2026 01:59:55] "GET /healthz HTTP/1.1" 200 -
+127.0.0.1 - - [26/May/2026 02:00:05] "GET /v1/dashboard HTTP/1.1" 200 -
+127.0.0.1 - - [26/May/2026 02:00:05] "GET /v1/alerts HTTP/1.1" 200 -
+127.0.0.1 - - [26/May/2026 02:00:05] "GET /v1/workflow HTTP/1.1" 200 -
+172.30.0.227 - - [26/May/2026 02:00:05] "GET /healthz HTTP/1.1" 200 -
+172.30.0.227 - - [26/May/2026 02:00:08] "GET /healthz HTTP/1.1" 200 -

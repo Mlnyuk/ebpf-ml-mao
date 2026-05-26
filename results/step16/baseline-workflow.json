@@ -1,24 +1,9 @@
 {
-  "received_count": 27,
-  "unique_count": 27,
+  "received_count": 0,
+  "unique_count": 0,
   "duplicates_count": 0,
-  "nodes": [
-    "gpu-1",
-    "gpu-2",
-    "gpu-3",
-    "infra-1",
-    "infra-2",
-    "infra-3",
-    "worker-1",
-    "worker-2",
-    "worker-3"
-  ],
-  "verdicts": {
-    "anomalous": 24,
-    "normal": 3
-  },
-  "phases": {
-    "phase3": 27
-  },
-  "latest_verdict": "normal"
+  "nodes": [],
+  "verdicts": {},
+  "phases": {},
+  "latest_verdict": null
 }

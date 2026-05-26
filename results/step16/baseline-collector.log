@@ -1,21 +1,14 @@
-Found 9 pods, using pod/ebpf-ml-mao-collector-t848b
-      "worker-3"
-    ],
-    "verdicts": {
-      "anomalous": 977,
-      "normal": 45
-    },
-    "phases": {
-      "phase3": 1022
-    },
-    "latest_verdict": "anomalous"
-  },
-  "queue": {
-    "status": "queued",
-    "path": "/var/lib/ebpf-ml-mao/postprocess-queue/1779164917253-report-ingest.json"
-  },
-  "spooled": false
-}
+Found 9 pods, using pod/ebpf-ml-mao-collector-mnc59
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/app/ebpf_ml_mao/pipeline.py", line 245, in run_phase3
+    return build_report(
+           ^^^^^^^^^^^^^
+  File "/app/app/ebpf_ml_mao/pipeline.py", line 161, in build_report
+    return _build_single_report_from_model(input_events, output_dir, scorer)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/app/ebpf_ml_mao/pipeline.py", line 63, in _build_single_report_from_model
+    raise ValueError("input dataset did not produce any feature windows")
+ValueError: input dataset did not produce any feature windows
 {
   "removed": 0,
   "quarantined": []
@@ -27,88 +20,24 @@ Found 9 pods, using pod/ebpf-ml-mao-collector-t848b
   "quarantined": [],
   "remaining": []
 }
-{
-  "score": 1.0,
-  "verdict": "anomalous",
-  "confidence": 1.0,
-  "feature_window": {
-    "window_start": 1779164939.884543,
-    "window_end": 1779164939.92922,
-    "workload": "instance-manager-0e6b9200343ddf45f7baad0563466781",
-    "values": {
-      "event_count": 17.0,
-      "tetragon_event_count": 17.0,
-      "prometheus_event_count": 0.0,
-      "exec_count": 0.0,
-      "network_event_count": 17.0,
-      "file_event_count": 0.0,
-      "privilege_event_count": 0.0,
-      "unique_pids": 1.0,
-      "window_duration_seconds": 1.0,
-      "event_rate_per_minute": 1020.0,
-      "exec_rate_per_minute": 0.0,
-      "network_event_rate_per_minute": 1020.0,
-      "avg_cpu_usage": 0.0,
-      "max_cpu_usage": 0.0,
-      "cpu_pressure_ratio": 0.0,
-      "avg_memory_usage": 0.0,
-      "max_memory_usage": 0.0,
-      "avg_network_connections": 0.0,
-      "max_network_connections": 0,
-      "network_connection_pressure": 0.0
-    }
-  },
-  "agents": [
-    {
-      "name": "summarizer",
-      "summary": "instance-manager-0e6b9200343ddf45f7baad0563466781 produced 17 events in 0s with 0 exec events and 17 network events."
-    },
-    {
-      "name": "analyst",
-      "summary": "Score 1.00 driven by no strong outliers."
-    },
-    {
-      "name": "correlator",
-      "summary": "Resource and event correlation suggests CPU 0.0% with 0 concurrent connections."
-    },
-    {
-      "name": "reviewer",
-      "summary": "Final verdict is anomalous with score 1.00 and confidence 1.00."
-    }
-  ]
-}
-{
-  "status": "stored",
-  "digest": "240b60706dadd197aa7f4d16cb241ab71eacb69ba26795357e48c3d832d1af02",
-  "path": "/var/lib/ebpf-ml-mao/ingest/gpu-2/240b60706dad-report.json",
-  "workflow": {
-    "received_count": 7,
-    "unique_count": 7,
-    "duplicates_count": 0,
-    "nodes": [
-      "gpu-1",
-      "gpu-2",
-      "infra-2",
-      "infra-3",
-      "worker-1",
-      "worker-2",
-      "worker-3"
-    ],
-    "verdicts": {
-      "normal": 1,
-      "anomalous": 6
-    },
-    "phases": {
-      "phase3": 7
-    },
-    "latest_verdict": "anomalous"
-  },
-  "queue": {
-    "status": "queued",
-    "path": "/var/lib/ebpf-ml-mao/postprocess-queue/1779164950190-report-ingest.json"
-  },
-  "spooled": false
-}
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/app/app/ebpf_ml_mao/__main__.py", line 5, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/app/app/ebpf_ml_mao/cli.py", line 287, in main
+    report = run_phase3(args.baseline_tetragon, args.baseline_prometheus, args.tetragon_log, args.prometheus_url, args.output_dir, tetragon_tail_lines=args.tetragon_tail_lines, scrape_timeout=args.scrape_timeout)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/app/ebpf_ml_mao/pipeline.py", line 245, in run_phase3
+    return build_report(
+           ^^^^^^^^^^^^^
+  File "/app/app/ebpf_ml_mao/pipeline.py", line 161, in build_report
+    return _build_single_report_from_model(input_events, output_dir, scorer)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/app/ebpf_ml_mao/pipeline.py", line 63, in _build_single_report_from_model
+    raise ValueError("input dataset did not produce any feature windows")
+ValueError: input dataset did not produce any feature windows
 {
   "removed": 0,
   "quarantined": []
@@ -120,90 +49,24 @@ Found 9 pods, using pod/ebpf-ml-mao-collector-t848b
   "quarantined": [],
   "remaining": []
 }
-{
-  "score": 1.0,
-  "verdict": "anomalous",
-  "confidence": 1.0,
-  "feature_window": {
-    "window_start": 1779164969.895706,
-    "window_end": 1779164969.919235,
-    "workload": "instance-manager-0e6b9200343ddf45f7baad0563466781",
-    "values": {
-      "event_count": 12.0,
-      "tetragon_event_count": 12.0,
-      "prometheus_event_count": 0.0,
-      "exec_count": 0.0,
-      "network_event_count": 12.0,
-      "file_event_count": 0.0,
-      "privilege_event_count": 0.0,
-      "unique_pids": 1.0,
-      "window_duration_seconds": 1.0,
-      "event_rate_per_minute": 720.0,
-      "exec_rate_per_minute": 0.0,
-      "network_event_rate_per_minute": 720.0,
-      "avg_cpu_usage": 0.0,
-      "max_cpu_usage": 0.0,
-      "cpu_pressure_ratio": 0.0,
-      "avg_memory_usage": 0.0,
-      "max_memory_usage": 0.0,
-      "avg_network_connections": 0.0,
-      "max_network_connections": 0,
-      "network_connection_pressure": 0.0
-    }
-  },
-  "agents": [
-    {
-      "name": "summarizer",
-      "summary": "instance-manager-0e6b9200343ddf45f7baad0563466781 produced 12 events in 0s with 0 exec events and 12 network events."
-    },
-    {
-      "name": "analyst",
-      "summary": "Score 1.00 driven by no strong outliers."
-    },
-    {
-      "name": "correlator",
-      "summary": "Resource and event correlation suggests CPU 0.0% with 0 concurrent connections."
-    },
-    {
-      "name": "reviewer",
-      "summary": "Final verdict is anomalous with score 1.00 and confidence 1.00."
-    }
-  ]
-}
-{
-  "status": "stored",
-  "digest": "bc9a5fc9060552b106e87e10fe6606f842f7a89bea2bfebca866759f56c3828b",
-  "path": "/var/lib/ebpf-ml-mao/ingest/gpu-2/bc9a5fc90605-report.json",
-  "workflow": {
-    "received_count": 17,
-    "unique_count": 17,
-    "duplicates_count": 0,
-    "nodes": [
-      "gpu-1",
-      "gpu-2",
-      "gpu-3",
-      "infra-1",
-      "infra-2",
-      "infra-3",
-      "worker-1",
-      "worker-2",
-      "worker-3"
-    ],
-    "verdicts": {
-      "normal": 2,
-      "anomalous": 15
-    },
-    "phases": {
-      "phase3": 17
-    },
-    "latest_verdict": "anomalous"
-  },
-  "queue": {
-    "status": "queued",
-    "path": "/var/lib/ebpf-ml-mao/postprocess-queue/1779164983140-report-ingest.json"
-  },
-  "spooled": false
-}
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/app/app/ebpf_ml_mao/__main__.py", line 5, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/app/app/ebpf_ml_mao/cli.py", line 287, in main
+    report = run_phase3(args.baseline_tetragon, args.baseline_prometheus, args.tetragon_log, args.prometheus_url, args.output_dir, tetragon_tail_lines=args.tetragon_tail_lines, scrape_timeout=args.scrape_timeout)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/app/ebpf_ml_mao/pipeline.py", line 245, in run_phase3
+    return build_report(
+           ^^^^^^^^^^^^^
+  File "/app/app/ebpf_ml_mao/pipeline.py", line 161, in build_report
+    return _build_single_report_from_model(input_events, output_dir, scorer)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/app/ebpf_ml_mao/pipeline.py", line 63, in _build_single_report_from_model
+    raise ValueError("input dataset did not produce any feature windows")
+ValueError: input dataset did not produce any feature windows
 {
   "removed": 0,
   "quarantined": []
@@ -215,119 +78,244 @@ Found 9 pods, using pod/ebpf-ml-mao-collector-t848b
   "quarantined": [],
   "remaining": []
 }
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/app/app/ebpf_ml_mao/__main__.py", line 5, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/app/app/ebpf_ml_mao/cli.py", line 287, in main
+    report = run_phase3(args.baseline_tetragon, args.baseline_prometheus, args.tetragon_log, args.prometheus_url, args.output_dir, tetragon_tail_lines=args.tetragon_tail_lines, scrape_timeout=args.scrape_timeout)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/app/ebpf_ml_mao/pipeline.py", line 245, in run_phase3
+    return build_report(
+           ^^^^^^^^^^^^^
+  File "/app/app/ebpf_ml_mao/pipeline.py", line 161, in build_report
+    return _build_single_report_from_model(input_events, output_dir, scorer)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/app/ebpf_ml_mao/pipeline.py", line 63, in _build_single_report_from_model
+    raise ValueError("input dataset did not produce any feature windows")
+ValueError: input dataset did not produce any feature windows
 {
-  "score": 0.3982,
-  "verdict": "normal",
-  "confidence": 0.6311,
-  "feature_window": {
-    "window_start": 1779165014.55665,
-    "window_end": 1779165014.557064,
-    "workload": "ebpf-ml-mao-collector",
-    "values": {
-      "event_count": 2.0,
-      "tetragon_event_count": 2.0,
-      "prometheus_event_count": 0.0,
-      "exec_count": 2.0,
-      "network_event_count": 0.0,
-      "file_event_count": 0.0,
-      "privilege_event_count": 0.0,
-      "unique_pids": 1.0,
-      "window_duration_seconds": 1.0,
-      "event_rate_per_minute": 120.0,
-      "exec_rate_per_minute": 120.0,
-      "network_event_rate_per_minute": 0.0,
-      "avg_cpu_usage": 0.0,
-      "max_cpu_usage": 0.0,
-      "cpu_pressure_ratio": 0.0,
-      "avg_memory_usage": 0.0,
-      "max_memory_usage": 0.0,
-      "avg_network_connections": 0.0,
-      "max_network_connections": 0,
-      "network_connection_pressure": 0.0
-    }
-  },
-  "agents": [
-    {
-      "name": "summarizer",
-      "summary": "ebpf-ml-mao-collector produced 2 events in 0s with 2 exec events and 0 network events."
-    },
-    {
-      "name": "analyst",
-      "summary": "Score 0.40 driven by no strong outliers."
-    },
-    {
-      "name": "correlator",
-      "summary": "Resource and event correlation suggests CPU 0.0% with 0 concurrent connections."
-    },
-    {
-      "name": "reviewer",
-      "summary": "Final verdict is normal with score 0.40 and confidence 0.63."
-    }
-  ]
+  "removed": 0,
+  "quarantined": []
 }
 {
-  "status": "stored",
-  "digest": "648b0dfb59fab6c58db0a0aa5db87e93d8368fad49c89f5e2d2ad1d6eb61efa5",
-  "path": "/var/lib/ebpf-ml-mao/ingest/gpu-2/648b0dfb59fa-report.json",
-  "workflow": {
-    "received_count": 27,
-    "unique_count": 27,
-    "duplicates_count": 0,
-    "nodes": [
-      "gpu-1",
-      "gpu-2",
-      "gpu-3",
-      "infra-1",
-      "infra-2",
-      "infra-3",
-      "worker-1",
-      "worker-2",
-      "worker-3"
-    ],
-    "verdicts": {
-      "anomalous": 24,
-      "normal": 3
-    },
-    "phases": {
-      "phase3": 27
-    },
-    "latest_verdict": "normal"
-  },
-  "queue": {
-    "status": "queued",
-    "path": "/var/lib/ebpf-ml-mao/postprocess-queue/1779165016085-report-ingest.json"
-  },
-  "spooled": false
+  "sent": 0,
+  "failed": 0,
+  "expired": 0,
+  "quarantined": [],
+  "remaining": []
 }
-/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
-/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
-/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
-/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
-/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
-/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
-/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
-/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
-/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
-/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
-/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
-/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
-/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
-/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
-/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
-/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
-/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
-/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
-/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
-/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
-/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
-/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
-/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
-/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
-/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
-/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
-/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
-/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
-/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
-/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
-/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.json
-/var/lib/ebpf-ml-mao-collector/reports/gpu-2/report.md
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/app/app/ebpf_ml_mao/__main__.py", line 5, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/app/app/ebpf_ml_mao/cli.py", line 287, in main
+    report = run_phase3(args.baseline_tetragon, args.baseline_prometheus, args.tetragon_log, args.prometheus_url, args.output_dir, tetragon_tail_lines=args.tetragon_tail_lines, scrape_timeout=args.scrape_timeout)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/app/ebpf_ml_mao/pipeline.py", line 245, in run_phase3
+    return build_report(
+           ^^^^^^^^^^^^^
+  File "/app/app/ebpf_ml_mao/pipeline.py", line 161, in build_report
+    return _build_single_report_from_model(input_events, output_dir, scorer)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/app/ebpf_ml_mao/pipeline.py", line 63, in _build_single_report_from_model
+    raise ValueError("input dataset did not produce any feature windows")
+ValueError: input dataset did not produce any feature windows
+{
+  "removed": 0,
+  "quarantined": []
+}
+{
+  "sent": 0,
+  "failed": 0,
+  "expired": 0,
+  "quarantined": [],
+  "remaining": []
+}
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/app/app/ebpf_ml_mao/__main__.py", line 5, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/app/app/ebpf_ml_mao/cli.py", line 287, in main
+    report = run_phase3(args.baseline_tetragon, args.baseline_prometheus, args.tetragon_log, args.prometheus_url, args.output_dir, tetragon_tail_lines=args.tetragon_tail_lines, scrape_timeout=args.scrape_timeout)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/app/ebpf_ml_mao/pipeline.py", line 245, in run_phase3
+    return build_report(
+           ^^^^^^^^^^^^^
+  File "/app/app/ebpf_ml_mao/pipeline.py", line 161, in build_report
+    return _build_single_report_from_model(input_events, output_dir, scorer)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/app/ebpf_ml_mao/pipeline.py", line 63, in _build_single_report_from_model
+    raise ValueError("input dataset did not produce any feature windows")
+ValueError: input dataset did not produce any feature windows
+{
+  "removed": 0,
+  "quarantined": []
+}
+{
+  "sent": 0,
+  "failed": 0,
+  "expired": 0,
+  "quarantined": [],
+  "remaining": []
+}
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/app/app/ebpf_ml_mao/__main__.py", line 5, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/app/app/ebpf_ml_mao/cli.py", line 287, in main
+    report = run_phase3(args.baseline_tetragon, args.baseline_prometheus, args.tetragon_log, args.prometheus_url, args.output_dir, tetragon_tail_lines=args.tetragon_tail_lines, scrape_timeout=args.scrape_timeout)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/app/ebpf_ml_mao/pipeline.py", line 245, in run_phase3
+    return build_report(
+           ^^^^^^^^^^^^^
+  File "/app/app/ebpf_ml_mao/pipeline.py", line 161, in build_report
+    return _build_single_report_from_model(input_events, output_dir, scorer)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/app/ebpf_ml_mao/pipeline.py", line 63, in _build_single_report_from_model
+    raise ValueError("input dataset did not produce any feature windows")
+ValueError: input dataset did not produce any feature windows
+{
+  "removed": 0,
+  "quarantined": []
+}
+{
+  "sent": 0,
+  "failed": 0,
+  "expired": 0,
+  "quarantined": [],
+  "remaining": []
+}
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/app/app/ebpf_ml_mao/__main__.py", line 5, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/app/app/ebpf_ml_mao/cli.py", line 287, in main
+    report = run_phase3(args.baseline_tetragon, args.baseline_prometheus, args.tetragon_log, args.prometheus_url, args.output_dir, tetragon_tail_lines=args.tetragon_tail_lines, scrape_timeout=args.scrape_timeout)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/app/ebpf_ml_mao/pipeline.py", line 245, in run_phase3
+    return build_report(
+           ^^^^^^^^^^^^^
+  File "/app/app/ebpf_ml_mao/pipeline.py", line 161, in build_report
+    return _build_single_report_from_model(input_events, output_dir, scorer)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/app/ebpf_ml_mao/pipeline.py", line 63, in _build_single_report_from_model
+    raise ValueError("input dataset did not produce any feature windows")
+ValueError: input dataset did not produce any feature windows
+{
+  "removed": 0,
+  "quarantined": []
+}
+{
+  "sent": 0,
+  "failed": 0,
+  "expired": 0,
+  "quarantined": [],
+  "remaining": []
+}
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/app/app/ebpf_ml_mao/__main__.py", line 5, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/app/app/ebpf_ml_mao/cli.py", line 287, in main
+    report = run_phase3(args.baseline_tetragon, args.baseline_prometheus, args.tetragon_log, args.prometheus_url, args.output_dir, tetragon_tail_lines=args.tetragon_tail_lines, scrape_timeout=args.scrape_timeout)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/app/ebpf_ml_mao/pipeline.py", line 245, in run_phase3
+    return build_report(
+           ^^^^^^^^^^^^^
+  File "/app/app/ebpf_ml_mao/pipeline.py", line 161, in build_report
+    return _build_single_report_from_model(input_events, output_dir, scorer)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/app/ebpf_ml_mao/pipeline.py", line 63, in _build_single_report_from_model
+    raise ValueError("input dataset did not produce any feature windows")
+ValueError: input dataset did not produce any feature windows
+{
+  "removed": 0,
+  "quarantined": []
+}
+{
+  "sent": 0,
+  "failed": 0,
+  "expired": 0,
+  "quarantined": [],
+  "remaining": []
+}
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/app/app/ebpf_ml_mao/__main__.py", line 5, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/app/app/ebpf_ml_mao/cli.py", line 287, in main
+    report = run_phase3(args.baseline_tetragon, args.baseline_prometheus, args.tetragon_log, args.prometheus_url, args.output_dir, tetragon_tail_lines=args.tetragon_tail_lines, scrape_timeout=args.scrape_timeout)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/app/ebpf_ml_mao/pipeline.py", line 245, in run_phase3
+    return build_report(
+           ^^^^^^^^^^^^^
+  File "/app/app/ebpf_ml_mao/pipeline.py", line 161, in build_report
+    return _build_single_report_from_model(input_events, output_dir, scorer)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/app/ebpf_ml_mao/pipeline.py", line 63, in _build_single_report_from_model
+    raise ValueError("input dataset did not produce any feature windows")
+ValueError: input dataset did not produce any feature windows
+{
+  "removed": 0,
+  "quarantined": []
+}
+{
+  "sent": 0,
+  "failed": 0,
+  "expired": 0,
+  "quarantined": [],
+  "remaining": []
+}
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/app/app/ebpf_ml_mao/__main__.py", line 5, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/app/app/ebpf_ml_mao/cli.py", line 287, in main
+    report = run_phase3(args.baseline_tetragon, args.baseline_prometheus, args.tetragon_log, args.prometheus_url, args.output_dir, tetragon_tail_lines=args.tetragon_tail_lines, scrape_timeout=args.scrape_timeout)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/app/ebpf_ml_mao/pipeline.py", line 245, in run_phase3
+    return build_report(
+           ^^^^^^^^^^^^^
+  File "/app/app/ebpf_ml_mao/pipeline.py", line 161, in build_report
+    return _build_single_report_from_model(input_events, output_dir, scorer)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/app/ebpf_ml_mao/pipeline.py", line 63, in _build_single_report_from_model
+    raise ValueError("input dataset did not produce any feature windows")
+ValueError: input dataset did not produce any feature windows
+/var/lib/ebpf-ml-mao-collector/reports/infra-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/infra-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/infra-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/infra-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/infra-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/infra-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/infra-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/infra-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/infra-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/infra-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/infra-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/infra-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/infra-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/infra-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/infra-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/infra-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/infra-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/infra-2/report.md
+/var/lib/ebpf-ml-mao-collector/reports/infra-2/report.json
+/var/lib/ebpf-ml-mao-collector/reports/infra-2/report.md

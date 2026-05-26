@@ -1,66 +1,51 @@
 {
   "status": "ok",
   "component": "analyzer",
-  "timestamp": 1779165021,
+  "timestamp": 1779760805,
   "summary": {
     "state": "ok",
     "alert_count": 0,
     "warning_count": 0,
     "critical_count": 0,
-    "latest_verdict": "normal"
+    "latest_verdict": null
   },
   "counters": {
-    "received_count": 27,
-    "unique_count": 27,
+    "received_count": 0,
+    "unique_count": 0,
     "duplicates_count": 0,
-    "queue_count": 26,
+    "queue_count": 0,
     "spool_count": 0
   },
   "registry": {
-    "model_count": 1,
-    "active_model_id": "baseline-v2-01",
+    "model_count": 2,
+    "active_model_id": "baseline-v4-01",
     "missing_artifact_count": 0,
-    "tagged_model_count": 1,
+    "tagged_model_count": 2,
     "model_types": [
       "baseline"
     ]
   },
   "ingest": {
-    "received_count": 27,
-    "unique_count": 27,
+    "received_count": 0,
+    "unique_count": 0,
     "duplicates_count": 0,
-    "repaired_at": 1779164993
+    "repaired_at": null
   },
   "workflow": {
-    "received_count": 27,
-    "unique_count": 27,
+    "received_count": 0,
+    "unique_count": 0,
     "duplicates_count": 0,
-    "nodes": [
-      "gpu-1",
-      "gpu-2",
-      "gpu-3",
-      "infra-1",
-      "infra-2",
-      "infra-3",
-      "worker-1",
-      "worker-2",
-      "worker-3"
-    ],
-    "verdicts": {
-      "anomalous": 24,
-      "normal": 3
-    },
-    "phases": {
-      "phase3": 27
-    },
-    "latest_verdict": "normal"
+    "nodes": [],
+    "verdicts": {},
+    "phases": {},
+    "latest_verdict": null
   },
   "queue": {
-    "count": 26,
-    "pending_count": 26,
+    "count": 0,
+    "pending_count": 0,
     "failed_count": 0,
     "expired_count": 0,
-    "oldest_age_seconds": 92,
+    "oldest_age_seconds": null,
     "ttl_seconds": 86400,
     "quarantined_count": 0
   },

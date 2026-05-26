@@ -10,7 +10,14 @@ from pathlib import Path
 from statistics import mean
 from typing import Any
 
-from step16_analyze_thresholds import iter_json_objects, read_text, scores_for, INGEST_SCORES_PATH
+from step16_analyze_thresholds import (
+    INGEST_SCORES_PATH,
+    assign_scenario,
+    iter_json_objects,
+    read_text,
+    scenario_boundaries,
+    scores_for,
+)
 
 RESULT_DIR = Path(os.environ.get("RESULT_DIR", "results/step16"))
 REPORT_PATH = RESULT_DIR / "paper-results.md"
@@ -80,6 +87,7 @@ def feature_values(prefix: str) -> dict[str, list[float]]:
     values: dict[str, list[float]] = defaultdict(list)
     # Primary: fault-target PVC ingest JSONL (accurate, workload-scoped)
     if INGEST_SCORES_PATH.exists():
+        boundaries = scenario_boundaries()
         for line in INGEST_SCORES_PATH.read_text(encoding="utf-8").splitlines():
             line = line.strip()
             if not line:
@@ -88,7 +96,16 @@ def feature_values(prefix: str) -> dict[str, list[float]]:
                 obj = json.loads(line)
             except json.JSONDecodeError:
                 continue
-            if not isinstance(obj, dict) or obj.get("scenario") != prefix:
+            if not isinstance(obj, dict):
+                continue
+            scenario = obj.get("scenario")
+            if scenario in (None, "", "unknown"):
+                try:
+                    window_start = float(obj.get("window_start"))
+                except (TypeError, ValueError):
+                    window_start = None
+                scenario = assign_scenario(window_start, boundaries)
+            if scenario != prefix:
                 continue
             raw_values = obj.get("values")
             if not isinstance(raw_values, dict):

@@ -9,33 +9,33 @@
 
 | Scenario | Expected | Workflow verdict | Dashboard state | Alerts | Detected |
 | --- | --- | --- | --- | ---: | --- |
-| baseline | normal | normal | ok | 0 | yes |
-| exec-storm | fault | anomalous | warning | 2 | yes |
-| network-burst | fault | anomalous | warning | 2 | yes |
-| cpu-stress | fault | anomalous | warning | 2 | yes |
-| memory-pressure | fault | anomalous | warning | 2 | yes |
+| baseline | normal | None | ok | 0 | yes |
+| exec-storm | fault | anomalous | warning | 1 | yes |
+| network-burst | fault | anomalous | warning | 1 | yes |
+| cpu-stress | fault | anomalous | warning | 1 | yes |
+| memory-pressure | fault | anomalous | warning | 1 | yes |
 
 ## Score Distribution (target workload only)
 
 | Scenario | Expected | Target samples | Total scored | Min | Mean | Max | Anomalous (target) | Workflow verdict | Dashboard alerts |
 | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | --- | ---: |
-| baseline | normal | 0 | 3 | n/a | n/a | n/a | 0 | normal | 0 |
-| exec-storm | fault | 3 | 3 | 0.4323 | 0.7693 | 1.0000 | 2 | anomalous | 2 |
-| network-burst | fault | 6 | 6 | 1.0000 | 1.0000 | 1.0000 | 6 | anomalous | 2 |
-| cpu-stress | fault | 2 | 2 | 1.0000 | 1.0000 | 1.0000 | 2 | anomalous | 2 |
-| memory-pressure | fault | 1 | 1 | 0.7732 | 0.7732 | 0.7732 | 1 | anomalous | 2 |
+| baseline | normal | 0 | 0 | n/a | n/a | n/a | 0 | None | 0 |
+| exec-storm | fault | 3 | 3 | 0.5005 | 0.5232 | 0.5687 | 3 | anomalous | 1 |
+| network-burst | fault | 5 | 5 | 0.7210 | 0.9126 | 1.0000 | 5 | anomalous | 1 |
+| cpu-stress | fault | 1 | 1 | 0.9437 | 0.9437 | 0.9437 | 1 | anomalous | 1 |
+| memory-pressure | fault | 2 | 2 | 0.4323 | 0.4834 | 0.5346 | 2 | anomalous | 1 |
 
 ## Threshold Candidates (target workload only)
 
 | Threshold | Baseline samples | Fault samples | False positives | FP rate | False negatives | FN rate |
 | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| 0.35 | 0 | 12 | 0 | n/a | 0 | 0.0000 |
-| 0.45 | 0 | 12 | 0 | n/a | 1 | 0.0833 |
-| 0.55 | 0 | 12 | 0 | n/a | 1 | 0.0833 |
-| 0.65 | 0 | 12 | 0 | n/a | 1 | 0.0833 |
-| 0.75 | 0 | 12 | 0 | n/a | 1 | 0.0833 |
-| 0.85 | 0 | 12 | 0 | n/a | 2 | 0.1667 |
-| 0.95 | 0 | 12 | 0 | n/a | 3 | 0.2500 |
+| 0.35 | 0 | 11 | 0 | n/a | 0 | 0.0000 |
+| 0.45 | 0 | 11 | 0 | n/a | 1 | 0.0909 |
+| 0.55 | 0 | 11 | 0 | n/a | 4 | 0.3636 |
+| 0.65 | 0 | 11 | 0 | n/a | 5 | 0.4545 |
+| 0.75 | 0 | 11 | 0 | n/a | 6 | 0.5455 |
+| 0.85 | 0 | 11 | 0 | n/a | 6 | 0.5455 |
+| 0.95 | 0 | 11 | 0 | n/a | 8 | 0.7273 |
 
 ## Calibration Rule
 
