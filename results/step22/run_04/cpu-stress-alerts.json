@@ -1,0 +1,21 @@
+{
+  "status": "warning",
+  "component": "analyzer",
+  "timestamp": 1779770847,
+  "summary": {
+    "state": "warning",
+    "alert_count": 1,
+    "warning_count": 1,
+    "critical_count": 0,
+    "latest_verdict": "anomalous"
+  },
+  "alerts": [
+    {
+      "name": "latest_verdict",
+      "severity": "warning",
+      "message": "latest workflow verdict is anomalous",
+      "value": "anomalous",
+      "threshold": "normal"
+    }
+  ]
+}

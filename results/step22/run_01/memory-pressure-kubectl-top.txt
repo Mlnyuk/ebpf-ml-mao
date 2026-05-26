@@ -1,0 +1,2 @@
+NAME                            CPU(cores)   MEMORY(bytes)   
+fault-target-868b8449bc-gbtr6   3m           3Mi             

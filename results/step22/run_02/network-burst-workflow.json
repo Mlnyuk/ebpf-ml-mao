@@ -1,0 +1,16 @@
+{
+  "received_count": 10,
+  "unique_count": 10,
+  "duplicates_count": 0,
+  "nodes": [
+    "worker-2"
+  ],
+  "verdicts": {
+    "normal": 1,
+    "anomalous": 9
+  },
+  "phases": {
+    "phase3": 10
+  },
+  "latest_verdict": "anomalous"
+}

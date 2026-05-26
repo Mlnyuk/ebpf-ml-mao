@@ -1,0 +1,15 @@
+{
+  "received_count": 1,
+  "unique_count": 1,
+  "duplicates_count": 0,
+  "nodes": [
+    "worker-2"
+  ],
+  "verdicts": {
+    "normal": 1
+  },
+  "phases": {
+    "phase3": 1
+  },
+  "latest_verdict": "normal"
+}

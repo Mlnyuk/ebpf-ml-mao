@@ -1,0 +1,13 @@
+{
+  "status": "ok",
+  "component": "analyzer",
+  "timestamp": 1779770923,
+  "summary": {
+    "state": "ok",
+    "alert_count": 0,
+    "warning_count": 0,
+    "critical_count": 0,
+    "latest_verdict": "normal"
+  },
+  "alerts": []
+}
