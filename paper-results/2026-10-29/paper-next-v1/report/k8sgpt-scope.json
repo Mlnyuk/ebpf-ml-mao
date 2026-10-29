@@ -1,0 +1,15 @@
+{
+  "version": "v0.4.41",
+  "default_scan": "core analyzers plus Log, no explain; unfiltered global findings preserved",
+  "explain": "Pod,Service,Deployment,ReplicaSet,Log over the whole lab namespace; no cache, same external model/provider; native prompt/output retained",
+  "scope_not_accuracy": "Coverage states describe native target finding presence. A keyword finding is not a correct cause, and absence is not calibrated abstention.",
+  "out_of_scope": [
+    "Kernel-level TCP-attempt evidence",
+    "Application runtime metric correlation through built-in Prometheus integration"
+  ],
+  "in_scope_not_detected": "Expected error/exception/fail log signal or supported resource state, but no matching target finding; never combined with out-of-scope denominator",
+  "misdiagnosis_and_appropriate_abstention": "Require actual human review of native explanation; left ungraded",
+  "unsupported_case_comparison": "Our methods do not get native output. K8sGPT does not get private truth or our preprocessed evidence.",
+  "positive_control": "development/k8sgpt-positive-control.json",
+  "primary_sources": "development/preflight.json"
+}

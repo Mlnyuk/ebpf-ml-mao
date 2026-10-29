@@ -1,0 +1,13 @@
+view,breadth,arm,investigations,unique_parent_incidents,failures,total_tokens,mean_tokens,median_tokens,known_cost_usd,mean_seconds,median_seconds,requests,repair_calls,repair_tokens_subset,duplicate_requests,executed_duplicate_requests,all_catalog_sources_retrieved,mean_shown_evidence,uncited_evidence_count,missing_usage_requests,diagnostic_quality
+collection_missing,surrounding_3_workloads,batch,1,1,0,17274,17274,17274,0.00303525,37.917972,37.917972,1,0,0,0,0,1,21,6,0,NOT_EVALUATED_BY_HUMANS
+collection_missing,surrounding_3_workloads,selective,1,1,0,17398,17398,17398,0.0031515,45.859823,45.859823,3,0,0,0,0,0,16,9,0,NOT_EVALUATED_BY_HUMANS
+collection_missing,target_only,batch,1,1,0,4027,4027,4027,0.00095895,31.492099,31.492099,1,0,0,0,0,1,6,1,0,NOT_EVALUATED_BY_HUMANS
+collection_missing,target_only,selective,1,1,0,5343,5343,5343,0.00126555,44.84505,44.84505,2,0,0,0,0,1,6,1,0,NOT_EVALUATED_BY_HUMANS
+historical_contamination,surrounding_3_workloads,batch,1,1,0,22279,22279,22279,0.0039211,45.153046,45.153046,1,0,0,0,0,1,21,13,0,NOT_EVALUATED_BY_HUMANS
+historical_contamination,surrounding_3_workloads,selective,1,1,0,23331,23331,23331,0.00408379,62.168014,62.168014,3,0,0,0,0,0,12,5,0,NOT_EVALUATED_BY_HUMANS
+historical_contamination,target_only,batch,1,1,0,8838,8838,8838,0.0017478,32.658824,32.658824,1,0,0,0,0,1,6,1,0,NOT_EVALUATED_BY_HUMANS
+historical_contamination,target_only,selective,1,1,0,10116,10116,10116,0.0020353999999999997,46.867262,46.867262,2,0,0,0,0,1,6,2,0,NOT_EVALUATED_BY_HUMANS
+original,surrounding_3_workloads,batch,20,20,0,395354,19767.7,18860.5,0.06657246,38.60043045,39.8761325,21,1,19175,0,0,20,21,252,0,NOT_EVALUATED_BY_HUMANS
+original,surrounding_3_workloads,selective,20,20,0,189066,9453.3,7092.5,0.03669062,43.6863745,37.6812575,45,1,13010,0,0,0,7.1,41,0,NOT_EVALUATED_BY_HUMANS
+original,target_only,batch,20,20,0,110680,5534,5597.5,0.02328536,32.76577625,33.004596,20,0,0,0,0,20,6,30,0,NOT_EVALUATED_BY_HUMANS
+original,target_only,selective,20,20,0,144444,7222.2,6714.0,0.03060231,42.42445375,39.738873999999996,42,2,11199,0,0,20,6,28,0,NOT_EVALUATED_BY_HUMANS

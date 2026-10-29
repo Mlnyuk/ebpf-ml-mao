@@ -1,0 +1,102 @@
+[
+  {
+    "incident": "08f175cffa164aba",
+    "raw_replay_verified": true,
+    "attempts": 20
+  },
+  {
+    "incident": "0a75f6e705424b6e",
+    "raw_replay_verified": true,
+    "attempts": 80
+  },
+  {
+    "incident": "186d14f5c49446d4",
+    "raw_replay_verified": true,
+    "attempts": 160
+  },
+  {
+    "incident": "41671ed7cb6a4fff",
+    "raw_replay_verified": true,
+    "attempts": 160
+  },
+  {
+    "incident": "558a7b4120934034",
+    "raw_replay_verified": true,
+    "attempts": 40
+  },
+  {
+    "incident": "5a1c082129f44da1",
+    "raw_replay_verified": true,
+    "attempts": 80
+  },
+  {
+    "incident": "6027c491c8234c89",
+    "raw_replay_verified": true,
+    "attempts": 160
+  },
+  {
+    "incident": "6b0b8be80220438a",
+    "raw_replay_verified": true,
+    "attempts": 20
+  },
+  {
+    "incident": "76c4160448394833",
+    "raw_replay_verified": true,
+    "attempts": 20
+  },
+  {
+    "incident": "8151ba943d094f4e",
+    "raw_replay_verified": true,
+    "attempts": 40
+  },
+  {
+    "incident": "8bd9d3e924e543f5",
+    "raw_replay_verified": true,
+    "attempts": 80
+  },
+  {
+    "incident": "8c5225390846429f",
+    "raw_replay_verified": true,
+    "attempts": 20
+  },
+  {
+    "incident": "9037a83706d34f5a",
+    "raw_replay_verified": true,
+    "attempts": 40
+  },
+  {
+    "incident": "98841c7856624df9",
+    "raw_replay_verified": true,
+    "attempts": 20
+  },
+  {
+    "incident": "b9e2898a0ecb47dc",
+    "raw_replay_verified": true,
+    "attempts": 80
+  },
+  {
+    "incident": "c66686278e7341db",
+    "raw_replay_verified": true,
+    "attempts": 80
+  },
+  {
+    "incident": "c72b356dc93243d9",
+    "raw_replay_verified": true,
+    "attempts": 160
+  },
+  {
+    "incident": "d36bdbfb68a949a1",
+    "raw_replay_verified": true,
+    "attempts": 80
+  },
+  {
+    "incident": "d4d135e6f3ac4e23",
+    "raw_replay_verified": true,
+    "attempts": 20
+  },
+  {
+    "incident": "e85df1d865ed4bfa",
+    "raw_replay_verified": true,
+    "attempts": 40
+  }
+]

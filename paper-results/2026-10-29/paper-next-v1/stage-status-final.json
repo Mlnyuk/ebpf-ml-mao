@@ -1,0 +1,32 @@
+{
+  "at": "2026-10-29T08:03:55.667602+00:00",
+  "code": "frozen before capture; posthoc auditing/plotting in separate scripts",
+  "trial": {
+    "python_tests_passed": 104,
+    "dom_tests_passed": 8,
+    "http_checks_passed": 5,
+    "full_browser_visual_validation": "NOT_PERFORMED"
+  },
+  "evaluation": {
+    "fresh_occurrences": 20,
+    "registered_investigations": 88,
+    "first_final_format_pass": 84,
+    "after_one_repair": 4,
+    "terminal_failures": 0,
+    "native_k8sgpt_scans": 20,
+    "native_paid_requests": 14,
+    "human_quality": "NOT_EVALUATED",
+    "online_overhead": "NOT_MEASURED",
+    "offline_summary_timing_samples": 60
+  },
+  "legacy_preservation": "HASH_MATCH",
+  "api_budget_final": {
+    "maximum": 480,
+    "maximum_usd": 2.0,
+    "attempts": 156,
+    "accounted_usd": 0.17816594000000002
+  },
+  "operational_agent_replicas": 0,
+  "temporary_context_replicas": 0,
+  "automatic_reruns_registered": false
+}

@@ -1,0 +1,55 @@
+{
+  "packages": [
+    {
+      "name": "contourpy",
+      "version": "1.4.0"
+    },
+    {
+      "name": "cycler",
+      "version": "0.12.1"
+    },
+    {
+      "name": "fonttools",
+      "version": "4.68.0"
+    },
+    {
+      "name": "kiwisolver",
+      "version": "1.5.1"
+    },
+    {
+      "name": "matplotlib",
+      "version": "3.10.8"
+    },
+    {
+      "name": "numpy",
+      "version": "2.5.4"
+    },
+    {
+      "name": "packaging",
+      "version": "26.3"
+    },
+    {
+      "name": "pillow",
+      "version": "13.0.0"
+    },
+    {
+      "name": "pyparsing",
+      "version": "3.3.3"
+    },
+    {
+      "name": "python-dateutil",
+      "version": "3.0.0"
+    },
+    {
+      "name": "six",
+      "version": "1.17.0"
+    },
+    {
+      "name": "tzdata",
+      "version": "2026.6"
+    }
+  ],
+  "source_sha256": "5f20bd8174b603fb37c24a4a81f6adcc9ce1537340d590528b0427a89d7b250d",
+  "figure_visual_check": "next-v1-breadth rendered PNG inspected; axes and footer readable",
+  "inference": "descriptive plots only"
+}

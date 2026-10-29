@@ -1,0 +1,6 @@
+{
+  "occurrence": "8c5225390846429f",
+  "retained_traced_bytes": 11758,
+  "peak_traced_bytes": 330322,
+  "scope": "Python tracked allocations only; includes produced evidence/proof; excludes resident input and interpreter"
+}

@@ -1,0 +1,11 @@
+{
+  "finished_at": "2026-10-29T07:57:08.027686Z",
+  "complete": true,
+  "occurrences": 20,
+  "timing_samples": 60,
+  "median_of_occurrence_median_wall_seconds": 0.0062611757311969995,
+  "median_of_occurrence_median_cpu_seconds": 0.00625482799999999,
+  "maximum_peak_traced_bytes": 1881017,
+  "online_overhead": "NOT_MEASURED",
+  "inference": "Offline resident-input component replay only; cannot establish low service/cluster overhead."
+}

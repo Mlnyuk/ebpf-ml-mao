@@ -1,0 +1,48 @@
+{
+  "at": "2026-10-29T07:58:39.787603+00:00",
+  "deployments": [
+    {
+      "namespace": "rca-lab",
+      "name": "paper-context-a",
+      "desired": 0,
+      "current": 0,
+      "ready": 0
+    },
+    {
+      "namespace": "rca-lab",
+      "name": "paper-context-b",
+      "desired": 0,
+      "current": 0,
+      "ready": 0
+    },
+    {
+      "namespace": "rca-lab",
+      "name": "paper-context-c",
+      "desired": 0,
+      "current": 0,
+      "ready": 0
+    },
+    {
+      "namespace": "rca-lab",
+      "name": "sample-backend",
+      "desired": 1,
+      "current": 1,
+      "ready": 1
+    },
+    {
+      "namespace": "rca-lab",
+      "name": "sample-service",
+      "desired": 1,
+      "current": 1,
+      "ready": 1
+    },
+    {
+      "namespace": "rca-system",
+      "name": "rca-agent",
+      "desired": 0,
+      "current": 0,
+      "ready": 0
+    }
+  ],
+  "scope": "read-only post-run replica check"
+}

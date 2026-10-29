@@ -1,0 +1,16 @@
+{
+  "command": "node tests/test_research_next_ui.cjs /tmp/rca-research-ui-test/node_modules/jsdom artifacts/paper-next-v1-20261029/viewer",
+  "tests": [
+    "incident-switch",
+    "side-by-side",
+    "claim-evidence-link",
+    "default-live-disabled",
+    "arm-masked-packet",
+    "rating-save",
+    "no-rating-overwrite",
+    "export"
+  ],
+  "passed": 8,
+  "real_human_ratings_created": 0,
+  "scope": "jsdom interaction tests, not complete browser rendering"
+}

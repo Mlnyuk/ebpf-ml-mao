@@ -1,0 +1,61 @@
+{
+  "at": "2026-10-29T07:53:59.959663Z",
+  "posthoc_audit_code_sha256": "bdf062ca8d684d8fdd3478e97330df6122e5418baf395bc708fd4db218b91abb",
+  "frozen_protocol_and_code_match": true,
+  "old_clock_v3_hashes_match": true,
+  "dataset_hashes_match": true,
+  "shared_primary_output_contract_verified": true,
+  "private_truth_marker_scan_passed": true,
+  "truth_isolation_limit": "logical separation; substring check is not an OS security proof",
+  "capture_complete": true,
+  "independent_occurrences": 20,
+  "distinct_pod_uids": 20,
+  "occurrence_scenarios": {
+    "mixed_route_error": 4,
+    "normal": 4,
+    "auxiliary_error": 4,
+    "route_error": 4,
+    "application_error": 4
+  },
+  "successful_injection_effect_checks": 20,
+  "physical_clusters": 1,
+  "independence_limit": "Fresh occurrence and Pod identity, not independently provisioned clusters or guaranteed statistical independence",
+  "planned_runs": 88,
+  "recorded_runs": 88,
+  "suite_complete": true,
+  "outcomes": {
+    "accepted": 88
+  },
+  "accounting": [
+    {
+      "category": "primary",
+      "request_records": 142,
+      "responses": 142,
+      "input_tokens": 828761,
+      "output_tokens": 119389,
+      "cached_input_tokens_known_subset": 55488,
+      "repair_tokens_subset": 43384,
+      "known_cost_usd": 0.17735009,
+      "unknown_cost_records": 0
+    },
+    {
+      "category": "native_k8sgpt",
+      "request_records": 14,
+      "responses": 14,
+      "input_tokens": 1599,
+      "output_tokens": 1152,
+      "cached_input_tokens_known_subset": 0,
+      "repair_tokens_subset": 0,
+      "known_cost_usd": 0.00081585,
+      "unknown_cost_records": 0
+    }
+  ],
+  "global_budget": {
+    "maximum": 480,
+    "maximum_usd": 2.0,
+    "attempts": 156,
+    "accounted_usd": 0.17816594000000002
+  },
+  "human_diagnostic_quality": "NOT_EVALUATED",
+  "online_overhead": "NOT_MEASURED"
+}

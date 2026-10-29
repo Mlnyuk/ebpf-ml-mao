@@ -1,0 +1,51 @@
+{
+  "at": "2026-10-29T05:24:52.606742Z",
+  "status": "NOT_MEASURED_ONLINE",
+  "environment_observation": {
+    "ready_workers": [
+      "worker-1",
+      "worker-3"
+    ],
+    "both_workers_have_unrelated_workloads": true,
+    "gpu_nodes": "NotReady/Unknown; user placed on hold, not used",
+    "local_docker": "available but shares host kernel, not independent eBPF test environment",
+    "local_kvm": "not present"
+  },
+  "separate_kernel_environment": "not verified/provided as of this record",
+  "components": {
+    "tetragon_base": {
+      "status": "NOT_MEASURED",
+      "reason": "No confirmed isolated kernel; no shared collector/policy interruption"
+    },
+    "observation_policy": {
+      "status": "NOT_MEASURED",
+      "reason": "No confirmed isolated kernel; no shared collector/policy interruption"
+    },
+    "summary_incremental_online": {
+      "status": "NOT_MEASURED",
+      "reason": "No confirmed isolated kernel; no shared collector/policy interruption"
+    },
+    "service_cpu_memory_latency_throughput_impact": {
+      "status": "NOT_MEASURED",
+      "reason": "No confirmed isolated kernel; no shared collector/policy interruption"
+    }
+  },
+  "future_design": {
+    "states": [
+      "service only",
+      "service + Tetragon without custom observation policy",
+      "service + Tetragon + observation policy",
+      "service + Tetragon + observation policy + summary"
+    ],
+    "randomization": "randomized block order over matched offered loads after warmup",
+    "units": "independent load blocks, not per-request pseudo-replicates",
+    "measures": [
+      "node and collector CPU/RSS",
+      "service achieved throughput",
+      "latency distribution",
+      "export/drop counters",
+      "summary CPU/RSS"
+    ],
+    "scope": "Design only; none of these measurements claimed executed"
+  }
+}

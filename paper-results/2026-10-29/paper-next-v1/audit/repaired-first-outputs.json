@@ -1,0 +1,58 @@
+[
+  {
+    "run_id": "1219d4d2ba985aeb535a",
+    "case_id": "6027c491c8234c89-wide",
+    "arm": "selective",
+    "missing_required_fields": [
+      "claims"
+    ],
+    "error": {
+      "type": "validation_error",
+      "call": 3,
+      "error": "$: output fields mismatch"
+    },
+    "terminal_state": "accepted"
+  },
+  {
+    "run_id": "d4825812c92e568f4a46",
+    "case_id": "6b0b8be80220438a-small",
+    "arm": "selective",
+    "missing_required_fields": [
+      "claims"
+    ],
+    "error": {
+      "type": "validation_error",
+      "call": 2,
+      "error": "$: output fields mismatch"
+    },
+    "terminal_state": "accepted"
+  },
+  {
+    "run_id": "b7e3eaa500fc514a945c",
+    "case_id": "0a75f6e705424b6e-wide",
+    "arm": "batch",
+    "missing_required_fields": [
+      "claims"
+    ],
+    "error": {
+      "type": "validation_error",
+      "call": 1,
+      "error": "$: output fields mismatch"
+    },
+    "terminal_state": "accepted"
+  },
+  {
+    "run_id": "9ac6c04e3ee572197e0e",
+    "case_id": "8c5225390846429f-small",
+    "arm": "selective",
+    "missing_required_fields": [
+      "affected_target"
+    ],
+    "error": {
+      "type": "validation_error",
+      "call": 2,
+      "error": "$: output fields mismatch"
+    },
+    "terminal_state": "accepted"
+  }
+]

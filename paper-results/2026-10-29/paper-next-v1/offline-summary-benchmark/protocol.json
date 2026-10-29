@@ -1,0 +1,50 @@
+{
+  "registered_at": "2026-10-29T07:57:06.923049Z",
+  "version": "offline-summary-next-v1",
+  "status": "posthoc_exploratory_component_measurement",
+  "script_sha256": "01f288a38519e3994e02d4501c0a4c09dd6dd59e5d324bb31dcd424ade56e9e8",
+  "summary_source_sha256": "65b883c41c80715a5de1009255cde4b48a11d24b5b9a305387058f0b6688708d",
+  "occurrences": [
+    "08f175cffa164aba",
+    "0a75f6e705424b6e",
+    "186d14f5c49446d4",
+    "41671ed7cb6a4fff",
+    "558a7b4120934034",
+    "5a1c082129f44da1",
+    "6027c491c8234c89",
+    "6b0b8be80220438a",
+    "76c4160448394833",
+    "8151ba943d094f4e",
+    "8bd9d3e924e543f5",
+    "8c5225390846429f",
+    "9037a83706d34f5a",
+    "98841c7856624df9",
+    "b9e2898a0ecb47dc",
+    "c66686278e7341db",
+    "c72b356dc93243d9",
+    "d36bdbfb68a949a1",
+    "d4d135e6f3ac4e23",
+    "e85df1d865ed4bfa"
+  ],
+  "warmup_per_occurrence": 1,
+  "timing_repeats": 3,
+  "traced_memory_repeats": 1,
+  "timing": "perf_counter and process_time around summarize only; decoded input is resident before timing",
+  "memory": "separate tracemalloc pass around summarize; peak tracked Python allocations, not process RSS or node memory",
+  "excluded": [
+    "export acquisition",
+    "base64 decoding",
+    "raw file I/O",
+    "long-running collector",
+    "kernel policy",
+    "service impact",
+    "cold imports"
+  ],
+  "environment": {
+    "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+    "platform": "Linux-6.8.0-139-generic-x86_64-with-glibc2.39",
+    "host": "shared execution host; no exclusive CPU allocation"
+  },
+  "stop_rule": "fail on mismatch; no replacing a failed sample",
+  "online_overhead": "NOT_MEASURED"
+}

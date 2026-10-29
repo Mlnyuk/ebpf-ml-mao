@@ -1,0 +1,23 @@
+{
+  "allowed_claims": [
+    "Measured usage and format outcomes on the registered pilot",
+    "Traceability to preserved exported events",
+    "Conditional paired token/cost differences across the specified evidence breadth"
+  ],
+  "not_established": [
+    "General diagnostic superiority",
+    "Quality-preserving token reduction before independent ratings",
+    "Low end-to-end online overhead",
+    "Statistically independent clusters",
+    "Zero kernel/export loss"
+  ],
+  "comparison_limits": [
+    "Primary method latency is frozen-evidence controller/LLM time and excludes source capture/preprocessing. Native K8sGPT latency includes live Kubernetes/CLI work.",
+    "K8sGPT native prompt/output/language defaults differ from our Korean structured contract; this is a native-scope exploratory comparison, not a controlled prompt/output ablation.",
+    "K8sGPT --no-cache disables application result reuse. Provider prefix caching is not controlled; actual returned cache usage is recorded separately.",
+    "Three neighboring workloads are controlled lab services with actual generated telemetry, not a production-scale diversity claim.",
+    "The 1 and 4 requests/second offered loads are bounded low-rate conditions, not capacity/overhead stress tests.",
+    "One model run per fresh episode/method/breadth prioritizes new collection; model-run variability within a factorial cell is not separately estimated.",
+    "A native finding is not necessarily a correct diagnosis; scope gaps, detection absence and human judgments must remain separate."
+  ]
+}

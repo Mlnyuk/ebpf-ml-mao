@@ -1,0 +1,10 @@
+{
+  "matplotlib": "3.10.8",
+  "inputs": [
+    "artifacts/paper-clock-v3-analysis-v3/methods.csv",
+    "artifacts/paper-next-v1-20261029/report/methods.csv",
+    "artifacts/paper-next-v1-20261029/report/paired-deltas.csv"
+  ],
+  "scope": "Posthoc descriptive visualization; original observations only. No human grading or inferential significance.",
+  "units": "Cost is returned provider USD usage, not a hypothetical list-price estimate."
+}

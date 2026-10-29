@@ -1,0 +1,748 @@
+[
+  {
+    "case_id": "186d14f5c49446d4-small",
+    "breadth": "target_only",
+    "view": "original",
+    "state": "destination_mismatch",
+    "unexpected": [
+      {
+        "destination_ip": "10.233.61.222",
+        "destination_port": 9099,
+        "attempts": 80
+      }
+    ],
+    "evidence_ids": [
+      "ev-11249c32703d83296931",
+      "ev-38df04e8afda1aa76af2"
+    ],
+    "scope": "Allowed destination membership only. Does not determine application health, connection outcome, or whether unexpected traffic is critical.",
+    "llm_calls": 0,
+    "diagnostic_quality": "NOT_HUMAN_EVALUATED"
+  },
+  {
+    "case_id": "186d14f5c49446d4-wide",
+    "breadth": "surrounding_3_workloads",
+    "view": "original",
+    "state": "destination_mismatch",
+    "unexpected": [
+      {
+        "destination_ip": "10.233.61.222",
+        "destination_port": 9099,
+        "attempts": 80
+      }
+    ],
+    "evidence_ids": [
+      "ev-11249c32703d83296931",
+      "ev-38df04e8afda1aa76af2"
+    ],
+    "scope": "Allowed destination membership only. Does not determine application health, connection outcome, or whether unexpected traffic is critical.",
+    "llm_calls": 0,
+    "diagnostic_quality": "NOT_HUMAN_EVALUATED"
+  },
+  {
+    "case_id": "8151ba943d094f4e-small",
+    "breadth": "target_only",
+    "view": "original",
+    "state": "destination_mismatch",
+    "unexpected": [
+      {
+        "destination_ip": "10.233.61.222",
+        "destination_port": 9099,
+        "attempts": 20
+      }
+    ],
+    "evidence_ids": [
+      "ev-55b3f993df9a227e5d15",
+      "ev-4766aac01e52f74f057f"
+    ],
+    "scope": "Allowed destination membership only. Does not determine application health, connection outcome, or whether unexpected traffic is critical.",
+    "llm_calls": 0,
+    "diagnostic_quality": "NOT_HUMAN_EVALUATED"
+  },
+  {
+    "case_id": "8151ba943d094f4e-wide",
+    "breadth": "surrounding_3_workloads",
+    "view": "original",
+    "state": "destination_mismatch",
+    "unexpected": [
+      {
+        "destination_ip": "10.233.61.222",
+        "destination_port": 9099,
+        "attempts": 20
+      }
+    ],
+    "evidence_ids": [
+      "ev-55b3f993df9a227e5d15",
+      "ev-4766aac01e52f74f057f"
+    ],
+    "scope": "Allowed destination membership only. Does not determine application health, connection outcome, or whether unexpected traffic is critical.",
+    "llm_calls": 0,
+    "diagnostic_quality": "NOT_HUMAN_EVALUATED"
+  },
+  {
+    "case_id": "5a1c082129f44da1-small",
+    "breadth": "target_only",
+    "view": "original",
+    "state": "no_mismatch_observed",
+    "unexpected": [],
+    "evidence_ids": [
+      "ev-aece89f9300b7aed8991",
+      "ev-cc4615703abf7ce6e35c"
+    ],
+    "scope": "Allowed destination membership only. Does not determine application health, connection outcome, or whether unexpected traffic is critical.",
+    "llm_calls": 0,
+    "diagnostic_quality": "NOT_HUMAN_EVALUATED"
+  },
+  {
+    "case_id": "5a1c082129f44da1-wide",
+    "breadth": "surrounding_3_workloads",
+    "view": "original",
+    "state": "no_mismatch_observed",
+    "unexpected": [],
+    "evidence_ids": [
+      "ev-aece89f9300b7aed8991",
+      "ev-cc4615703abf7ce6e35c"
+    ],
+    "scope": "Allowed destination membership only. Does not determine application health, connection outcome, or whether unexpected traffic is critical.",
+    "llm_calls": 0,
+    "diagnostic_quality": "NOT_HUMAN_EVALUATED"
+  },
+  {
+    "case_id": "c72b356dc93243d9-small",
+    "breadth": "target_only",
+    "view": "original",
+    "state": "destination_mismatch",
+    "unexpected": [
+      {
+        "destination_ip": "10.233.61.222",
+        "destination_port": 9099,
+        "attempts": 80
+      }
+    ],
+    "evidence_ids": [
+      "ev-02cfefeee6e75dbe7bd0",
+      "ev-4cb1f232dc657599c4f2"
+    ],
+    "scope": "Allowed destination membership only. Does not determine application health, connection outcome, or whether unexpected traffic is critical.",
+    "llm_calls": 0,
+    "diagnostic_quality": "NOT_HUMAN_EVALUATED"
+  },
+  {
+    "case_id": "c72b356dc93243d9-wide",
+    "breadth": "surrounding_3_workloads",
+    "view": "original",
+    "state": "destination_mismatch",
+    "unexpected": [
+      {
+        "destination_ip": "10.233.61.222",
+        "destination_port": 9099,
+        "attempts": 80
+      }
+    ],
+    "evidence_ids": [
+      "ev-02cfefeee6e75dbe7bd0",
+      "ev-4cb1f232dc657599c4f2"
+    ],
+    "scope": "Allowed destination membership only. Does not determine application health, connection outcome, or whether unexpected traffic is critical.",
+    "llm_calls": 0,
+    "diagnostic_quality": "NOT_HUMAN_EVALUATED"
+  },
+  {
+    "case_id": "6027c491c8234c89-small",
+    "breadth": "target_only",
+    "view": "original",
+    "state": "destination_mismatch",
+    "unexpected": [
+      {
+        "destination_ip": "10.233.44.211",
+        "destination_port": 9099,
+        "attempts": 80
+      }
+    ],
+    "evidence_ids": [
+      "ev-af03b9cc471ccbc9cc9e",
+      "ev-afecd1ab2b7223a2820a"
+    ],
+    "scope": "Allowed destination membership only. Does not determine application health, connection outcome, or whether unexpected traffic is critical.",
+    "llm_calls": 0,
+    "diagnostic_quality": "NOT_HUMAN_EVALUATED"
+  },
+  {
+    "case_id": "6027c491c8234c89-wide",
+    "breadth": "surrounding_3_workloads",
+    "view": "original",
+    "state": "destination_mismatch",
+    "unexpected": [
+      {
+        "destination_ip": "10.233.44.211",
+        "destination_port": 9099,
+        "attempts": 80
+      }
+    ],
+    "evidence_ids": [
+      "ev-af03b9cc471ccbc9cc9e",
+      "ev-afecd1ab2b7223a2820a"
+    ],
+    "scope": "Allowed destination membership only. Does not determine application health, connection outcome, or whether unexpected traffic is critical.",
+    "llm_calls": 0,
+    "diagnostic_quality": "NOT_HUMAN_EVALUATED"
+  },
+  {
+    "case_id": "98841c7856624df9-small",
+    "breadth": "target_only",
+    "view": "original",
+    "state": "no_mismatch_observed",
+    "unexpected": [],
+    "evidence_ids": [
+      "ev-1ba134b2032aa29f8f0c",
+      "ev-96dba4f04e5c4a27d3aa"
+    ],
+    "scope": "Allowed destination membership only. Does not determine application health, connection outcome, or whether unexpected traffic is critical.",
+    "llm_calls": 0,
+    "diagnostic_quality": "NOT_HUMAN_EVALUATED"
+  },
+  {
+    "case_id": "98841c7856624df9-wide",
+    "breadth": "surrounding_3_workloads",
+    "view": "original",
+    "state": "no_mismatch_observed",
+    "unexpected": [],
+    "evidence_ids": [
+      "ev-1ba134b2032aa29f8f0c",
+      "ev-96dba4f04e5c4a27d3aa"
+    ],
+    "scope": "Allowed destination membership only. Does not determine application health, connection outcome, or whether unexpected traffic is critical.",
+    "llm_calls": 0,
+    "diagnostic_quality": "NOT_HUMAN_EVALUATED"
+  },
+  {
+    "case_id": "b9e2898a0ecb47dc-small",
+    "breadth": "target_only",
+    "view": "original",
+    "state": "destination_mismatch",
+    "unexpected": [
+      {
+        "destination_ip": "10.233.61.222",
+        "destination_port": 9099,
+        "attempts": 80
+      }
+    ],
+    "evidence_ids": [
+      "ev-2055d8ba652d6a2c2a99",
+      "ev-1dae65d38854967eb67b"
+    ],
+    "scope": "Allowed destination membership only. Does not determine application health, connection outcome, or whether unexpected traffic is critical.",
+    "llm_calls": 0,
+    "diagnostic_quality": "NOT_HUMAN_EVALUATED"
+  },
+  {
+    "case_id": "b9e2898a0ecb47dc-wide",
+    "breadth": "surrounding_3_workloads",
+    "view": "original",
+    "state": "destination_mismatch",
+    "unexpected": [
+      {
+        "destination_ip": "10.233.61.222",
+        "destination_port": 9099,
+        "attempts": 80
+      }
+    ],
+    "evidence_ids": [
+      "ev-2055d8ba652d6a2c2a99",
+      "ev-1dae65d38854967eb67b"
+    ],
+    "scope": "Allowed destination membership only. Does not determine application health, connection outcome, or whether unexpected traffic is critical.",
+    "llm_calls": 0,
+    "diagnostic_quality": "NOT_HUMAN_EVALUATED"
+  },
+  {
+    "case_id": "d4d135e6f3ac4e23-small",
+    "breadth": "target_only",
+    "view": "original",
+    "state": "no_mismatch_observed",
+    "unexpected": [],
+    "evidence_ids": [
+      "ev-384ac3f7f31fc7a602d5",
+      "ev-01353c35db9155da61a8"
+    ],
+    "scope": "Allowed destination membership only. Does not determine application health, connection outcome, or whether unexpected traffic is critical.",
+    "llm_calls": 0,
+    "diagnostic_quality": "NOT_HUMAN_EVALUATED"
+  },
+  {
+    "case_id": "d4d135e6f3ac4e23-wide",
+    "breadth": "surrounding_3_workloads",
+    "view": "original",
+    "state": "no_mismatch_observed",
+    "unexpected": [],
+    "evidence_ids": [
+      "ev-384ac3f7f31fc7a602d5",
+      "ev-01353c35db9155da61a8"
+    ],
+    "scope": "Allowed destination membership only. Does not determine application health, connection outcome, or whether unexpected traffic is critical.",
+    "llm_calls": 0,
+    "diagnostic_quality": "NOT_HUMAN_EVALUATED"
+  },
+  {
+    "case_id": "76c4160448394833-small",
+    "breadth": "target_only",
+    "view": "original",
+    "state": "destination_mismatch",
+    "unexpected": [
+      {
+        "destination_ip": "10.233.61.222",
+        "destination_port": 9099,
+        "attempts": 20
+      }
+    ],
+    "evidence_ids": [
+      "ev-3d4fbf10a4cfe725d4c3",
+      "ev-8cbd0971fbf30b33445c"
+    ],
+    "scope": "Allowed destination membership only. Does not determine application health, connection outcome, or whether unexpected traffic is critical.",
+    "llm_calls": 0,
+    "diagnostic_quality": "NOT_HUMAN_EVALUATED"
+  },
+  {
+    "case_id": "76c4160448394833-wide",
+    "breadth": "surrounding_3_workloads",
+    "view": "original",
+    "state": "destination_mismatch",
+    "unexpected": [
+      {
+        "destination_ip": "10.233.61.222",
+        "destination_port": 9099,
+        "attempts": 20
+      }
+    ],
+    "evidence_ids": [
+      "ev-3d4fbf10a4cfe725d4c3",
+      "ev-8cbd0971fbf30b33445c"
+    ],
+    "scope": "Allowed destination membership only. Does not determine application health, connection outcome, or whether unexpected traffic is critical.",
+    "llm_calls": 0,
+    "diagnostic_quality": "NOT_HUMAN_EVALUATED"
+  },
+  {
+    "case_id": "9037a83706d34f5a-small",
+    "breadth": "target_only",
+    "view": "original",
+    "state": "destination_mismatch",
+    "unexpected": [
+      {
+        "destination_ip": "10.233.44.211",
+        "destination_port": 9099,
+        "attempts": 20
+      }
+    ],
+    "evidence_ids": [
+      "ev-5d448fcbbf0f3f33ab31",
+      "ev-c840847fe6e9722fd2fe"
+    ],
+    "scope": "Allowed destination membership only. Does not determine application health, connection outcome, or whether unexpected traffic is critical.",
+    "llm_calls": 0,
+    "diagnostic_quality": "NOT_HUMAN_EVALUATED"
+  },
+  {
+    "case_id": "9037a83706d34f5a-wide",
+    "breadth": "surrounding_3_workloads",
+    "view": "original",
+    "state": "destination_mismatch",
+    "unexpected": [
+      {
+        "destination_ip": "10.233.44.211",
+        "destination_port": 9099,
+        "attempts": 20
+      }
+    ],
+    "evidence_ids": [
+      "ev-5d448fcbbf0f3f33ab31",
+      "ev-c840847fe6e9722fd2fe"
+    ],
+    "scope": "Allowed destination membership only. Does not determine application health, connection outcome, or whether unexpected traffic is critical.",
+    "llm_calls": 0,
+    "diagnostic_quality": "NOT_HUMAN_EVALUATED"
+  },
+  {
+    "case_id": "41671ed7cb6a4fff-small",
+    "breadth": "target_only",
+    "view": "original",
+    "state": "destination_mismatch",
+    "unexpected": [
+      {
+        "destination_ip": "10.233.44.211",
+        "destination_port": 9099,
+        "attempts": 80
+      }
+    ],
+    "evidence_ids": [
+      "ev-072c60753283200e99f5",
+      "ev-7354c3f1c13cb50f5374"
+    ],
+    "scope": "Allowed destination membership only. Does not determine application health, connection outcome, or whether unexpected traffic is critical.",
+    "llm_calls": 0,
+    "diagnostic_quality": "NOT_HUMAN_EVALUATED"
+  },
+  {
+    "case_id": "41671ed7cb6a4fff-wide",
+    "breadth": "surrounding_3_workloads",
+    "view": "original",
+    "state": "destination_mismatch",
+    "unexpected": [
+      {
+        "destination_ip": "10.233.44.211",
+        "destination_port": 9099,
+        "attempts": 80
+      }
+    ],
+    "evidence_ids": [
+      "ev-072c60753283200e99f5",
+      "ev-7354c3f1c13cb50f5374"
+    ],
+    "scope": "Allowed destination membership only. Does not determine application health, connection outcome, or whether unexpected traffic is critical.",
+    "llm_calls": 0,
+    "diagnostic_quality": "NOT_HUMAN_EVALUATED"
+  },
+  {
+    "case_id": "d36bdbfb68a949a1-small",
+    "breadth": "target_only",
+    "view": "original",
+    "state": "no_mismatch_observed",
+    "unexpected": [],
+    "evidence_ids": [
+      "ev-afd99e8a940fd1537353",
+      "ev-587d21416a863bdb1e39"
+    ],
+    "scope": "Allowed destination membership only. Does not determine application health, connection outcome, or whether unexpected traffic is critical.",
+    "llm_calls": 0,
+    "diagnostic_quality": "NOT_HUMAN_EVALUATED"
+  },
+  {
+    "case_id": "d36bdbfb68a949a1-wide",
+    "breadth": "surrounding_3_workloads",
+    "view": "original",
+    "state": "no_mismatch_observed",
+    "unexpected": [],
+    "evidence_ids": [
+      "ev-afd99e8a940fd1537353",
+      "ev-587d21416a863bdb1e39"
+    ],
+    "scope": "Allowed destination membership only. Does not determine application health, connection outcome, or whether unexpected traffic is critical.",
+    "llm_calls": 0,
+    "diagnostic_quality": "NOT_HUMAN_EVALUATED"
+  },
+  {
+    "case_id": "08f175cffa164aba-small",
+    "breadth": "target_only",
+    "view": "original",
+    "state": "no_mismatch_observed",
+    "unexpected": [],
+    "evidence_ids": [
+      "ev-ed952576f6a102ff460d",
+      "ev-b37b20aef8b28a896ea4"
+    ],
+    "scope": "Allowed destination membership only. Does not determine application health, connection outcome, or whether unexpected traffic is critical.",
+    "llm_calls": 0,
+    "diagnostic_quality": "NOT_HUMAN_EVALUATED"
+  },
+  {
+    "case_id": "08f175cffa164aba-wide",
+    "breadth": "surrounding_3_workloads",
+    "view": "original",
+    "state": "no_mismatch_observed",
+    "unexpected": [],
+    "evidence_ids": [
+      "ev-ed952576f6a102ff460d",
+      "ev-b37b20aef8b28a896ea4"
+    ],
+    "scope": "Allowed destination membership only. Does not determine application health, connection outcome, or whether unexpected traffic is critical.",
+    "llm_calls": 0,
+    "diagnostic_quality": "NOT_HUMAN_EVALUATED"
+  },
+  {
+    "case_id": "c66686278e7341db-small",
+    "breadth": "target_only",
+    "view": "original",
+    "state": "no_mismatch_observed",
+    "unexpected": [],
+    "evidence_ids": [
+      "ev-56bd0ed1a8a258ff3c32",
+      "ev-87a346e549eccdf5326f"
+    ],
+    "scope": "Allowed destination membership only. Does not determine application health, connection outcome, or whether unexpected traffic is critical.",
+    "llm_calls": 0,
+    "diagnostic_quality": "NOT_HUMAN_EVALUATED"
+  },
+  {
+    "case_id": "c66686278e7341db-wide",
+    "breadth": "surrounding_3_workloads",
+    "view": "original",
+    "state": "no_mismatch_observed",
+    "unexpected": [],
+    "evidence_ids": [
+      "ev-56bd0ed1a8a258ff3c32",
+      "ev-87a346e549eccdf5326f"
+    ],
+    "scope": "Allowed destination membership only. Does not determine application health, connection outcome, or whether unexpected traffic is critical.",
+    "llm_calls": 0,
+    "diagnostic_quality": "NOT_HUMAN_EVALUATED"
+  },
+  {
+    "case_id": "8c5225390846429f-small",
+    "breadth": "target_only",
+    "view": "original",
+    "state": "no_mismatch_observed",
+    "unexpected": [],
+    "evidence_ids": [
+      "ev-17c83c3c9c4bee60ea1b",
+      "ev-dd0699a4fe9ed497d185"
+    ],
+    "scope": "Allowed destination membership only. Does not determine application health, connection outcome, or whether unexpected traffic is critical.",
+    "llm_calls": 0,
+    "diagnostic_quality": "NOT_HUMAN_EVALUATED"
+  },
+  {
+    "case_id": "8c5225390846429f-wide",
+    "breadth": "surrounding_3_workloads",
+    "view": "original",
+    "state": "no_mismatch_observed",
+    "unexpected": [],
+    "evidence_ids": [
+      "ev-17c83c3c9c4bee60ea1b",
+      "ev-dd0699a4fe9ed497d185"
+    ],
+    "scope": "Allowed destination membership only. Does not determine application health, connection outcome, or whether unexpected traffic is critical.",
+    "llm_calls": 0,
+    "diagnostic_quality": "NOT_HUMAN_EVALUATED"
+  },
+  {
+    "case_id": "e85df1d865ed4bfa-small",
+    "breadth": "target_only",
+    "view": "original",
+    "state": "destination_mismatch",
+    "unexpected": [
+      {
+        "destination_ip": "10.233.44.211",
+        "destination_port": 9099,
+        "attempts": 20
+      }
+    ],
+    "evidence_ids": [
+      "ev-753ac7014272c6af1336",
+      "ev-d8336d3b3a177cb9f68d"
+    ],
+    "scope": "Allowed destination membership only. Does not determine application health, connection outcome, or whether unexpected traffic is critical.",
+    "llm_calls": 0,
+    "diagnostic_quality": "NOT_HUMAN_EVALUATED"
+  },
+  {
+    "case_id": "e85df1d865ed4bfa-wide",
+    "breadth": "surrounding_3_workloads",
+    "view": "original",
+    "state": "destination_mismatch",
+    "unexpected": [
+      {
+        "destination_ip": "10.233.44.211",
+        "destination_port": 9099,
+        "attempts": 20
+      }
+    ],
+    "evidence_ids": [
+      "ev-753ac7014272c6af1336",
+      "ev-d8336d3b3a177cb9f68d"
+    ],
+    "scope": "Allowed destination membership only. Does not determine application health, connection outcome, or whether unexpected traffic is critical.",
+    "llm_calls": 0,
+    "diagnostic_quality": "NOT_HUMAN_EVALUATED"
+  },
+  {
+    "case_id": "558a7b4120934034-small",
+    "breadth": "target_only",
+    "view": "original",
+    "state": "destination_mismatch",
+    "unexpected": [
+      {
+        "destination_ip": "10.233.61.222",
+        "destination_port": 9099,
+        "attempts": 20
+      }
+    ],
+    "evidence_ids": [
+      "ev-aff5c001c62f087841cb",
+      "ev-246b933c29f85b119856"
+    ],
+    "scope": "Allowed destination membership only. Does not determine application health, connection outcome, or whether unexpected traffic is critical.",
+    "llm_calls": 0,
+    "diagnostic_quality": "NOT_HUMAN_EVALUATED"
+  },
+  {
+    "case_id": "558a7b4120934034-wide",
+    "breadth": "surrounding_3_workloads",
+    "view": "original",
+    "state": "destination_mismatch",
+    "unexpected": [
+      {
+        "destination_ip": "10.233.61.222",
+        "destination_port": 9099,
+        "attempts": 20
+      }
+    ],
+    "evidence_ids": [
+      "ev-aff5c001c62f087841cb",
+      "ev-246b933c29f85b119856"
+    ],
+    "scope": "Allowed destination membership only. Does not determine application health, connection outcome, or whether unexpected traffic is critical.",
+    "llm_calls": 0,
+    "diagnostic_quality": "NOT_HUMAN_EVALUATED"
+  },
+  {
+    "case_id": "8bd9d3e924e543f5-small",
+    "breadth": "target_only",
+    "view": "original",
+    "state": "no_mismatch_observed",
+    "unexpected": [],
+    "evidence_ids": [
+      "ev-d9cd1a64a901b2d9d027",
+      "ev-d4f656fa8e0f282b0100"
+    ],
+    "scope": "Allowed destination membership only. Does not determine application health, connection outcome, or whether unexpected traffic is critical.",
+    "llm_calls": 0,
+    "diagnostic_quality": "NOT_HUMAN_EVALUATED"
+  },
+  {
+    "case_id": "8bd9d3e924e543f5-wide",
+    "breadth": "surrounding_3_workloads",
+    "view": "original",
+    "state": "no_mismatch_observed",
+    "unexpected": [],
+    "evidence_ids": [
+      "ev-d9cd1a64a901b2d9d027",
+      "ev-d4f656fa8e0f282b0100"
+    ],
+    "scope": "Allowed destination membership only. Does not determine application health, connection outcome, or whether unexpected traffic is critical.",
+    "llm_calls": 0,
+    "diagnostic_quality": "NOT_HUMAN_EVALUATED"
+  },
+  {
+    "case_id": "6b0b8be80220438a-small",
+    "breadth": "target_only",
+    "view": "original",
+    "state": "destination_mismatch",
+    "unexpected": [
+      {
+        "destination_ip": "10.233.61.222",
+        "destination_port": 9099,
+        "attempts": 20
+      }
+    ],
+    "evidence_ids": [
+      "ev-e898557f7f25950c734c",
+      "ev-f812a47a260199c16737"
+    ],
+    "scope": "Allowed destination membership only. Does not determine application health, connection outcome, or whether unexpected traffic is critical.",
+    "llm_calls": 0,
+    "diagnostic_quality": "NOT_HUMAN_EVALUATED"
+  },
+  {
+    "case_id": "6b0b8be80220438a-wide",
+    "breadth": "surrounding_3_workloads",
+    "view": "original",
+    "state": "destination_mismatch",
+    "unexpected": [
+      {
+        "destination_ip": "10.233.61.222",
+        "destination_port": 9099,
+        "attempts": 20
+      }
+    ],
+    "evidence_ids": [
+      "ev-e898557f7f25950c734c",
+      "ev-f812a47a260199c16737"
+    ],
+    "scope": "Allowed destination membership only. Does not determine application health, connection outcome, or whether unexpected traffic is critical.",
+    "llm_calls": 0,
+    "diagnostic_quality": "NOT_HUMAN_EVALUATED"
+  },
+  {
+    "case_id": "0a75f6e705424b6e-small",
+    "breadth": "target_only",
+    "view": "original",
+    "state": "destination_mismatch",
+    "unexpected": [
+      {
+        "destination_ip": "10.233.61.222",
+        "destination_port": 9099,
+        "attempts": 80
+      }
+    ],
+    "evidence_ids": [
+      "ev-28acb1893ed327cdcf27",
+      "ev-55ab006c35a4609b4f74"
+    ],
+    "scope": "Allowed destination membership only. Does not determine application health, connection outcome, or whether unexpected traffic is critical.",
+    "llm_calls": 0,
+    "diagnostic_quality": "NOT_HUMAN_EVALUATED"
+  },
+  {
+    "case_id": "0a75f6e705424b6e-wide",
+    "breadth": "surrounding_3_workloads",
+    "view": "original",
+    "state": "destination_mismatch",
+    "unexpected": [
+      {
+        "destination_ip": "10.233.61.222",
+        "destination_port": 9099,
+        "attempts": 80
+      }
+    ],
+    "evidence_ids": [
+      "ev-28acb1893ed327cdcf27",
+      "ev-55ab006c35a4609b4f74"
+    ],
+    "scope": "Allowed destination membership only. Does not determine application health, connection outcome, or whether unexpected traffic is critical.",
+    "llm_calls": 0,
+    "diagnostic_quality": "NOT_HUMAN_EVALUATED"
+  },
+  {
+    "case_id": "59c85fa846fe4005",
+    "breadth": "target_only",
+    "view": "historical_contamination",
+    "state": "no_mismatch_observed",
+    "unexpected": [],
+    "evidence_ids": [
+      "ev-17c83c3c9c4bee60ea1b",
+      "ev-dd0699a4fe9ed497d185"
+    ],
+    "scope": "Allowed destination membership only. Does not determine application health, connection outcome, or whether unexpected traffic is critical.",
+    "llm_calls": 0,
+    "diagnostic_quality": "NOT_HUMAN_EVALUATED"
+  },
+  {
+    "case_id": "46c8b419b3ee4774",
+    "breadth": "surrounding_3_workloads",
+    "view": "historical_contamination",
+    "state": "no_mismatch_observed",
+    "unexpected": [],
+    "evidence_ids": [
+      "ev-17c83c3c9c4bee60ea1b",
+      "ev-dd0699a4fe9ed497d185"
+    ],
+    "scope": "Allowed destination membership only. Does not determine application health, connection outcome, or whether unexpected traffic is critical.",
+    "llm_calls": 0,
+    "diagnostic_quality": "NOT_HUMAN_EVALUATED"
+  },
+  {
+    "case_id": "de8ea1387bf7410a",
+    "breadth": "target_only",
+    "view": "collection_missing",
+    "state": "unassessable",
+    "reason": "no usable nonzero connection-attempt evidence"
+  },
+  {
+    "case_id": "05374797b5a04702",
+    "breadth": "surrounding_3_workloads",
+    "view": "collection_missing",
+    "state": "unassessable",
+    "reason": "no usable nonzero connection-attempt evidence"
+  }
+]
