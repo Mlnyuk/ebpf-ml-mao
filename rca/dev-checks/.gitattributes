@@ -1,0 +1,2 @@
+# Preserve byte-for-byte CSV exports, including their standard CRLF endings.
+*.csv -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
