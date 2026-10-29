@@ -1,0 +1,107 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sample-service
+  namespace: rca-lab
+spec:
+  replicas: 1
+  selector:
+    matchLabels: {app: sample-service}
+  template:
+    metadata:
+      labels: {app: sample-service}
+    spec:
+      automountServiceAccountToken: false
+      nodeSelector: {kubernetes.io/hostname: worker-1}
+      containers:
+        - name: app
+          image: ghcr.io/mlnyuk/ebpf-ml-mao@sha256:9c044f5707229156a732c8c5dc06c5dd28a4fdf62509cce306e872864e2b585a
+          command: [python, -m, rca.lab]
+          env:
+            - {name: PYTHONPATH, value: /app}
+            - {name: PYTHONDONTWRITEBYTECODE, value: "1"}
+            - {name: PYTHONUNBUFFERED, value: "1"}
+            - {name: BACKEND_URL, value: "http://sample-backend:8080"}
+          ports:
+            - {name: http, containerPort: 8080}
+          resources:
+            requests: {cpu: 50m, memory: 32Mi}
+            limits: {cpu: 500m, memory: 128Mi}
+          readinessProbe:
+            exec:
+              command: [python, -c, "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8080/healthz',timeout=2).read()"]
+            timeoutSeconds: 3
+          securityContext:
+            runAsUser: 10001
+            runAsNonRoot: true
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities: {drop: [ALL]}
+          volumeMounts:
+            - {name: code, mountPath: /app/rca, readOnly: true}
+      volumes:
+        - name: code
+          configMap: {name: rca-code}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sample-backend
+  namespace: rca-lab
+spec:
+  replicas: 1
+  selector:
+    matchLabels: {app: sample-backend}
+  template:
+    metadata:
+      labels: {app: sample-backend}
+    spec:
+      automountServiceAccountToken: false
+      nodeSelector: {kubernetes.io/hostname: worker-3}
+      containers:
+        - name: app
+          image: ghcr.io/mlnyuk/ebpf-ml-mao@sha256:9c044f5707229156a732c8c5dc06c5dd28a4fdf62509cce306e872864e2b585a
+          command: [python, -m, rca.lab]
+          env:
+            - {name: PYTHONPATH, value: /app}
+            - {name: PYTHONDONTWRITEBYTECODE, value: "1"}
+            - {name: PYTHONUNBUFFERED, value: "1"}
+            - {name: ROLE, value: backend}
+          ports:
+            - {name: http, containerPort: 8080}
+          resources:
+            requests: {cpu: 50m, memory: 32Mi}
+            limits: {cpu: 250m, memory: 128Mi}
+          readinessProbe:
+            httpGet: {path: /healthz, port: http}
+          securityContext:
+            runAsUser: 10001
+            runAsNonRoot: true
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities: {drop: [ALL]}
+          volumeMounts:
+            - {name: code, mountPath: /app/rca, readOnly: true}
+      volumes:
+        - name: code
+          configMap: {name: rca-code}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: sample-service
+  namespace: rca-lab
+spec:
+  selector: {app: sample-service}
+  ports:
+    - {port: 8080, targetPort: http}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: sample-backend
+  namespace: rca-lab
+spec:
+  selector: {app: sample-backend}
+  ports:
+    - {port: 8080, targetPort: http}

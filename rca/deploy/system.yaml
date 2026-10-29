@@ -1,0 +1,184 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: rca-agent
+  namespace: rca-system
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: rca-read
+  namespace: rca-lab
+rules:
+  - apiGroups: [""]
+    resources: [pods, pods/log, events]
+    verbs: [get, list]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: rca-read
+  namespace: rca-lab
+subjects:
+  - kind: ServiceAccount
+    name: rca-agent
+    namespace: rca-system
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: rca-read
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rca-agent
+  namespace: rca-system
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: rca-agent
+  template:
+    metadata:
+      labels:
+        app: rca-agent
+    spec:
+      serviceAccountName: rca-agent
+      nodeSelector:
+        kubernetes.io/hostname: worker-3
+      initContainers:
+        - name: data-permissions
+          image: ghcr.io/mlnyuk/ebpf-ml-mao@sha256:9c044f5707229156a732c8c5dc06c5dd28a4fdf62509cce306e872864e2b585a
+          command: [python, -c, "import os; os.chown('/data',10001,10001); os.chmod('/data',0o700)"]
+          securityContext:
+            runAsUser: 0
+            readOnlyRootFilesystem: true
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop: [ALL]
+              add: [CHOWN, FOWNER]
+            seccompProfile: {type: RuntimeDefault}
+          resources:
+            requests: {cpu: 10m, memory: 16Mi}
+            limits: {cpu: 100m, memory: 64Mi}
+          volumeMounts:
+            - {name: data, mountPath: /data}
+      containers:
+        - name: agent
+          image: ghcr.io/mlnyuk/ebpf-ml-mao@sha256:9c044f5707229156a732c8c5dc06c5dd28a4fdf62509cce306e872864e2b585a
+          command: [python, -m, rca.server]
+          env:
+            - {name: PYTHONPATH, value: /app}
+            - {name: PYTHONDONTWRITEBYTECODE, value: "1"}
+            - {name: PYTHONUNBUFFERED, value: "1"}
+            - {name: TARGET_NAMESPACE, value: rca-lab}
+            - {name: LLM_ENABLED, value: "false"}
+            - {name: RCA_CONTEXT_MODE, value: compact-v4}
+            - {name: MAX_INPUT_CHARS_TOTAL, value: "120000"}
+            - {name: LLM_PROVIDER, value: openrouter}
+            - {name: LLM_URL, value: "https://openrouter.ai/api/v1/chat/completions"}
+            - {name: LLM_MODEL, value: z-ai/glm-5.3-flash}
+            - {name: MAX_DAILY_INVESTIGATIONS, value: "20"}
+          ports:
+            - {name: http, containerPort: 8080}
+          resources:
+            requests: {cpu: 100m, memory: 128Mi}
+            limits: {cpu: 500m, memory: 512Mi}
+          readinessProbe:
+            httpGet: {path: /healthz, port: http}
+            initialDelaySeconds: 3
+          livenessProbe:
+            httpGet: {path: /healthz, port: http}
+            initialDelaySeconds: 15
+          securityContext:
+            runAsUser: 10001
+            runAsGroup: 10001
+            runAsNonRoot: true
+            readOnlyRootFilesystem: true
+            allowPrivilegeEscalation: false
+            capabilities: {drop: [ALL]}
+            seccompProfile: {type: RuntimeDefault}
+          volumeMounts:
+            - {name: code, mountPath: /app/rca, readOnly: true}
+            - {name: data, mountPath: /data}
+            - {name: auth, mountPath: /secrets/auth, readOnly: true}
+            - {name: llm, mountPath: /secrets/llm, readOnly: true}
+      volumes:
+        - name: code
+          configMap: {name: rca-code}
+        - name: data
+          hostPath: {path: /var/lib/selective-rca, type: DirectoryOrCreate}
+        - name: auth
+          secret: {secretName: rca-auth}
+        - name: llm
+          secret: {secretName: rca-llm, optional: true}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rca-agent
+  namespace: rca-system
+spec:
+  selector: {app: rca-agent}
+  ports:
+    - {name: http, port: 8080, targetPort: http}
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: rca-ebpf-summary
+  namespace: rca-system
+spec:
+  selector:
+    matchLabels: {app: rca-ebpf-summary}
+  template:
+    metadata:
+      labels: {app: rca-ebpf-summary}
+    spec:
+      automountServiceAccountToken: false
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: kubernetes.io/hostname
+                    operator: In
+                    values: [worker-1, worker-3]
+      containers:
+        - name: summary
+          image: ghcr.io/mlnyuk/ebpf-ml-mao@sha256:9c044f5707229156a732c8c5dc06c5dd28a4fdf62509cce306e872864e2b585a
+          command: [python, -m, rca.collector]
+          env:
+            - {name: SNAPSHOT_FILE, value: /state/latest.json}
+            - {name: PYTHONPATH, value: /app}
+            - {name: PYTHONDONTWRITEBYTECODE, value: "1"}
+            - {name: PYTHONUNBUFFERED, value: "1"}
+            - {name: TARGET_NAMESPACE, value: rca-lab}
+            - name: NODE_NAME
+              valueFrom:
+                fieldRef: {fieldPath: spec.nodeName}
+          resources:
+            requests: {cpu: 50m, memory: 32Mi}
+            limits: {cpu: 250m, memory: 128Mi}
+          securityContext:
+            runAsUser: 0
+            readOnlyRootFilesystem: true
+            allowPrivilegeEscalation: false
+            capabilities: {drop: [ALL]}
+            seccompProfile: {type: RuntimeDefault}
+          volumeMounts:
+            - {name: code, mountPath: /app/rca, readOnly: true}
+            - {name: tetragon, mountPath: /tetragon, readOnly: true}
+            - {name: state, mountPath: /state}
+            - {name: auth, mountPath: /secrets/auth, readOnly: true}
+      volumes:
+        - name: code
+          configMap: {name: rca-code}
+        - name: tetragon
+          hostPath: {path: /var/run/cilium/tetragon, type: Directory}
+        - name: state
+          emptyDir: {medium: Memory, sizeLimit: 8Mi}
+        - name: auth
+          secret: {secretName: rca-auth}

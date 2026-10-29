@@ -1,0 +1,109 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: rca-prometheus-worker-proxy
+rules:
+  - apiGroups: [""]
+    resources: [nodes/proxy]
+    resourceNames: [worker-1, worker-3]
+    verbs: [get]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: rca-prometheus-worker-proxy
+subjects:
+  - kind: ServiceAccount
+    name: my-monitoring-kube-prometh-prometheus
+    namespace: monitoring
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: rca-prometheus-worker-proxy
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: rca-cadvisor-scrape
+  namespace: monitoring
+type: Opaque
+stringData:
+  scrape-configs.yaml: |
+    - job_name: rca-cadvisor-worker-1
+      scrape_interval: 15s
+      scrape_timeout: 10s
+      scheme: https
+      metrics_path: /api/v1/nodes/worker-1/proxy/metrics/cadvisor
+      bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token
+      tls_config:
+        ca_file: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+      static_configs:
+        - targets: [kubernetes.default.svc:443]
+          labels: {node: worker-1}
+      metric_relabel_configs:
+        - source_labels: [namespace]
+          regex: rca-lab
+          action: keep
+    - job_name: rca-cadvisor-worker-3
+      scrape_interval: 15s
+      scrape_timeout: 10s
+      scheme: https
+      metrics_path: /api/v1/nodes/worker-3/proxy/metrics/cadvisor
+      bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token
+      tls_config:
+        ca_file: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+      static_configs:
+        - targets: [kubernetes.default.svc:443]
+          labels: {node: worker-3}
+      metric_relabel_configs:
+        - source_labels: [namespace]
+          regex: rca-lab
+          action: keep
+---
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: rca-lab
+  namespace: rca-lab
+  labels: {release: my-monitoring}
+spec:
+  groups:
+    - name: rca-lab
+      interval: 15s
+      rules:
+        - alert: RcaLabCpuThrottling
+          expr: |
+            sum by (namespace,pod,container) (rate(container_cpu_cfs_throttled_periods_total{namespace="rca-lab",container="app",job=~"rca-cadvisor-.*"}[1m]))
+            / clamp_min(sum by (namespace,pod,container) (rate(container_cpu_cfs_periods_total{namespace="rca-lab",container="app",job=~"rca-cadvisor-.*"}[1m])), 0.000001) > 0.20
+            and on (namespace,pod,container)
+            sum by (namespace,pod,container) (rate(container_cpu_usage_seconds_total{namespace="rca-lab",container="app",job=~"rca-cadvisor-.*"}[1m])) > 0.30
+          # Lab-only alert: emit when a 1-minute rate satisfies both thresholds.
+          # A further 15s hold can miss the intentionally bounded 45s fault.
+          for: 0s
+          labels: {severity: warning}
+          annotations:
+            summary: "Lab container CPU throttling observed"
+---
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: AlertmanagerConfig
+metadata:
+  name: rca-lab
+  namespace: rca-lab
+spec:
+  route:
+    receiver: rca-agent
+    groupBy: [alertname, namespace, pod, container]
+    groupWait: 0s
+    groupInterval: 1m
+    repeatInterval: 1h
+    matchers:
+      - {name: alertname, value: RcaLabCpuThrottling, matchType: "="}
+  receivers:
+    - name: rca-agent
+      webhookConfigs:
+        - url: http://rca-agent.rca-system.svc:8080/alertmanager
+          sendResolved: false
+          httpConfig:
+            authorization:
+              type: Bearer
+              credentials: {name: rca-webhook-auth, key: token}
