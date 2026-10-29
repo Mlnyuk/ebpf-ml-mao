@@ -1,0 +1,26 @@
+{
+  "01-comparison-original.png": {
+    "sha256": "65337a78e6e1d5524fb0174b87bcbfa2232c1766324c0afb2f2bb37595775cb9",
+    "bytes": 1074103,
+    "width": 3200,
+    "height": 6348
+  },
+  "02-analysis-evidence-ppt.png": {
+    "sha256": "2e7f90cb979005a1182c66b300c4177976b8f716e0546d3a9305d86e212773df",
+    "bytes": 343584,
+    "width": 3200,
+    "height": 2212
+  },
+  "capture_presentation.cjs": {
+    "sha256": "1b4a6a26c49f0dc2bb8ac6ac0b0c106a95196a00725ff5bbadb531892457a2a2",
+    "bytes": 5471
+  },
+  "README.md": {
+    "sha256": "8e3d04536de3fcf30635bc1569bc1da867833b77af1608c6bcfcc85bddad1a11",
+    "bytes": 2162
+  },
+  "capture-metadata.json": {
+    "sha256": "e444e0e95bb82c90459e8de27367e2d808a67f4fe2b4be04e5227806fc0bb929",
+    "bytes": 1031
+  }
+}

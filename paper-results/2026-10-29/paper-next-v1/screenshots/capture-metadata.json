@@ -1,0 +1,22 @@
+{
+  "created_at": "2026-10-29T13:44:44.434Z",
+  "source": "artifacts/paper-next-v1-20261029/viewer/index.html",
+  "source_sha256": "891ab75c63f5e0700ace59c87908ecc03c97eab658792b64758cea451df0eb40",
+  "case_id": "186d14f5c49446d4-wide",
+  "batch_run": "604fd0107e743ecfc792",
+  "selective_run": "61001361d065868158f7",
+  "evidence_id": "ev-38df04e8afda1aa76af2",
+  "browser": "141.0.7390.37",
+  "device_scale_factor": 2,
+  "external_requests": [],
+  "page_errors": [],
+  "live_disabled": true,
+  "capture_notes": [
+    "01: existing comparison layout, Korean font and replay badge only.",
+    "02: presentation CSS reflows actual selected-run claims 1–4 beside its actual expanded eBPF evidence; other UI sections hidden, evidence pane scrolled to network.",
+    "Answer/evidence text and frozen source unchanged. No model calls."
+  ],
+  "evidence_sha256": "e111b37ea0abceab2a9a670f38025c2abdeea0b7c207e4c40b44ffc45407e5ff",
+  "claims_sha256": "f6cf663814e036d4da3ae68b953e2fd18e92bd22e13769f1db944f4e995d0828",
+  "scroll": 554
+}
