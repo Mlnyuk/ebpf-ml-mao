@@ -41,6 +41,7 @@ def redact(value):
     if isinstance(value, list):
         return [redact(v) for v in value]
     if isinstance(value, str):
+        value = re.sub(r'\bsk-or-v1-[A-Za-z0-9_-]{20,}\b', '[REDACTED]', value)
         value = re.sub(r'(?i)(bearer\s+)[\w.\-/+=]+', r'\1[REDACTED]', value)
         value = re.sub(r'(?i)((?:password|token|api[_-]?key|secret)\s*[=:]\s*)[^\s,;]+', r'\1[REDACTED]', value)
         value = re.sub(r'(https?://)[^\s/@:]+:[^\s/@]+@', r'\1[REDACTED]@', value)
@@ -88,6 +89,13 @@ class Settings:
     context_mode = os.getenv('RCA_CONTEXT_MODE', 'compact-v4')
     max_input_chars_total = int(os.getenv('MAX_INPUT_CHARS_TOTAL', '120000'))
     allow_ebpf = os.getenv('ALLOW_EBPF', 'true').lower() == 'true'
+    # Opt-in policy for existing deployments; newly staged code stays disabled
+    # until BOTH LLM_ENABLED and a fresh, explicit paid budget are configured.
+    investigation_policy = os.getenv('RCA_INVESTIGATION_POLICY', 'legacy-v4')
+    adaptive_budget_id = os.getenv('RCA_ADAPTIVE_BUDGET_ID', '')
+    adaptive_max_calls = int(os.getenv('RCA_ADAPTIVE_MAX_CALLS', '0'))
+    adaptive_max_usd = float(os.getenv('RCA_ADAPTIVE_MAX_USD', '0'))
+    adaptive_eager_bytes = int(os.getenv('RCA_ADAPTIVE_EAGER_BYTES', '32000'))
     routing = {}
     input_price = float(os.getenv('INPUT_USD_PER_MILLION', '0.15'))
     cached_price = float(os.getenv('CACHED_INPUT_USD_PER_MILLION', '0.03'))
@@ -101,6 +109,6 @@ class Kubernetes:
         self.token_file = directory + '/token'
         self.context = ssl.create_default_context(cafile=directory + '/ca.crt')
 
-    def get(self, path, raw=False):
+    def get(self, path, raw=False, timeout=12):
         return request(self.base + path, headers={'Authorization': 'Bearer ' + secret(self.token_file)},
-                       context=self.context, raw=raw)
+                       context=self.context, raw=raw, timeout=timeout)

@@ -1,0 +1,80 @@
+{
+  "source": "Immutable paper-next-v1 archive; no ground truth passed to controller",
+  "cases": [
+    {
+      "category": "insufficient evidence but confirmed cause",
+      "run_ids": [
+        "c43c7aece626f60655b1"
+      ],
+      "reproduction": "Old output inconclusive + nonempty confirmed_cause; old validator accepts. Add only new scope/termination metadata to a copy; new consistency validator rejects.",
+      "test": "test_actual_inconclusive_confirmed_cause_old_accepts_new_rejects",
+      "code": "rca/investigation_contract.py:validate_answer",
+      "status": "structural contradiction prevented; causal meaning not verified"
+    },
+    {
+      "category": "format repair",
+      "run_ids": [
+        "b7e3eaa500fc514a945c"
+      ],
+      "reproduction": "Load actual first response from JSONL; claims field absent. Preserve candidate and report $.claims; one scripted correction.",
+      "test": "test_actual_missing_claims_repair_names_path_and_retains_original",
+      "code": "rca/investigation.py:run",
+      "status": "repair mechanism tested; model repair success unmeasured"
+    },
+    {
+      "category": "avoidable selection before small complete evidence bundle",
+      "run_ids": [
+        "a63ff1b2e3942f271a7d"
+      ],
+      "reproduction": "Historical first call selects all six available target sources. Eager path supplies scoped bundle before first model call.",
+      "test": "test_actual_small_case_selection_is_redundant_not_a_new_accuracy_result",
+      "code": "rca/investigation.py:prepare",
+      "status": "routing implemented; one vs two calls demonstrated with scripted responses only"
+    },
+    {
+      "category": "misinterpreted evidence",
+      "run_ids": [
+        "61001361d065868158f7"
+      ],
+      "reproduction": "Archived explanation over-excludes resource faults using sparse samples. New prompt limits inference; arbitrary unsupported claim text can still pass structural gates.",
+      "test": "test_machine_checks_do_not_claim_semantic_verification",
+      "code": "rca/investigation_contract.py:SYSTEM",
+      "status": "UNRESOLVED; no new model quality evaluation"
+    },
+    {
+      "category": "duplicate retrieval",
+      "run_ids": [
+        "28ef0f63a77e3a9052be",
+        "95a4eee4f83e6362e347"
+      ],
+      "reproduction": "Historical no-dedup ablation repeats queries; existing dedup was already implemented. New tests cover default argument equivalence, negative cache, live version/window changes and raw reopen.",
+      "test": "test_duplicate_batch_and_raw_reopen_do_not_read_backend_twice; test_live_version_change_and_window_change_allow_new_reads",
+      "code": "rca/investigation.py:retrieve; rca/investigation_sources.py",
+      "status": "existing feature extended, not a new base dedup claim"
+    },
+    {
+      "category": "time/container mixing",
+      "run_ids": [],
+      "reproduction": "Synthetic old container and old log timestamp under current wrapper; reject current_incident citation, preserve context. Nested-ID registration fix reused.",
+      "test": "test_old_container_and_time_are_context_not_current_cause; test_old_log_timestamp_cannot_be_hidden_by_current_wrapper",
+      "code": "rca/evidence_ledger.py:scope_of",
+      "status": "synthetic regression only; no verified historical wrong-container rate"
+    },
+    {
+      "category": "provider/tool failure misclassified as model error",
+      "run_ids": [],
+      "reproduction": "Malformed provider frame, transport failure and failed query test doubles. Retain failure; no success retry; query failure cannot support health.",
+      "test": "test_malformed_provider_frame_is_not_mislabeled_model_format_error; test_failed_backend_query_is_negative_cached_not_healthy",
+      "code": "rca/investigation.py:run/retrieve",
+      "status": "synthetic regressions only"
+    },
+    {
+      "category": "necessary evidence never queried / unnecessary uncited reads",
+      "run_ids": [],
+      "reproduction": "Not established by independent review. Uncited does not by itself mean unnecessary; retain as unmeasured.",
+      "test": null,
+      "code": null,
+      "status": "NOT_ESTABLISHED"
+    }
+  ]
+}

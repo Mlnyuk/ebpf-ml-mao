@@ -34,7 +34,7 @@ metadata:
   name: rca-agent
   namespace: rca-system
 spec:
-  replicas: 1
+  replicas: 0
   strategy:
     type: Recreate
   selector:
@@ -76,6 +76,9 @@ spec:
             - {name: TARGET_NAMESPACE, value: rca-lab}
             - {name: LLM_ENABLED, value: "false"}
             - {name: RCA_CONTEXT_MODE, value: compact-v4}
+            - {name: RCA_INVESTIGATION_POLICY, value: adaptive}
+            - {name: RCA_ADAPTIVE_MAX_CALLS, value: "0"}
+            - {name: RCA_ADAPTIVE_MAX_USD, value: "0"}
             - {name: MAX_INPUT_CHARS_TOTAL, value: "120000"}
             - {name: LLM_PROVIDER, value: openrouter}
             - {name: LLM_URL, value: "https://openrouter.ai/api/v1/chat/completions"}

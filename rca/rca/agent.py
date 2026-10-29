@@ -191,9 +191,18 @@ class Agent:
             if self.store.get(iid)['result'] is None:
                 self.store.update(iid, 'paused')
             return self.store.get(iid)
+        if getattr(s, 'investigation_policy', 'legacy-v4') != 'legacy-v4' and isinstance(self.provider, Provider):
+            from .investigation_runtime import budget_configured
+            if not budget_configured(s):
+                if self.store.get(iid)['result'] is None:
+                    self.store.update(iid, 'awaiting_budget')
+                return self.store.get(iid)
         if not secret(s.api_key_file) and isinstance(self.provider, Provider):
             self.store.update(iid, 'awaiting_api_key')
             return self.store.get(iid)
+        if getattr(s, 'investigation_policy', 'legacy-v4') != 'legacy-v4':
+            from .investigation_runtime import run_operational
+            return run_operational(self, iid)
         if not self.store.claim(iid, s.max_daily):
             return self.store.get(iid)
         started = time.monotonic()

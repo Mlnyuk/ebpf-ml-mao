@@ -1,0 +1,107 @@
+{
+  "scope": "First-request routing preview with identical current model encoding, output contract and limits; NOT end-to-end model performance. Historical engines are preserved separately.",
+  "data": "20 original collections, each with dependent small/wide evidence variants, plus 4 robustness variants; 44 snapshots x 4 policies = 176 previews, NOT 176 LLM executions.",
+  "rows": [
+    {
+      "condition": "small",
+      "policy": "batch",
+      "snapshots": 20,
+      "first_request_bytes_mean": 26209.05,
+      "initial_sources_mean": 6,
+      "route": [
+        "batch"
+      ],
+      "over_request_limit": 0
+    },
+    {
+      "condition": "small",
+      "policy": "filtered-batch",
+      "snapshots": 20,
+      "first_request_bytes_mean": 26209.05,
+      "initial_sources_mean": 6,
+      "route": [
+        "filtered-batch"
+      ],
+      "over_request_limit": 0
+    },
+    {
+      "condition": "small",
+      "policy": "selective",
+      "snapshots": 20,
+      "first_request_bytes_mean": 9319.2,
+      "initial_sources_mean": 0,
+      "route": [
+        "selective"
+      ],
+      "over_request_limit": 0
+    },
+    {
+      "condition": "small",
+      "policy": "adaptive",
+      "snapshots": 20,
+      "first_request_bytes_mean": 27573.05,
+      "initial_sources_mean": 6,
+      "route": [
+        "eager"
+      ],
+      "over_request_limit": 0
+    },
+    {
+      "condition": "surrounding",
+      "policy": "batch",
+      "snapshots": 20,
+      "first_request_bytes_mean": 81547.4,
+      "initial_sources_mean": 21,
+      "route": [
+        "batch"
+      ],
+      "over_request_limit": 20
+    },
+    {
+      "condition": "surrounding",
+      "policy": "filtered-batch",
+      "snapshots": 20,
+      "first_request_bytes_mean": 28574.65,
+      "initial_sources_mean": 6,
+      "route": [
+        "filtered-batch"
+      ],
+      "over_request_limit": 0
+    },
+    {
+      "condition": "surrounding",
+      "policy": "selective",
+      "snapshots": 20,
+      "first_request_bytes_mean": 11690.8,
+      "initial_sources_mean": 0,
+      "route": [
+        "selective"
+      ],
+      "over_request_limit": 0
+    },
+    {
+      "condition": "surrounding",
+      "policy": "adaptive",
+      "snapshots": 20,
+      "first_request_bytes_mean": 29938.65,
+      "initial_sources_mean": 6,
+      "route": [
+        "eager"
+      ],
+      "over_request_limit": 0
+    }
+  ],
+  "new_paid_calls": 0,
+  "new_billed_cost_usd": 0,
+  "new_model_tokens": null,
+  "end_to_end_model_latency": null,
+  "diagnostic_quality": "NOT_EVALUATED",
+  "local_prepare_seconds": "Raw CSV only; excludes API and not a service latency benchmark",
+  "small_controller_mock_calls": {
+    "selective": 2,
+    "adaptive": 1,
+    "filtered_batch": 1,
+    "scope": "scripted response path test, NOT observed model behavior"
+  },
+  "tradeoff": "Adaptive eager adds 1364 first-request bytes versus filtered-batch in both conditions; keeps inspect fallback available. Strong filtered-batch is competitive, no proven cost/quality superiority."
+}

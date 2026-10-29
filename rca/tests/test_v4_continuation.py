@@ -5,6 +5,7 @@ import unittest
 from pathlib import Path
 
 from scripts.continue_v4_validation import failure_kind, validate_prefix
+from tests.legacy_fixtures import legacy_root
 
 
 class ContinuationTests(unittest.TestCase):
@@ -29,7 +30,7 @@ class ContinuationTests(unittest.TestCase):
                                      [{'choices': [{'finish_reason': 'length'}]}]), 'unknown_execution_error')
 
     def test_original_prefix_is_not_rescheduled(self):
-        root = Path(__file__).resolve().parents[1] / 'artifacts/v4-validation/confirmed'
+        root = legacy_root() / 'confirmed'
         previous = json.loads((root / 'evaluation/results.json').read_text())
         freeze = json.loads((root / 'freeze.json').read_text())
         raw = (root / 'network-fixture.json').read_bytes()

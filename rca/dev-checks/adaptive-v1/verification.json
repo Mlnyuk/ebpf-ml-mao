@@ -1,0 +1,33 @@
+{
+  "at": "2026-10-29T19:43:29.192430+00:00",
+  "latest_suite": "verification-v3",
+  "tests": 141,
+  "passed": 141,
+  "seconds": 26.913,
+  "external_api_calls": 0,
+  "original_freeze_check": {
+    "root": "/root/Capstone/rca",
+    "command": "research_v4.protocol.check(Path('artifacts/paper-next-v1-20261029').resolve())",
+    "result": "PASS including referenced paper-clock-v3 hashes"
+  },
+  "code_matches_pretest_hashes": true,
+  "cluster_changes": "NONE",
+  "deployment": "NOT_APPLIED",
+  "paid_model_quality_comparison": "NOT_PERFORMED",
+  "independent_human_scoring": "NOT_PERFORMED",
+  "live_cluster_new_policy": "NOT_EXECUTED",
+  "known_unresolved": [
+    "Semantic correctness is NOT verified by format/scope gates",
+    "New schema/prompt tool compliance under the paid model is unmeasured",
+    "Live namespace expansion has no new Service/EndpointSlice relation collector",
+    "Large single relevant source can exceed the request cap; preserved failure, no lossy truncation",
+    "Ledger resends previously read evidence; no claim of complete repeated-input elimination"
+  ],
+  "prior_development_failures": [
+    "Initial sandbox denied localhost sockets; socket suite rerun with approved execution",
+    "Historical test fixture data missing in standalone import; now bundled as immutable verified test fixture",
+    "Historical finish preflight rejected modified working-tree hashes; tests now check frozen original source, production preflight unchanged"
+  ],
+  "historical_response_replay": "Preserved schema-incompatibility failure, 2 archived responses and 1 repair attempt; not a new paid/model result",
+  "credential_scan": "Known API/private-key patterns only; not universal secret detection"
+}

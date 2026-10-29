@@ -1,16 +1,35 @@
 import json
+import tempfile
 import unittest
+import zipfile
 from pathlib import Path
 from unittest.mock import patch
 
 from scripts.finish_v4_validation import preflight
+from tests.legacy_fixtures import legacy_root
 
 
 class FinishTests(unittest.TestCase):
     def setUp(self):
-        self.study = Path(__file__).resolve().parents[1] / 'artifacts/v4-validation/confirmed'
+        self.study = legacy_root() / 'confirmed'
         self.read_text = Path.read_text
         self.prior = json.loads((self.study / 'continuation-evaluation/combined-results.json').read_text())
+        # This historical resume test must validate its archived source, not
+        # demand that all future runtime development retains the old hash.
+        # The production preflight and frozen data remain unchanged.
+        self.snapshot = tempfile.TemporaryDirectory()
+        archive = Path(__file__).resolve().parents[2] / 'paper-results/2026-10-29/paper-next-v1/rca-paper-next-v1-20261029.zip'
+        names = list(json.loads((self.study / 'freeze.json').read_text())['code_sha256']) + ['scripts/continue_v4_validation.py']
+        with zipfile.ZipFile(archive) as z:
+            for name in names:
+                target = Path(self.snapshot.name) / name
+                target.parent.mkdir(parents=True, exist_ok=True)
+                target.write_bytes((legacy_root() / name.removeprefix('artifacts/v4-validation/')).read_bytes()
+                                   if name.startswith('artifacts/') else z.read('rca/' + name))
+        self.root_patch = patch('scripts.finish_v4_validation.ROOT', Path(self.snapshot.name))
+        self.root_patch.start()
+        self.addCleanup(self.root_patch.stop)
+        self.addCleanup(self.snapshot.cleanup)
 
     def read_checkpoint(self, path, *args, **kwargs):
         if path == self.study / 'budget.json':

@@ -4,6 +4,51 @@
 이 디렉터리는 상위 저장소의 ML 이상탐지 구현과 독립적이다. 모델 학습,
 이상치 분류, 로컬 LLM, GPU, 장애별 RCA 규칙을 사용하지 않는다.
 
+## 적응형 개발 버전: adaptive-v1
+
+`rca-adaptive-20261029` 브랜치의 새 코어는 `rca/investigation.py`다. 기존 v4 압축과
+중첩 인용 처리를 재사용하고, 선필터한 입력 크기에 따른 시작 정책, 질문별 묶음 조회,
+범위가 표시된 evidence ledger, 출력 일관성 검사, 제한된 수정과 비용 보호를 추가했다.
+`Agent.run()`과 `scripts/adaptive_rca.py`가 같은 코어를 사용한다. 이전 실행기와 결과는
+수정하지 않는다. `dev-checks/adaptive-v1/`은 개발 검증 기록이며 독립 진단 평가가 아니다.
+
+새 코드의 첫 요청을 저장된 실제 사건에서 비교하는 명령(외부 API 호출 없음):
+
+```bash
+cd rca
+python3 scripts/adaptive_rca.py \
+  --bundle ../paper-results/2026-10-29/paper-next-v1/rca-paper-next-v1-20261029.zip \
+  --compare --output artifacts/adaptive-local-check-01
+python3 -m unittest discover -s tests -v
+```
+
+출력 디렉터리가 이미 있으면 중단한다. `--case public-case.json --responses saved.jsonl`
+옵션은 저장 응답의 정확한 로컬 재생용이다. 새 계약과 맞지 않는 과거 응답은 그대로
+실패할 수 있고, 그 실패를 새 모델 성능으로 해석하지 않는다. 과거 usage는 별도 필드에
+보존하며 이번 실행의 유료 사용량으로 더하지 않는다. 이 CLI에는 유료 실행 옵션이 없다.
+
+운영 실행 경로는 `RCA_INVESTIGATION_POLICY=adaptive`로 선택한다. 비교 정책은
+`batch`, `filtered-batch`, `selective`이며 동일 코어·계약·예산을 사용한다.
+기존 경로로 되돌리는 기능 토글은 `RCA_INVESTIGATION_POLICY=legacy-v4`다.
+기존 코드 전체는 도입 전 커밋 `d87ac4d`에도 보존되어 있다. 데이터나 실패 기록을
+되돌릴 필요가 없다. 토글 변경 자체는 이 작업에서 클러스터에 적용하지 않았다.
+
+새 배포 manifest는 replicas 0, `LLM_ENABLED=false`, 새 호출·달러 한도 0으로 시작한다.
+실제 운영 호출에는 별도로 승인된 `RCA_ADAPTIVE_BUDGET_ID`, `RCA_ADAPTIVE_MAX_CALLS`,
+`RCA_ADAPTIVE_MAX_USD`가 모두 필요하다. 과거 실험 예산은 읽지 않는다. 동일 budget ID의
+상한 변경/초기화는 거부하고, 비용 불명 또는 transport 오류는 예약 금액을 남긴 채
+예산을 잠근다. 이 작업에서 배포·Agent 활성화·새 유료 모델 검증은 하지 않았다.
+
+확정 원인과 inconclusive의 모순, 미조회 인용, 다른 시간·컨테이너의 직접 인용은
+검사하지만 문장의 의미까지 검증하지 않는다. 새 프롬프트가 TCP 시도/결과, Ready/요청 성공,
+보조 통신/주 서비스 장애를 더 잘 구분하는지는 새 API 예산에서 확인해야 한다.
+대상 증거가 작은 경우에도 추가 조회를 허용하는 schema/catalog 비용은 선필터 일괄보다
+크다. 비용·지연·정확도 우위를 입증했다고 해석하지 않는다.
+
+운영 주변 탐색은 허가된 namespace의 Pod 목록과 기존 읽기 도구만 사용한다.
+서비스 EndpointSlice 관계를 새로 추정하거나 RBAC를 확대하지 않는다. 실제로 저장된
+의존 Pod UID 매핑만 선필터에 사용하며, 관계가 미확인인 주변 자료도 명시적으로 탐색할 수 있다.
+
 2026-10-29 후속 연구 `paper-next-v1`은 새 발생·수집 20건과 고정된 조사 88건을
 완료했다. [결과·한계·단계별 상태](artifacts/paper-next-v1-20261029/SUMMARY.md)와
 [API 없이 기록을 재생하고 독립 채점하는 방법](artifacts/paper-next-v1-20261029/REPRODUCE.md)을

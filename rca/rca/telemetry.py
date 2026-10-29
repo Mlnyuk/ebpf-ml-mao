@@ -1,8 +1,9 @@
 import json
+import time
 from collections import Counter
 from urllib.parse import quote, urlencode
 
-from .common import RemoteError, compact, epoch, now, redact, request, stamp
+from .common import Kubernetes, RemoteError, compact, epoch, now, redact, request, stamp
 from .collector import network_summary
 
 
@@ -42,9 +43,28 @@ def pod_status(pod):
 class Telemetry:
     def __init__(self, kube, store, settings):
         self.kube, self.store, self.settings = kube, store, settings
+        self.deadline = None
+
+    def for_deadline(self, deadline):
+        scoped = Telemetry(self.kube, self.store, self.settings)
+        scoped.deadline = deadline
+        return scoped
+
+    def read_timeout(self):
+        remaining = 12 if self.deadline is None else self.deadline - time.monotonic()
+        if remaining <= 0:
+            raise ValueError('investigation time budget exhausted before telemetry request')
+        return min(12, remaining)
+
+    def _get(self, path, raw=False):
+        timeout = self.read_timeout()
+        if isinstance(self.kube, Kubernetes):
+            return self.kube.get(path, raw=raw, timeout=timeout)
+        # Explicit custom/testing backends own their transport timeout contract.
+        return self.kube.get(path, raw=raw)
 
     def pod(self, name):
-        return self.kube.get('/api/v1/namespaces/' + quote(self.settings.namespace, safe='') + '/pods/' + quote(name, safe=''))
+        return self._get('/api/v1/namespaces/' + quote(self.settings.namespace, safe='') + '/pods/' + quote(name, safe=''))
 
     def capture(self, iid, pod):
         incident = self.store.get(iid)['data']
@@ -63,7 +83,7 @@ class Telemetry:
             return
         self.store.meta('ebpf:' + iid, {'windows': windows, 'health': self.store.health(), 'captured_at': now()})
 
-    def call(self, iid, name, args):
+    def call(self, iid, name, args, refresh=False):
         if not isinstance(args, dict):
             raise ValueError('tool arguments must be an object')
         allowed = {t['function']['name']: t for t in TOOLS}
@@ -82,7 +102,7 @@ class Telemetry:
             if args['metric'] not in ('memory', 'cpu'):
                 raise ValueError('unsupported metric')
         existing = self.store.cached(iid, name, args)
-        if existing:
+        if existing and not refresh:
             return existing
         inc = self.store.get(iid)['data']
         if inc['namespace'] != self.settings.namespace:
@@ -94,6 +114,30 @@ class Telemetry:
         data['target'] = {k: inc[k] for k in ('namespace', 'pod_uid', 'pod', 'container_name', 'container_id', 'time')}
         return self.store.evidence(iid, name, args, data)
 
+    def read_scoped(self, iid, target, name, args):
+        """Read an adapter-discovered container; no model-supplied URLs/selectors.
+
+        All records remain attached to the parent investigation, with the actual
+        neighbor identity. Scope never inherits the incident container identity.
+        """
+        from .replay import query_key
+        query_key(name,args)
+        if target['namespace']!=self.settings.namespace:
+            raise ValueError('namespace outside allowed scope')
+        if name=='get_ebpf_summary':
+            raise ValueError('neighbor eBPF snapshot was not captured')
+        pod=self.pod(target['pod'])
+        if pod['metadata']['uid']!=target['pod_uid'] or not any(
+                c.get('name')==target['container_name'] and c.get('containerID')==target['container_id']
+                for c in pod.get('status',{}).get('containerStatuses',[])):
+            raise ValueError('discovered container changed before retrieval')
+        try:
+            data=getattr(self,name)(target,iid,**args)
+        except (RemoteError,ValueError,KeyError) as exc:
+            data={'availability':'unavailable','observation_state':'query_failed','error':type(exc).__name__}
+        data['target']=dict(target)
+        return self.store.evidence(iid,name,{'scope_target':target,'args':args},data)
+
     def get_workload_status(self, inc, iid):
         pod = self.pod(inc['pod'])
         if pod['metadata']['uid'] != inc['pod_uid']:
@@ -102,7 +146,7 @@ class Telemetry:
 
     def get_k8s_events(self, inc, iid):
         query = urlencode({'fieldSelector': 'involvedObject.uid=' + inc['pod_uid'], 'limit': 100})
-        result = self.kube.get('/api/v1/namespaces/' + inc['namespace'] + '/events?' + query)
+        result = self._get('/api/v1/namespaces/' + inc['namespace'] + '/events?' + query)
         end = epoch(inc['time'])
         events = []
         for e in result.get('items', []):
@@ -125,11 +169,12 @@ class Telemetry:
             if cs.get('lastState', {}).get('terminated', {}).get('containerID') == inc['container_id']:
                 previous = True
             else:
-                raise ValueError('incident container logs no longer available')
+                return {'availability':'unavailable','observation_state':'period_expired',
+                        'source':'Kubernetes container logs','error':'incident container is neither current nor retained previous container'}
         query = urlencode({'container': inc['container_name'], 'previous': str(previous).lower(),
                            'timestamps': 'true', 'tailLines': 60, 'limitBytes': 6000,
                            'sinceTime': stamp(epoch(inc['time']) - 300)})
-        raw = self.kube.get('/api/v1/namespaces/' + inc['namespace'] + '/pods/' + inc['pod'] + '/log?' + query, raw=True)
+        raw = self._get('/api/v1/namespaces/' + inc['namespace'] + '/pods/' + inc['pod'] + '/log?' + query, raw=True)
         # Kubernetes has no untilTime: filter timestamped lines after the incident.
         lines = []
         for line in raw.splitlines():
@@ -162,7 +207,7 @@ class Telemetry:
         series = {}
         for field, query in queries[metric].items():
             result = request(self.settings.prometheus + '/api/v1/query_range?' + urlencode({
-                'query': query, 'start': end - window_seconds, 'end': end, 'step': 15, 'timeout': '8s'}))
+                'query': query, 'start': end - window_seconds, 'end': end, 'step': 15, 'timeout': '8s'}),timeout=self.read_timeout())
             if result.get('status') != 'success':
                 raise RemoteError('Prometheus query failed')
             points = []
