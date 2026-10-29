@@ -1,0 +1,13 @@
+group,view,arm,investigations,unique_parent_incidents,failures,total_tokens,mean_tokens,median_tokens,known_cost_usd,mean_seconds,median_seconds,requests,repair_calls,repair_tokens_subset,duplicate_requests,executed_duplicate_requests,all_catalog_sources_retrieved,mean_shown_evidence,uncited_evidence_count,missing_usage_requests,diagnostic_quality
+ablation,collection_missing,selective-ebpf-no-compression,2,1,0,16642,8321,8321.0,0.00316992,39.102425,39.102425,4,0,0,0,0,2,6,1,0,NOT_EVALUATED_BY_HUMANS
+ablation,collection_missing,selective-ebpf-no-dedup,2,1,0,13910,6955,6955.0,0.00277617,36.346798,36.346798,4,0,0,0,0,2,6,2,0,NOT_EVALUATED_BY_HUMANS
+ablation,collection_missing,selective-ebpf-no-stop-guidance,2,1,0,13597,6798.5,6798.5,0.00275858,35.650703,35.650703,4,0,0,0,0,2,6,1,0,NOT_EVALUATED_BY_HUMANS
+ablation,historical_contamination,selective-ebpf-no-compression,2,1,0,35428,17714,17714.0,0.0064398,44.175402999999996,44.175402999999996,5,1,11065,0,0,2,6,5,0,NOT_EVALUATED_BY_HUMANS
+ablation,historical_contamination,selective-ebpf-no-dedup,2,1,0,31794,15897,15897.0,0.00608074,59.171769,59.171769,5,1,10034,0,0,2,6,3,0,NOT_EVALUATED_BY_HUMANS
+ablation,historical_contamination,selective-ebpf-no-stop-guidance,2,1,1,31779,15889.5,15889.5,0.00633332,60.6554845,60.6554845,5,1,10174,0,0,2,6,6,0,NOT_EVALUATED_BY_HUMANS
+ablation,insufficient_evidence,selective-ebpf-no-compression,2,1,0,7488,3744,3744.0,0.0014252000000000002,19.763735500000003,19.763735500000003,4,0,0,0,0,2,6,0,0,NOT_EVALUATED_BY_HUMANS
+ablation,insufficient_evidence,selective-ebpf-no-dedup,2,1,1,9322,4661,4661.0,0.001501,23.509539500000002,23.509539500000002,6,2,4164,4,4,2,6,6,0,NOT_EVALUATED_BY_HUMANS
+ablation,insufficient_evidence,selective-ebpf-no-stop-guidance,2,1,0,5879,2939.5,2939.5,0.0013505,31.11407,31.11407,4,0,0,0,0,2,6,0,0,NOT_EVALUATED_BY_HUMANS
+ablation,original,selective-ebpf-no-compression,12,6,0,98697,8224.75,8343.5,0.01898859,36.8111325,36.598382,24,0,0,0,0,11,5.833333333333333,13,0,NOT_EVALUATED_BY_HUMANS
+ablation,original,selective-ebpf-no-dedup,12,6,0,80873,6739.416666666667,6907.0,0.01548519,33.440788,33.300497,24,0,0,0,0,11,5.833333333333333,16,0,NOT_EVALUATED_BY_HUMANS
+ablation,original,selective-ebpf-no-stop-guidance,12,6,0,82848,6904,7128.5,0.01799182,39.930141416666665,38.721382,24,0,0,0,0,12,6,10,0,NOT_EVALUATED_BY_HUMANS

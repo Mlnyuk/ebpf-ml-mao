@@ -1,0 +1,5647 @@
+[
+  {
+    "run_id": "07412ba61d6bdb26e48a",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available",
+      "get_ebpf_summary": "observed_nonzero"
+    },
+    "uncited_evidence_ids": [],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "0ccdf13c77643f3e876d",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available"
+    },
+    "uncited_evidence_ids": [],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "0ed11846168d51d3f825",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "collection_failed",
+      "get_k8s_events": "collection_failed",
+      "get_logs": "collection_failed",
+      "metrics_cpu": "collection_failed",
+      "metrics_memory": "collection_failed",
+      "get_ebpf_summary": "collection_failed"
+    },
+    "uncited_evidence_ids": [],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "1036184da09b710b9f61",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available",
+      "get_ebpf_summary": "observed_nonzero"
+    },
+    "uncited_evidence_ids": [
+      "ev-3e3f08b07dc3d7b44878"
+    ],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "11571e836682025dadb7",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available"
+    },
+    "uncited_evidence_ids": [],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "11fc663575f365615a6d",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available"
+    },
+    "uncited_evidence_ids": [],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "1200beee8b794578e670",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available",
+      "get_ebpf_summary": "observed_nonzero"
+    },
+    "uncited_evidence_ids": [
+      "ev-602fef36ba402bccd3a3"
+    ],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "129e255992675f308766",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available",
+      "get_ebpf_summary": "observed_nonzero"
+    },
+    "uncited_evidence_ids": [
+      "ev-0812928725fc9d8348a3",
+      "ev-1f0af94802d17290f9fd",
+      "ev-e376bedfe15b61a56d57",
+      "ev-76d904475b71df70858a",
+      "ev-b18cef9f15f9cd4eac83",
+      "ev-b6904d7040acc2457948"
+    ],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "1620817150da297d7185",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available",
+      "get_ebpf_summary": "collection_failed"
+    },
+    "uncited_evidence_ids": [],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "1798f18493b77e97b9d2",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available"
+    },
+    "uncited_evidence_ids": [
+      "ev-b18cef9f15f9cd4eac83"
+    ],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "198746e6444c28bcda03",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available",
+      "get_ebpf_summary": "observed_nonzero"
+    },
+    "uncited_evidence_ids": [
+      "ev-cfd3103ca24926a86dff"
+    ],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "19fe98bfa905189eaca3",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "not_retrieved",
+      "metrics_memory": "not_retrieved",
+      "get_ebpf_summary": "observed_nonzero"
+    },
+    "uncited_evidence_ids": [
+      "ev-1f0af94802d17290f9fd"
+    ],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "1a760b96a88f61a8b531",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available",
+      "get_ebpf_summary": "collection_failed"
+    },
+    "uncited_evidence_ids": [],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "214d3bf17c139c775432",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "collection_failed",
+      "get_k8s_events": "collection_failed",
+      "get_logs": "collection_failed",
+      "metrics_cpu": "collection_failed",
+      "metrics_memory": "collection_failed",
+      "get_ebpf_summary": "collection_failed"
+    },
+    "uncited_evidence_ids": [],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "2150b8dbdbc0f8f5f212",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available"
+    },
+    "uncited_evidence_ids": [
+      "ev-e3aeffbc2756c8e82c2c"
+    ],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "22ab36e5d098c60bf149",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available",
+      "get_ebpf_summary": "observed_nonzero"
+    },
+    "uncited_evidence_ids": [
+      "ev-0159a81dcff5f081701e",
+      "ev-b18cef9f15f9cd4eac83"
+    ],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "22ba43898c51684cda77",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "collection_failed",
+      "get_k8s_events": "collection_failed",
+      "get_logs": "collection_failed",
+      "metrics_cpu": "collection_failed",
+      "metrics_memory": "collection_failed",
+      "get_ebpf_summary": "collection_failed"
+    },
+    "uncited_evidence_ids": [],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "238eee9c5b93b024c481",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available"
+    },
+    "uncited_evidence_ids": [],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "2607f34e49290c613d89",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available"
+    },
+    "uncited_evidence_ids": [],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "27c3c7a54b93df9f6d33",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available",
+      "get_ebpf_summary": "observed_nonzero"
+    },
+    "uncited_evidence_ids": [
+      "ev-0159a81dcff5f081701e"
+    ],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "28ef0f63a77e3a9052be",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_workload_status",
+        "duplicate": true,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": true,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "collection_failed",
+      "get_k8s_events": "collection_failed",
+      "get_logs": "collection_failed",
+      "metrics_cpu": "collection_failed",
+      "metrics_memory": "collection_failed",
+      "get_ebpf_summary": "collection_failed"
+    },
+    "uncited_evidence_ids": [
+      "ev-d15a0c6526f01ef81715",
+      "ev-4542b4b94096da35fd2e",
+      "ev-929ac0f7eb7a8afdbb22",
+      "ev-5e205670be6d242f325f",
+      "ev-d30616ac8f5542170944",
+      "ev-854b3e4eb09399c46e7b"
+    ],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "29f8488cb85dea111b12",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available",
+      "get_ebpf_summary": "observed_nonzero"
+    },
+    "uncited_evidence_ids": [],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "2a86c199e93b2277d52e",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available",
+      "get_ebpf_summary": "observed_nonzero"
+    },
+    "uncited_evidence_ids": [],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "2b639147454f2d54b28d",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available",
+      "get_ebpf_summary": "observed_nonzero"
+    },
+    "uncited_evidence_ids": [
+      "ev-cfd3103ca24926a86dff"
+    ],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "2bb4491f56b5cc896dce",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available"
+    },
+    "uncited_evidence_ids": [],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "2f7dbcb837bc0e725aa3",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available"
+    },
+    "uncited_evidence_ids": [
+      "ev-76d904475b71df70858a",
+      "ev-b18cef9f15f9cd4eac83"
+    ],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "301367707c2914db5119",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available",
+      "get_ebpf_summary": "observed_nonzero"
+    },
+    "uncited_evidence_ids": [
+      "ev-602fef36ba402bccd3a3"
+    ],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "302ed90333650f2a1a2c",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available",
+      "get_ebpf_summary": "observed_nonzero"
+    },
+    "uncited_evidence_ids": [
+      "ev-c7c0a748d816b8c3b91a"
+    ],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "32c0e799dd82a4f3d96f",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available",
+      "get_ebpf_summary": "observed_nonzero"
+    },
+    "uncited_evidence_ids": [
+      "ev-cfd3103ca24926a86dff"
+    ],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "33ae105fc55951f853d2",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available",
+      "get_ebpf_summary": "observed_nonzero"
+    },
+    "uncited_evidence_ids": [
+      "ev-1985939c3fc8bff7f68d"
+    ],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "370af8234afe3ab3cddb",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available",
+      "get_ebpf_summary": "observed_nonzero"
+    },
+    "uncited_evidence_ids": [
+      "ev-1f0af94802d17290f9fd"
+    ],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "39085cd9daebd0b185e5",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available",
+      "get_ebpf_summary": "observed_nonzero"
+    },
+    "uncited_evidence_ids": [
+      "ev-cfd3103ca24926a86dff"
+    ],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "3aa9f47b5076004a4f2f",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "collection_failed",
+      "get_k8s_events": "collection_failed",
+      "get_logs": "collection_failed",
+      "metrics_cpu": "collection_failed",
+      "metrics_memory": "collection_failed"
+    },
+    "uncited_evidence_ids": [],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "3c74c4b934b09050c8e0",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available",
+      "get_ebpf_summary": "observed_nonzero"
+    },
+    "uncited_evidence_ids": [
+      "ev-0159a81dcff5f081701e"
+    ],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "4665beba8fe74c5e2106",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available",
+      "get_ebpf_summary": "observed_nonzero"
+    },
+    "uncited_evidence_ids": [
+      "ev-b75a17790b0b59936922",
+      "ev-08c773320c4163d7d4c0",
+      "ev-cfd3103ca24926a86dff"
+    ],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "4986512ee06232c1bcf2",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available",
+      "get_ebpf_summary": "observed_nonzero"
+    },
+    "uncited_evidence_ids": [
+      "ev-08c773320c4163d7d4c0",
+      "ev-cfd3103ca24926a86dff"
+    ],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "4cb5e6c2bb0ef61e5301",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available",
+      "get_ebpf_summary": "observed_nonzero"
+    },
+    "uncited_evidence_ids": [
+      "ev-7239e58938869589731d"
+    ],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "5065d5b44d964b7d89bb",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available",
+      "get_ebpf_summary": "collection_failed"
+    },
+    "uncited_evidence_ids": [
+      "ev-0159a81dcff5f081701e"
+    ],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "53603e51c8e47d44edd7",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available"
+    },
+    "uncited_evidence_ids": [
+      "ev-1f0af94802d17290f9fd"
+    ],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "54e51ff7ba9d62d82f5d",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available",
+      "get_ebpf_summary": "observed_nonzero"
+    },
+    "uncited_evidence_ids": [],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "5892b4f36a7263cd4fe0",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available",
+      "get_ebpf_summary": "collection_failed"
+    },
+    "uncited_evidence_ids": [],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "59f1cd07492972979e3f",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "collection_failed",
+      "get_k8s_events": "collection_failed",
+      "get_logs": "collection_failed",
+      "metrics_cpu": "collection_failed",
+      "metrics_memory": "collection_failed",
+      "get_ebpf_summary": "collection_failed"
+    },
+    "uncited_evidence_ids": [],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "5a2be4b5c81897ea428c",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available",
+      "get_ebpf_summary": "observed_nonzero"
+    },
+    "uncited_evidence_ids": [
+      "ev-1f0af94802d17290f9fd",
+      "ev-76d904475b71df70858a",
+      "ev-b18cef9f15f9cd4eac83"
+    ],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "5ff29cdba8e5e3d88434",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available",
+      "get_ebpf_summary": "observed_nonzero"
+    },
+    "uncited_evidence_ids": [],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "601cf474b5fed687eb68",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available",
+      "get_ebpf_summary": "observed_nonzero"
+    },
+    "uncited_evidence_ids": [
+      "ev-602fef36ba402bccd3a3"
+    ],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "629f13b7e79df32a1a84",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available",
+      "get_ebpf_summary": "observed_nonzero"
+    },
+    "uncited_evidence_ids": [
+      "ev-7239e58938869589731d",
+      "ev-c7c0a748d816b8c3b91a"
+    ],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "642b860a808fae68ecbc",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "collection_failed",
+      "get_k8s_events": "collection_failed",
+      "get_logs": "collection_failed",
+      "metrics_cpu": "collection_failed",
+      "metrics_memory": "collection_failed",
+      "get_ebpf_summary": "collection_failed"
+    },
+    "uncited_evidence_ids": [],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "645e94f6b057c681f7e3",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available",
+      "get_ebpf_summary": "collection_failed"
+    },
+    "uncited_evidence_ids": [
+      "ev-b18cef9f15f9cd4eac83"
+    ],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "64d8f6bc28e306465b13",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available",
+      "get_ebpf_summary": "observed_nonzero"
+    },
+    "uncited_evidence_ids": [
+      "ev-c7c0a748d816b8c3b91a"
+    ],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "66d5a9353594ef016661",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available",
+      "get_ebpf_summary": "observed_nonzero"
+    },
+    "uncited_evidence_ids": [
+      "ev-9e5c8b0b1f3c6d18cda8"
+    ],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "69ad65530f0ff94d45df",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available",
+      "get_ebpf_summary": "collection_failed"
+    },
+    "uncited_evidence_ids": [],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "6b5154f746f7e5907820",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available",
+      "get_ebpf_summary": "observed_nonzero"
+    },
+    "uncited_evidence_ids": [
+      "ev-500703396e3240590143",
+      "ev-602fef36ba402bccd3a3"
+    ],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "6c938d099e296bd28fa6",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available"
+    },
+    "uncited_evidence_ids": [
+      "ev-9e5c8b0b1f3c6d18cda8"
+    ],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "6ea51fc6d3f962898f16",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available"
+    },
+    "uncited_evidence_ids": [],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "6ecb0a46e98c933d6b09",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available",
+      "get_ebpf_summary": "observed_nonzero"
+    },
+    "uncited_evidence_ids": [
+      "ev-e3aeffbc2756c8e82c2c",
+      "ev-2a72021b33ea566c3965"
+    ],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "73501618276dd4f44972",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available"
+    },
+    "uncited_evidence_ids": [
+      "ev-b75a17790b0b59936922",
+      "ev-cfd3103ca24926a86dff"
+    ],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "744fb98e07cf4ad84de9",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available",
+      "get_ebpf_summary": "observed_nonzero"
+    },
+    "uncited_evidence_ids": [
+      "ev-d746a0bf5e594fdc022b",
+      "ev-9e5c8b0b1f3c6d18cda8",
+      "ev-56e93b3b171d6a27a4a8",
+      "ev-602fef36ba402bccd3a3"
+    ],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "74a55dde4263d4c04ba9",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available",
+      "get_ebpf_summary": "observed_nonzero"
+    },
+    "uncited_evidence_ids": [
+      "ev-7239e58938869589731d"
+    ],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "74c3bf082bb3166878e4",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available",
+      "get_ebpf_summary": "collection_failed"
+    },
+    "uncited_evidence_ids": [
+      "ev-0159a81dcff5f081701e",
+      "ev-b18cef9f15f9cd4eac83"
+    ],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "74e0270af55d180f12fd",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available",
+      "get_ebpf_summary": "observed_nonzero"
+    },
+    "uncited_evidence_ids": [],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "74f4951b9e4a40fb721f",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available"
+    },
+    "uncited_evidence_ids": [
+      "ev-0159a81dcff5f081701e"
+    ],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "76b0866238d7ad238631",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "not_retrieved",
+      "metrics_memory": "not_retrieved",
+      "get_ebpf_summary": "observed_nonzero"
+    },
+    "uncited_evidence_ids": [
+      "ev-9e5c8b0b1f3c6d18cda8"
+    ],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "78d5512397efb5165b7b",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available"
+    },
+    "uncited_evidence_ids": [],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "7ca344324404122765e1",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available",
+      "get_ebpf_summary": "observed_nonzero"
+    },
+    "uncited_evidence_ids": [],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "7d0ee58f625bdff234bd",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available",
+      "get_ebpf_summary": "observed_nonzero"
+    },
+    "uncited_evidence_ids": [
+      "ev-1985939c3fc8bff7f68d",
+      "ev-3e3f08b07dc3d7b44878"
+    ],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "7f93bb98487707bd9d01",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available",
+      "get_ebpf_summary": "observed_nonzero"
+    },
+    "uncited_evidence_ids": [
+      "ev-f62a5cffc007bbb618b7",
+      "ev-98d2f0f0d6bf02d7f4c1"
+    ],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "83882f1b8be75d59c3d6",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available",
+      "get_ebpf_summary": "observed_nonzero"
+    },
+    "uncited_evidence_ids": [
+      "ev-e3aeffbc2756c8e82c2c",
+      "ev-98d2f0f0d6bf02d7f4c1"
+    ],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "854af21c1de8eddae794",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "collection_failed",
+      "get_k8s_events": "collection_failed",
+      "get_logs": "collection_failed",
+      "metrics_cpu": "collection_failed",
+      "metrics_memory": "collection_failed",
+      "get_ebpf_summary": "collection_failed"
+    },
+    "uncited_evidence_ids": [],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "89cbea12c1891691274a",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available"
+    },
+    "uncited_evidence_ids": [],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "8f69d17ec465c9074c3e",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available",
+      "get_ebpf_summary": "observed_nonzero"
+    },
+    "uncited_evidence_ids": [
+      "ev-1985939c3fc8bff7f68d",
+      "ev-3e3f08b07dc3d7b44878"
+    ],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "917329d974f30be77b9f",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available",
+      "get_ebpf_summary": "observed_nonzero"
+    },
+    "uncited_evidence_ids": [
+      "ev-b75a17790b0b59936922",
+      "ev-cfd3103ca24926a86dff"
+    ],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "95a4eee4f83e6362e347",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_workload_status",
+        "duplicate": true,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": true,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "collection_failed",
+      "get_k8s_events": "collection_failed",
+      "get_logs": "collection_failed",
+      "metrics_cpu": "collection_failed",
+      "metrics_memory": "collection_failed",
+      "get_ebpf_summary": "collection_failed"
+    },
+    "uncited_evidence_ids": [],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "966c01b4cfd0b599adfa",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available",
+      "get_ebpf_summary": "observed_nonzero"
+    },
+    "uncited_evidence_ids": [
+      "ev-98d2f0f0d6bf02d7f4c1"
+    ],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "9ad2238befc0be27aa2d",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "collection_failed",
+      "get_k8s_events": "collection_failed",
+      "get_logs": "collection_failed",
+      "metrics_cpu": "collection_failed",
+      "metrics_memory": "collection_failed",
+      "get_ebpf_summary": "collection_failed"
+    },
+    "uncited_evidence_ids": [],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "9b33e8820c2b8fa7bef2",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available"
+    },
+    "uncited_evidence_ids": [],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "9bdb0b3828229a9e9e43",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available",
+      "get_ebpf_summary": "observed_nonzero"
+    },
+    "uncited_evidence_ids": [
+      "ev-0159a81dcff5f081701e",
+      "ev-76d904475b71df70858a",
+      "ev-b18cef9f15f9cd4eac83"
+    ],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "9bfaab2c26458237c4a0",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available",
+      "get_ebpf_summary": "observed_nonzero"
+    },
+    "uncited_evidence_ids": [
+      "ev-1985939c3fc8bff7f68d"
+    ],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "9ddcef9fb2fabb69a995",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "collection_failed",
+      "get_k8s_events": "collection_failed",
+      "get_logs": "collection_failed",
+      "metrics_cpu": "collection_failed",
+      "metrics_memory": "collection_failed"
+    },
+    "uncited_evidence_ids": [],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "9f92dfefad175c9ac3fd",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available"
+    },
+    "uncited_evidence_ids": [
+      "ev-7239e58938869589731d"
+    ],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "a0557f92a5958879b036",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available",
+      "get_ebpf_summary": "observed_nonzero"
+    },
+    "uncited_evidence_ids": [
+      "ev-7239e58938869589731d"
+    ],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "a14909d8567a1a7ce6b5",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available",
+      "get_ebpf_summary": "observed_nonzero"
+    },
+    "uncited_evidence_ids": [
+      "ev-f62a5cffc007bbb618b7",
+      "ev-98d2f0f0d6bf02d7f4c1"
+    ],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "a1cd5a4c8acdafcd56b3",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available"
+    },
+    "uncited_evidence_ids": [],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "a42bd5d132ecb8774676",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available",
+      "get_ebpf_summary": "collection_failed"
+    },
+    "uncited_evidence_ids": [
+      "ev-0159a81dcff5f081701e",
+      "ev-b18cef9f15f9cd4eac83"
+    ],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "a9c1f49ee6141ddb0c42",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available",
+      "get_ebpf_summary": "observed_nonzero"
+    },
+    "uncited_evidence_ids": [],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "ac7138d5765b23f4112a",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "not_retrieved",
+      "metrics_memory": "not_retrieved",
+      "get_ebpf_summary": "observed_nonzero"
+    },
+    "uncited_evidence_ids": [],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "aca9401c6e19e2bdb2ea",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available"
+    },
+    "uncited_evidence_ids": [],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "ad9569ba8d17155426c8",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "collection_failed",
+      "get_k8s_events": "collection_failed",
+      "get_logs": "collection_failed",
+      "metrics_cpu": "collection_failed",
+      "metrics_memory": "collection_failed"
+    },
+    "uncited_evidence_ids": [],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "adb39a69d6d737a2a4d6",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available"
+    },
+    "uncited_evidence_ids": [],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "af367c00401f9b4190d7",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available",
+      "get_ebpf_summary": "observed_nonzero"
+    },
+    "uncited_evidence_ids": [
+      "ev-e3aeffbc2756c8e82c2c",
+      "ev-f62a5cffc007bbb618b7",
+      "ev-98d2f0f0d6bf02d7f4c1"
+    ],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "b053852fd768ab2d2af2",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available",
+      "get_ebpf_summary": "observed_nonzero"
+    },
+    "uncited_evidence_ids": [
+      "ev-0159a81dcff5f081701e",
+      "ev-76d904475b71df70858a",
+      "ev-b18cef9f15f9cd4eac83"
+    ],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "b0b9e9d0243bc4cd6518",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available",
+      "get_ebpf_summary": "collection_failed"
+    },
+    "uncited_evidence_ids": [
+      "ev-b18cef9f15f9cd4eac83"
+    ],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "b16cecc34262a3b806a5",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available",
+      "get_ebpf_summary": "observed_nonzero"
+    },
+    "uncited_evidence_ids": [
+      "ev-e3aeffbc2756c8e82c2c"
+    ],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "b29696d0e0ce36569b8e",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available",
+      "get_ebpf_summary": "observed_nonzero"
+    },
+    "uncited_evidence_ids": [
+      "ev-e3aeffbc2756c8e82c2c"
+    ],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "b6fae56d4f15ea72d522",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available",
+      "get_ebpf_summary": "observed_nonzero"
+    },
+    "uncited_evidence_ids": [
+      "ev-0812928725fc9d8348a3",
+      "ev-1f0af94802d17290f9fd",
+      "ev-e376bedfe15b61a56d57",
+      "ev-76d904475b71df70858a",
+      "ev-b18cef9f15f9cd4eac83",
+      "ev-b6904d7040acc2457948"
+    ],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "b7bfc8a88f116fe8bae6",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available"
+    },
+    "uncited_evidence_ids": [],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "bc6b96698b2a25b9bf50",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "collection_failed",
+      "get_k8s_events": "collection_failed",
+      "get_logs": "collection_failed",
+      "metrics_cpu": "collection_failed",
+      "metrics_memory": "collection_failed"
+    },
+    "uncited_evidence_ids": [],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "c065b4c17fadce5fe5bf",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available",
+      "get_ebpf_summary": "observed_nonzero"
+    },
+    "uncited_evidence_ids": [],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "c111e9c4e89f1a5b9c62",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available"
+    },
+    "uncited_evidence_ids": [],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "c13eb84faeebdbf984fe",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available",
+      "get_ebpf_summary": "observed_nonzero"
+    },
+    "uncited_evidence_ids": [
+      "ev-76d904475b71df70858a",
+      "ev-b18cef9f15f9cd4eac83"
+    ],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "c2baec59f042ac4e5d9f",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available",
+      "get_ebpf_summary": "observed_nonzero"
+    },
+    "uncited_evidence_ids": [],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "c9d0db75b9027f963f7f",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available"
+    },
+    "uncited_evidence_ids": [
+      "ev-0812928725fc9d8348a3",
+      "ev-1f0af94802d17290f9fd",
+      "ev-e376bedfe15b61a56d57",
+      "ev-76d904475b71df70858a",
+      "ev-b18cef9f15f9cd4eac83"
+    ],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "cb68f913ffab3e3076cb",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available",
+      "get_ebpf_summary": "observed_nonzero"
+    },
+    "uncited_evidence_ids": [
+      "ev-b75a17790b0b59936922",
+      "ev-08c773320c4163d7d4c0",
+      "ev-cfd3103ca24926a86dff"
+    ],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "cbc3cd46b471bf3ff621",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available",
+      "get_ebpf_summary": "observed_nonzero"
+    },
+    "uncited_evidence_ids": [],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "cd7ec8c88ec7c3c7f4e1",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available"
+    },
+    "uncited_evidence_ids": [],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "d15c841b7ccb593583f9",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available",
+      "get_ebpf_summary": "observed_nonzero"
+    },
+    "uncited_evidence_ids": [
+      "ev-76d904475b71df70858a",
+      "ev-b18cef9f15f9cd4eac83"
+    ],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "d3c9edefe079cec9c212",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available",
+      "get_ebpf_summary": "observed_nonzero"
+    },
+    "uncited_evidence_ids": [],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "d753710a151140cea90d",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available"
+    },
+    "uncited_evidence_ids": [],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "dd84430d3b56eb403151",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available",
+      "get_ebpf_summary": "observed_nonzero"
+    },
+    "uncited_evidence_ids": [
+      "ev-7239e58938869589731d",
+      "ev-c7c0a748d816b8c3b91a"
+    ],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "df4b401056271de0bf25",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available",
+      "get_ebpf_summary": "observed_nonzero"
+    },
+    "uncited_evidence_ids": [
+      "ev-1985939c3fc8bff7f68d"
+    ],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "df922133ae2158045ec3",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available",
+      "get_ebpf_summary": "collection_failed"
+    },
+    "uncited_evidence_ids": [],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "e055a7ac370154a30cda",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available"
+    },
+    "uncited_evidence_ids": [],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "e0809f56a741a7f5387c",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available"
+    },
+    "uncited_evidence_ids": [
+      "ev-0159a81dcff5f081701e"
+    ],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "e1f90488adba036edb79",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available",
+      "get_ebpf_summary": "observed_nonzero"
+    },
+    "uncited_evidence_ids": [
+      "ev-602fef36ba402bccd3a3"
+    ],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "e233e261a9e4f69c46f4",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available"
+    },
+    "uncited_evidence_ids": [],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "e514fba6ab98cfb7f150",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available",
+      "get_ebpf_summary": "observed_nonzero"
+    },
+    "uncited_evidence_ids": [],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "eb70b3b75734eeb3fb0d",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available",
+      "get_ebpf_summary": "observed_nonzero"
+    },
+    "uncited_evidence_ids": [
+      "ev-1f0af94802d17290f9fd",
+      "ev-76d904475b71df70858a",
+      "ev-b18cef9f15f9cd4eac83"
+    ],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "ee2a70fcea0b9070c07c",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available"
+    },
+    "uncited_evidence_ids": [
+      "ev-1985939c3fc8bff7f68d"
+    ],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "ee64dcdfdec187f9a89e",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available",
+      "get_ebpf_summary": "observed_nonzero"
+    },
+    "uncited_evidence_ids": [
+      "ev-e3aeffbc2756c8e82c2c"
+    ],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "efc0b3de7271822b1552",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available",
+      "get_ebpf_summary": "observed_nonzero"
+    },
+    "uncited_evidence_ids": [
+      "ev-9e5c8b0b1f3c6d18cda8",
+      "ev-602fef36ba402bccd3a3"
+    ],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "f2d0496bd137195a683f",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available",
+      "get_ebpf_summary": "observed_nonzero"
+    },
+    "uncited_evidence_ids": [
+      "ev-b18cef9f15f9cd4eac83"
+    ],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "f9a18f55e7c1eea634d9",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available",
+      "get_ebpf_summary": "observed_nonzero"
+    },
+    "uncited_evidence_ids": [],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "fb1c0ffa5711cd2edafb",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available",
+      "get_ebpf_summary": "observed_nonzero"
+    },
+    "uncited_evidence_ids": [
+      "ev-0159a81dcff5f081701e"
+    ],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "fc3764139d03e66508c9",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available"
+    },
+    "uncited_evidence_ids": [
+      "ev-b75a17790b0b59936922"
+    ],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "fcc31b3a225939bbb276",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available"
+    },
+    "uncited_evidence_ids": [],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "fe4980c931321350c68c",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "available",
+      "get_k8s_events": "available",
+      "get_logs": "available",
+      "metrics_cpu": "available",
+      "metrics_memory": "available",
+      "get_ebpf_summary": "observed_nonzero"
+    },
+    "uncited_evidence_ids": [
+      "ev-b75a17790b0b59936922"
+    ],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  },
+  {
+    "run_id": "ff76425a641a44cd4329",
+    "retrievals": [
+      {
+        "source": "get_workload_status",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_k8s_events",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_logs",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "get_ebpf_summary",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_cpu",
+        "duplicate": false,
+        "executed": true
+      },
+      {
+        "source": "metrics_memory",
+        "duplicate": false,
+        "executed": true
+      }
+    ],
+    "source_states": {
+      "get_workload_status": "collection_failed",
+      "get_k8s_events": "collection_failed",
+      "get_logs": "collection_failed",
+      "metrics_cpu": "collection_failed",
+      "metrics_memory": "collection_failed",
+      "get_ebpf_summary": "collection_failed"
+    },
+    "uncited_evidence_ids": [],
+    "interpretation": "Uncited evidence can support exclusion/context. This proxy does not prove an unnecessary query."
+  }
+]

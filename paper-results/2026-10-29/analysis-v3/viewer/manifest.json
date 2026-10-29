@@ -1,0 +1,8 @@
+{
+  "dataset_sha256": "96845338afafe866549c96cb95aa5943dcc70e046efc6514d89025e66ad4f38d",
+  "runs": 126,
+  "review_packets": 126,
+  "reviewer_independence": "not externally verified",
+  "mode": "replay by default; live requires explicit server flag",
+  "source_links": "Work through the localhost server; standalone HTML supports embedded evidence/requests but not external raw-file links."
+}
