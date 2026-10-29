@@ -1,0 +1,19 @@
+{
+  "study": "paper-clock-v3-20261029",
+  "planned_investigations": 126,
+  "completed_investigations": 126,
+  "output_contract_passed": 122,
+  "terminal_failures": 4,
+  "independent_review": "NOT_PERFORMED",
+  "online_overhead": "NOT_MEASURED",
+  "sha256": {
+    "README.md": "06d3a68bc4c743a76ce220f0c25f3093d239cfc7743e23e6e6aaa070df4457ec",
+    "protocol.json": "090871eb7dad2a997579834580e8f585dbb41e2f158597a3814993374cf684df",
+    "rca-paper-results-20261029T042355Z.zip": "2a0da7aed66ee813c0daafbd7e5046fa4523a28a97d6eec36f7235e3d7fcaef6"
+  },
+  "notes": [
+    "All scheduled outcomes, including failures, are retained.",
+    "Format validation is not diagnostic accuracy.",
+    "Archive includes owner ground truth and method mappings. Use the arm-masked packet separately for reviewers."
+  ]
+}
