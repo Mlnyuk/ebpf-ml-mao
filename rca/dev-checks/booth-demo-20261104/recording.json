@@ -1,0 +1,30 @@
+{
+  "source": "/root/rca-booth-dev/rca/booth-demo",
+  "events": [
+    {
+      "seconds": 8.279,
+      "selector": "#demo-investigate"
+    },
+    {
+      "seconds": 20.282,
+      "selector": "#demo-evidence"
+    },
+    {
+      "seconds": 31.267,
+      "selector": "#demo-observed details summary"
+    },
+    {
+      "seconds": 38.262,
+      "selector": "#demo-observed details summary"
+    },
+    {
+      "seconds": 41.266,
+      "selector": "#demo-reset"
+    }
+  ],
+  "externalRequests": [],
+  "pageErrors": [],
+  "mode": "actual offline browser screen recording; archived AI output",
+  "audio": "none",
+  "paidCalls": 0
+}

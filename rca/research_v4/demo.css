@@ -1,0 +1,74 @@
+body.booth-mode{background:#f3f5f7;color:#172b3b}
+body.booth-mode>header,body.booth-mode>main{display:none}
+#booth{max-width:1180px;margin:auto;padding:24px 32px 32px;font-family:system-ui,-apple-system,'Malgun Gothic',sans-serif;line-height:1.5}
+#booth *{box-sizing:border-box}
+#booth .booth-top{display:flex;align-items:center;justify-content:space-between;gap:16px}
+#booth .booth-brand{font-weight:800;font-size:20px;letter-spacing:-.4px}
+#booth .booth-badge{color:#216044;background:#dfefe5;border:1px solid #bad6c4;border-radius:30px;padding:6px 12px;font-size:15px;font-weight:700}
+#booth .booth-top-actions{display:flex;align-items:center;gap:14px}
+#booth button{border-radius:12px;padding:13px 22px;font-size:19px;font-weight:700;border:0;background:#164e70;color:white;min-height:48px}
+#booth button:hover{background:#103b55}
+#booth button:focus-visible,#booth summary:focus-visible,#booth a:focus-visible{outline:3px solid #b74800;outline-offset:4px}
+#booth button.secondary{background:white;color:#24455c;border:1px solid #c7d3dc;font-size:16px;padding:9px 16px}
+#booth .booth-progress{display:flex;gap:12px;list-style:none;padding:0;margin:24px 0 22px;color:#607182;font-size:16px}
+#booth .booth-progress li{padding-bottom:9px;border-bottom:3px solid #d9e1e7;flex:1}
+#booth .booth-progress [aria-current=step]{color:#164e70;border-color:#164e70;font-weight:800}
+#booth h1{font-size:clamp(30px,3.5vw,44px);line-height:1.25;letter-spacing:-1.4px;margin:0 0 16px;max-width:970px}
+#booth h2{font-size:27px;line-height:1.4;letter-spacing:-.5px;margin:0 0 12px}
+#booth h3{font-size:19px;margin:0 0 8px}
+#booth p{margin:8px 0}
+#booth .lead{font-size:22px;color:#465d70;margin-bottom:24px}
+#booth .booth-card{background:white;border:1px solid #d6e0e8;border-radius:18px;padding:22px 26px;margin:14px 0}
+#booth .log-card{background:#142c3c;color:white;padding:28px 32px;margin:28px 0 22px}
+#booth .log-card .eyebrow{color:#c5d9e5}
+#booth .log-line{font-family:ui-monospace,Consolas,monospace;font-size:clamp(19px,2.5vw,30px);display:block;margin:12px 0;overflow-wrap:anywhere;white-space:pre-wrap}
+#booth .eyebrow{font-size:15px;font-weight:700;letter-spacing:.2px;color:#526a7d}
+#booth .note{font-size:16px;color:#526779}
+#booth .booth-actions{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-top:22px}
+#booth .timeline{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+#booth .timeline li{background:white;border:1px solid #d6e0e8;border-radius:14px;padding:16px 18px;min-width:0}
+#booth .timeline .number{color:#406b87;font-size:14px;font-weight:800;margin-bottom:5px}
+#booth .timeline p{font-size:18px;margin-bottom:0;overflow-wrap:anywhere}
+#booth .timeline .network-step{border:2px solid #568e71;background:#f4fbf6}
+#booth .finding{border-left:5px solid #164e70;background:#e9f0f5;padding:16px 22px;margin-top:18px;border-radius:6px 14px 14px 6px}
+#booth .finding p{font-size:22px;line-height:1.5}
+#booth .ports,#booth .comparison{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+#booth .port-card{margin:12px 0;padding:18px 24px}
+#booth .port-value{font-size:48px;font-weight:850;line-height:1.1;letter-spacing:-1px;margin:10px 0;color:#164e70}
+#booth .observed .port-value{color:#93432b}
+#booth .address{font-family:ui-monospace,Consolas,monospace;font-size:18px}
+#booth .scope-note{background:#fff5df;color:#684817;border-radius:12px;padding:12px 18px;font-size:17px;margin:10px 0 18px}
+#booth .comparison article{background:white;border-radius:14px;border:1px solid #d6e0e8;padding:16px 20px;min-width:0}
+#booth .comparison blockquote{margin:8px 0;font-size:18px;border-left:3px solid #bdcdd9;padding-left:12px}
+#booth .comparison-title{font-size:22px;margin-top:20px}
+#booth details{font-size:15px;margin:12px 0 0}
+#booth summary{cursor:pointer;color:#355974;min-height:30px}
+#booth pre{font-size:13px;max-height:320px;background:#edf2f5;color:#1c3041;overflow-wrap:anywhere}
+#booth .booth-footer{border-top:1px solid #d9e1e7;margin-top:24px;padding-top:14px;font-size:14px;color:#5b7080}
+#booth .booth-footer a{color:#355974}
+#booth [hidden]{display:none!important}
+@media(min-width:900px) and (max-height:900px){
+  #booth{padding-top:16px;padding-bottom:20px;max-width:1244px}
+  #booth .booth-progress{margin:14px 0 16px}
+  #booth h1{font-size:36px;margin-bottom:10px}
+  #booth .lead{font-size:20px;margin-bottom:16px}
+  #booth .timeline{gap:10px}
+  #booth .timeline li{padding:11px 16px}
+  #booth .timeline h3{margin-bottom:4px}
+  #booth .timeline p{font-size:17px;margin-top:4px}
+  #booth .finding{padding:12px 20px;margin-top:12px}
+  #booth .finding p{font-size:20px;margin:5px 0}
+  #booth .booth-actions{margin-top:12px}
+  #booth .port-card{padding:12px 22px;margin:10px 0}
+  #booth .port-value{font-size:44px;margin:6px 0}
+  #booth .port-card .note{margin:4px 0}
+  #booth .port-card details{margin-top:6px}
+  #booth .scope-note{padding:10px 16px;font-size:16px;margin:6px 0 12px}
+  #booth .comparison-title{margin-top:12px;font-size:21px}
+  #booth .comparison article{padding:12px 18px}
+  #booth .comparison blockquote{font-size:17px;margin:6px 0}
+  #booth .comparison details{margin-top:6px}
+  #booth .booth-footer{margin-top:16px;padding-top:10px}
+}
+@media(max-width:800px){#booth{padding:18px}#booth .booth-top{align-items:flex-start}#booth .booth-top-actions{flex-direction:column;align-items:flex-end;gap:8px}#booth .booth-brand{font-size:17px}#booth .booth-badge{font-size:12px}#booth .timeline{grid-template-columns:1fr 1fr}#booth .ports,#booth .comparison{grid-template-columns:1fr}#booth .booth-card{padding:18px}#booth h1{letter-spacing:-.7px}#booth .lead{font-size:19px}}
+@media(prefers-reduced-motion:reduce){#booth *{scroll-behavior:auto}}

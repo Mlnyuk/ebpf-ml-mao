@@ -12,6 +12,12 @@ from research_v4.engine import citation_registry
 TEMPLATE=Path(__file__).with_name('viewer.html')
 
 
+def render_html(data):
+    payload=json.dumps(data,ensure_ascii=False).replace('<','\\u003c').replace('>','\\u003e').replace('&','\\u0026')
+    return (TEMPLATE.read_text().replace('__DEMO_CSS__',TEMPLATE.with_name('demo.css').read_text())
+            .replace('__DEMO_JS__',TEMPLATE.with_name('demo.js').read_text()).replace('__DATA__',payload))
+
+
 def build(study,out):
     out.mkdir(parents=True,exist_ok=False)
     cases=[json.loads(p.read_text()) for p in sorted((study/'agent-cases').glob('*.json'))]
@@ -41,8 +47,7 @@ def build(study,out):
     masked={'mode':'review','dataset_hash':signature,'packets':packet['packets'],'rubric':packet['rubric']}
     for filename,data in [('index.html',owner),('review.html',masked)]:
         # JSON script content is escaped against HTML termination/injection.
-        payload=json.dumps(data,ensure_ascii=False).replace('<','\\u003c').replace('>','\\u003e').replace('&','\\u0026')
-        (out/filename).write_text(TEMPLATE.read_text().replace('__DATA__',payload))
+        (out/filename).write_text(render_html(data))
     (out/'manifest.json').write_text(json.dumps({'dataset_sha256':signature,'runs':len(runs),'review_packets':len(packet['packets']),
         'reviewer_independence':'not externally verified','mode':'replay by default; live requires explicit server flag',
         'source_links':'Work through the localhost server; standalone HTML supports embedded evidence/requests but not external raw-file links.'},indent=2))

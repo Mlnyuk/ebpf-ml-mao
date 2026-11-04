@@ -1,0 +1,14 @@
+{
+  "tests": [
+    "file: offline start, 2-click flow, real retrieval order, exact cited evidence, reset and second visitor PASS",
+    "390px narrow viewport: no horizontal overflow PASS",
+    "missing pair fallback and missing evidence message PASS",
+    "original replay viewer with same two runs PASS",
+    "http: offline start, 2-click flow, real retrieval order, exact cited evidence, reset and second visitor PASS"
+  ],
+  "externalRequests": [],
+  "apiRequests": [],
+  "pageErrors": [],
+  "paidCalls": 0,
+  "result": "PASS"
+}

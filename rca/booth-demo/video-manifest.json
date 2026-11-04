@@ -1,0 +1,84 @@
+{
+  "recording": "Actual offline browser recording, no new LLM execution",
+  "source_html_sha256": "ecf821ce29d8ef0df77a6da33a216af515d49bd59a326c5994e0a054c5fc851d",
+  "raw_screen_recording_sha256": "6e4a9df5ef5d51f440e2a46f05844de5ed2f717d5fd444e5f0891b078e3f1337",
+  "mp4_sha256": "58aa1059823793eea8b3c1a4ef0d571d1ccaa242bf256c6505e271e487ca3b25",
+  "probe": {
+    "programs": [],
+    "streams": [
+      {
+        "codec_name": "h264",
+        "width": 1600,
+        "height": 900,
+        "pix_fmt": "yuv420p",
+        "r_frame_rate": "25/1"
+      }
+    ],
+    "format": {
+      "duration": "43.840000",
+      "size": "1831431"
+    }
+  },
+  "audio": "none; Korean subtitles burned into video",
+  "recording_events": {
+    "source": "/root/rca-booth-dev/rca/booth-demo",
+    "events": [
+      {
+        "seconds": 8.279,
+        "selector": "#demo-investigate"
+      },
+      {
+        "seconds": 20.282,
+        "selector": "#demo-evidence"
+      },
+      {
+        "seconds": 31.267,
+        "selector": "#demo-observed details summary"
+      },
+      {
+        "seconds": 38.262,
+        "selector": "#demo-observed details summary"
+      },
+      {
+        "seconds": 41.266,
+        "selector": "#demo-reset"
+      }
+    ],
+    "externalRequests": [],
+    "pageErrors": [],
+    "mode": "actual offline browser screen recording; archived AI output",
+    "audio": "none",
+    "paidCalls": 0
+  },
+  "mp4_decode_check": "ffmpeg -v error -i RCA-DEMO.mp4 -f null - : passed",
+  "browser_note": "Bundled Chromium rejected H.264 MP4 with video error 4. WATCH.html uses VP8 WebM first. MP4 is retained for ordinary media players; no claim that this Chromium played it.",
+  "record_command": "node scripts/record_booth.cjs booth-demo artifacts/booth-recording-v1",
+  "mp4_encode_command": "ffmpeg -nostdin -n -i artifacts/booth-recording-v1/screen.webm -vf subtitles=booth-demo/RCA-DEMO.srt:force_style='Fontname=WenQuanYi Zen Hei,Fontsize=15,Alignment=2,MarginV=12,Outline=1,BorderStyle=3,BackColour=&H80000000' -c:v libx264 -threads 2 -preset medium -crf 20 -pix_fmt yuv420p -r 25 -an -movflags +faststart booth-demo/RCA-DEMO.mp4",
+  "webm_sha256": "205a2d2e8c1ab461a002489936e0de7c80bbcd4e8d43ebfe3d1174f1b1bb69f8",
+  "browser_playback_check": {
+    "networkRequests": [],
+    "pageErrors": [],
+    "tests": [
+      "offline local video playback and actual loop PASS",
+      "1366x768 two-click flow, visible comparison, keyboard and reset PASS"
+    ],
+    "video": {
+      "duration": 43.84,
+      "width": 1600,
+      "height": 900,
+      "loop": true,
+      "muted": true,
+      "source": "file:///root/rca-booth-dev/rca/booth-demo/RCA-DEMO.webm"
+    },
+    "result": "PASS"
+  },
+  "webm_encode_settings": {
+    "codec": "libvpx",
+    "threads": 2,
+    "bitrate": "1400k",
+    "crf": 10,
+    "deadline": "good",
+    "cpu-used": 2,
+    "subtitles": "same burned-in SRT and font style as MP4"
+  }
+}

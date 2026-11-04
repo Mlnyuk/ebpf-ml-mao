@@ -1,0 +1,53 @@
+{
+  "unit_tests": 149,
+  "unit_test_result": "PASS",
+  "browser_interactions": {
+    "tests": [
+      "file: offline start, 2-click flow, real retrieval order, exact cited evidence, reset and second visitor PASS",
+      "390px narrow viewport: no horizontal overflow PASS",
+      "missing pair fallback and missing evidence message PASS",
+      "original replay viewer with same two runs PASS",
+      "http: offline start, 2-click flow, real retrieval order, exact cited evidence, reset and second visitor PASS"
+    ],
+    "externalRequests": [],
+    "apiRequests": [],
+    "pageErrors": [],
+    "paidCalls": 0,
+    "result": "PASS"
+  },
+  "offline_video": {
+    "networkRequests": [],
+    "pageErrors": [],
+    "tests": [
+      "offline local video playback and actual loop PASS",
+      "1366x768 two-click flow, visible comparison, keyboard and reset PASS"
+    ],
+    "video": {
+      "duration": 43.84,
+      "width": 1600,
+      "height": 900,
+      "loop": true,
+      "muted": true,
+      "source": "file:///root/rca-booth-dev/rca/booth-demo/RCA-DEMO.webm"
+    },
+    "result": "PASS"
+  },
+  "original_study_files_modified": false,
+  "new_api_calls": 0,
+  "source_demo": "9e4945e7170b4a58",
+  "limitations": [
+    "MP4 did not play in bundled Chromium; its full decode passed FFmpeg. Browser loop uses tested VP8 WebM.",
+    "Demonstration of saved runs; no new diagnosis or independent quality evaluation."
+  ],
+  "delivered_files_sha256": {
+    "RCA-DEMO.mp4": "58aa1059823793eea8b3c1a4ef0d571d1ccaa242bf256c6505e271e487ca3b25",
+    "RCA-DEMO.srt": "73c702354c57c105621fb503f24dd18f5ad51e0bc07bfee5f678ff24fe20b3f1",
+    "RCA-DEMO.webm": "205a2d2e8c1ab461a002489936e0de7c80bbcd4e8d43ebfe3d1174f1b1bb69f8",
+    "README.txt": "272495f4a9dc38f953a3a57e2c5863dd44b60b5c58f989e6513efd11caf8d6d0",
+    "START.html": "443ec45837a3fd22b8d46c941e1eb50be5cc4b5ee0af145b3bc4a461d89c8fcb",
+    "WATCH.html": "14251118d5322e6074d06035abeaf1af407afcad2a0455b5e7a9c56a9ccfbcca",
+    "manifest.json": "bbd33860952523148e55826c6b04a012d28e865a8cad4405963a9919d51a3021",
+    "video-manifest.json": "f9e8822c75e629f7d34883650472e41eedc43917a9c0ffed215a87792326dbd0",
+    "viewer/index.html": "ecf821ce29d8ef0df77a6da33a216af515d49bd59a326c5994e0a054c5fc851d"
+  }
+}

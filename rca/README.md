@@ -4,6 +4,29 @@
 이 디렉터리는 상위 저장소의 ML 이상탐지 구현과 독립적이다. 모델 학습,
 이상치 분류, 로컬 LLM, GPU, 장애별 RCA 규칙을 사용하지 않는다.
 
+## 졸업작품 부스 시연
+
+`booth-demo/` 폴더만 행사 노트북으로 복사하면 된다. `START.html`을 더블클릭하면
+대표 사건이 바로 열린다. **AI의 조사 보기 → 판단 근거 열기 → 처음으로** 순서다.
+`RCA-DEMO.mp4`는 실제 화면 조작을 녹화한 한국어 자막 영상이고, `WATCH.html`은
+무음 반복 재생용이다. 모두 인터넷·API 키·클러스터 연결 없이 동작한다.
+파일 설명과 40초 시연 멘트는 [booth-demo/README.txt](booth-demo/README.txt)에 있다.
+
+로컬 HTTP를 선호하면 저장소의 `rca/`에서 다음을 실행한다.
+
+```bash
+python3 -m http.server 8765 --bind 127.0.0.1 --directory booth-demo
+# http://127.0.0.1:8765/viewer/index.html?demo=1
+```
+
+기존 재생 뷰어 template과 내장 데이터 형식을 재사용한다. 시연 배포본은
+`analysis-v3/viewer/index.html`의 동일 사건·반복 0인 eBPF 포함/제외 두 실행을 담는다.
+기존 연구 자료와 126개 실행은 수정하지 않는다. 제작 명령은
+`python3 scripts/build_booth.py --output artifacts/booth-fresh`이며, 이미 있는 출력
+디렉터리는 덮어쓰지 않는다. 이 명령은 HTML 재생본을 생성한다. 영상 녹화는
+Playwright가 설치된 제작 환경에서 `scripts/record_booth.cjs`를 사용하며,
+배포된 영상은 `booth-demo/video-manifest.json`에 제작 명령과 검증 결과를 남긴다.
+
 ## 적응형 개발 버전: adaptive-v1
 
 `rca-adaptive-20261029` 브랜치의 새 코어는 `rca/investigation.py`다. 기존 v4 압축과
