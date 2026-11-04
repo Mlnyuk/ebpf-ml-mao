@@ -17,5 +17,6 @@
   "macos": "NOT_TESTED",
   "quality_evaluation": "NOT_PERFORMED",
   "agent_activation": false,
-  "automatic_restart_registered": false
+  "automatic_restart_registered": false,
+  "text_exports": "Trailing screen-padding spaces removed from readable .txt exports. Original PTY bytes remain unchanged in session.ansi and original local artifacts."
 }
