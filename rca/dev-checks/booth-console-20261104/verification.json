@@ -1,0 +1,33 @@
+{
+  "change": "booth-console-20261104",
+  "python_tests": {
+    "command": "python3 -m unittest tests.test_booth",
+    "tests_run": 8,
+    "result": "PASS"
+  },
+  "browser_results": [
+    "browser-final/result.json",
+    "console-final/result.json",
+    "video-final/result.json"
+  ],
+  "development_layout_failures_preserved": [
+    "layout-v1/result.json",
+    "layout-v2/result.json",
+    "comparison-clipping-before/result.json"
+  ],
+  "later_layout_pass": "layout-v3/result.json",
+  "paid_api_calls": 0,
+  "cluster_access": false,
+  "mp4_decode": {
+    "command": "ffmpeg -nostdin -v error -i booth-console/RCA-CONSOLE.mp4 -f null -",
+    "exit_code": 0
+  },
+  "browser_video_format_tested": "WebM, offline playback and actual loop",
+  "limitations": [
+    "The exhibition laptop itself was not available for testing.",
+    "MP4 was decoded with ffmpeg; bundled Chromium playback used WebM.",
+    "This UI change does not evaluate diagnosis quality."
+  ],
+  "final_comparison_content_visibility": "console-final/result.json: scrollHeight equals clientHeight; no comparison text or original-answer links clipped",
+  "viewer_sha256": "43d49589adb826cc4663c3a7d186096d9217138fd74a2815119ef21e6902ce3c"
+}

@@ -1,0 +1,9 @@
+{
+  "requests": [],
+  "errors": [],
+  "checks": [
+    "actual log filtering, original line, histogram counts, slash shortcut and reset PASS"
+  ],
+  "result": "FAIL",
+  "error": "AssertionError [ERR_ASSERTION]: all six recorded queries must fit without hidden rows"
+}

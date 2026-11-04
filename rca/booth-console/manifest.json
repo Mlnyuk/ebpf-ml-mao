@@ -1,0 +1,17 @@
+{
+  "source_viewer": "index.html",
+  "source_viewer_sha256": "5552b411cace2d3f22f9fac7a79cf7b61489583c0dc8c62c81d8e66338c3e715",
+  "case_id": "9e4945e7170b4a58",
+  "primary_run_id": "efc0b3de7271822b1552",
+  "baseline_run_id": "6c938d099e296bd28fa6",
+  "claim_index": 2,
+  "log_evidence_id": "ev-56e93b3b171d6a27a4a8",
+  "log_line_index": 1,
+  "selection_reason": "목적지가 없는 실패 로그와 선언 포트와 다른 연결 시도가 있는 실제 사례. 같은 사건·선택 조회·반복 번호의 eBPF 포함/제외 실행을 비교합니다.",
+  "scope": "선정한 저장 사례의 설명용 재생. 전체 정확도나 eBPF 효과의 통계적 입증이 아님.",
+  "mode": "offline stored-record replay",
+  "external_requests": false,
+  "kernel_raw_export_included": false,
+  "evidence": "Exact evidence objects supplied to the saved AI runs, including eBPF summary; not raw kernel events.",
+  "viewer_sha256": "43d49589adb826cc4663c3a7d186096d9217138fd74a2815119ef21e6902ce3c"
+}

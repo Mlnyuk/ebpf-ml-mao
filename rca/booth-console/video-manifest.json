@@ -1,0 +1,81 @@
+{
+  "mode": "actual offline screen recording of stored RCA evidence",
+  "viewer_sha256": "43d49589adb826cc4663c3a7d186096d9217138fd74a2815119ef21e6902ce3c",
+  "subtitle_overlay": false,
+  "audio": false,
+  "recording": {
+    "events": [
+      {
+        "seconds": 5.705,
+        "selector": "#log-search"
+      },
+      {
+        "seconds": 10.767,
+        "selector": "#demo-investigate"
+      },
+      {
+        "seconds": 21.714,
+        "selector": ".citation:first-child"
+      },
+      {
+        "seconds": 28.784,
+        "selector": "#inspector-close"
+      },
+      {
+        "seconds": 29.761,
+        "selector": "#demo-evidence"
+      },
+      {
+        "seconds": 41.769,
+        "selector": "#demo-reset"
+      }
+    ],
+    "requests": [],
+    "errors": [],
+    "mode": "actual offline UI interactions; stored RCA records",
+    "subtitle_overlay": false,
+    "audio": false,
+    "cursor": "visualizes real recorded mouse coordinates",
+    "paidCalls": 0
+  },
+  "media": {
+    "RCA-CONSOLE.webm": {
+      "sha256": "ee61545d2ae86c8542ffdfc23ead329410cca38ff60f7a2b7699071850abb04e",
+      "bytes": 3279628,
+      "probe": {
+        "programs": [],
+        "streams": [
+          {
+            "codec_name": "vp8",
+            "width": 1600,
+            "height": 900
+          }
+        ],
+        "format": {
+          "duration": "44.080000",
+          "size": "3279628"
+        }
+      }
+    },
+    "RCA-CONSOLE.mp4": {
+      "sha256": "8f885205d89c21e26f9a46d4d12528e3b1f2c9e11b1a77d0e456cb44edf1f6ab",
+      "bytes": 3115765,
+      "probe": {
+        "programs": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "width": 1600,
+            "height": 900
+          }
+        ],
+        "format": {
+          "duration": "44.080000",
+          "size": "3115765"
+        }
+      }
+    }
+  },
+  "mp4_encoding": "ffmpeg -nostdin -v error -n -i artifacts/booth-console-recording-v2/screen.webm -c:v libx264 -threads 2 -preset medium -crf 18 -pix_fmt yuv420p -r 25 -an -movflags +faststart artifacts/booth-console-recording-v2/RCA-CONSOLE.mp4",
+  "browser_validation": "dev-checks/booth-console-20261104/video-final/result.json"
+}

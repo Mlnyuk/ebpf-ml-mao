@@ -1,0 +1,17 @@
+{
+  "requests": [],
+  "errors": [],
+  "checks": [
+    "actual log filtering, original line, histogram counts, slash shortcut and reset PASS",
+    "six-query timeline, keyboard navigation, citation inspector exact data and focus, comparison visible PASS"
+  ],
+  "timeline_size": {
+    "scroll": 197,
+    "client": 197
+  },
+  "comparison_size": {
+    "scroll": 273,
+    "client": 273
+  },
+  "result": "PASS"
+}

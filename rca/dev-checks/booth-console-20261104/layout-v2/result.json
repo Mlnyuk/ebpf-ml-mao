@@ -1,0 +1,13 @@
+{
+  "requests": [],
+  "errors": [],
+  "checks": [
+    "actual log filtering, original line, histogram counts, slash shortcut and reset PASS"
+  ],
+  "timeline_size": {
+    "scroll": 166,
+    "client": 159
+  },
+  "result": "FAIL",
+  "error": "AssertionError [ERR_ASSERTION]: all six recorded queries must fit without hidden rows"
+}

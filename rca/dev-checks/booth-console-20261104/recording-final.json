@@ -1,0 +1,35 @@
+{
+  "events": [
+    {
+      "seconds": 5.705,
+      "selector": "#log-search"
+    },
+    {
+      "seconds": 10.767,
+      "selector": "#demo-investigate"
+    },
+    {
+      "seconds": 21.714,
+      "selector": ".citation:first-child"
+    },
+    {
+      "seconds": 28.784,
+      "selector": "#inspector-close"
+    },
+    {
+      "seconds": 29.761,
+      "selector": "#demo-evidence"
+    },
+    {
+      "seconds": 41.769,
+      "selector": "#demo-reset"
+    }
+  ],
+  "requests": [],
+  "errors": [],
+  "mode": "actual offline UI interactions; stored RCA records",
+  "subtitle_overlay": false,
+  "audio": false,
+  "cursor": "visualizes real recorded mouse coordinates",
+  "paidCalls": 0
+}

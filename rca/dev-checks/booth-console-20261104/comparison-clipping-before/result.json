@@ -1,0 +1,17 @@
+{
+  "requests": [],
+  "errors": [],
+  "checks": [
+    "actual log filtering, original line, histogram counts, slash shortcut and reset PASS"
+  ],
+  "timeline_size": {
+    "scroll": 197,
+    "client": 197
+  },
+  "comparison_size": {
+    "scroll": 295,
+    "client": 220
+  },
+  "result": "FAIL",
+  "error": "AssertionError [ERR_ASSERTION]: comparison text, both original-answer links and scope note must not be clipped"
+}

@@ -1,0 +1,17 @@
+{
+  "networkRequests": [],
+  "pageErrors": [],
+  "tests": [
+    "offline local video playback and actual loop PASS",
+    "1366x768 two-click flow, visible comparison, keyboard and reset PASS"
+  ],
+  "video": {
+    "duration": 44.08,
+    "width": 1600,
+    "height": 900,
+    "loop": true,
+    "muted": true,
+    "source": "file:///root/rca-booth-dev/rca/booth-console/RCA-CONSOLE.webm"
+  },
+  "result": "PASS"
+}
