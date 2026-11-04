@@ -1,0 +1,182 @@
+{
+  "mode": "actual read-only cluster check",
+  "observations": {
+    "logs": {
+      "availability": "observed_zero",
+      "items": 0,
+      "scope": "최근 5분 / 최대 40줄·16000 bytes. 전체 요청 수가 아님."
+    },
+    "events": {
+      "availability": "observed_zero",
+      "items": 0,
+      "scope": "같은 Pod UID의 보존된 이벤트. 과거 시각은 현재 장애 원인이 아님."
+    },
+    "ebpf": {
+      "availability": "observed_zero",
+      "items": 0,
+      "scope": "최근 5분의 완료된 10초 집계. 연결 시도 목적지·포트·횟수만 관측. 성공·실패·지연은 미측정."
+    }
+  },
+  "new_api_calls": 0,
+  "system": [
+    {
+      "name": "rca-agent",
+      "kind": "Deployment",
+      "desired": 0,
+      "ready": 0
+    },
+    {
+      "name": "rca-ebpf-summary",
+      "kind": "DaemonSet",
+      "desired": 2,
+      "ready": 2
+    }
+  ],
+  "result": "PASS",
+  "commands": [
+    [
+      "kubectl",
+      "--request-timeout=6s",
+      "get",
+      "nodes",
+      "-o",
+      "json"
+    ],
+    [
+      "kubectl",
+      "--request-timeout=6s",
+      "get",
+      "deployment/rca-agent",
+      "daemonset/rca-ebpf-summary",
+      "-n",
+      "rca-system",
+      "-o",
+      "json"
+    ],
+    [
+      "kubectl",
+      "--request-timeout=6s",
+      "get",
+      "pods",
+      "-n",
+      "rca-lab",
+      "-o",
+      "json"
+    ],
+    [
+      "kubectl",
+      "--request-timeout=6s",
+      "get",
+      "pods",
+      "-n",
+      "rca-system",
+      "-o",
+      "json"
+    ],
+    [
+      "kubectl",
+      "--request-timeout=6s",
+      "get",
+      "pod",
+      "sample-service-67b68c9dbb-bj75b",
+      "-n",
+      "rca-lab",
+      "-o",
+      "json"
+    ],
+    [
+      "kubectl",
+      "--request-timeout=6s",
+      "logs",
+      "sample-service-67b68c9dbb-bj75b",
+      "-n",
+      "rca-lab",
+      "-c",
+      "app",
+      "--tail=40",
+      "--since=5m",
+      "--limit-bytes=16000",
+      "--timestamps=true"
+    ],
+    [
+      "kubectl",
+      "--request-timeout=6s",
+      "get",
+      "pod",
+      "sample-service-67b68c9dbb-bj75b",
+      "-n",
+      "rca-lab",
+      "-o",
+      "json"
+    ],
+    [
+      "kubectl",
+      "--request-timeout=6s",
+      "get",
+      "pod",
+      "sample-service-67b68c9dbb-bj75b",
+      "-n",
+      "rca-lab",
+      "-o",
+      "json"
+    ],
+    [
+      "kubectl",
+      "--request-timeout=6s",
+      "get",
+      "events",
+      "-n",
+      "rca-lab",
+      "--field-selector",
+      "involvedObject.uid=bdadba9e-e74b-4d3d-82c3-332becd8a469",
+      "-o",
+      "json"
+    ],
+    [
+      "kubectl",
+      "--request-timeout=6s",
+      "get",
+      "pod",
+      "sample-service-67b68c9dbb-bj75b",
+      "-n",
+      "rca-lab",
+      "-o",
+      "json"
+    ],
+    [
+      "kubectl",
+      "--request-timeout=6s",
+      "get",
+      "pod",
+      "sample-service-67b68c9dbb-bj75b",
+      "-n",
+      "rca-lab",
+      "-o",
+      "json"
+    ],
+    [
+      "kubectl",
+      "--request-timeout=6s",
+      "exec",
+      "-n",
+      "rca-system",
+      "rca-ebpf-summary-8tlvq",
+      "-c",
+      "summary",
+      "--",
+      "cat",
+      "/state/latest.json"
+    ],
+    [
+      "kubectl",
+      "--request-timeout=6s",
+      "get",
+      "pod",
+      "sample-service-67b68c9dbb-bj75b",
+      "-n",
+      "rca-lab",
+      "-o",
+      "json"
+    ]
+  ]
+}

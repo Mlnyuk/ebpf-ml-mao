@@ -1,0 +1,8 @@
+{
+  "mode": "offline archive UI",
+  "checks": [
+    "multi-case selection, run switching, original answer, search/reset and terminal restoration PASS"
+  ],
+  "result": "PASS",
+  "new_paid_api_calls": 0
+}

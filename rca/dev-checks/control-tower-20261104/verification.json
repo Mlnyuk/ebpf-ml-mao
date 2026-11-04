@@ -1,0 +1,21 @@
+{
+  "version": "control-tower-20261104",
+  "python_tests": 18,
+  "python_result": "PASS",
+  "live_terminal": "live-terminal/result.json",
+  "offline_terminal": "offline-terminal/result.json",
+  "live_observations": "live-reads/result.json",
+  "paid_llm_calls": 0,
+  "cluster_mutations": 0,
+  "notes": [
+    "Kubernetes API reads were performed; zero API calls in the older check field means zero LLM calls.",
+    "Live logs, events and eBPF returned observed_zero in the captured intervals, not proof of normality.",
+    "Positive eBPF aggregation, collection failure, expiry and identity-change regressions use synthetic fixtures.",
+    "Archive contains dependent variants and repeated LLM executions; counts are not independent incidents."
+  ],
+  "windows": "NOT_TESTED",
+  "macos": "NOT_TESTED",
+  "quality_evaluation": "NOT_PERFORMED",
+  "agent_activation": false,
+  "automatic_restart_registered": false
+}

@@ -1,0 +1,9 @@
+{
+  "mode": "actual cluster UI",
+  "checks": [
+    "actual inventory, Pod selection, live logs, raw toggle and eBPF inspection PASS",
+    "multi-case selection, run switching, original answer, search/reset and terminal restoration PASS"
+  ],
+  "result": "PASS",
+  "new_paid_api_calls": 0
+}

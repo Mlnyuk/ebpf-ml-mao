@@ -4,7 +4,28 @@
 이 디렉터리는 상위 저장소의 ML 이상탐지 구현과 독립적이다. 모델 학습,
 이상치 분류, 로컬 LLM, GPU, 장애별 RCA 규칙을 사용하지 않는다.
 
-## 터미널에서 직접 시연
+## 현재 터미널 관제: Control Tower
+
+`control-tower/`는 현재 노드·RCA Pod·Agent·요약기 상태를 보고 선택한 Pod의
+로그·이벤트·eBPF 연결 시도를 읽는 운영 콘솔이다. 기본은 실제 `kubectl` 연결이며,
+프로그램이 열린 동안만 15초마다 상태를 갱신한다. 자료 조회는 키를 누를 때 수행한다.
+
+```bash
+python3 control-tower/tower.py
+python3 control-tower/tower.py --offline  # 연결 없이 사건 보관함만 사용
+```
+
+`1` 클러스터, `2` 사건 보관함, `↑↓` 대상 선택, `l` 로그, `v` 이벤트, `e` eBPF,
+`Enter` 상세, `o` 라이브 기술 상세, `r` 갱신, `q` 종료다.
+수집 범위는 `rca-lab`·`rca-system`이며 노드 목록은 클러스터 전체를 읽는다.
+새 AI 조사·Pod 변경·Agent 활성화 기능은 없다. 기존 운영 Agent는 중지 상태를 유지한다.
+라이브 조회와 과거 사건을 자동으로 연결하지 않으며, 자료 없음·수집 실패·기간 만료를 구분한다.
+
+보관함에는 두 실험의 53개 사건 구성과 214개 실행(실패 4건 포함)을 그대로 담았다.
+독립 장애 53회라는 의미가 아니다. Python 3.9 이상과 기존 kubectl 설정을 사용하며,
+오프라인 모드에는 kubectl이 필요 없다. [키와 실행 범위](control-tower/README.txt)를 참고한다.
+
+## 이전 단일 사건 CLI 시연
 
 `rca-cli-demo/`는 Python 표준 라이브러리만 사용하는 오프라인 터미널 프로그램이다.
 대표 사건이 바로 열리며 `Enter → Enter → e → Esc → Enter → r` 순서로

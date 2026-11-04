@@ -1,0 +1,23 @@
+test_ebpf_time_container_zero_failure_and_expiry (tests.test_control_tower.SourceTests.test_ebpf_time_container_zero_failure_and_expiry) ... ok
+test_events_use_uid_and_fixed_snapshot_command (tests.test_control_tower.SourceTests.test_events_use_uid_and_fixed_snapshot_command) ... ok
+test_log_read_is_bounded_identity_checked_and_redacted (tests.test_control_tower.SourceTests.test_log_read_is_bounded_identity_checked_and_redacted) ... ok
+test_partial_refresh_does_not_report_missing_source_healthy (tests.test_control_tower.SourceTests.test_partial_refresh_does_not_report_missing_source_healthy) ... ok
+test_target_restart_during_read_rejects_result (tests.test_control_tower.SourceTests.test_target_restart_during_read_rejects_result) ... ok
+test_uid_and_scope_access_controls (tests.test_control_tower.SourceTests.test_uid_and_scope_access_controls) ... ok
+test_all_runs_failures_preserved_no_truth (tests.test_control_tower.TowerTests.test_all_runs_failures_preserved_no_truth) ... ok
+test_inflight_result_does_not_follow_changed_selection (tests.test_control_tower.TowerTests.test_inflight_result_does_not_follow_changed_selection) ... ok
+test_offline_navigation_multiple_cases_runs_and_evidence (tests.test_control_tower.TowerTests.test_offline_navigation_multiple_cases_runs_and_evidence) ... ok
+test_refresh_replacement_invalidates_old_target_and_zero_is_explicit (tests.test_control_tower.TowerTests.test_refresh_replacement_invalidates_old_target_and_zero_is_explicit) ... ok
+test_screen_bounds_and_untrusted_terminal_data (tests.test_control_tower.TowerTests.test_screen_bounds_and_untrusted_terminal_data) ... ok
+test_actual_log_counts_and_values_are_data_driven (tests.test_terminal.TerminalTests.test_actual_log_counts_and_values_are_data_driven) ... ok
+test_all_pages_fit_recommended_size_and_scroll_on_small_terminal (tests.test_terminal.TerminalTests.test_all_pages_fit_recommended_size_and_scroll_on_small_terminal) ... ok
+test_exhibition_sequence_citations_and_reset_no_network (tests.test_terminal.TerminalTests.test_exhibition_sequence_citations_and_reset_no_network) ... ok
+test_missing_comparison_and_missing_citation_are_explicit (tests.test_terminal.TerminalTests.test_missing_comparison_and_missing_citation_are_explicit) ... ok
+test_raw_scroll_navigation_and_quit (tests.test_terminal.TerminalTests.test_raw_scroll_navigation_and_quit) ... ok
+test_standalone_bundle_keeps_exact_runs_and_source (tests.test_terminal.TerminalTests.test_standalone_bundle_keeps_exact_runs_and_source) ... ok
+test_terminal_escape_and_instruction_text_stays_data (tests.test_terminal.TerminalTests.test_terminal_escape_and_instruction_text_stays_data) ... ok
+
+----------------------------------------------------------------------
+Ran 18 tests in 2.705s
+
+OK

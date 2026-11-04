@@ -1,0 +1,34 @@
+ RCA CONTROL TOWER   LIVE / 읽기 전용   AI 신규 호출 OFF
+ Node Ready 5/8   RCA Pod Ready 4/4   조회 2026-11-04T07:49:15+00:00
+ [1] 클러스터    [2] 사건 보관함    / 검색: 
+───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+LIVE logs / sample-service-67b68c9dbb-bj75b / app
+{
+  "mode": "live",
+  "read_at": "2026-11-04T07:49:16+00:00",
+  "pod_uid": "bdadba9e-e74b-4d3d-82c3-332becd8a469",
+  "container_id": "containerd://b2d98e2a61e5eb0b00396afaac60ca7f4194c2938e885fca4828910c5e0be58b",
+  "container": "app",
+  "availability": "observed_zero",
+  "lines": [],
+  "scope": "최근 5분 / 최대 40줄·16000 bytes. 전체 요청 수가 아님."
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+ 
+ Esc 닫기  ↑↓/j k 스크롤  PgUp/PgDn  o 기술 상세  q 종료
+ 현재 Ready/NotReady는 Kubernetes 상태입니다. 장애 원인 판단은 아닙니다.
