@@ -1,0 +1,1 @@
+{"exit_code": 0, "command": "python3 -m unittest -v tests.test_terminal tests.test_booth"}

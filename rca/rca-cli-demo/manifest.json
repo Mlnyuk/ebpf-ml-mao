@@ -1,0 +1,15 @@
+{
+  "mode": "offline stored-record replay",
+  "source_viewer_sha256": "5552b411cace2d3f22f9fac7a79cf7b61489583c0dc8c62c81d8e66338c3e715",
+  "case_id": "9e4945e7170b4a58",
+  "primary_run_id": "efc0b3de7271822b1552",
+  "baseline_run_id": "6c938d099e296bd28fa6",
+  "files": {
+    "README.txt": "70f80eb67f16e931556e843a3b6f8bc6571485d5ebc2d6aa1bd388c2f2810984",
+    "rca_demo.py": "307cef61e957d10e507ea8d54602767c961550937bb90a9f0b79edc5f9e071fa",
+    "records.json": "4db35e64237bbb1ddbb2e6fc828ca80482d74556cb4b8504c7462bd7f36d9485"
+  },
+  "external_requests": false,
+  "api_calls": 0,
+  "kernel_raw_export_included": false
+}

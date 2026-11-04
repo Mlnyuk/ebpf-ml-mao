@@ -1,0 +1,27 @@
+{
+  "result": "PASS",
+  "checks": [
+    "actual Enter flow, exact citation location and highlighted port PASS",
+    "fragmented arrow, Escape, paired comparison and full reset PASS",
+    "resize to 80x24 and PageDown PASS",
+    "q exit restores cursor, screen and termios PASS",
+    "Ctrl-C / SIGINT restores termios PASS"
+  ],
+  "screens": [
+    "01-incident",
+    "02-investigation",
+    "03-judgement",
+    "04-cited-evidence",
+    "05-evidence-scroll",
+    "06-close-evidence",
+    "07-cited-setting",
+    "08-comparison",
+    "09-reset",
+    "10-resize",
+    "11-small-scroll",
+    "12-before-interrupt"
+  ],
+  "platform": "Linux PTY",
+  "windows": "NOT_TESTED",
+  "macos": "NOT_TESTED"
+}

@@ -1,0 +1,25 @@
+{
+  "version": "booth-cli-20261104",
+  "python_tests": 15,
+  "python_result": "PASS",
+  "terminal_result": "terminal/result.json",
+  "execution": "Linux pseudo terminal, actual standalone program",
+  "network_guard": "socket.socket disabled during bundle and exhibit unit tests; no API/client/kubectl execution path",
+  "api_calls": 0,
+  "cluster_changes": false,
+  "windows": "NOT_TESTED",
+  "macos": "NOT_TESTED",
+  "regressions_fixed": [
+    {
+      "test": "test_all_pages_fit_recommended_size_and_scroll_on_small_terminal",
+      "observed_initial_result": "FAIL: narrow-terminal hint exceeded available columns",
+      "fix": "Width-limit the resize hint; final 42x12 assertion passes."
+    }
+  ],
+  "harness_fixes": [
+    "PTY v1 inherited NO_COLOR; color verification now explicitly enables ANSI.",
+    "PTY v2 attempted scrolling down from the last page; split-sequence test now scrolls up."
+  ],
+  "research_data_changed": false,
+  "diagnosis_quality": "NOT_EVALUATED: stored-record UI only"
+}

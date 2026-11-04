@@ -1,0 +1,20 @@
+test_actual_log_counts_and_values_are_data_driven (tests.test_terminal.TerminalTests.test_actual_log_counts_and_values_are_data_driven) ... ok
+test_all_pages_fit_recommended_size_and_scroll_on_small_terminal (tests.test_terminal.TerminalTests.test_all_pages_fit_recommended_size_and_scroll_on_small_terminal) ... ok
+test_exhibition_sequence_citations_and_reset_no_network (tests.test_terminal.TerminalTests.test_exhibition_sequence_citations_and_reset_no_network) ... ok
+test_missing_comparison_and_missing_citation_are_explicit (tests.test_terminal.TerminalTests.test_missing_comparison_and_missing_citation_are_explicit) ... ok
+test_raw_scroll_navigation_and_quit (tests.test_terminal.TerminalTests.test_raw_scroll_navigation_and_quit) ... ok
+test_standalone_bundle_keeps_exact_runs_and_source (tests.test_terminal.TerminalTests.test_standalone_bundle_keeps_exact_runs_and_source) ... ok
+test_terminal_escape_and_instruction_text_stays_data (tests.test_terminal.TerminalTests.test_terminal_escape_and_instruction_text_stays_data) ... ok
+test_actual_selection_order_matches_saved_retrievals (tests.test_booth.BoothTests.test_actual_selection_order_matches_saved_retrievals) ... ok
+test_log_html_is_data_not_executable_markup (tests.test_booth.BoothTests.test_log_html_is_data_not_executable_markup) ... ok
+test_missing_log_does_not_get_example_data (tests.test_booth.BoothTests.test_missing_log_does_not_get_example_data) ... ok
+test_missing_pair_is_explicit_fallback (tests.test_booth.BoothTests.test_missing_pair_is_explicit_fallback) ... ok
+test_pair_preserves_actual_runs_and_source (tests.test_booth.BoothTests.test_pair_preserves_actual_runs_and_source) ... ok
+test_portable_build_is_network_free_and_does_not_overwrite (tests.test_booth.BoothTests.test_portable_build_is_network_free_and_does_not_overwrite) ... ok
+test_selected_claim_cites_actual_declaration_and_attempts (tests.test_booth.BoothTests.test_selected_claim_cites_actual_declaration_and_attempts) ... ok
+test_wrong_case_pair_rejected (tests.test_booth.BoothTests.test_wrong_case_pair_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 15 tests in 1.880s
+
+OK

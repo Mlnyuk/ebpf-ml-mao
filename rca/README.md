@@ -4,7 +4,23 @@
 이 디렉터리는 상위 저장소의 ML 이상탐지 구현과 독립적이다. 모델 학습,
 이상치 분류, 로컬 LLM, GPU, 장애별 RCA 규칙을 사용하지 않는다.
 
-## 현재 부스 시연: RCA Console
+## 터미널에서 직접 시연
+
+`rca-cli-demo/`는 Python 표준 라이브러리만 사용하는 오프라인 터미널 프로그램이다.
+대표 사건이 바로 열리며 `Enter → Enter → e → Esc → Enter → r` 순서로
+조사·판단·인용 원문·포함/제외 비교·초기화를 보여줄 수 있다.
+
+```bash
+python3 rca-cli-demo/rca_demo.py
+# Windows Terminal: py -3 rca-cli-demo/rca_demo.py
+```
+
+인터넷·API 키·추가 패키지는 필요 없다. Python 3.9 이상과 한글을 표시하는 터미널을 사용한다.
+Linux 터미널에서 입력·스크롤·크기 변경·종료 복원을 검증했다. Windows/macOS 실기 검증은 하지 않았다.
+원본 로그와 AI 답변은 `records.json`에 보존되며 실행 중 새 조회나 LLM 호출을 하지 않는다.
+키 설명과 40초 시연 멘트는 [rca-cli-demo/README.txt](rca-cli-demo/README.txt)에 있다.
+
+## 웹 화면 부스 시연: RCA Console
 
 `booth-console/`을 행사 노트북으로 복사한다. `START.html`은 사건·로그·연결 시도·
 AI 판단을 한 화면에서 확인하는 어두운 관제 콘솔이다. 로그 검색, 인용 원문 패널,

@@ -1,0 +1,32 @@
+ RCA / TERMINAL CONSOLE    저장 기록 재생    OFFLINE · 새 API 호출 0
+ rca-lab / worker-1 / app    2026-10-29T02:48:07 UTC
+ eBPF 연결 시도 · AI 인용 원문
+ records.json / runs/0/evidence/5
+  19      1793242054.7156796,
+  20      1793242087.510056
+  21    ],
+  22    "network": {
+  23      "tcp_connect_attempts": [
+  24        {
+  25          "destination_ip": "10.233.61.222",
+  26          "destination_port": 9099,
+  27          "attempts": 40
+  28        }
+  29      ],
+  30      "semantics": "connection attempts only; NOT success/failure",
+  31      "not_measured": [
+  32        "connect_result",
+  33        "connection_latency",
+  34        "tcp_retransmissions"
+  35      ]
+  36    },
+  37    "provenance_sha256": "fa15d6a5b1935f025283901e053b7d2ddac078ef707f51ea37b984b690dc96c2",
+  38    "limitations": [
+  39      "Zero means zero matching valid events in the captured export, NOT zero kernel activity.",
+  40      "Export/kernel loss and upstream duplicate delivery are not quantified.",
+  41      "Raw read completeness and parse exclusions are recorded in the private audit."
+  42    ],
+  43    "evidence_id": "ev-a95c551872117dfc1836"
+────────────────────────────────────────────────────────────────────────────────────────────────── 19–43/44행
+ Esc 돌아가기   ↑↓/j k 스크롤   PgUp/PgDn   r 처음으로   q 종료
+ 원본은 records.json에 보존됩니다.

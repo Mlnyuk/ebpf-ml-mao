@@ -1,0 +1,32 @@
+ RCA / TERMINAL CONSOLE    저장 기록 재생    OFFLINE · 새 API 호출 0
+ rca-lab / worker-1 / app    2026-10-29T02:48:07 UTC
+ 서비스 설정 · AI 인용 원문
+ records.json / runs/0/evidence/0
+  52          }
+  53        }
+  54      ],
+  55      "declared_dependency": "{\"service\": \"rca-lab/sample-backend\", \"expected_ip\": \"10.233.61.22
+      2\", \"expected_port\": 8080}",
+  56      "container_statuses": [
+  57        {
+  58          "name": "app",
+  59          "containerID": "containerd://33a623bc9bb0f8d17cc2dc9500348f0d284334fc7797dd53d65071ca85a75238
+      ",
+  60          "restartCount": 0,
+  61          "state": {
+  62            "running": {
+  63              "startedAt": "2026-10-29T02:47:14Z"
+  64            }
+  65          },
+  66          "lastState": {},
+  67          "ready": true
+  68        }
+  69      ],
+  70      "expected_destination_source": {
+  71        "source": "Pod lab annotation + Service + EndpointSlice snapshots",
+  72        "captured_at": "2026-10-29T02:47:22.880770Z",
+  73        "address_kind": "Service VIP, not backend Pod IP",
+  74        "service_uid": "d36ab781-57d8-4255-93f7-fd930ef80224",
+────────────────────────────────────────────────────────────────────────────────────────────────── 52–76/84행
+ Esc 돌아가기   ↑↓/j k 스크롤   PgUp/PgDn   r 처음으로   q 종료
+ 원본은 records.json에 보존됩니다.
