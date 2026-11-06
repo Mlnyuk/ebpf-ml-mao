@@ -1,0 +1,139 @@
+{
+  "captured_date_utc": "2026-11-06",
+  "capture_method": "Actual Zutty terminal windows on Xvfb; Pillow ImageGrab desktop-region capture. No fabricated terminal output or edited answers.",
+  "source_revision": "772f502",
+  "source_archive": "rca/control-tower/archive.json",
+  "source_archive_sha256": "c7ece9cc2b0b1048b8dbd4a9ab9e2f9d166a168eeefc8476413b47578f18b19c",
+  "tower_source_sha256": "72499181033738489d6104f46940a533e83f55682d472e78b3b6eb724ab59a88",
+  "k9s": {
+    "version": "0.50.16",
+    "command": "k9s --readonly --splashless --logoless -n rca-lab -c pods",
+    "pod": "sample-service-67b68c9dbb-bfqb9",
+    "namespace": "rca-lab",
+    "captured_views": [
+      "pods",
+      "describe: Conditions, Node-Selectors, Events"
+    ],
+    "status": "Pending",
+    "event": "FailedScheduling",
+    "application_logs": "Not captured: the Pending container has not started.",
+    "current_incident_is_archived_tower_incident": false
+  },
+  "tower": {
+    "command": "python3 tower.py --offline",
+    "study": "analysis-v3",
+    "case_id": "9e4945e7170b4a58",
+    "run_id": "efc0b3de7271822b1552",
+    "arm": "selective-ebpf",
+    "repeat": 0,
+    "incident_time": "2026-10-29T02:48:07.510056Z",
+    "pod": "sample-service-6d54574998-wljrj",
+    "container": "app",
+    "cited_evidence_ids": {
+      "ebpf": "ev-a95c551872117dfc1836",
+      "workload_status": "ev-d746a0bf5e594fdc022b",
+      "logs": "ev-56e93b3b171d6a27a4a8"
+    },
+    "observed_destination": "10.233.61.222:9099",
+    "declared_destination": "10.233.61.222:8080",
+    "connection_attempts": 40,
+    "connection_result_measured": false,
+    "retrieval_note": "One recorded inspect selection requested six sources. Six retrieval entries do not mean six LLM calls.",
+    "model_answer_independently_validated_for_capture": false
+  },
+  "new_paid_api_calls": 0,
+  "cluster_mutations": 0,
+  "capture_processes_stopped": true,
+  "files": [
+    {
+      "file": "01-k9s-pod-state-events.png",
+      "sha256": "915b8c2d84972544337ce5c3ad323538bb0519f6654d69675e2d580191513bcd",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "capture_requested_at_utc": "2026-11-06T06:13:00.858707+00:00",
+      "desktop_bbox": [
+        0,
+        0,
+        1920,
+        1080
+      ]
+    },
+    {
+      "file": "02-tower-answer-and-evidence.png",
+      "sha256": "d7a42304e0b43bc61b5c12d7d8d3bfef91806fe1811b80986a9127c3c19e567e",
+      "pixels": [
+        2520,
+        1050
+      ],
+      "capture_requested_at_utc": "2026-11-06T06:14:15.058664+00:00",
+      "desktop_bbox": [
+        0,
+        0,
+        2520,
+        1050
+      ]
+    },
+    {
+      "file": "02a-tower-answer.png",
+      "sha256": "0de8539892caf6ffedc42c4b8aafbde395c99a2fc0ebdbe2c8a501edb9b4a955",
+      "pixels": [
+        1260,
+        1050
+      ],
+      "capture_requested_at_utc": "2026-11-06T06:14:16.143582+00:00",
+      "desktop_bbox": [
+        0,
+        0,
+        1260,
+        1050
+      ]
+    },
+    {
+      "file": "02b-tower-ebpf-evidence.png",
+      "sha256": "27888b3d02746b751d4739274e71c0c5527aaa815a3d096c8f7a19a824b56a14",
+      "pixels": [
+        1260,
+        1050
+      ],
+      "capture_requested_at_utc": "2026-11-06T06:14:16.660061+00:00",
+      "desktop_bbox": [
+        1260,
+        0,
+        2520,
+        1050
+      ]
+    },
+    {
+      "file": "03-tower-retrieval-history.png",
+      "sha256": "757e2299388ac3c79c8233dc0fa208a16161eac54d477b73c0fa0516aa83d635",
+      "pixels": [
+        1260,
+        1050
+      ],
+      "capture_requested_at_utc": "2026-11-06T06:14:15.634891+00:00",
+      "desktop_bbox": [
+        2520,
+        0,
+        3780,
+        1050
+      ]
+    },
+    {
+      "file": "04-tower-incident-overview.png",
+      "sha256": "6a086dce0f1c9ee381ad4c0e065907992eb7191131c29ddfe341680901a53571",
+      "pixels": [
+        1260,
+        1050
+      ],
+      "capture_requested_at_utc": "2026-11-06T06:14:45.948933+00:00",
+      "desktop_bbox": [
+        0,
+        0,
+        1260,
+        1050
+      ]
+    }
+  ]
+}
