@@ -55,6 +55,11 @@ analysis-v3와 paper-next-v1의 실제 53개 사건 구성, 214개 실행을 보
 현재 클러스터 자료와 과거 조사 결과를 자동으로 연결하지 않습니다.
 정답표는 포함하지 않습니다. archive.json의 기존 실행/증거/실패를 그대로 사용합니다.
 새 유료 AI 조사는 비활성화 상태이며 이 콘솔에서 활성화할 수 없습니다.
+
+판넬용 확대 보기 (항상 저장 기록 재생, API·클러스터 접속 없음):
+  python3 tower.py --panel-run efc0b3de7271822b1552 --panel-claim 2
+91열 × 17행 이상, 1600×600 캡처에서는 큰 글꼴 사용. q 종료.
+지정한 기존 주장의 문장과 인용한 설정·연결 시도 증거만 표시합니다.
 '''
 
 
@@ -73,7 +78,7 @@ def package(output):
         shutil.copyfile(ROOT/'research_v4'/src, output/dst)
     (output/'archive.json').write_text(raw, encoding='utf-8')
     (output/'README.txt').write_text(README, encoding='utf-8')
-    manifest = {'version': 'control-tower-20261104', 'source_sha256': hashes,
+    manifest = {'version': 'control-tower-panel-20261106', 'source_sha256': hashes,
                 'files': {p.name: hashlib.sha256(p.read_bytes()).hexdigest() for p in output.iterdir()},
                 'live_access': 'read-only nodes, scoped pods, logs, events and existing collector snapshot',
                 'paid_actions': False, 'mutations': False,

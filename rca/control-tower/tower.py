@@ -51,6 +51,74 @@ class Tower:
         self.modal_live = False; self.modal_technical = False
         self.seek = ''; self.notice = ''; self.running = True; self.generation = 0
         self.pending = False; self.refreshing = False
+        self.panel_claim = None
+
+    def select_panel(self, run_id, claim_index):
+        """Focus an existing archived claim for a short, read-only exhibit view."""
+        for i, entry in enumerate(self.cases):
+            for j, run in enumerate(entry['runs']):
+                if run['run_id'] == run_id:
+                    claims = (run.get('answer') or {}).get('claims', [])
+                    if not 0 <= claim_index < len(claims):
+                        raise ValueError('저장된 주장 번호를 찾을 수 없습니다.')
+                    self.selected = i; self.run_index = j; self.panel_claim = claim_index
+                    self.offline = True; self.mode = 'archive'
+                    return
+        raise ValueError('저장된 실행 ID를 찾을 수 없습니다.')
+
+    def panel_screen(self, width, height):
+        """Quote a stored claim and only its cited, retrieved destination evidence."""
+        width = max(0, width - 1)
+        if width < 90 or height < 17:
+            return [Row('판넬 보기: 91열 × 17행 이상으로 넓혀 주세요.', 'warn')][:height]
+        run = self.selected_run(); entry = self.selected_entry()
+        claim = run['answer']['claims'][self.panel_claim]
+        evidence = {e['evidence_id']: e for e in run['evidence']}
+        cited = [evidence[i] for i in claim['evidence_ids'] if i in evidence]
+        settings = next((e for e in cited if e['tool'] == 'get_workload_status'), None)
+        net = next((e for e in cited if e['tool'] == 'get_ebpf_summary'), None)
+        incident = entry['case']['incident']
+        out = [Row(' RCA CONTROL TOWER  |  저장 기록 재생  |  새 API 호출 없음', 'title'),
+               Row(' ' + incident['time'][:19].replace('T', ' ') + ' UTC  /  ' + incident['pod'], 'muted'),
+               Row('─' * width, 'muted'),
+               Row(' AI 주장 · 저장된 문장 인용 / ' + str(claim['kind']), 'good')]
+        out += [Row(' ' + s, 'warn') for s in wrap(claim['text'], width - 2)]
+        out.append(Row(''))
+        left = [Row('인용한 설정 자료 없음', 'warn')]
+        if settings and settings.get('availability') == 'available':
+            try:
+                declared = settings['data']['declared_dependency']
+                declared = json.loads(declared) if isinstance(declared, str) else declared
+                left = [Row(f"{declared['expected_ip']} : {declared['expected_port']}", 'warn'),
+                        '출처: 선언된 의존성 · Service 주소 매핑', settings['evidence_id']]
+            except (KeyError, ValueError, TypeError):
+                left = [Row('설정상 목적지 해석 불가 · 원문 확인 필요', 'warn')]
+        elif settings:
+            left = [Row('설정 자료: ' + str(settings.get('availability', '미확인')), 'warn')]
+        right = [Row('인용한 연결 시도 자료 없음', 'warn')]
+        if net and net.get('availability') == 'available':
+            attempts = net.get('network', {}).get('tcp_connect_attempts', [])
+            right = [Row(f"{a['destination_ip']} : {a['destination_port']}  /  {a['attempts']}회", 'warn')
+                     for a in attempts]
+            if not attempts:
+                right = [Row('관측된 연결 시도 0건 · 정상 판정 아님', 'warn')]
+            right += ['출처: Tetragon 연결 시도 요약', net['evidence_id']]
+        elif net:
+            right = [Row('연결 시도 자료: ' + str(net.get('availability', '미확인')), 'warn')]
+        half = (width - 2) // 2
+        out += columns(panel('설정상 목적지 / 인용 증거', left, half),
+                       panel('관측된 연결 시도 / 인용 증거', right, width - half - 2), width)
+        names = {'get_workload_status': '설정', 'get_k8s_events': '이벤트', 'get_logs': '로그',
+                 'metrics_cpu': 'CPU', 'metrics_memory': '메모리', 'get_ebpf_summary': 'eBPF'}
+        order = ' → '.join(names.get(r['source'], r['source']) for r in run['retrievals'] if r.get('executed'))
+        out += [Row(''), *[Row(' 조회 기록: ' + s, 'good') for s in wrap(order, width - 13)]]
+        for line in (' 연결 성공·실패, 지연, 재전송: 미측정. 저장된 AI 주장은 독립 검증 결과가 아닙니다.',
+                     ' [q] 종료  ·  원문은 일반 보기의 Enter / e / s / t에서 확인'):
+            out += [Row(s, 'muted') for s in wrap(line, width)]
+        if len(out) > height:
+            return [Row('자료를 생략하지 않도록 터미널 높이를 늘려 주세요.', 'warn'),
+                    Row(f'필요 {len(out)}행 / 현재 {height}행', 'muted')]
+        return [Row(clip(safe(r.text), width), r.tone) for r in out]
 
     def entries(self):
         items = self.cases if self.mode == 'archive' else self.inventory['pods']
@@ -97,6 +165,10 @@ class Tower:
                  '"destination_port"' if key == 'e' else '"declared_dependency"' if key == 's' else '')
 
     def key(self, key, page=12):
+        if self.panel_claim is not None:
+            if key in ('q', '\x03'):
+                self.running = False
+            return
         if self.searching:
             if key in ('ESC', '\r', '\n'):
                 self.searching = False
@@ -251,6 +323,8 @@ class Tower:
         return rows
 
     def screen(self, width, height):
+        if self.panel_claim is not None:
+            return self.panel_screen(width, height)
         width = max(0, width - 1)
         if width < 89 or height < 26:
             return [Row(clip(s, width), 'warn') for s in ['RCA CONTROL TOWER', '90열 × 26행 이상으로 넓혀 주세요.',
@@ -351,6 +425,8 @@ class Session:
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--offline', action='store_true', help='클러스터에 연결하지 않고 사건 보관함만 열기')
+    parser.add_argument('--panel-run', help='지정 실행의 판넬용 확대 보기 (항상 오프라인)')
+    parser.add_argument('--panel-claim', type=int, default=0, help='확대할 저장 주장 번호 (0부터)')
     parser.add_argument('--archive', type=Path, default=Path(__file__).with_name('archive.json'))
     parser.add_argument('--context', help='현재 context 대신 사용할 kubectl context')
     parser.add_argument('--interval', type=int, default=15, help='실행 중 상태 갱신 간격, 최소 5초')
@@ -361,8 +437,13 @@ def main(argv=None):
         archive = json.loads(args.archive.read_text(encoding='utf-8'))
     except (OSError, ValueError):
         print('사건 보관함을 열 수 없습니다. archive.json을 확인하세요.', file=sys.stderr); return 2
-    tower = Tower(archive, args.offline)
-    source = None if args.offline else KubeSource(context=args.context)
+    tower = Tower(archive, args.offline or bool(args.panel_run))
+    if args.panel_run:
+        try:
+            tower.select_panel(args.panel_run, args.panel_claim)
+        except ValueError as e:
+            print(str(e), file=sys.stderr); return 2
+    source = None if tower.offline else KubeSource(context=args.context)
     if args.snapshot:
         if source:
             tower.set_inventory(source.refresh())

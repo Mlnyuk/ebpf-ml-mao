@@ -1,5 +1,5 @@
 {
-  "version": "control-tower-20261104",
+  "version": "control-tower-panel-20261106",
   "source_sha256": {
     "analysis-v3": "5552b411cace2d3f22f9fac7a79cf7b61489583c0dc8c62c81d8e66338c3e715",
     "paper-next-v1": "891ab75c63f5e0700ace59c87908ecc03c97eab658792b64758cea451df0eb40"
@@ -8,8 +8,8 @@
     "terminal.py": "307cef61e957d10e507ea8d54602767c961550937bb90a9f0b79edc5f9e071fa",
     "archive.json": "c7ece9cc2b0b1048b8dbd4a9ab9e2f9d166a168eeefc8476413b47578f18b19c",
     "tower_source.py": "af1c3bff3b97bb7a7063fea3fb6292ffd3b5e0314825d096365f5d1ed34f8fc8",
-    "README.txt": "106b967bdd20467cc152a8d4327f57f7a9efe41d10f842c0b6eb3a167b62db6e",
-    "tower.py": "72499181033738489d6104f46940a533e83f55682d472e78b3b6eb724ab59a88"
+    "README.txt": "cb4acd677ed1c54ee9020acd63f02216fa088dcea45d699b788ff2d06f604911",
+    "tower.py": "ec0cd9edb4aa343e94cc859a0a2a367c55ea32182803c01a33dea78b330c2f62"
   },
   "live_access": "read-only nodes, scoped pods, logs, events and existing collector snapshot",
   "paid_actions": false,

@@ -8,8 +8,10 @@ import threading
 import time
 import unittest
 from unittest.mock import patch
+from contextlib import redirect_stdout
+import io
 
-from research_v4.control_tower import Tower, Session
+from research_v4.control_tower import Tower, Session, main
 from research_v4.terminal import frame, cells
 from research_v4.tower_source import KubeSource, ReadError, summarize, pod_record
 from scripts.build_tower import package
@@ -153,6 +155,43 @@ class TowerTests(unittest.TestCase):
             session = Session(t, None)
             session.refresh(); session.close()
             self.assertIn('오프라인', t.notice)
+
+    def test_panel_quotes_original_claim_and_cited_values_without_network(self):
+        t = Tower(self.archive, True)
+        t.select_panel('efc0b3de7271822b1552', 2)
+        run = t.selected_run()
+        original = copy.deepcopy(run)
+        rows = t.screen(113, 20)
+        text = frame(rows, False)
+        self.assertIn('9099', text); self.assertIn('8080', text)
+        self.assertIn('40회', text); self.assertIn('미측정', text)
+        for eid in run['answer']['claims'][2]['evidence_ids']:
+            self.assertIn(eid, text)
+        self.assertEqual(run, original)
+        self.assertLessEqual(len(rows), 20)
+        self.assertTrue(all(cells(row.text) < 113 for row in rows))
+        with patch('socket.socket', side_effect=AssertionError('offline network forbidden')), \
+             patch('subprocess.run', side_effect=AssertionError('offline subprocess forbidden')), \
+             patch('research_v4.control_tower.KubeSource', side_effect=AssertionError('no live source')):
+            out = io.StringIO()
+            with redirect_stdout(out):
+                self.assertEqual(main(['--archive', str(self.output/'archive.json'), '--snapshot',
+                    '--panel-run', run['run_id'], '--panel-claim', '2', '--width', '113', '--height', '20']), 0)
+            self.assertIn('저장 기록 재생', out.getvalue())
+
+    def test_panel_uses_selected_data_and_does_not_show_uncited_evidence(self):
+        t = Tower(copy.deepcopy(self.archive), True)
+        t.select_panel('efc0b3de7271822b1552', 2)
+        run = t.selected_run()
+        net = next(e for e in run['evidence'] if e['tool'] == 'get_ebpf_summary')
+        net['network']['tcp_connect_attempts'][0]['destination_port'] = 12345
+        self.assertIn('12345', frame(t.screen(113, 20), False))
+        run['answer']['claims'][2]['evidence_ids'].remove(net['evidence_id'])
+        text = frame(t.screen(113, 20), False)
+        self.assertNotIn('12345', text)
+        self.assertIn('인용한 연결 시도 자료 없음', text)
+        t.key('1'); self.assertEqual(t.mode, 'archive')
+        t.key('q'); self.assertFalse(t.running)
 
     def test_screen_bounds_and_untrusted_terminal_data(self):
         t = Tower(self.archive, True)

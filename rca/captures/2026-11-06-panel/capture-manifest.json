@@ -1,0 +1,116 @@
+{
+  "purpose": "Two poster images, aspect ratio 8:3; actual terminal captures at both resolutions.",
+  "method": "Actual Zutty windows on Xvfb, Pillow ImageGrab. No image resizing, synthetic output or rewritten model answers.",
+  "files": [
+    {
+      "file": "01-k9s-1600x600.png",
+      "pixels": [
+        1600,
+        600
+      ],
+      "sha256": "24c44ca2ce21a59f9975cf74eefdad6a3650760f56e13863d0b5787ab3a86ccf",
+      "capture_requested_at_utc": "2026-11-06T06:45:49.079502+00:00",
+      "desktop_bbox": [
+        0,
+        0,
+        1600,
+        600
+      ],
+      "capture_source_filename": "01-k9s-1600x600-final.png"
+    },
+    {
+      "file": "02-tower-1600x600.png",
+      "pixels": [
+        1600,
+        600
+      ],
+      "sha256": "84ed2bcb6d9e96756736e7abfd43b34ca2120a7bc9777b379f02da792f677479",
+      "capture_requested_at_utc": "2026-11-06T06:44:27.005223+00:00",
+      "desktop_bbox": [
+        1700,
+        0,
+        3300,
+        600
+      ],
+      "capture_source_filename": "02-tower-1600x600.png"
+    },
+    {
+      "file": "01-k9s-3200x1200.png",
+      "pixels": [
+        3200,
+        1200
+      ],
+      "sha256": "f60c735ac3c0ae2379ccd14994086920a1aa0d803e18c1841ba9d5c118447be5",
+      "capture_requested_at_utc": "2026-11-06T06:46:56.862213+00:00",
+      "desktop_bbox": [
+        0,
+        0,
+        3200,
+        1200
+      ],
+      "capture_source_filename": "preview-k9s-print.png"
+    },
+    {
+      "file": "02-tower-3200x1200.png",
+      "pixels": [
+        3200,
+        1200
+      ],
+      "sha256": "de2e6177b8887bd1224154470033d2a1d3985980cc1ebd0d2c9aa0b80f8a9574",
+      "capture_requested_at_utc": "2026-11-06T06:45:49.600506+00:00",
+      "desktop_bbox": [
+        0,
+        650,
+        3200,
+        1850
+      ],
+      "capture_source_filename": "02-tower-3200x1200.png"
+    }
+  ],
+  "k9s": {
+    "version": "0.50.16",
+    "mode": "live read-only",
+    "namespace": "rca-lab",
+    "selected_pod": "sample-service-67b68c9dbb-bfqb9",
+    "pod_ready_at_capture": "1/1",
+    "pod_status_at_capture": "Running",
+    "shown_event": "FailedScheduling",
+    "event_first_timestamp": "2026-11-05T07:12:03Z",
+    "event_last_timestamp": "2026-11-06T06:18:13Z",
+    "event_count": 280,
+    "warning_is_historical": true,
+    "logs_shown": false,
+    "font_px_by_size": {
+      "1600x600": 24,
+      "3200x1200": 48
+    }
+  },
+  "tower": {
+    "mode": "offline stored record replay",
+    "display": "--panel-run efc0b3de7271822b1552 --panel-claim 2",
+    "incident_time": "2026-10-29T02:48:07.510056Z",
+    "case_id": "9e4945e7170b4a58",
+    "run_id": "efc0b3de7271822b1552",
+    "claim_index": 2,
+    "evidence_ids": [
+      "ev-d746a0bf5e594fdc022b",
+      "ev-a95c551872117dfc1836"
+    ],
+    "source_archive": "rca/control-tower/archive.json",
+    "source_archive_sha256": "c7ece9cc2b0b1048b8dbd4a9ab9e2f9d166a168eeefc8476413b47578f18b19c",
+    "source_ui_sha256": "ec0cd9edb4aa343e94cc859a0a2a367c55ea32182803c01a33dea78b330c2f62",
+    "font_px_by_size": {
+      "1600x600": 27,
+      "3200x1200": 54
+    },
+    "retrieval_note": "The source order belongs to one recorded inspect selection requesting six sources, not six LLM calls.",
+    "semantic_validation_performed": false
+  },
+  "same_incident_between_k9s_and_tower": false,
+  "new_paid_api_calls": 0,
+  "cluster_mutations_for_capture": 0,
+  "tests": {
+    "command": "python3 -m unittest tests.test_control_tower",
+    "passed": 13
+  }
+}
