@@ -1,0 +1,113 @@
+{
+  "pair": {
+    "study": "analysis-v3",
+    "case_id": "9e4945e7170b4a58",
+    "run_id": "efc0b3de7271822b1552",
+    "incident": {
+      "namespace": "rca-lab",
+      "pod": "sample-service-6d54574998-wljrj",
+      "pod_uid": "d7dc68b5-d929-429b-b639-39519f1dfa69",
+      "container_name": "app",
+      "container_id": "containerd://33a623bc9bb0f8d17cc2dc9500348f0d284334fc7797dd53d65071ca85a75238",
+      "node": "worker-1",
+      "time": "2026-10-29T02:48:07.510056Z",
+      "window_start": "2026-10-29T02:47:34.715680Z",
+      "reference_clock": "worker-1",
+      "symptom": "HTTP service investigation"
+    },
+    "log_evidence_id": "ev-56e93b3b171d6a27a4a8",
+    "source_archive_sha256": "c7ece9cc2b0b1048b8dbd4a9ab9e2f9d166a168eeefc8476413b47578f18b19c",
+    "raw_export_sha256": "59916b0e33ac8a316fedfbdfa118e762111dc69974f0382a128edaa81fc7c7b0",
+    "shown_fields": [
+      "timestamp (date is in header)",
+      "message"
+    ],
+    "excerpt": [
+      {
+        "source_line_1based": 1,
+        "timestamp": "2026-10-29T02:47:44.460327430Z",
+        "message": "dependency request failed"
+      },
+      {
+        "source_line_1based": 2,
+        "timestamp": "2026-10-29T02:47:44.460366777Z",
+        "message": "request completed status=503"
+      },
+      {
+        "source_line_1based": 3,
+        "timestamp": "2026-10-29T02:47:45.210949895Z",
+        "message": "dependency request failed"
+      },
+      {
+        "source_line_1based": 4,
+        "timestamp": "2026-10-29T02:47:45.210990599Z",
+        "message": "request completed status=503"
+      },
+      {
+        "source_line_1based": 5,
+        "timestamp": "2026-10-29T02:47:45.995378049Z",
+        "message": "dependency request failed"
+      },
+      {
+        "source_line_1based": 6,
+        "timestamp": "2026-10-29T02:47:45.995411898Z",
+        "message": "request completed status=503"
+      }
+    ],
+    "original_line_count": 59,
+    "bounded": true,
+    "possible_truncation": true,
+    "mode": "archived evidence opened now, not a contemporaneous K9s screenshot",
+    "new_api_calls": 0,
+    "cluster_mutations": 0
+  },
+  "same_incident": true,
+  "left_view": "Real K9s :screendump launches external read-only less viewer; archived log timestamp/message excerpt, NOT the native live Pod log screen.",
+  "right_view": "Existing Tower offline claim/evidence view; copied unchanged.",
+  "logs_are_newly_captured": false,
+  "image_capture_method": "Actual Zutty/Xvfb windows captured now. No generated or altered screenshot pixels.",
+  "new_paid_api_calls": 0,
+  "cluster_mutations": 0,
+  "files": [
+    {
+      "file": "01-same-incident-logs-1600x600.png",
+      "pixels": [
+        1600,
+        600
+      ],
+      "sha256": "b1c4f70644879093b476cbe15c1f91383970b70eefe3c913344ba0324e55e4a6",
+      "copied_from": "01-same-incident-logs-1600x600.png",
+      "captured_at_utc": "2026-11-06T07:05:35.559358+00:00"
+    },
+    {
+      "file": "02-tower-1600x600.png",
+      "pixels": [
+        1600,
+        600
+      ],
+      "sha256": "84ed2bcb6d9e96756736e7abfd43b34ca2120a7bc9777b379f02da792f677479",
+      "copied_from": "rca/captures/2026-11-06-panel/02-tower-1600x600.png",
+      "captured_at_utc": "2026-11-06T06:44:27.005223+00:00"
+    },
+    {
+      "file": "01-same-incident-logs-3200x1200.png",
+      "pixels": [
+        3200,
+        1200
+      ],
+      "sha256": "bafa83a261b1a848fe63e8dc73d6c2094d07a19e9985959939de0721e8724c76",
+      "copied_from": "01-same-incident-logs-3200x1200.png",
+      "captured_at_utc": "2026-11-06T07:05:33.464847+00:00"
+    },
+    {
+      "file": "02-tower-3200x1200.png",
+      "pixels": [
+        3200,
+        1200
+      ],
+      "sha256": "de2e6177b8887bd1224154470033d2a1d3985980cc1ebd0d2c9aa0b80f8a9574",
+      "copied_from": "rca/captures/2026-11-06-panel/02-tower-3200x1200.png",
+      "captured_at_utc": "2026-11-06T06:45:49.600506+00:00"
+    }
+  ]
+}

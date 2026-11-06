@@ -1,0 +1,62 @@
+{
+  "study": "analysis-v3",
+  "case_id": "9e4945e7170b4a58",
+  "run_id": "efc0b3de7271822b1552",
+  "incident": {
+    "namespace": "rca-lab",
+    "pod": "sample-service-6d54574998-wljrj",
+    "pod_uid": "d7dc68b5-d929-429b-b639-39519f1dfa69",
+    "container_name": "app",
+    "container_id": "containerd://33a623bc9bb0f8d17cc2dc9500348f0d284334fc7797dd53d65071ca85a75238",
+    "node": "worker-1",
+    "time": "2026-10-29T02:48:07.510056Z",
+    "window_start": "2026-10-29T02:47:34.715680Z",
+    "reference_clock": "worker-1",
+    "symptom": "HTTP service investigation"
+  },
+  "log_evidence_id": "ev-56e93b3b171d6a27a4a8",
+  "source_archive_sha256": "c7ece9cc2b0b1048b8dbd4a9ab9e2f9d166a168eeefc8476413b47578f18b19c",
+  "raw_export_sha256": "59916b0e33ac8a316fedfbdfa118e762111dc69974f0382a128edaa81fc7c7b0",
+  "shown_fields": [
+    "timestamp (date is in header)",
+    "message"
+  ],
+  "excerpt": [
+    {
+      "source_line_1based": 1,
+      "timestamp": "2026-10-29T02:47:44.460327430Z",
+      "message": "dependency request failed"
+    },
+    {
+      "source_line_1based": 2,
+      "timestamp": "2026-10-29T02:47:44.460366777Z",
+      "message": "request completed status=503"
+    },
+    {
+      "source_line_1based": 3,
+      "timestamp": "2026-10-29T02:47:45.210949895Z",
+      "message": "dependency request failed"
+    },
+    {
+      "source_line_1based": 4,
+      "timestamp": "2026-10-29T02:47:45.210990599Z",
+      "message": "request completed status=503"
+    },
+    {
+      "source_line_1based": 5,
+      "timestamp": "2026-10-29T02:47:45.995378049Z",
+      "message": "dependency request failed"
+    },
+    {
+      "source_line_1based": 6,
+      "timestamp": "2026-10-29T02:47:45.995411898Z",
+      "message": "request completed status=503"
+    }
+  ],
+  "original_line_count": 59,
+  "bounded": true,
+  "possible_truncation": true,
+  "mode": "archived evidence opened now, not a contemporaneous K9s screenshot",
+  "new_api_calls": 0,
+  "cluster_mutations": 0
+}

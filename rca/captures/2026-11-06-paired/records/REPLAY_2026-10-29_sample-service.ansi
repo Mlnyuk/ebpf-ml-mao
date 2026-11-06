@@ -1,0 +1,16 @@
+[1;36mK9s에서 연 저장 로그  |  외부 뷰어: less[0m
+[1;36m저장된 장애 로그 재생  |  2026-10-29  |  실시간 아님[0m
+[37mrca-lab / sample-service-6d54574998-wljrj / app[0m
+[37m출처: Kubernetes container logs  |  ev-56e93b3b171d6a27a4a8[0m
+[37m[0m
+[1;36mUTC 시각             애플리케이션 메시지[0m
+[37m───────────────────────────────────────────────────────────────────────────────────────[0m
+[1;33m02:47:44.460327430   dependency request failed[0m
+[1;33m02:47:44.460366777   request completed status=503[0m
+[1;33m02:47:45.210949895   dependency request failed[0m
+[1;33m02:47:45.210990599   request completed status=503[0m
+[1;33m02:47:45.995378049   dependency request failed[0m
+[1;33m02:47:45.995411898   request completed status=503[0m
+[37m[0m
+[37m저장된 59줄 중 1–6행 · timestamp/message 필드 발췌[0m
+[37m같은 조사 실행: efc0b3de7271822b1552[0m
